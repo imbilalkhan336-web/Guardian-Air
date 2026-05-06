@@ -2,15 +2,15 @@ import DealCard from './DealCard';
 import SectionTitle from './SectionTitle';
 
 const deals = [
-    { title: 'FREE', description: 'HVAC System Estimates' },
-    { title: 'FREE', description: 'Whole Home Generator Estimates' },
+    { title: 'FREE', description: 'HVAC System Estimates', decoration: 'bottom' },
+    { title: 'FREE', description: 'Whole Home Generator Estimates', decoration: 'top-left' },
 ];
 
 export default function Deals() {
     return (
         <section className="relative overflow-hidden py-20">
-            {/* Blue gradient background */}
-            <div className="absolute inset-0 bg-gradient-to-b from-brand-blue via-brand-blue-light to-brand-blue" />
+            {/* Blue gradient background — light at top, dark navy at bottom */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#1273B5] via-[#0A4A7E] to-[#0A2A4A]" />
 
             {/* Wavy top border */}
             <div className="absolute top-0 left-0 w-full overflow-hidden leading-none rotate-180">
@@ -25,21 +25,18 @@ export default function Deals() {
                     light
                 />
 
-                <div className="mx-auto grid max-w-3xl grid-cols-1 gap-8 sm:grid-cols-2">
+                <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 sm:grid-cols-2">
                     {deals.map((deal, index) => (
-                        <DealCard key={index} title={deal.title} description={deal.description} />
+                        <DealCard key={index} title={deal.title} description={deal.description} decoration={deal.decoration} />
                     ))}
                 </div>
 
-                <div className="mt-10 text-center">
+                <div className="mt-16 text-center">
                     <a
                         href="#"
-                        className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-brand-orange hover:text-brand-yellow transition-colors"
+                        className="inline-flex items-center text-base font-extrabold italic uppercase tracking-wider text-brand-yellow underline underline-offset-4 hover:text-brand-orange transition-colors"
                     >
                         Check Out All Our Deals
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
                     </a>
                 </div>
             </div>
