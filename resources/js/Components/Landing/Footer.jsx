@@ -50,7 +50,7 @@ const linkGroups = [
 
 function ColumnTitle({ children }) {
     return (
-        <h3 className="text-base font-extrabold uppercase italic tracking-wide text-brand-orange">
+        <h3 className="text-2xl font-extrabold uppercase italic tracking-wide text-brand-orange">
             {children}
         </h3>
     );
@@ -58,7 +58,7 @@ function ColumnTitle({ children }) {
 
 function FooterLink({ children, href = '#' }) {
     return (
-        <a href={href} className="text-sm text-white/80 transition-colors hover:text-white">
+        <a href={href} className="text-[15px] text-white/80 transition-colors hover:text-white">
             {children}
         </a>
     );
@@ -95,7 +95,7 @@ export default function Footer() {
             </div>
 
             {/* Van decoration sitting on top of wave (desktop) */}
-            <div className="pointer-events-none absolute -top-12 left-4 hidden w-44 md:block lg:left-12 lg:w-56">
+            <div className="pointer-events-none absolute -top-[25px] left-[35px] hidden w-[296px] md:block lg:left-[95px] lg:-top-[20px] lg:w-[344px]">
                 <img src="/images/side-view.png" alt="" aria-hidden="true" className="w-full h-auto" />
             </div>
 
@@ -103,25 +103,25 @@ export default function Footer() {
                 <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
                     {/* Left brand block */}
                     <div className="lg:col-span-5">
-                        <div className="flex flex-wrap gap-3">
+                        <h2 className="text-[45px] font-extrabold uppercase italic leading-tight text-white md:text-[51px]">
+                            Services &amp; Quality<br />You Can Trust
+                        </h2>
+
+                        <p className="mt-4 text-2xl font-extrabold uppercase italic text-brand-orange">
+                            Open 24-Hours a Day 7 Days a Week
+                        </p>
+
+                        <p className="mt-6 text-[15px] leading-relaxed text-white/70">
+                            License #19HC00538300, Plumbing #36BI01585600, HIC #13VH08773400
+                        </p>
+
+                        <div className="mt-6 flex flex-wrap gap-3">
                             <SchedulePillButton size="sm" />
                             <PhonePillButton phone={PHONE} label={PHONE} size="sm" />
                         </div>
 
-                        <h2 className="mt-8 text-3xl font-extrabold uppercase italic leading-tight text-white md:text-4xl">
-                            Services &amp; Quality<br />You Can Trust
-                        </h2>
-
-                        <p className="mt-4 text-lg font-extrabold uppercase italic text-brand-orange">
-                            Open 24-Hours a Day 7 Days a Week
-                        </p>
-
-                        <p className="mt-6 text-xs leading-relaxed text-white/70">
-                            License #19HC00538300, Plumbing #36BI01585600, HIC #13VH08773400
-                        </p>
-
                         <div className="mt-6">
-                            <p className="text-sm font-bold uppercase tracking-wider text-white">Follow Us:</p>
+                            <p className="text-lg font-bold uppercase tracking-wider text-white">Follow Us:</p>
                             <div className="mt-3 flex gap-3">
                                 <a
                                     href="#"
@@ -151,7 +151,7 @@ export default function Footer() {
                                         {group.items.map((item, i) => {
                                             if (item.kind === 'text') {
                                                 return (
-                                                    <li key={i} className="text-sm text-white/80">
+                                                    <li key={i} className="text-[15px] text-white/80">
                                                         {item.value}
                                                     </li>
                                                 );
@@ -164,7 +164,7 @@ export default function Footer() {
                                                     <li key={i}>
                                                         <a
                                                             href={`tel:${item.value.replace(/[^\d+]/g, '')}`}
-                                                            className="text-sm font-bold text-brand-orange transition-colors hover:text-brand-yellow"
+                                                            className="text-xl font-bold text-brand-orange transition-colors hover:text-brand-yellow"
                                                         >
                                                             {item.value}
                                                         </a>
@@ -187,10 +187,10 @@ export default function Footer() {
 
             <div className="border-t border-white/10">
                 <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 sm:flex-row">
-                    <p className="text-xs text-white/50">
+                    <p className="text-sm text-white/50">
                         &copy; {new Date().getFullYear()} Arctic Air Conditioning. All rights reserved.
                     </p>
-                    <div className="flex gap-4 text-xs text-white/50">
+                    <div className="flex gap-4 text-sm text-white/50">
                         <a href="#" className="hover:text-white transition-colors">Terms &amp; Conditions</a>
                         <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
                     </div>
