@@ -1,6 +1,6 @@
 export default function Hero() {
     return (
-        <section className="relative h-screen bg-white">
+        <section className="relative h-[600px] sm:h-[720px] md:h-screen bg-white">
             {/* Background layers wrapper — clips bg image to the top 70% only */}
             <div className="absolute inset-x-0 top-0 h-[70%] overflow-hidden">
                 {/* Home background image - confined to this section only */}
@@ -23,17 +23,17 @@ export default function Hero() {
 
             <div className="relative mx-auto max-w-7xl px-4 h-full">
                 {/* Centered headline - sits behind the van, vertically centered in the 70% overlay */}
-                <div className="absolute left-1/2 top-[35%] -translate-x-1/2 -translate-y-1/2 w-full z-0 text-center">
-                    <p className="text-[1.2rem] md:text-[1.5rem] lg:text-[1.8rem] font-bold uppercase tracking-wider text-brand-orange">
+                <div className="absolute left-1/2 top-[42%] sm:top-[38%] md:top-[35%] -translate-x-1/2 -translate-y-1/2 w-full z-0 text-center">
+                    <p className="text-[1rem] sm:text-[1.2rem] md:text-[1.5rem] lg:text-[1.8rem] font-bold uppercase tracking-wide sm:tracking-wider text-brand-orange">
                         Proudly Serving New Jersey
                     </p>
-                    <h1 className="mt-2 font-extrabold uppercase leading-none text-white text-[4rem] sm:text-[6rem] md:text-[8rem] lg:text-[10.5rem] xl:text-[12.5rem]">
+                    <h1 className="mt-2 font-extrabold uppercase leading-none text-white text-[3.25rem] sm:text-[5rem] md:text-[8rem] lg:text-[10.5rem] xl:text-[12.5rem]">
                         Since 1977
                     </h1>
                 </div>
 
                 {/* Van Image - centered horizontally, sitting toward the bottom across the overlay edge */}
-                <div className="absolute left-1/2 bottom-[-7%] -translate-x-1/2 w-[90%] max-w-[680px] md:max-w-[760px] lg:max-w-[820px] z-30 pointer-events-none">
+                <div className="absolute left-1/2 bottom-[2%] sm:bottom-[-2%] md:bottom-[-7%] -translate-x-1/2 w-[95%] sm:w-[90%] max-w-[680px] md:max-w-[760px] lg:max-w-[820px] z-30 pointer-events-none">
                     <img
                         src="/images/side-view.png"
                         alt="Service van"

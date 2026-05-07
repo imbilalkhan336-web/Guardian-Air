@@ -1,7 +1,7 @@
 export default function TopBar() {
     return (
         <div className="bg-white text-gray-800">
-            <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-xs">
+            <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-[13px] text-[17px]">
                 <p className="hidden sm:block">
                     <span className="font-semibold text-brand-orange">Estimate your FREE HVAC install estimate!</span>
                     {' '}$0 Financing &amp; low payments available (pending credit approval)

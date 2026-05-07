@@ -9,7 +9,7 @@ export default function ServiceAreas() {
                     <div className="relative overflow-hidden rounded-2xl shadow-2xl shadow-black/30 ring-1 ring-black/5">
                         <iframe
                             title="Arctic Air service map — New Jersey"
-                            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d781234.567!2d-74.7!3d40.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1700000000000"
+                            src="https://maps.google.com/maps?q=New+Jersey,+USA&t=&z=8&ie=UTF8&iwloc=&output=embed"
                             className="block aspect-[4/3] w-full border-0"
                             loading="lazy"
                             referrerPolicy="no-referrer-when-downgrade"
