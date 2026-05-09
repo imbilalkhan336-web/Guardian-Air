@@ -14,6 +14,8 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Barlow Condensed', ...defaultTheme.fontFamily.sans],
+                script: ['Corinthia', 'cursive'],
+                display: ['Anton', 'Barlow Condensed', 'sans-serif'],
             },
             colors: {
                 brand: {

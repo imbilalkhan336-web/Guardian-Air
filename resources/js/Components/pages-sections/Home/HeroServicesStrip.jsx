@@ -1,0 +1,43 @@
+function DropIcon({ className }) {
+    return (
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+            <path d="M12 2c-3 5-7 8-7 13a7 7 0 0014 0c0-5-4-8-7-13z" />
+        </svg>
+    );
+}
+
+function ServiceStripItem({ iconSrc, icon, title, sub, color }) {
+    return (
+        <div className="flex items-center gap-4">
+            {iconSrc ? (
+                <img src={iconSrc} alt="" aria-hidden="true" className="h-20 w-20 flex-shrink-0 object-contain md:h-24 md:w-24" />
+            ) : (
+                <div className={`h-20 w-20 flex-shrink-0 md:h-24 md:w-24 ${color}`}>{icon}</div>
+            )}
+            <div className="leading-tight">
+                <div className="whitespace-nowrap text-sm font-bold uppercase tracking-wide text-white md:text-base">{title}</div>
+                <div className="whitespace-nowrap mt-0.5 text-xs text-white/70 md:text-sm">{sub}</div>
+            </div>
+        </div>
+    );
+}
+
+export default function HeroServicesStrip() {
+    return (
+        <div className="mx-auto max-w-7xl px-4 mb-6">
+            <div className="rounded-xl border border-white/20 px-2 py-1">
+                <div className="grid grid-cols-2 gap-x-2 gap-y-2 sm:grid-cols-3 md:gap-x-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr_auto_1fr] lg:items-center lg:gap-x-2">
+                    <ServiceStripItem iconSrc="/website/heating.png" title="Heating" sub="Stay warm all winter" />
+                    <span aria-hidden="true" className="hidden h-16 w-px bg-white/20 lg:block" />
+                    <ServiceStripItem iconSrc="/website/cooling.png" title="Cooling" sub="Stay cool all summer" />
+                    <span aria-hidden="true" className="hidden h-16 w-px bg-white/20 lg:block" />
+                    <ServiceStripItem icon={<DropIcon className="h-full w-full" />} title="Plumbing" sub="Expert plumbing services" color="text-blue-500" />
+                    <span aria-hidden="true" className="hidden h-16 w-px bg-white/20 lg:block" />
+                    <ServiceStripItem iconSrc="/website/electrical.png" title="Electrical" sub="Safe. Reliable. Local." />
+                    <span aria-hidden="true" className="hidden h-16 w-px bg-white/20 lg:block" />
+                    <ServiceStripItem iconSrc="/website/indoor%20air%20quailty.png" title="Indoor Air Quality" sub="Breathe cleaner, healthier air" />
+                </div>
+            </div>
+        </div>
+    );
+}

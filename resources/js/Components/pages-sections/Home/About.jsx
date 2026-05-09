@@ -1,4 +1,4 @@
-import { PhonePillButton, SchedulePillButton } from './PillButton';
+import { PhonePillButton, SchedulePillButton } from '../../FrontComponents/PillButton';
 
 export default function About() {
     return (

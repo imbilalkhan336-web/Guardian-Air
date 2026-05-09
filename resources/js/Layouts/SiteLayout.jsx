@@ -1,6 +1,6 @@
-import TopBar from '@/Components/Landing/TopBar';
-import Navbar from '@/Components/Landing/Navbar';
-import Footer from '@/Components/Landing/Footer';
+import TopBar from '@/Components/FrontComponents/Layout/TopBar';
+import Navbar from '@/Components/FrontComponents/Layout/Navbar';
+import Footer from '@/Components/FrontComponents/Layout/Footer';
 
 export default function SiteLayout({ children }) {
     return (

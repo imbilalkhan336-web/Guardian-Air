@@ -1,4 +1,4 @@
-import { PillButton } from './PillButton';
+import { PillButton } from '../../FrontComponents/PillButton';
 
 export default function ServiceAreas() {
     return (

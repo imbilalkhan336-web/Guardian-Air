@@ -12,8 +12,8 @@ const services = [
 
 export default function Services() {
     return (
-        <section className="relative -mt-6 z-10 pb-16">
-            <div className="mx-auto max-w-4xl px-4">
+        <section className="relative z-10 pt-12 pb-16 md:pt-32">
+            <div className="mx-auto max-w-7xl px-4">
                 {/* First row - 4 cards */}
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 md:gap-6">
                     {services.slice(0, 4).map((service) => (

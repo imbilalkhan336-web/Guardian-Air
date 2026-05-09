@@ -1,4 +1,4 @@
-import { PillButton } from './PillButton';
+import { PillButton } from '../../FrontComponents/PillButton';
 
 const points = [
     {

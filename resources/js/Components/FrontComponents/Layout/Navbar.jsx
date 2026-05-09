@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PhonePillButton, SchedulePillButton } from './PillButton';
+import { PhonePillButton, SchedulePillButton } from '../PillButton';
 
 const navLinks = [
     { label: 'Heating', href: '#' },

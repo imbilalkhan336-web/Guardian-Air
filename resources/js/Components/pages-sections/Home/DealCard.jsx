@@ -1,4 +1,4 @@
-import { SchedulePillButton } from './PillButton';
+import { SchedulePillButton } from '../../FrontComponents/PillButton';
 
 export default function DealCard({ title, description, decoration }) {
     return (

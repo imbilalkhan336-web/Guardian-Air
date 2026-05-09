@@ -1,4 +1,4 @@
-import { PhonePillButton, SchedulePillButton } from './PillButton';
+import { PhonePillButton, SchedulePillButton } from '../PillButton';
 
 const PHONE = '(848) 375-1227';
 
