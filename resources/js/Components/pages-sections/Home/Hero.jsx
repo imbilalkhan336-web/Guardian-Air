@@ -21,16 +21,16 @@ function HeroScheduleButton({ href = '#' }) {
     return (
         <a
             href={href}
-            className="group relative isolate flex min-w-[200px] items-center justify-center gap-2 overflow-hidden rounded-xl bg-[#EE5A24] px-3 py-2 text-white shadow-lg shadow-black/30 transition hover:bg-[#D04A1A] sm:px-4 sm:py-2.5"
+            className="group relative isolate flex min-w-[170px] items-center justify-center gap-2 overflow-hidden rounded-xl bg-[#EE5A24] px-2.5 py-1.5 text-white shadow-lg shadow-black/30 transition hover:bg-[#D04A1A] sm:px-3 sm:py-2"
         >
             <span
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-y-0 left-full -z-0 w-full -skew-x-12 bg-gradient-to-l from-white/30 via-white/15 to-transparent transition-transform duration-700 ease-out group-hover:-translate-x-[200%]"
             />
-            <CalendarOutlineIcon className="relative z-10 h-9 w-9 flex-shrink-0" />
+            <CalendarOutlineIcon className="relative z-10 h-7 w-7 flex-shrink-0" />
             <div className="relative z-10 text-left leading-tight">
-                <div className="text-base font-semibold uppercase tracking-wide sm:text-lg">Schedule Online</div>
-                <div className="text-xs font-normal text-white/90 sm:text-sm">It's fast &amp; easy</div>
+                <div className="text-sm font-semibold uppercase tracking-wide sm:text-base">Schedule Online</div>
+                <div className="text-[11px] font-normal text-white/90 sm:text-xs">It's fast &amp; easy</div>
             </div>
         </a>
     );
@@ -40,16 +40,16 @@ function HeroPhoneButton({ phone, displayPhone }) {
     return (
         <a
             href={`tel:${phone.replace(/[^\d+]/g, '')}`}
-            className="group relative isolate flex min-w-[200px] items-center justify-center gap-2 overflow-hidden rounded-xl border border-white/40 bg-transparent px-3 py-2 text-white shadow-lg shadow-black/30 transition hover:bg-white/10 sm:px-4 sm:py-2.5"
+            className="group relative isolate flex min-w-[170px] items-center justify-center gap-2 overflow-hidden rounded-xl border border-white/40 bg-transparent px-2.5 py-1.5 text-white shadow-lg shadow-black/30 transition hover:bg-white/10 sm:px-3 sm:py-2"
         >
             <span
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-y-0 left-full -z-0 w-full -skew-x-12 bg-gradient-to-l from-white/25 via-white/10 to-transparent transition-transform duration-700 ease-out group-hover:-translate-x-[200%]"
             />
-            <PhoneSolidIcon className="relative z-10 h-7 w-7 flex-shrink-0" />
+            <PhoneSolidIcon className="relative z-10 h-5 w-5 flex-shrink-0" />
             <div className="relative z-10 text-left leading-tight">
-                <div className="text-base font-semibold tracking-wide sm:text-lg">{displayPhone}</div>
-                <div className="text-xs font-normal text-white/80 sm:text-sm">Call Now 24/7</div>
+                <div className="text-sm font-semibold tracking-wide sm:text-base">{displayPhone}</div>
+                <div className="text-[11px] font-normal text-white/80 sm:text-xs">Call Now 24/7</div>
             </div>
         </a>
     );
@@ -137,23 +137,23 @@ function WavesIcon({ className }) {
 
 function FastResponseCallout() {
     return (
-        <div className="absolute bottom-8 right-4 hidden w-[380px] overflow-hidden rounded-2xl bg-white p-3 shadow-2xl shadow-black/40 lg:block">
-            <div className="flex items-center gap-4">
+        <div className="absolute bottom-8 right-4 hidden w-[320px] overflow-hidden rounded-2xl bg-white p-2.5 shadow-2xl shadow-black/40 lg:block">
+            <div className="flex items-center gap-3">
                 {/* 24/7 badge with circular orange arrow ring */}
                 <img
                     src="/website/time.png"
                     alt="24/7 service"
-                    className="h-24 w-24 flex-shrink-0 object-contain"
+                    className="h-20 w-20 flex-shrink-0 object-contain"
                 />
 
                 <div>
                     <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-orange">
                         Fast Response
                     </p>
-                    <h3 className="mt-1 whitespace-nowrap text-sm font-semibold uppercase leading-tight text-[#0A2A4A]">
+                    <h3 className="mt-0.5 whitespace-nowrap text-[12px] font-semibold uppercase leading-tight text-[#0A2A4A]">
                         We'll Be There When You Need Us!
                     </h3>
-                    <p className="mt-2 text-[15px] leading-snug text-gray-600">
+                    <p className="mt-1.5 text-[12px] leading-snug text-gray-600">
                         Our team is ready 24/7 to handle any HVAC or plumbing emergency.
                     </p>
                 </div>
@@ -176,7 +176,7 @@ function TrustItem({ icon: Icon, title, body }) {
 
 export default function Hero() {
     return (
-        <section className="relative bg-[#0A2A4A]">
+        <section className="relative bg-[#0A2A4A] pb-6">
             <div className="relative overflow-hidden">
                 {/* Background image */}
                 <div
@@ -215,7 +215,7 @@ export default function Hero() {
                         <HeroPhoneButton phone="(843) 545-5882" displayPhone="(843) 545-5882" />
                     </div>
 
-                    <div className="mt-8 grid grid-cols-1 items-center gap-2 sm:grid-cols-[1fr_auto_1fr_auto_1fr] sm:gap-1">
+                    <div className="mt-8 flex flex-col items-center gap-2 sm:flex-row sm:flex-nowrap sm:items-center sm:justify-start sm:gap-x-3">
                         <TrustItem icon={ShieldIcon} title="Licensed & Insured" body="Peace of mind guaranteed" />
                         <span aria-hidden="true" className="hidden h-12 w-px bg-white/25 sm:block md:h-14" />
                         <TrustItem icon={FamilyIcon} title="Family Owned" body="Your neighbors, your team" />

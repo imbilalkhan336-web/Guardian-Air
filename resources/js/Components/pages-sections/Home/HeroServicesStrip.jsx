@@ -8,15 +8,17 @@ function DropIcon({ className }) {
 
 function ServiceStripItem({ iconSrc, icon, title, sub, color }) {
     return (
-        <div className="flex items-center gap-4">
-            {iconSrc ? (
-                <img src={iconSrc} alt="" aria-hidden="true" className="h-20 w-20 flex-shrink-0 object-contain md:h-24 md:w-24" />
-            ) : (
-                <div className={`h-20 w-20 flex-shrink-0 md:h-24 md:w-24 ${color}`}>{icon}</div>
-            )}
-            <div className="leading-tight">
+        <div className="flex items-center gap-0">
+            <div className={`flex h-14 w-14 flex-shrink-0 items-center justify-center p-2 md:h-16 md:w-16 ${iconSrc ? '' : color}`}>
+                {iconSrc ? (
+                    <img src={iconSrc} alt="" aria-hidden="true" className="h-full w-full object-contain" />
+                ) : (
+                    icon
+                )}
+            </div>
+            <div className="leading-none">
                 <div className="whitespace-nowrap text-sm font-bold uppercase tracking-wide text-white md:text-base">{title}</div>
-                <div className="whitespace-nowrap mt-0.5 text-xs text-white/70 md:text-sm">{sub}</div>
+                <div className="whitespace-nowrap text-xs text-white/70 md:text-sm">{sub}</div>
             </div>
         </div>
     );
@@ -24,7 +26,7 @@ function ServiceStripItem({ iconSrc, icon, title, sub, color }) {
 
 export default function HeroServicesStrip() {
     return (
-        <div className="mx-auto max-w-7xl px-4 mb-6">
+        <div className="mx-auto max-w-7xl px-4">
             <div className="rounded-xl border border-white/20 px-2 py-1">
                 <div className="grid grid-cols-2 gap-x-2 gap-y-2 sm:grid-cols-3 md:gap-x-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr_auto_1fr] lg:items-center lg:gap-x-2">
                     <ServiceStripItem iconSrc="/website/heating.png" title="Heating" sub="Stay warm all winter" />
