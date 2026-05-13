@@ -2,16 +2,21 @@ import { useState } from 'react';
 import { PhonePillButton, SchedulePillButton } from '../PillButton';
 
 const navLinks = [
-    { label: 'Heating', href: '#' },
-    { label: 'Cooling', href: '#' },
-    { label: 'Indoor Air Quality', href: '#' },
-    { label: 'Plumbing', href: '#' },
-    { label: 'Drains', href: '#' },
-    { label: 'Electrical', href: '#' },
-    { label: 'Commercial', href: '#' },
+    { label: 'Heating', href: '/heating' },
+    { label: 'Cooling', href: '/cooling' },
+    { label: 'Plumbing', href: '/plumbing' },
+    { label: 'Electrical', href: '/electrical' },
+    { label: 'Offers', href: '/offers' },
+    { label: 'Resources', href: '/resources' },
 ];
 
-const PHONE = '(848) 356-4768';
+const moreServices = [
+    { label: 'Indoor Air Quality', href: '/indoor-air-quality' },
+    { label: 'Drains', href: '/drains' },
+    { label: 'Commercial', href: '/commercial' },
+];
+
+const PHONE = '(732) 239-0932';
 
 function Caret() {
     return (
@@ -29,26 +34,47 @@ export default function Navbar() {
             <div className="mx-auto flex max-w-7xl items-center px-4 py-3">
                 <a href="/" className="flex-shrink-0 mr-6 flex items-center">
                     <img
-                        src="/images/logo.png"
+                        src="/images/logo.webp"
                         alt="Guardian Air"
                         className="h-12 w-auto md:h-14 lg:h-16"
                     />
                 </a>
 
-                <div className="hidden lg:flex flex-1 items-center justify-center gap-1">
+                <div className="hidden lg:flex items-center gap-1">
                     {navLinks.map((link) => (
                         <a
                             key={link.label}
                             href={link.href}
-                            className="flex items-center px-3 py-2 text-sm font-semibold uppercase text-white transition-opacity hover:opacity-80 whitespace-nowrap"
+                            className="flex items-center px-3 py-2 text-xs font-semibold uppercase text-white transition-opacity hover:opacity-80 whitespace-nowrap"
                         >
                             {link.label}
                             <Caret />
                         </a>
                     ))}
+
+                    <div className="group relative">
+                        <button
+                            type="button"
+                            className="flex items-center px-3 py-2 text-xs font-semibold uppercase text-white transition-opacity hover:opacity-80 whitespace-nowrap"
+                        >
+                            More Services
+                            <Caret />
+                        </button>
+                        <div className="invisible absolute left-0 top-full z-50 min-w-[180px] rounded-md bg-[#004C93] py-2 opacity-0 shadow-lg transition group-hover:visible group-hover:opacity-100">
+                            {moreServices.map((link) => (
+                                <a
+                                    key={link.label}
+                                    href={link.href}
+                                    className="block whitespace-nowrap px-4 py-2 text-xs font-semibold uppercase text-white transition-colors hover:bg-white/10"
+                                >
+                                    {link.label}
+                                </a>
+                            ))}
+                        </div>
+                    </div>
                 </div>
 
-                <div className="hidden md:flex flex-shrink-0 items-center gap-3 ml-6">
+                <div className="hidden md:flex flex-shrink-0 items-center gap-3 ml-auto">
                     <PhonePillButton phone={PHONE} label={PHONE} size="sm" />
                     <SchedulePillButton size="sm" />
                 </div>
@@ -73,11 +99,11 @@ export default function Navbar() {
             {mobileOpen && (
                 <div className="border-t border-white/10 bg-[#004C93] px-4 pb-6 lg:hidden">
                     <div className="flex flex-col gap-1 pt-4">
-                        {navLinks.map((link) => (
+                        {[...navLinks, ...moreServices].map((link) => (
                             <a
                                 key={link.label}
                                 href={link.href}
-                                className="rounded-lg px-4 py-3 text-sm font-semibold uppercase text-white transition-colors hover:bg-white/10"
+                                className="rounded-lg px-4 py-3 text-xs font-semibold uppercase text-white transition-colors hover:bg-white/10"
                             >
                                 {link.label}
                             </a>

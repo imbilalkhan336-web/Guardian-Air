@@ -1,8 +1,11 @@
-function ShineSweep() {
+function ShineSweep({ tint = 'light' }) {
+    const tintClasses = tint === 'dark'
+        ? 'from-[#003B73]/30 via-[#003B73]/15 to-transparent'
+        : 'from-white/70 via-white/40 to-transparent';
     return (
         <span
             aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 left-full -z-0 w-full -skew-x-12 bg-gradient-to-l from-white/70 via-white/40 to-transparent transition-transform duration-700 ease-out group-hover:-translate-x-[200%]"
+            className={`pointer-events-none absolute inset-y-0 left-full -z-0 w-full -skew-x-12 bg-gradient-to-l ${tintClasses} transition-transform duration-700 ease-out group-hover:-translate-x-[200%]`}
         />
     );
 }
@@ -32,13 +35,13 @@ function CalendarIcon({ className }) {
 }
 
 const SIZE_CLASSES = {
-    sm: { wrap: 'gap-2 px-5 py-2.5 text-sm', icon: 'h-4 w-4' },
+    sm: { wrap: 'gap-2 px-4 py-2 text-xs', icon: 'h-3.5 w-3.5' },
     md: { wrap: 'gap-2.5 px-7 py-3.5 text-base', icon: 'h-5 w-5' },
     lg: { wrap: 'gap-2 px-12 py-4 text-base', icon: 'h-5 w-5' },
 };
 
 const VARIANT_CLASSES = {
-    light: 'bg-gradient-to-b from-white to-gray-200',
+    light: 'bg-gradient-to-b from-white to-gray-200 transition-colors hover:from-gray-100 hover:to-gray-300',
     yellow: 'bg-gradient-to-b from-brand-yellow to-brand-orange',
 };
 
@@ -66,7 +69,7 @@ export function PillButton({
                 className,
             ].join(' ')}
         >
-            <ShineSweep />
+            <ShineSweep tint={variant === 'light' ? 'dark' : 'light'} />
             {Icon && <Icon className={`relative z-10 ${sz.icon}`} />}
             <span className="relative z-10">{children}</span>
         </a>

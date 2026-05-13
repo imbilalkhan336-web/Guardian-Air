@@ -1,31 +1,121 @@
-import ServiceCard from './ServiceCard';
+import { LuSnowflake, LuDroplet, LuZap, LuArrowRight } from 'react-icons/lu';
 
-const services = [
-    { icon: 'heating', label: 'Heating' },
-    { icon: 'cooling', label: 'Cooling' },
-    { icon: 'plumbing', label: 'Plumbing' },
-    { icon: 'drains', label: 'Drains' },
-    { icon: 'electric', label: 'Electric' },
-    { icon: 'airQuality', label: 'Air Quality' },
-    { icon: 'commercial', label: 'Commercial' },
-];
+function ServiceCard({ icon: Icon, title, body, href = '#', index }) {
+    return (
+        <div className="group relative isolate flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white p-7 shadow-sm transition-all duration-500 ease-out hover:-translate-y-2 hover:border-brand-orange/40 hover:shadow-2xl sm:p-8">
+            {/* Large background number */}
+            <span
+                aria-hidden="true"
+                className="absolute right-4 top-2 font-display text-[72px] leading-none text-gray-100 transition-colors duration-500 group-hover:text-brand-orange/10 sm:text-[80px]"
+            >
+                {String(index + 1).padStart(2, '0')}
+            </span>
+
+            {/* Gradient icon container */}
+            <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-orange to-brand-orange-dark text-white shadow-lg shadow-brand-orange/30">
+                <Icon className="h-8 w-8" />
+            </div>
+
+            {/* Animated accent line */}
+            <span
+                aria-hidden="true"
+                className="relative mt-6 block h-1 w-8 rounded-full bg-brand-orange transition-all duration-500 group-hover:w-16"
+            />
+
+            <h3 className="relative mt-5 font-display text-2xl uppercase text-[#07264A]">
+                {title}
+            </h3>
+
+            <p className="relative mt-3 flex-1 font-body text-sm leading-relaxed text-gray-600">
+                {body}
+            </p>
+
+            <a
+                href={href}
+                className="relative mt-6 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.2em] text-brand-orange transition-colors hover:text-brand-orange-dark"
+            >
+                Learn More
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-orange/10 transition-all duration-300 group-hover:bg-brand-orange group-hover:text-white">
+                    <LuArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+                </span>
+            </a>
+        </div>
+    );
+}
 
 export default function Services() {
     return (
-        <section className="relative z-10 pt-12 pb-16 md:pt-32">
-            <div className="mx-auto max-w-7xl px-4">
-                {/* First row - 4 cards */}
-                <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 md:gap-6">
-                    {services.slice(0, 4).map((service) => (
-                        <ServiceCard key={service.label} icon={service.icon} label={service.label} />
-                    ))}
+        <section className="relative overflow-hidden bg-gradient-to-b from-white via-gray-50 to-white py-20 lg:py-28">
+            {/* Decorative blur orbs */}
+            <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-brand-orange/5 blur-3xl"
+            />
+            <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-24 bottom-10 h-72 w-72 rounded-full bg-[#0A55C1]/5 blur-3xl"
+            />
+
+            <div className="relative mx-auto max-w-7xl px-4">
+                {/* Section header */}
+                <div className="mx-auto max-w-3xl text-center">
+                    <p className="text-[12px] font-extrabold uppercase tracking-[0.25em] text-brand-orange">
+                        Our Services
+                    </p>
+                    <span
+                        aria-hidden="true"
+                        className="mx-auto mt-3 block h-0.5 w-10 rounded-full bg-brand-orange"
+                    />
+                    <h2 className="mt-4 font-display text-[38px] uppercase leading-[0.95] text-[#07264A] md:text-[50px] lg:text-[60px]">
+                        Complete <span className="text-brand-orange">Comfort</span> Solutions
+                    </h2>
+                    <p className="mx-auto mt-5 max-w-xl font-body text-base leading-relaxed text-gray-600">
+                        Professional HVAC, plumbing, and electrical services designed to keep
+                        your home safe, efficient, and comfortable year-round.
+                    </p>
                 </div>
 
-                {/* Second row - 3 cards centered */}
-                <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:max-w-[75%] sm:mx-auto md:gap-6">
-                    {services.slice(4).map((service) => (
-                        <ServiceCard key={service.label} icon={service.icon} label={service.label} />
-                    ))}
+                {/* Service cards */}
+                <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    <ServiceCard
+                        index={0}
+                        icon={LuSnowflake}
+                        title="HVAC Services"
+                        body="Installation, repair, and maintenance for heating and cooling systems. Stay comfortable in every season with our licensed technicians."
+                        href="#"
+                    />
+                    <ServiceCard
+                        index={1}
+                        icon={LuDroplet}
+                        title="Plumbing Services"
+                        body="Expert plumbing solutions for repairs, installations, drain cleaning, and emergencies. Fast response when you need it most."
+                        href="#"
+                    />
+                    <ServiceCard
+                        index={2}
+                        icon={LuZap}
+                        title="Electrical Services"
+                        body="Safe, reliable electrical services for your home or business. From panel upgrades to lighting, we power what matters most."
+                        href="#"
+                    />
+                </div>
+
+                {/* Bottom CTA */}
+                <div className="mt-14 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                    <a
+                        href="/services"
+                        className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-b from-brand-yellow to-brand-orange px-8 py-3.5 text-sm font-bold uppercase tracking-wide text-[#003B73] shadow-lg shadow-black/15 ring-1 ring-black/5 transition-all hover:shadow-xl hover:shadow-black/20"
+                    >
+                        View All Services
+                        <LuArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </a>
+                    <span className="hidden text-sm text-gray-400 sm:block">or</span>
+                    <a
+                        href="tel:7322390932"
+                        className="text-sm font-bold uppercase tracking-wide text-[#003B73] underline decoration-brand-orange underline-offset-4 transition-colors hover:text-brand-orange"
+                    >
+                        Call (732) 239-0932
+                    </a>
                 </div>
             </div>
         </section>

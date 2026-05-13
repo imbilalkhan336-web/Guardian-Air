@@ -21,16 +21,16 @@ function HeroScheduleButton({ href = '#' }) {
     return (
         <a
             href={href}
-            className="group relative isolate flex min-w-[170px] items-center justify-center gap-2 overflow-hidden rounded-xl bg-[#EE5A24] px-2.5 py-1.5 text-white shadow-lg shadow-black/30 transition hover:bg-[#D04A1A] sm:px-3 sm:py-2"
+            className="group relative isolate flex items-center justify-start gap-2 overflow-hidden rounded-xl bg-gradient-to-b from-brand-yellow to-brand-orange px-3 py-1.5 text-[#003B73] shadow-lg shadow-black/30 ring-1 ring-black/5 sm:min-w-[210px] sm:gap-3 sm:pl-3 sm:pr-6 sm:py-1.5"
         >
             <span
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-y-0 left-full -z-0 w-full -skew-x-12 bg-gradient-to-l from-white/30 via-white/15 to-transparent transition-transform duration-700 ease-out group-hover:-translate-x-[200%]"
+                className="pointer-events-none absolute inset-y-0 left-full -z-0 w-full -skew-x-12 bg-gradient-to-l from-white/70 via-white/40 to-transparent transition-transform duration-700 ease-out group-hover:-translate-x-[200%]"
             />
-            <CalendarOutlineIcon className="relative z-10 h-7 w-7 flex-shrink-0" />
-            <div className="relative z-10 text-left leading-tight">
-                <div className="text-sm font-semibold uppercase tracking-wide sm:text-base">Schedule Online</div>
-                <div className="text-[11px] font-normal text-white/90 sm:text-xs">It's fast &amp; easy</div>
+            <CalendarOutlineIcon className="relative z-10 h-5 w-5 flex-shrink-0 sm:h-7 sm:w-7" />
+            <div className="relative z-10 text-left leading-none">
+                <div className="text-[10px] font-semibold uppercase tracking-wide sm:text-sm">Schedule Online</div>
+                <div className="mt-[3px] text-[9px] font-normal text-[#003B73]/80 sm:text-[11px]">It's fast &amp; easy</div>
             </div>
         </a>
     );
@@ -40,16 +40,16 @@ function HeroPhoneButton({ phone, displayPhone }) {
     return (
         <a
             href={`tel:${phone.replace(/[^\d+]/g, '')}`}
-            className="group relative isolate flex min-w-[170px] items-center justify-center gap-2 overflow-hidden rounded-xl border border-white/40 bg-transparent px-2.5 py-1.5 text-white shadow-lg shadow-black/30 transition hover:bg-white/10 sm:px-3 sm:py-2"
+            className="group relative isolate flex items-center justify-start gap-2 overflow-hidden rounded-xl bg-gradient-to-b from-white to-gray-200 px-3 py-1.5 text-[#003B73] shadow-lg shadow-black/30 ring-1 ring-black/5 transition-colors hover:from-gray-100 hover:to-gray-300 sm:min-w-[210px] sm:gap-3 sm:pl-3 sm:pr-6 sm:py-1.5"
         >
             <span
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-y-0 left-full -z-0 w-full -skew-x-12 bg-gradient-to-l from-white/25 via-white/10 to-transparent transition-transform duration-700 ease-out group-hover:-translate-x-[200%]"
+                className="pointer-events-none absolute inset-y-0 left-full -z-0 w-full -skew-x-12 bg-gradient-to-l from-[#003B73]/30 via-[#003B73]/15 to-transparent transition-transform duration-700 ease-out group-hover:-translate-x-[200%]"
             />
-            <PhoneSolidIcon className="relative z-10 h-5 w-5 flex-shrink-0" />
-            <div className="relative z-10 text-left leading-tight">
-                <div className="text-sm font-semibold tracking-wide sm:text-base">{displayPhone}</div>
-                <div className="text-[11px] font-normal text-white/80 sm:text-xs">Call Now 24/7</div>
+            <PhoneSolidIcon className="relative z-10 h-5 w-5 flex-shrink-0 sm:h-7 sm:w-7" />
+            <div className="relative z-10 text-left leading-none">
+                <div className="text-[10px] font-semibold tracking-wide sm:text-sm">{displayPhone}</div>
+                <div className="mt-[3px] text-[9px] font-normal text-[#003B73]/70 sm:text-[11px]">Call Now 24/7</div>
             </div>
         </a>
     );
@@ -57,7 +57,7 @@ function HeroPhoneButton({ phone, displayPhone }) {
 
 function ShieldIcon() {
     return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} aria-hidden="true" className="h-9 w-9 flex-shrink-0 text-white md:h-10 md:w-10">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} aria-hidden="true" className="h-7 w-7 flex-shrink-0 text-white sm:h-9 sm:w-9 md:h-10 md:w-10">
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75" />
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 21c4.97-2.5 8-6.5 8-11V5l-8-3-8 3v5c0 4.5 3.03 8.5 8 11z" />
         </svg>
@@ -66,7 +66,7 @@ function ShieldIcon() {
 
 function FamilyIcon() {
     return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-9 w-9 flex-shrink-0 text-white md:h-10 md:w-10">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-7 w-7 flex-shrink-0 text-white sm:h-9 sm:w-9 md:h-10 md:w-10">
             <circle cx="9" cy="7" r="4" />
             <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
             <path d="M16 3.13a4 4 0 0 1 0 7.75" />
@@ -77,7 +77,7 @@ function FamilyIcon() {
 
 function GuaranteeIcon() {
     return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} aria-hidden="true" className="h-9 w-9 flex-shrink-0 text-white md:h-10 md:w-10">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} aria-hidden="true" className="h-7 w-7 flex-shrink-0 text-white sm:h-9 sm:w-9 md:h-10 md:w-10">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 21c4.97-2.5 8-6.5 8-11V5l-8-3-8 3v5c0 4.5 3.03 8.5 8 11z" />
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 7l1.2 2.5 2.8.4-2 2 .5 2.8L12 13.4 9.5 14.7l.5-2.8-2-2 2.8-.4L12 7z" />
         </svg>
@@ -137,11 +137,11 @@ function WavesIcon({ className }) {
 
 function FastResponseCallout() {
     return (
-        <div className="absolute bottom-8 right-4 hidden w-[320px] overflow-hidden rounded-2xl bg-white p-2.5 shadow-2xl shadow-black/40 lg:block">
+        <div className="absolute bottom-8 right-4 hidden w-[380px] overflow-hidden rounded-2xl bg-white py-2.5 pl-2.5 pr-6 shadow-2xl shadow-black/40 lg:block">
             <div className="flex items-center gap-3">
                 {/* 24/7 badge with circular orange arrow ring */}
                 <img
-                    src="/website/time.png"
+                    src="/website/time.webp"
                     alt="24/7 service"
                     className="h-20 w-20 flex-shrink-0 object-contain"
                 />
@@ -164,11 +164,11 @@ function FastResponseCallout() {
 
 function TrustItem({ icon: Icon, title, body }) {
     return (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 sm:gap-3">
             <Icon />
-            <div className="flex flex-wrap items-baseline gap-x-2">
-                <h3 className="whitespace-nowrap text-sm font-medium text-white md:text-base">{title}</h3>
-                <p className="whitespace-nowrap text-[11px] text-white/70 md:text-xs">{body}</p>
+            <div className="flex flex-col leading-tight">
+                <h3 className="text-[10px] font-semibold text-white sm:text-[11px] md:text-xs">{title}</h3>
+                <p className="text-[9px] text-white/70 sm:text-[10px] md:text-[11px]">{body}</p>
             </div>
         </div>
     );
@@ -176,46 +176,46 @@ function TrustItem({ icon: Icon, title, body }) {
 
 export default function Hero() {
     return (
-        <section className="relative bg-[#0A2A4A] pb-6">
+        <section className="relative bg-[#0A2A4A]">
             <div className="relative overflow-hidden">
                 {/* Background image */}
                 <div
-                    className="absolute inset-0 bg-cover bg-no-repeat bg-center md:bg-right"
-                    style={{ backgroundImage: "url('/images/hero-bg.png')" }}
+                    className="absolute inset-0 bg-cover bg-no-repeat bg-right md:bg-right"
+                    style={{ backgroundImage: "url('/images/hero-bg.webp')" }}
                     aria-hidden="true"
                 />
 
                 {/* Left-side dark gradient — keeps text readable over the photo */}
                 <div className="absolute inset-0 bg-gradient-to-r from-[#0A2A4A] via-[#0A2A4A]/90 to-transparent md:via-[#0A2A4A]/70" />
 
-                <div className="relative mx-auto max-w-7xl px-4 py-8 md:py-12 lg:py-14">
+                <div className="relative mx-auto max-w-7xl px-4 pt-8 pb-6 md:pt-12 lg:pt-14">
                     <FastResponseCallout />
                 <div className="max-w-xl lg:max-w-2xl">
-                    <p className="text-base font-bold uppercase tracking-[0.25em] text-brand-orange md:text-lg">
+                    <p className="text-[10px] font-bold uppercase text-brand-orange md:text-[10px] lg:text-[14px]">
                         Comfort You Can Count On
                     </p>
 
-                    <h1 className="mt-4 font-display uppercase leading-[0.95] text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-wide">
+                    <h1 className="mt-4 font-display uppercase leading-[0.95] text-white text-[32px] sm:text-[38px] md:text-[62px] lg:text-[72px] tracking-wide">
                         Heating, Cooling
                         <br />
                         &amp; Plumbing
                     </h1>
 
-                    <p className="mt-2 font-script font-bold text-sky-300 text-7xl md:text-8xl lg:text-9xl leading-[1.1]">
+                    <p className="mt-2 font-script font-bold text-sky-300 text-4xl sm:text-5xl md:text-6xl lg:text-[67px] leading-[1.1]">
                         Done Right!
                     </p>
 
-                    <p className="mt-4 max-w-md text-lg leading-relaxed text-white md:text-xl">
+                    <p className="mt-4 max-w-md text-xs leading-relaxed text-white md:text-sm">
                         Expert service. Honest pricing. 100% satisfaction guaranteed.
                         24/7 service for all your home comfort needs.
                     </p>
 
-                    <div className="mt-6 flex flex-wrap items-center gap-4">
+                    <div className="mt-6 flex flex-nowrap items-center gap-2">
                         <HeroScheduleButton href="#" />
-                        <HeroPhoneButton phone="(843) 545-5882" displayPhone="(843) 545-5882" />
+                        <HeroPhoneButton phone="(732) 239-0932" displayPhone="(732) 239-0932" />
                     </div>
 
-                    <div className="mt-8 flex flex-col items-center gap-2 sm:flex-row sm:flex-nowrap sm:items-center sm:justify-start sm:gap-x-3">
+                    <div className="mt-8 grid grid-cols-2 gap-4 sm:flex sm:flex-wrap sm:items-center sm:justify-start sm:gap-x-3 sm:gap-y-3">
                         <TrustItem icon={ShieldIcon} title="Licensed & Insured" body="Peace of mind guaranteed" />
                         <span aria-hidden="true" className="hidden h-12 w-px bg-white/25 sm:block md:h-14" />
                         <TrustItem icon={FamilyIcon} title="Family Owned" body="Your neighbors, your team" />
@@ -224,9 +224,9 @@ export default function Hero() {
                     </div>
                     </div>
                 </div>
-            </div>
 
-            <HeroServicesStrip />
+                <HeroServicesStrip />
+            </div>
         </section>
     );
 }

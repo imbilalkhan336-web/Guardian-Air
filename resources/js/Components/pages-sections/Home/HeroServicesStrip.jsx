@@ -9,16 +9,16 @@ function DropIcon({ className }) {
 function ServiceStripItem({ iconSrc, icon, title, sub, color }) {
     return (
         <div className="flex items-center gap-0">
-            <div className={`flex h-14 w-14 flex-shrink-0 items-center justify-center p-2 md:h-16 md:w-16 ${iconSrc ? '' : color}`}>
+            <div className={`flex h-8 w-8 flex-shrink-0 items-center justify-center p-1 md:h-10 md:w-10 lg:h-14 lg:w-14 lg:p-2 ${iconSrc ? '' : color}`}>
                 {iconSrc ? (
                     <img src={iconSrc} alt="" aria-hidden="true" className="h-full w-full object-contain" />
                 ) : (
                     icon
                 )}
             </div>
-            <div className="leading-none">
-                <div className="whitespace-nowrap text-sm font-bold uppercase tracking-wide text-white md:text-base">{title}</div>
-                <div className="whitespace-nowrap text-xs text-white/70 md:text-sm">{sub}</div>
+            <div className="space-y-1 leading-none">
+                <div className="whitespace-nowrap text-[9px] font-bold uppercase tracking-wide text-white md:text-[11px] lg:text-sm">{title}</div>
+                <div className="whitespace-nowrap text-[8px] text-white/70 md:text-[10px] lg:text-xs">{sub}</div>
             </div>
         </div>
     );
@@ -26,19 +26,17 @@ function ServiceStripItem({ iconSrc, icon, title, sub, color }) {
 
 export default function HeroServicesStrip() {
     return (
-        <div className="mx-auto max-w-7xl px-4">
-            <div className="rounded-xl border border-white/20 px-2 py-1">
-                <div className="grid grid-cols-2 gap-x-2 gap-y-2 sm:grid-cols-3 md:gap-x-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr_auto_1fr] lg:items-center lg:gap-x-2">
-                    <ServiceStripItem iconSrc="/website/heating.png" title="Heating" sub="Stay warm all winter" />
-                    <span aria-hidden="true" className="hidden h-16 w-px bg-white/20 lg:block" />
-                    <ServiceStripItem iconSrc="/website/cooling.png" title="Cooling" sub="Stay cool all summer" />
-                    <span aria-hidden="true" className="hidden h-16 w-px bg-white/20 lg:block" />
-                    <ServiceStripItem icon={<DropIcon className="h-full w-full" />} title="Plumbing" sub="Expert plumbing services" color="text-blue-500" />
-                    <span aria-hidden="true" className="hidden h-16 w-px bg-white/20 lg:block" />
-                    <ServiceStripItem iconSrc="/website/electrical.png" title="Electrical" sub="Safe. Reliable. Local." />
-                    <span aria-hidden="true" className="hidden h-16 w-px bg-white/20 lg:block" />
-                    <ServiceStripItem iconSrc="/website/indoor%20air%20quailty.png" title="Indoor Air Quality" sub="Breathe cleaner, healthier air" />
-                </div>
+        <div className="relative mx-auto max-w-7xl px-4 pb-10">
+            <div className="grid grid-cols-2 gap-x-2 gap-y-2 rounded-xl border border-white/30 bg-[#092949] px-4 py-3 sm:grid-cols-3 md:gap-x-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr_auto_1fr] lg:items-center lg:gap-x-2">
+                <ServiceStripItem iconSrc="/website/heating.png" title="Heating" sub="Stay warm all winter" />
+                <span aria-hidden="true" className="hidden h-12 w-px bg-white/20 lg:block" />
+                <ServiceStripItem iconSrc="/website/cooling.png" title="Cooling" sub="Stay cool all summer" />
+                <span aria-hidden="true" className="hidden h-12 w-px bg-white/20 lg:block" />
+                <ServiceStripItem icon={<DropIcon className="h-full w-full" />} title="Plumbing" sub="Expert plumbing services" color="text-blue-500" />
+                <span aria-hidden="true" className="hidden h-12 w-px bg-white/20 lg:block" />
+                <ServiceStripItem iconSrc="/website/electrical.png" title="Electrical" sub="Safe. Reliable. Local." />
+                <span aria-hidden="true" className="hidden h-12 w-px bg-white/20 lg:block" />
+                <ServiceStripItem iconSrc="/website/indoor%20air%20quailty.png" title="Indoor Air Quality" sub="Breathe cleaner, healthier air" />
             </div>
         </div>
     );

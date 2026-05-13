@@ -13,9 +13,14 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Barlow Condensed', ...defaultTheme.fontFamily.sans],
+                sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
                 script: ['Corinthia', 'cursive'],
                 display: ['Anton', 'Barlow Condensed', 'sans-serif'],
+                bebas: ['Bebas Neue', 'Anton', 'sans-serif'],
+                poppins: ['Poppins', ...defaultTheme.fontFamily.sans],
+                body: ['Montserrat', ...defaultTheme.fontFamily.sans],
+                montserrat: ['Montserrat', ...defaultTheme.fontFamily.sans],
+                barlow: ['Barlow Condensed', ...defaultTheme.fontFamily.sans],
             },
             colors: {
                 brand: {

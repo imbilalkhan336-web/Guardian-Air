@@ -1,0 +1,260 @@
+import { Head } from '@inertiajs/react';
+import SiteLayout from '@/Layouts/SiteLayout';
+import PageHeader from '@/Components/FrontComponents/PageHeader';
+import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
+import {
+    LuPercent,
+    LuBadgeCheck,
+    LuClock,
+    LuHouse,
+    LuWrench,
+    LuShieldCheck,
+    LuArrowRight,
+    LuPhone,
+} from 'react-icons/lu';
+
+const offers = [
+    {
+        icon: LuPercent,
+        badge: 'Limited Time',
+        title: '$50 Off Any Repair',
+        description:
+            'Get $50 off any heating, cooling, plumbing, or electrical repair over $250. Mention this offer when you call or schedule online.',
+        expires: 'Expires June 30, 2026',
+        cta: 'Claim Offer',
+    },
+    {
+        icon: LuBadgeCheck,
+        badge: 'Most Popular',
+        title: 'Free HVAC System Estimate',
+        description:
+            'Thinking about a new furnace or AC? We provide free, no-obligation estimates on all HVAC system replacements with upfront pricing.',
+        expires: 'Ongoing',
+        cta: 'Schedule Estimate',
+    },
+    {
+        icon: LuHouse,
+        badge: 'New Customers',
+        title: '$100 Off First Service Call',
+        description:
+            'New to Guardian Air? Welcome to the family. Take $100 off your first service call — any trade, any time. No restrictions.',
+        expires: 'Ongoing',
+        cta: 'Redeem Now',
+    },
+    {
+        icon: LuWrench,
+        badge: 'Seasonal',
+        title: 'Free Whole Home Generator Estimate',
+        description:
+            'Never lose power again. Get a free estimate for a whole-home standby generator tailored to your house and budget.',
+        expires: 'Expires August 31, 2026',
+        cta: 'Get Estimate',
+    },
+    {
+        icon: LuShieldCheck,
+        badge: 'Membership',
+        title: 'Guardian Care Club — 20% Off',
+        description:
+            'Join our maintenance membership and save 20% on all repairs, priority scheduling, and two free tune-ups per year.',
+        expires: 'Membership Renews Annually',
+        cta: 'Learn More',
+    },
+    {
+        icon: LuClock,
+        badge: 'Emergency',
+        title: 'No Emergency Fees — Ever',
+        description:
+            'We never charge extra for after-hours, weekend, or holiday emergency calls. Same fair rate, 24 hours a day, 365 days a year.',
+        expires: 'Always',
+        cta: 'Call Now',
+    },
+];
+
+const howToRedeem = [
+    {
+        step: '01',
+        title: 'Choose Your Offer',
+        description: 'Browse our current promotions and pick the one that fits your needs.',
+    },
+    {
+        step: '02',
+        title: 'Call or Schedule Online',
+        description: 'Mention the offer when you call or include it in your online request.',
+    },
+    {
+        step: '03',
+        title: 'Save on Service',
+        description: 'Our technician applies the discount to your final invoice — no hassle.',
+    },
+];
+
+export default function OffersPage() {
+    return (
+        <SiteLayout>
+            <Head>
+                <title>Special Offers — HVAC, Plumbing & Electrical Deals | Guardian Air</title>
+                <meta
+                    name="description"
+                    content="Save on HVAC, plumbing, and electrical services with Guardian Air's current offers. Free estimates, repair discounts, and membership savings across central New Jersey."
+                />
+                <meta name="robots" content="index, follow" />
+                <link rel="canonical" href="/offers" />
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content="Special Offers — Guardian Air HVAC & Plumbing" />
+                <meta
+                    property="og:description"
+                    content="Current promotions, discounts, and membership deals on heating, cooling, plumbing, and electrical services in NJ."
+                />
+                <meta property="og:url" content="/offers" />
+            </Head>
+
+            <article>
+                <PageHeader
+                    label="Save Big"
+                    title="Current Offers"
+                    description="Real savings on real services. No gimmicks, no hidden conditions — just honest discounts from a local team that values your business."
+                    image="/website/services-bg.webp"
+                />
+
+                {/* Deals Image Banner */}
+                <section className="bg-white py-12 lg:py-16">
+                    <div className="mx-auto max-w-7xl px-4">
+                        <div className="relative overflow-hidden rounded-2xl shadow-xl">
+                            <img
+                                src="/website/deals.webp"
+                                alt="Guardian Air special deals and promotions"
+                                className="w-full object-cover"
+                            />
+                        </div>
+                    </div>
+                </section>
+
+                {/* Offer Cards */}
+                <section className="relative overflow-hidden bg-gradient-to-b from-white via-gray-50 to-white py-20 lg:py-28">
+                    <div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-brand-orange/5 blur-3xl"
+                    />
+                    <div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute -right-24 bottom-10 h-72 w-72 rounded-full bg-brand-blue/5 blur-3xl"
+                    />
+
+                    <div className="relative mx-auto max-w-7xl px-4">
+                        <div className="mb-14 text-center lg:mb-16">
+                            <p className="text-[12px] font-extrabold uppercase tracking-[0.25em] text-brand-orange">
+                                Active Promotions
+                            </p>
+                            <span
+                                aria-hidden="true"
+                                className="mx-auto mt-3 block h-0.5 w-10 rounded-full bg-brand-orange"
+                            />
+                            <h2 className="mx-auto mt-4 max-w-2xl font-display text-[34px] uppercase leading-[0.95] text-[#07264A] md:text-[46px] lg:text-[54px]">
+                                Deals You Can <span className="text-brand-orange">Use Today</span>
+                            </h2>
+                        </div>
+
+                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                            {offers.map((offer) => (
+                                <div
+                                    key={offer.title}
+                                    className="group relative flex flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-brand-orange/40 hover:shadow-2xl"
+                                >
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand-orange to-brand-orange-dark text-white shadow-lg shadow-brand-orange/30 transition-transform duration-500 group-hover:scale-110">
+                                            <offer.icon className="h-6 w-6" />
+                                        </div>
+                                        <span className="rounded-full bg-brand-orange/10 px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-brand-orange">
+                                            {offer.badge}
+                                        </span>
+                                    </div>
+                                    <h3 className="mt-5 font-display text-xl uppercase text-[#07264A]">
+                                        {offer.title}
+                                    </h3>
+                                    <p className="mt-2 flex-1 font-body text-sm leading-relaxed text-gray-600">
+                                        {offer.description}
+                                    </p>
+                                    <p className="mt-4 text-[10px] font-extrabold uppercase tracking-widest text-gray-400">
+                                        {offer.expires}
+                                    </p>
+                                    <a
+                                        href="/contact"
+                                        className="mt-5 inline-flex items-center justify-center gap-2 rounded-full border-2 border-brand-orange px-6 py-2.5 text-xs font-extrabold uppercase tracking-widest text-brand-orange transition-all hover:bg-brand-orange hover:text-white"
+                                    >
+                                        {offer.cta}
+                                        <LuArrowRight className="h-3.5 w-3.5" />
+                                    </a>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* How to Redeem */}
+                <section className="relative overflow-hidden bg-[#07264A] py-20 lg:py-28">
+                    <div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute -left-20 top-0 h-72 w-72 rounded-full bg-brand-orange/5 blur-3xl"
+                    />
+                    <div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-brand-blue/5 blur-3xl"
+                    />
+
+                    <div className="relative mx-auto max-w-7xl px-4">
+                        <div className="mb-14 text-center lg:mb-16">
+                            <p className="text-[12px] font-extrabold uppercase tracking-[0.25em] text-brand-orange">
+                                Easy Savings
+                            </p>
+                            <span
+                                aria-hidden="true"
+                                className="mx-auto mt-3 block h-0.5 w-10 rounded-full bg-brand-orange"
+                            />
+                            <h2 className="mx-auto mt-4 max-w-2xl font-display text-[34px] uppercase leading-[0.95] text-white md:text-[46px] lg:text-[54px]">
+                                How to <span className="text-brand-orange">Redeem</span>
+                            </h2>
+                        </div>
+
+                        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+                            {howToRedeem.map((item) => (
+                                <div
+                                    key={item.step}
+                                    className="group relative rounded-2xl border border-white/10 bg-white/5 p-8 text-center backdrop-blur-sm transition-all duration-500 hover:border-brand-orange/40 hover:bg-white/10"
+                                >
+                                    <span className="font-display text-[64px] uppercase leading-none text-white/10 transition-colors duration-300 group-hover:text-brand-orange/20">
+                                        {item.step}
+                                    </span>
+                                    <h3 className="-mt-4 font-display text-xl uppercase text-white">
+                                        {item.title}
+                                    </h3>
+                                    <p className="mt-3 font-body text-sm leading-relaxed text-white/60">
+                                        {item.description}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                            <a
+                                href="/contact"
+                                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-orange to-brand-orange-dark px-8 py-3.5 text-sm font-extrabold uppercase tracking-widest text-white shadow-lg shadow-brand-orange/30 transition-all hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0"
+                            >
+                                <LuArrowRight className="h-4 w-4" />
+                                Schedule Online
+                            </a>
+                            <a
+                                href="tel:7322390932"
+                                className="inline-flex items-center gap-2 rounded-full border-2 border-white/20 px-8 py-3.5 text-sm font-extrabold uppercase tracking-widest text-white transition-all hover:border-white/40 hover:bg-white/5"
+                            >
+                                <LuPhone className="h-4 w-4" />
+                                Call (732) 239-0932
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </article>
+
+            <CtaBanner />
+        </SiteLayout>
+    );
+}
