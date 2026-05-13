@@ -105,13 +105,13 @@ export default function ServiceAreas() {
                         </div>
 
                         {/* CTA */}
-                        <a
+                        <Link
                             href="/services"
                             className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-orange to-brand-orange-dark px-8 py-3.5 text-sm font-extrabold uppercase tracking-widest text-white shadow-lg shadow-brand-orange/30 transition-all hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0"
                         >
                             View All Services
                             <LuArrowRight className="h-4 w-4" />
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

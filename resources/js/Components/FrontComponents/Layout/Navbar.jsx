@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from '@inertiajs/react';
 import { PhonePillButton, SchedulePillButton } from '../PillButton';
 
 const navLinks = [
@@ -6,8 +7,6 @@ const navLinks = [
     { label: 'Cooling', href: '/cooling' },
     { label: 'Plumbing', href: '/plumbing' },
     { label: 'Electrical', href: '/electrical' },
-    { label: 'Offers', href: '/offers' },
-    { label: 'Resources', href: '/resources' },
 ];
 
 const moreServices = [
@@ -28,60 +27,73 @@ function Caret() {
 
 export default function Navbar() {
     const [mobileOpen, setMobileOpen] = useState(false);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
 
     return (
         <nav className="sticky top-0 z-50 bg-[#004C93] shadow-md">
             <div className="mx-auto flex max-w-7xl items-center px-4 py-3">
-                <a href="/" className="flex-shrink-0 mr-6 flex items-center">
+                <Link href="/" className="mr-6 flex flex-shrink-0 items-center">
                     <img
                         src="/images/logo.webp"
                         alt="Guardian Air"
                         className="h-12 w-auto md:h-14 lg:h-16"
                     />
-                </a>
+                </Link>
 
-                <div className="hidden lg:flex items-center gap-1">
+                {/* Spacer pushes everything to the right */}
+                <div className="flex-1" />
+
+                {/* Desktop nav links */}
+                <div className="hidden items-center gap-1 lg:flex">
                     {navLinks.map((link) => (
-                        <a
+                        <Link
                             key={link.label}
                             href={link.href}
-                            className="flex items-center px-3 py-2 text-xs font-semibold uppercase text-white transition-opacity hover:opacity-80 whitespace-nowrap"
+                            className="flex items-center whitespace-nowrap px-3 py-2 text-xs font-semibold uppercase text-white transition-opacity hover:opacity-80"
                         >
                             {link.label}
-                            <Caret />
-                        </a>
+                        </Link>
                     ))}
 
-                    <div className="group relative">
+                    <div
+                        className="relative"
+                        onMouseEnter={() => setDropdownOpen(true)}
+                        onMouseLeave={() => setDropdownOpen(false)}
+                    >
                         <button
                             type="button"
-                            className="flex items-center px-3 py-2 text-xs font-semibold uppercase text-white transition-opacity hover:opacity-80 whitespace-nowrap"
+                            onClick={() => setDropdownOpen((v) => !v)}
+                            className="flex items-center whitespace-nowrap px-3 py-2 text-xs font-semibold uppercase text-white transition-opacity hover:opacity-80"
                         >
                             More Services
                             <Caret />
                         </button>
-                        <div className="invisible absolute left-0 top-full z-50 min-w-[180px] rounded-md bg-[#004C93] py-2 opacity-0 shadow-lg transition group-hover:visible group-hover:opacity-100">
-                            {moreServices.map((link) => (
-                                <a
-                                    key={link.label}
-                                    href={link.href}
-                                    className="block whitespace-nowrap px-4 py-2 text-xs font-semibold uppercase text-white transition-colors hover:bg-white/10"
-                                >
-                                    {link.label}
-                                </a>
-                            ))}
-                        </div>
+                        {dropdownOpen && (
+                            <div className="absolute left-0 top-full z-50 min-w-[180px] rounded-md bg-[#004C93] py-2 shadow-lg">
+                                {moreServices.map((link) => (
+                                    <Link
+                                        key={link.label}
+                                        href={link.href}
+                                        className="block whitespace-nowrap px-4 py-2 text-xs font-semibold uppercase text-white transition-colors hover:bg-white/10"
+                                    >
+                                        {link.label}
+                                    </Link>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </div>
 
-                <div className="hidden md:flex flex-shrink-0 items-center gap-3 ml-auto">
+                {/* CTA buttons */}
+                <div className="hidden flex-shrink-0 items-center gap-3 md:flex">
                     <PhonePillButton phone={PHONE} label={PHONE} size="sm" />
                     <SchedulePillButton size="sm" />
                 </div>
 
+                {/* Mobile hamburger */}
                 <button
                     onClick={() => setMobileOpen(!mobileOpen)}
-                    className="lg:hidden flex items-center justify-center rounded-md p-2 text-white hover:bg-white/10 ml-auto"
+                    className="ml-auto flex items-center justify-center rounded-md p-2 text-white hover:bg-white/10 lg:hidden"
                     aria-label="Toggle menu"
                 >
                     {mobileOpen ? (
@@ -96,17 +108,30 @@ export default function Navbar() {
                 </button>
             </div>
 
+            {/* Mobile menu */}
             {mobileOpen && (
                 <div className="border-t border-white/10 bg-[#004C93] px-4 pb-6 lg:hidden">
                     <div className="flex flex-col gap-1 pt-4">
-                        {[...navLinks, ...moreServices].map((link) => (
-                            <a
+                        {navLinks.map((link) => (
+                            <Link
                                 key={link.label}
                                 href={link.href}
+                                onClick={() => setMobileOpen(false)}
                                 className="rounded-lg px-4 py-3 text-xs font-semibold uppercase text-white transition-colors hover:bg-white/10"
                             >
                                 {link.label}
-                            </a>
+                            </Link>
+                        ))}
+                        <div className="my-2 h-px bg-white/20" />
+                        {moreServices.map((link) => (
+                            <Link
+                                key={link.label}
+                                href={link.href}
+                                onClick={() => setMobileOpen(false)}
+                                className="rounded-lg px-4 py-3 text-xs font-semibold uppercase text-white transition-colors hover:bg-white/10"
+                            >
+                                {link.label}
+                            </Link>
                         ))}
                     </div>
                     <div className="mt-4 flex flex-wrap items-center gap-3">

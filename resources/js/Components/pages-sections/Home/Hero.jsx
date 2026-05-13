@@ -17,7 +17,7 @@ function PhoneSolidIcon({ className }) {
     );
 }
 
-function HeroScheduleButton({ href = '#' }) {
+function HeroScheduleButton({ href = '/contact' }) {
     return (
         <a
             href={href}
@@ -37,9 +37,12 @@ function HeroScheduleButton({ href = '#' }) {
 }
 
 function HeroPhoneButton({ phone, displayPhone }) {
+    const digits = phone.replace(/[^\d+]/g, '');
+    const telHref = digits.startsWith('+') ? `tel:${digits}` : `tel:+1${digits}`;
+
     return (
         <a
-            href={`tel:${phone.replace(/[^\d+]/g, '')}`}
+            href={telHref}
             className="group relative isolate flex items-center justify-start gap-2 overflow-hidden rounded-xl bg-gradient-to-b from-white to-gray-200 px-3 py-1.5 text-[#003B73] shadow-lg shadow-black/30 ring-1 ring-black/5 transition-colors hover:from-gray-100 hover:to-gray-300 sm:min-w-[210px] sm:gap-3 sm:pl-3 sm:pr-6 sm:py-1.5"
         >
             <span
@@ -211,7 +214,7 @@ export default function Hero() {
                     </p>
 
                     <div className="mt-6 flex flex-nowrap items-center gap-2">
-                        <HeroScheduleButton href="#" />
+                        <HeroScheduleButton href="/contact" />
                         <HeroPhoneButton phone="(732) 239-0932" displayPhone="(732) 239-0932" />
                     </div>
 

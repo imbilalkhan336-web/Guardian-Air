@@ -1,3 +1,5 @@
+import { Link } from '@inertiajs/react';
+
 export default function TopBar() {
     return (
         <div className="hidden bg-white text-gray-800 md:block">
@@ -7,15 +9,15 @@ export default function TopBar() {
                     {' '}— call <a href="tel:+17322390932" className="hover:text-brand-orange transition-colors">(732) 239-0932</a>
                 </p>
                 <div className="flex items-center gap-4 ml-auto">
-                    <a href="/contact" className="hover:text-brand-orange transition-colors">Contact Us</a>
+                    <Link href="/contact" className="hover:text-brand-orange transition-colors">Contact Us</Link>
                     <span className="text-gray-300">|</span>
-                    <a href="#" className="hover:text-brand-orange transition-colors">Offers</a>
+                    <Link href="/offers" className="hover:text-brand-orange transition-colors">Offers</Link>
                     <span className="text-gray-300">|</span>
-                    <a href="/services" className="hover:text-brand-orange transition-colors">Services</a>
+                    <Link href="/services" className="hover:text-brand-orange transition-colors">Services</Link>
                     <span className="text-gray-300">|</span>
-                    <a href="/about" className="hover:text-brand-orange transition-colors">About</a>
+                    <Link href="/about" className="hover:text-brand-orange transition-colors">About</Link>
                     <span className="text-gray-300">|</span>
-                    <a href="#" className="hover:text-brand-orange transition-colors">Resources</a>
+                    <Link href="/resources" className="hover:text-brand-orange transition-colors">Resources</Link>
                 </div>
             </div>
         </div>

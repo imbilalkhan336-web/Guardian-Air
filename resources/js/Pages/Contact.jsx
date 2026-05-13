@@ -304,7 +304,12 @@ export default function ContactPage() {
 
                                 {/* Call-now card */}
                                 <a
-                                    href={`tel:${PHONE.replace(/[^\d+]/g, '')}`}
+                                    href="tel:+17322390932"
+                                    onClick={() => {
+                                        if (navigator.clipboard && navigator.clipboard.writeText) {
+                                            navigator.clipboard.writeText(PHONE).catch(() => {});
+                                        }
+                                    }}
                                     className="mt-6 block rounded-2xl bg-gradient-to-br from-brand-orange to-brand-orange-dark p-6 text-white shadow-lg shadow-brand-orange/30 transition-all hover:-translate-y-1 hover:shadow-xl"
                                 >
                                     <div className="flex items-center gap-4">

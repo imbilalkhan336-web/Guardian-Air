@@ -111,7 +111,7 @@ export default function Services() {
                     </a>
                     <span className="hidden text-sm text-gray-400 sm:block">or</span>
                     <a
-                        href="tel:7322390932"
+                        href="tel:+17322390932"
                         className="text-sm font-bold uppercase tracking-wide text-[#003B73] underline decoration-brand-orange underline-offset-4 transition-colors hover:text-brand-orange"
                     >
                         Call (732) 239-0932

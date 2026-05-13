@@ -77,9 +77,19 @@ export function PillButton({
 }
 
 export function PhonePillButton({ phone, label, size = 'sm', className = '' }) {
+    const digits = phone.replace(/[^\d+]/g, '');
+    const telHref = digits.startsWith('+') ? `tel:${digits}` : `tel:+1${digits}`;
+
+    const handleClick = () => {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(phone).catch(() => {});
+        }
+    };
+
     return (
         <PillButton
-            href={`tel:${phone.replace(/[^\d+]/g, '')}`}
+            href={telHref}
+            onClick={handleClick}
             variant="light"
             size={size}
             icon="phone"
@@ -90,7 +100,7 @@ export function PhonePillButton({ phone, label, size = 'sm', className = '' }) {
     );
 }
 
-export function SchedulePillButton({ children = 'Schedule Online', size = 'sm', href = '#', className = '' }) {
+export function SchedulePillButton({ children = 'Schedule Online', size = 'sm', href = '/contact', className = '' }) {
     return (
         <PillButton href={href} variant="yellow" size={size} icon="calendar" className={className}>
             {children}
