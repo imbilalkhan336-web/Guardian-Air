@@ -26,20 +26,20 @@ const trustItems = [
     },
 ];
 
-export default function CtaBanner() {
+export default function CtaBanner({ titleWeightClass = 'font-bold' }) {
     return (
         <section className="bg-white py-8 lg:py-12">
             <div className="mx-auto max-w-7xl px-4">
                 <div className="overflow-hidden rounded-2xl shadow-xl">
                     <div
                         className="relative bg-[#07264A] bg-cover bg-center p-8 sm:p-12 lg:p-16"
-                        style={{ backgroundImage: "url('/website/cta.png')" }}
+                        style={{ backgroundImage: "url('/img/readywhen.webp')" }}
                     >
                         <div className="lg:w-1/2">
                             <p className="text-[12px] font-extrabold uppercase text-brand-orange lg:text-[12px]">
                                 Ready When You Are
                             </p>
-                            <h2 className="mt-3 font-poppins text-[36px] font-bold uppercase leading-[0.95] text-white md:text-[42px] lg:text-[52px]">
+                            <h2 className={`mt-3 font-poppins text-[36px] ${titleWeightClass} uppercase leading-[0.95] text-white md:text-[42px] lg:text-[52px]`}>
                                 Need <span className="text-brand-orange">Service</span>?
                                 <br />
                                 We're Here to Help.

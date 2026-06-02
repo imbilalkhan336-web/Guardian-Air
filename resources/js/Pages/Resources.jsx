@@ -2,6 +2,7 @@ import { Head } from '@inertiajs/react';
 import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
+import ScheduleSection from '@/Components/FrontComponents/ScheduleSection';
 import {
     LuThermometer,
     LuDroplets,
@@ -102,7 +103,6 @@ export default function ResourcesPage() {
                     label="Help Center"
                     title="Resources & Tips"
                     description="Free guides, checklists, and expert advice to help you maintain your home's comfort systems and avoid costly surprises."
-                    image="/images/Services.webp"
                 />
 
                 {/* Resource Cards */}
@@ -220,6 +220,8 @@ export default function ResourcesPage() {
                     </div>
                 </section>
             </article>
+
+            <ScheduleSection />
 
             <CtaBanner />
         </SiteLayout>

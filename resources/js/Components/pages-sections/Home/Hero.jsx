@@ -144,7 +144,7 @@ function FastResponseCallout() {
             <div className="flex items-center gap-3">
                 {/* 24/7 badge with circular orange arrow ring */}
                 <img
-                    src="/website/time.webp"
+                    src="/img/time.webp"
                     alt="24/7 service"
                     className="h-20 w-20 flex-shrink-0 object-contain"
                 />
@@ -184,7 +184,7 @@ export default function Hero() {
                 {/* Background image */}
                 <div
                     className="absolute inset-0 bg-cover bg-no-repeat bg-right md:bg-right"
-                    style={{ backgroundImage: "url('/images/hero-bg.webp')" }}
+                    style={{ backgroundImage: "url('/img/home-hero-logo.webp')" }}
                     aria-hidden="true"
                 />
 
@@ -198,7 +198,7 @@ export default function Hero() {
                         Comfort You Can Count On
                     </p>
 
-                    <h1 className="mt-4 font-display uppercase leading-[0.95] text-white text-[32px] sm:text-[38px] md:text-[62px] lg:text-[72px] tracking-wide">
+                    <h1 className="mt-4 font-display uppercase leading-[1.15] text-white text-[32px] sm:text-[38px] md:text-[62px] lg:text-[72px] tracking-wide">
                         Heating, Cooling
                         <br />
                         &amp; Plumbing

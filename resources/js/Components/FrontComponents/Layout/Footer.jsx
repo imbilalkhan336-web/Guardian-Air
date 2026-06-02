@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { PhonePillButton, SchedulePillButton } from '../PillButton';
 
 const PHONE = '(732) 239-0932';
@@ -13,7 +12,6 @@ const linkGroups = [
             { label: 'Air Quality', href: '/indoor-air-quality' },
             { label: 'Plumbing', href: '/plumbing' },
             { label: 'Drains', href: '/drains' },
-            { label: 'Electrical', href: '/electrical' },
             { label: 'Commercial', href: '/commercial' },
         ],
     },
@@ -23,9 +21,17 @@ const linkGroups = [
             { label: 'About Us', href: '/about' },
             { label: 'Join Our Team', href: '#' },
             { label: 'Testimonials', href: '#' },
-            { label: 'Blog', href: '#' },
+            { label: 'Blog', href: '/blog' },
             { label: 'Contact', href: '/contact' },
-            { label: 'Service Areas', href: '#' },
+            { label: 'Offers', href: '/offers' },
+        ],
+    },
+    {
+        title: 'Areas We Serve',
+        items: [
+            { label: 'Monmouth County', href: '/service-areas/monmouth-county' },
+            { label: 'Middlesex County', href: '/service-areas/middlesex-county' },
+            { label: 'Ocean County, NJ', href: '/service-areas/ocean-county' },
         ],
     },
 ];
@@ -33,7 +39,7 @@ const linkGroups = [
 function ColumnTitle({ children }) {
     return (
         <div>
-            <h3 className="text-lg font-extrabold uppercase italic tracking-wide text-brand-orange md:text-xl">
+            <h3 className="whitespace-nowrap text-lg font-extrabold uppercase tracking-wide text-brand-orange md:text-xl">
                 {children}
             </h3>
             <span aria-hidden="true" className="mt-2 block h-0.5 w-8 rounded-full bg-brand-orange/60" />
@@ -106,46 +112,6 @@ function YouTubeIcon() {
     );
 }
 
-function NewsletterForm() {
-    const [email, setEmail] = useState('');
-    const [status, setStatus] = useState('idle');
-
-    function handleSubmit(e) {
-        e.preventDefault();
-        if (!email) return;
-        setStatus('success');
-        setEmail('');
-        setTimeout(() => setStatus('idle'), 3000);
-    }
-
-    return (
-        <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm md:p-5">
-            <p className="text-sm font-bold uppercase tracking-wide text-white">
-                Get Seasonal Tips &amp; Deals
-            </p>
-            <p className="mt-1 text-xs text-white/60">
-                HVAC reminders, plumbing checklists, and exclusive offers — no spam.
-            </p>
-            <form onSubmit={handleSubmit} className="mt-3 flex gap-2">
-                <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="your@email.com"
-                    className="flex-1 rounded-lg border border-white/10 bg-white/10 px-3 py-2 text-sm text-white placeholder-white/40 outline-none transition-colors focus:border-brand-orange focus:bg-white/15"
-                    required
-                />
-                <button
-                    type="submit"
-                    className="rounded-lg bg-brand-orange px-4 py-2 text-sm font-bold uppercase tracking-wide text-[#003B73] transition-colors hover:bg-brand-yellow"
-                >
-                    {status === 'success' ? 'Subscribed!' : 'Join'}
-                </button>
-            </form>
-        </div>
-    );
-}
-
 export default function Footer() {
     return (
         <footer className="relative overflow-hidden bg-[#0A2A4A] text-white">
@@ -172,7 +138,7 @@ export default function Footer() {
 
             {/* Van decoration sitting on top of wave (desktop) */}
             <div className="pointer-events-none absolute -top-[25px] left-[35px] hidden w-[296px] md:block lg:left-[95px] lg:-top-[20px] lg:w-[344px]">
-                <img src="/images/side-view.webp" alt="" aria-hidden="true" className="w-full h-auto" />
+                <img src="/img/side-view.webp" alt="" aria-hidden="true" className="w-full h-auto" />
             </div>
 
             <div className="relative mx-auto max-w-7xl px-4 pt-28 pb-10 md:pt-32 lg:pt-40">
@@ -191,8 +157,6 @@ export default function Footer() {
                             <SchedulePillButton size="sm" />
                             <PhonePillButton phone={PHONE} label={PHONE} size="sm" />
                         </div>
-
-                        <NewsletterForm />
 
                         <div className="mt-6">
                             <p className="text-sm font-bold uppercase tracking-wider text-white md:text-base">
@@ -245,11 +209,11 @@ export default function Footer() {
 
                     {/* Link columns */}
                     <div className="lg:col-span-6">
-                        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+                        <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
                             {linkGroups.map((group) => (
                                 <div key={group.title}>
                                     <ColumnTitle>{group.title}</ColumnTitle>
-                                    <ul className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                                    <ul className="mt-5 grid grid-cols-1 gap-3">
                                         {group.items.map((item) => (
                                             <li key={item.label}>
                                                 <FooterLink href={item.href}>{item.label}</FooterLink>

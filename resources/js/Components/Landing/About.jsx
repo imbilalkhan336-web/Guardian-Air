@@ -13,7 +13,7 @@ export default function About() {
                     <div className="relative w-full lg:w-1/2">
                         <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                             <img
-                                src="/images/about.webp"
+                                src="/img/about-img.webp"
                                 alt="Arctic Air technician"
                                 className="w-full h-auto object-cover"
                             />

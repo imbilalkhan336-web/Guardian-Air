@@ -1,4 +1,4 @@
-import { LuSnowflake, LuDroplet, LuZap, LuArrowRight } from 'react-icons/lu';
+import { LuSnowflake, LuDroplet, LuBuilding2, LuArrowRight } from 'react-icons/lu';
 
 function ServiceCard({ icon: Icon, title, body, href = '#', index }) {
     return (
@@ -93,10 +93,10 @@ export default function Services() {
                     />
                     <ServiceCard
                         index={2}
-                        icon={LuZap}
-                        title="Electrical Services"
-                        body="Safe, reliable electrical services for your home or business. From panel upgrades to lighting, we power what matters most."
-                        href="#"
+                        icon={LuBuilding2}
+                        title="HVAC Commercial"
+                        body="Commercial heating, cooling, and plumbing for offices, retail, and multi-unit properties. Keep your business running comfortably year-round."
+                        href="/commercial"
                     />
                 </div>
 

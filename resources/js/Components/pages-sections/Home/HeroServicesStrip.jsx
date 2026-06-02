@@ -27,16 +27,14 @@ function ServiceStripItem({ iconSrc, icon, title, sub, color }) {
 export default function HeroServicesStrip() {
     return (
         <div className="relative mx-auto max-w-7xl px-4 pb-10">
-            <div className="grid grid-cols-2 gap-x-2 gap-y-2 rounded-xl border border-white/30 bg-[#092949] px-4 py-3 sm:grid-cols-3 md:gap-x-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr_auto_1fr] lg:items-center lg:gap-x-2">
-                <ServiceStripItem iconSrc="/website/heating.png" title="Heating" sub="Stay warm all winter" />
+            <div className="grid grid-cols-2 gap-x-2 gap-y-2 rounded-xl border border-white/30 bg-[#092949] px-4 py-3 sm:grid-cols-3 md:gap-x-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] lg:items-center lg:gap-x-2">
+                <ServiceStripItem iconSrc="/img/heating-icon.webp" title="Heating" sub="Stay warm all winter" />
                 <span aria-hidden="true" className="hidden h-12 w-px bg-white/20 lg:block" />
-                <ServiceStripItem iconSrc="/website/cooling.png" title="Cooling" sub="Stay cool all summer" />
+                <ServiceStripItem iconSrc="/img/cooling-icon.webp" title="Cooling" sub="Stay cool all summer" />
                 <span aria-hidden="true" className="hidden h-12 w-px bg-white/20 lg:block" />
                 <ServiceStripItem icon={<DropIcon className="h-full w-full" />} title="Plumbing" sub="Expert plumbing services" color="text-blue-500" />
                 <span aria-hidden="true" className="hidden h-12 w-px bg-white/20 lg:block" />
-                <ServiceStripItem iconSrc="/website/electrical.png" title="Electrical" sub="Safe. Reliable. Local." />
-                <span aria-hidden="true" className="hidden h-12 w-px bg-white/20 lg:block" />
-                <ServiceStripItem iconSrc="/website/indoor%20air%20quailty.png" title="Indoor Air Quality" sub="Breathe cleaner, healthier air" />
+                <ServiceStripItem iconSrc="/img/air-quality-icon.webp" title="Indoor Air Quality" sub="Breathe cleaner, healthier air" />
             </div>
         </div>
     );

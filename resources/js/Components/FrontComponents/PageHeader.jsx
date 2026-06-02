@@ -2,9 +2,11 @@ export default function PageHeader({
     label,
     title,
     description,
-    image,
+    image = '/img/hero.webp',
     imagePosition = 'right',
+    imageCover = false,
     children,
+    titleClassName = '',
 }) {
     const positionClass =
         imagePosition === 'center' ? 'bg-center' : 'bg-right';
@@ -14,11 +16,20 @@ export default function PageHeader({
             <div className="mx-auto max-w-7xl px-4">
                 <div className="relative overflow-hidden rounded-2xl bg-[#0A2A4A] shadow-xl">
                     {/* Background image */}
-                    <div
-                        aria-hidden="true"
-                        className={`absolute inset-0 bg-cover bg-no-repeat ${positionClass}`}
-                        style={{ backgroundImage: `url('${image}')` }}
-                    />
+                    {image && (
+                        <div
+                            aria-hidden="true"
+                            className={
+                                imageCover
+                                    ? 'absolute inset-0 bg-cover bg-center bg-no-repeat'
+                                    : `absolute inset-0 bg-no-repeat ${positionClass}`
+                            }
+                            style={{
+                                backgroundImage: `url('${image}')`,
+                                ...(imageCover ? {} : { backgroundSize: 'auto 100%' }),
+                            }}
+                        />
+                    )}
 
                     {/* Gradient overlay — darker on the left where text lives */}
                     <div
@@ -37,7 +48,7 @@ export default function PageHeader({
                     />
 
                     {/* Content */}
-                    <div className="relative px-6 py-14 sm:px-10 sm:py-16 lg:px-14 lg:py-20">
+                    <div className="relative px-6 py-10 sm:px-10 sm:py-12 lg:px-14 lg:py-14">
                         <div className="max-w-lg">
                             {/* Eyebrow label with accent line */}
                             <p className="text-[12px] font-extrabold uppercase tracking-[0.25em] text-brand-orange">
@@ -49,7 +60,7 @@ export default function PageHeader({
                             />
 
                             {/* Title */}
-                            <h1 className="mt-4 font-display text-[42px] uppercase leading-[0.95] text-white md:text-[54px] lg:text-[64px]">
+                            <h1 className={`mt-4 font-display text-[32px] uppercase leading-[0.95] text-white md:text-[42px] lg:text-[50px] ${titleClassName}`}>
                                 {title}
                             </h1>
 

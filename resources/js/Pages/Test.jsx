@@ -65,7 +65,7 @@ export default function TestPage() {
                 label="Design Preview"
                 title="Test Components"
                 description="A living styleguide where new sections, layouts, and interactions are prototyped before they roll out across the site."
-                image="/website/test-hero.webp"
+                image="/img/test-hero.webp"
             />
 
             {/* Our Values — split layout, heading left */}

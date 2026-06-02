@@ -2,6 +2,7 @@ import { Head } from '@inertiajs/react';
 import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
+import ScheduleSection from '@/Components/FrontComponents/ScheduleSection';
 import {
     LuPercent,
     LuBadgeCheck,
@@ -113,7 +114,6 @@ export default function OffersPage() {
                     label="Save Big"
                     title="Current Offers"
                     description="Real savings on real services. No gimmicks, no hidden conditions — just honest discounts from a local team that values your business."
-                    image="/website/services-bg.webp"
                 />
 
                 {/* Deals Image Banner */}
@@ -121,7 +121,7 @@ export default function OffersPage() {
                     <div className="mx-auto max-w-7xl px-4">
                         <div className="relative overflow-hidden rounded-2xl shadow-xl">
                             <img
-                                src="/website/deals.webp"
+                                src="/img/deals.webp"
                                 alt="Guardian Air special deals and promotions"
                                 className="w-full object-cover"
                             />
@@ -253,6 +253,8 @@ export default function OffersPage() {
                     </div>
                 </section>
             </article>
+
+            <ScheduleSection />
 
             <CtaBanner />
         </SiteLayout>

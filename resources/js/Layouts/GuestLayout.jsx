@@ -12,7 +12,7 @@ export default function GuestLayout({ children }) {
                 <div className="relative z-10">
                     <Link href="/" className="flex items-center gap-3">
                         <img
-                            src="/images/logo.webp"
+                            src="/img/logo.webp"
                             alt="Guardian Air"
                             className="h-14 w-auto"
                         />
@@ -56,7 +56,7 @@ export default function GuestLayout({ children }) {
                     <div className="mb-8 flex justify-center lg:hidden">
                         <Link href="/">
                             <img
-                                src="/images/logo.webp"
+                                src="/img/logo.webp"
                                 alt="Guardian Air"
                                 className="h-16 w-auto"
                             />

@@ -50,7 +50,7 @@ function GoogleMark() {
 
 function ReviewCard({ review }) {
     return (
-        <div className="snap-start shrink-0 w-[280px] sm:w-[300px] rounded-xl bg-white p-5 shadow-lg ring-1 ring-black/5">
+        <div className="snap-center sm:snap-start shrink-0 w-[280px] sm:w-[300px] rounded-xl bg-white p-5 shadow-lg ring-1 ring-black/5">
             <div className="flex items-start gap-3">
                 <div className={`flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full text-lg font-bold text-white ${review.avatarBg}`}>
                     {review.initial}
@@ -110,6 +110,9 @@ export default function Reviews() {
         if (!el) return;
         dragRef.current = { active: true, startX: e.clientX, startScroll: el.scrollLeft, moved: 0 };
         setIsDragging(true);
+        // Track the pointer 1:1 while dragging — disable smooth scroll & snap so it feels fluid.
+        el.style.scrollBehavior = 'auto';
+        el.style.scrollSnapType = 'none';
         el.setPointerCapture?.(e.pointerId);
     }
 
@@ -126,7 +129,13 @@ export default function Reviews() {
         if (!dragRef.current.active) return;
         dragRef.current.active = false;
         setIsDragging(false);
-        scrollerRef.current?.releasePointerCapture?.(e.pointerId);
+        const el = scrollerRef.current;
+        if (el) {
+            // Restore smooth scroll & snap for button/dot navigation.
+            el.style.scrollBehavior = '';
+            el.style.scrollSnapType = '';
+        }
+        el?.releasePointerCapture?.(e.pointerId);
     }
 
     function onClickCapture(e) {
@@ -147,10 +156,10 @@ export default function Reviews() {
     return (
         <section className="relative overflow-hidden bg-[#F2F4F6] py-20 lg:py-24">
             <div className="relative mx-auto max-w-7xl px-4">
-                <p className="text-center text-sm font-bold uppercase tracking-[0.25em] text-[#1A73E8]">
+                <p className="text-center font-poppins text-[10px] font-bold uppercase tracking-[0.2em] text-[#1A73E8]">
                     Hear What Our Customers Are Saying
                 </p>
-                <h2 className="mt-3 text-center text-4xl font-extrabold uppercase italic text-[#0A2A4A] md:text-5xl lg:text-6xl">
+                <h2 className="mt-2 text-center font-poppins text-2xl font-extrabold uppercase italic text-[#0A2A4A] md:text-3xl lg:text-4xl">
                     Over 3,500+ Reviews
                 </h2>
 
@@ -163,7 +172,7 @@ export default function Reviews() {
                         onPointerLeave={onPointerUp}
                         onPointerCancel={onPointerUp}
                         onClickCapture={onClickCapture}
-                        className={`flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-4 select-none touch-pan-y [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden ${
+                        className={`flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-4 px-[calc(50%-140px)] sm:px-0 select-none touch-pan-y [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden ${
                             isDragging ? 'cursor-grabbing' : 'cursor-grab'
                         }`}
                     >
@@ -211,17 +220,6 @@ export default function Reviews() {
                         />
                     ))}
                 </div>
-            </div>
-
-            {/* Bottom blue wave bleeding into next section */}
-            <div className="absolute bottom-0 left-0 w-full leading-none pointer-events-none">
-                <svg
-                    className="relative block h-12 w-full md:h-20"
-                    viewBox="0 0 1440 80"
-                    preserveAspectRatio="none"
-                >
-                    <path d="M0,80 L0,40 C240,0 480,80 720,50 C960,20 1200,80 1440,40 L1440,80 Z" fill="#1273B5" />
-                </svg>
             </div>
         </section>
     );

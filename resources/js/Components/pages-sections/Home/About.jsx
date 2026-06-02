@@ -36,7 +36,7 @@ function StatItem({ icon: Icon, value, label, iconClassName = 'h-6 w-6 lg:h-8 lg
     );
 }
 
-export default function About({ image = '/website/about-img.png' } = {}) {
+export default function About({ image = '/img/about-img.webp' } = {}) {
     return (
         <section className="relative bg-white pt-12 pb-8">
             <div className="mx-auto max-w-7xl px-4">

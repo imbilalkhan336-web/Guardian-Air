@@ -88,7 +88,6 @@ export default function ContactPage() {
                     label="Reach Out"
                     title="Contact Us"
                     description="Need a repair, install, or just have a question? Call us directly or fill out the form below — we reply fast and never charge for estimates."
-                    image="/website/contact-hero.webp"
                 />
 
                 {/* Contact Form + Info */}
@@ -229,7 +228,6 @@ export default function ContactPage() {
                                                         <option value="heating">Heating</option>
                                                         <option value="cooling">Cooling</option>
                                                         <option value="plumbing">Plumbing</option>
-                                                        <option value="electrical">Electrical</option>
                                                         <option value="air-quality">Indoor Air Quality</option>
                                                         <option value="drains">Drains</option>
                                                         <option value="commercial">Commercial</option>

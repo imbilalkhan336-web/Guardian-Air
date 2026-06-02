@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\ContentBlockController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Models\ContentBlock;
+use App\Models\Post;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -26,32 +30,85 @@ Route::get('/contact', function () {
 })->name('contact');
 
 Route::get('/heating', function () {
-    return Inertia::render('Heating');
+    return Inertia::render('Heating', [
+        'blocks' => ContentBlock::forPage('heating')->get(),
+    ]);
 })->name('heating');
 
 Route::get('/cooling', function () {
-    return Inertia::render('Cooling');
+    return Inertia::render('Cooling', [
+        'blocks' => ContentBlock::forPage('cooling')->get(),
+    ]);
 })->name('cooling');
 
 Route::get('/plumbing', function () {
-    return Inertia::render('Plumbing');
+    return Inertia::render('Plumbing', [
+        'blocks' => ContentBlock::forPage('plumbing')->get(),
+    ]);
 })->name('plumbing');
 
-Route::get('/electrical', function () {
-    return Inertia::render('Electrical');
-})->name('electrical');
-
 Route::get('/indoor-air-quality', function () {
-    return Inertia::render('AirQuality');
+    return Inertia::render('AirQuality', [
+        'blocks' => ContentBlock::forPage('indoor-air-quality')->get(),
+    ]);
 })->name('air-quality');
 
 Route::get('/drains', function () {
-    return Inertia::render('Drains');
+    return Inertia::render('Drains', [
+        'blocks' => ContentBlock::forPage('drains')->get(),
+    ]);
 })->name('drains');
 
 Route::get('/commercial', function () {
-    return Inertia::render('Commercial');
+    return Inertia::render('Commercial', [
+        'blocks' => ContentBlock::forPage('commercial')->get(),
+    ]);
 })->name('commercial');
+
+Route::get('/blog', function () {
+    return Inertia::render('Blog', [
+        'posts' => Post::published()->get(),
+    ]);
+})->name('blog');
+
+Route::get('/blog/{post:slug}', function (Post $post) {
+    abort_unless($post->is_published, 404);
+
+    return Inertia::render('BlogShow', [
+        'post' => $post,
+        'related' => Post::published()->where('id', '!=', $post->id)->take(3)->get(),
+    ]);
+})->name('blog.show');
+
+Route::get('/service-areas/{area}', function (string $area) {
+    $areas = [
+        'monmouth-county' => [
+            'slug' => 'monmouth-county',
+            'name' => 'Monmouth County',
+            'title' => 'Monmouth County HVAC Services',
+            'description' => 'Trusted heating, cooling, and plumbing service across Monmouth County, NJ — licensed technicians, upfront pricing, and same-day response.',
+            'towns' => ['Freehold', 'Howell', 'Marlboro', 'Manalapan', 'Middletown', 'Red Bank', 'Wall', 'Holmdel'],
+        ],
+        'middlesex-county' => [
+            'slug' => 'middlesex-county',
+            'name' => 'Middlesex County',
+            'title' => 'Middlesex County HVAC Services',
+            'description' => 'Full-service HVAC, plumbing, and indoor air quality solutions for homes and businesses throughout Middlesex County, NJ.',
+            'towns' => ['Edison', 'Old Bridge', 'East Brunswick', 'Sayreville', 'Woodbridge', 'Piscataway', 'Monroe', 'South Brunswick'],
+        ],
+        'ocean-county' => [
+            'slug' => 'ocean-county',
+            'name' => 'Ocean County, NJ',
+            'title' => 'Ocean County HVAC Services',
+            'description' => 'Dependable heating and air conditioning service across Ocean County, NJ — from the shore to inland towns, we keep your home comfortable year-round.',
+            'towns' => ['Toms River', 'Brick', 'Jackson', 'Lakewood', 'Manchester', 'Point Pleasant', 'Lacey', 'Berkeley'],
+        ],
+    ];
+
+    abort_unless(isset($areas[$area]), 404);
+
+    return Inertia::render('ServiceArea', ['area' => $areas[$area]]);
+})->name('service-area');
 
 Route::get('/resources', function () {
     return Inertia::render('Resources');
@@ -69,6 +126,71 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+// Admin-only content management
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::post('/content-blocks', [ContentBlockController::class, 'store'])->name('content-blocks.store');
+    Route::put('/content-blocks/{contentBlock}', [ContentBlockController::class, 'update'])->name('content-blocks.update');
+    Route::delete('/content-blocks/{contentBlock}', [ContentBlockController::class, 'destroy'])->name('content-blocks.destroy');
+    Route::post('/content-blocks/reorder', [ContentBlockController::class, 'reorder'])->name('content-blocks.reorder');
+
+    // Blog posts
+    Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+    Route::put('/posts/{post:id}', [PostController::class, 'update'])->name('posts.update');
+    Route::delete('/posts/{post:id}', [PostController::class, 'destroy'])->name('posts.destroy');
+});
+
+// Admin panel
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', function () {
+        $pages = collect(ContentBlock::PAGES)->map(fn ($label, $slug) => [
+            'slug' => $slug,
+            'label' => $label,
+            'count' => ContentBlock::where('page', $slug)->count(),
+        ])->values();
+
+        return Inertia::render('Admin/Dashboard', ['pages' => $pages]);
+    })->name('dashboard');
+
+    Route::get('/pages/{page}', function (string $page) {
+        abort_unless(array_key_exists($page, ContentBlock::PAGES), 404);
+
+        return Inertia::render('Admin/PageEditor', [
+            'page' => $page,
+            'label' => ContentBlock::PAGES[$page],
+            'blocks' => ContentBlock::forPage($page)->get(),
+        ]);
+    })->name('pages.edit');
+
+    // Blog manager — list, add, edit, and delete posts.
+    Route::get('/blog', function () {
+        return Inertia::render('Admin/BlogManager', [
+            'posts' => Post::latest()->get(),
+        ]);
+    })->name('blog');
+
+    // FAQ manager — lists all FAQ blocks for a page with add/edit/delete.
+    Route::get('/pages/{page}/faqs', function (string $page) {
+        abort_unless(array_key_exists($page, ContentBlock::PAGES), 404);
+
+        return Inertia::render('Admin/FaqManager', [
+            'page' => $page,
+            'label' => ContentBlock::PAGES[$page],
+            'faqs' => ContentBlock::forPage($page)->where('type', 'faq')->get(),
+        ]);
+    })->name('faqs');
+
+    // Dedicated full-page editor for a single block (section / faq / image).
+    Route::get('/pages/{page}/blocks/{contentBlock}/edit', function (string $page, ContentBlock $contentBlock) {
+        abort_unless(array_key_exists($page, ContentBlock::PAGES), 404);
+
+        return Inertia::render('Admin/BlockEditor', [
+            'page' => $page,
+            'label' => ContentBlock::PAGES[$page],
+            'block' => $contentBlock,
+        ]);
+    })->name('blocks.edit');
 });
 
 require __DIR__.'/auth.php';

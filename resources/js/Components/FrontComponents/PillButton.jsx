@@ -51,28 +51,45 @@ export function PillButton({
     icon,
     children,
     className = '',
+    href,
+    type,
     ...rest
 }) {
     const sz = SIZE_CLASSES[size] ?? SIZE_CLASSES.md;
     const vr = VARIANT_CLASSES[variant] ?? VARIANT_CLASSES.yellow;
     const Icon = icon === 'phone' ? PhoneIcon : icon === 'calendar' ? CalendarIcon : null;
 
-    return (
-        <a
-            {...rest}
-            className={[
-                'group relative isolate flex cursor-pointer items-center justify-center overflow-hidden rounded-full',
-                'font-bold uppercase tracking-wide text-[#003B73]',
-                'shadow-lg shadow-black/25 ring-1 ring-black/5 whitespace-nowrap',
-                vr,
-                sz.wrap,
-                className,
-            ].join(' ')}
-        >
+    const classes = [
+        'group relative isolate flex cursor-pointer items-center justify-center overflow-hidden rounded-full',
+        'font-bold uppercase tracking-wide text-[#003B73]',
+        'shadow-lg shadow-black/25 ring-1 ring-black/5 whitespace-nowrap',
+        vr,
+        sz.wrap,
+        className,
+    ].join(' ');
+
+    const inner = (
+        <>
             <ShineSweep tint={variant === 'light' ? 'dark' : 'light'} />
             {Icon && <Icon className={`relative z-10 ${sz.icon}`} />}
             <span className="relative z-10">{children}</span>
-        </a>
+        </>
+    );
+
+    // Render as an anchor when given an href, otherwise a real <button>
+    // (so it can act as a form submit/control).
+    if (href) {
+        return (
+            <a href={href} {...rest} className={classes}>
+                {inner}
+            </a>
+        );
+    }
+
+    return (
+        <button type={type ?? 'button'} {...rest} className={classes}>
+            {inner}
+        </button>
     );
 }
 

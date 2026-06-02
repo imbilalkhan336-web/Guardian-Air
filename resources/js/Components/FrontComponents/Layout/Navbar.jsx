@@ -6,13 +6,13 @@ const navLinks = [
     { label: 'Heating', href: '/heating' },
     { label: 'Cooling', href: '/cooling' },
     { label: 'Plumbing', href: '/plumbing' },
-    { label: 'Electrical', href: '/electrical' },
+    { label: 'HVAC Commercial', href: '/commercial' },
 ];
 
 const moreServices = [
     { label: 'Indoor Air Quality', href: '/indoor-air-quality' },
     { label: 'Drains', href: '/drains' },
-    { label: 'Commercial', href: '/commercial' },
+    { label: 'Blog', href: '/blog' },
 ];
 
 const PHONE = '(732) 239-0932';
@@ -34,9 +34,9 @@ export default function Navbar() {
             <div className="mx-auto flex max-w-7xl items-center px-4 py-3">
                 <Link href="/" className="mr-6 flex flex-shrink-0 items-center">
                     <img
-                        src="/images/logo.webp"
+                        src="/img/logo.webp"
                         alt="Guardian Air"
-                        className="h-12 w-auto md:h-14 lg:h-16"
+                        className="h-auto w-[150px] md:w-[170px] lg:w-[190px]"
                     />
                 </Link>
 
@@ -44,7 +44,7 @@ export default function Navbar() {
                 <div className="flex-1" />
 
                 {/* Desktop nav links */}
-                <div className="hidden items-center gap-1 lg:flex">
+                <div className="hidden items-center gap-1 lg:flex lg:mr-8 xl:mr-12">
                     {navLinks.map((link) => (
                         <Link
                             key={link.label}

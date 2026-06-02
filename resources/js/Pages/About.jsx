@@ -3,6 +3,7 @@ import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
 import About from '@/Components/pages-sections/Home/About';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
+import ScheduleSection from '@/Components/FrontComponents/ScheduleSection';
 import { LuUsers } from 'react-icons/lu';
 
 export default function AboutPage() {
@@ -30,10 +31,9 @@ export default function AboutPage() {
                     label="Get to know us"
                     title="About Guardian Air"
                     description="Family-run heating, cooling, plumbing, and electrical specialists serving homeowners across Monmouth, Middlesex, and Ocean counties — licensed, insured, and committed to honest pricing on every job."
-                    image="/images/about-hero.webp"
                 />
 
-                <About image="/images/about-page-img.webp" />
+                <About image="/img/about-page-img.webp" />
 
                 {/* Our Story */}
                 <section className="relative overflow-hidden bg-gradient-to-b from-white via-gray-50 to-white py-20 lg:py-28">
@@ -51,7 +51,7 @@ export default function AboutPage() {
                         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-14">
                             <div className="relative">
                                 <img
-                                    src="/images/about-story.webp"
+                                    src="/img/about-story.webp"
                                     alt="Guardian Air founder and team working on an HVAC system in a New Jersey home"
                                     className="w-full rounded-2xl object-cover shadow-xl"
                                 />
@@ -109,6 +109,8 @@ export default function AboutPage() {
                     </div>
                 </section>
             </article>
+
+            <ScheduleSection />
 
             <CtaBanner />
         </SiteLayout>

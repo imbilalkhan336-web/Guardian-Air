@@ -3,6 +3,7 @@ import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
 import Services from '@/Components/pages-sections/Home/Services';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
+import ScheduleSection from '@/Components/FrontComponents/ScheduleSection';
 export default function ServicesPage() {
     return (
         <SiteLayout>
@@ -28,7 +29,6 @@ export default function ServicesPage() {
                     label="What we do"
                     title="Our Services"
                     description="From heating and cooling to plumbing and electrical, Guardian Air handles every home-comfort job with licensed technicians, honest quotes, and same-day response across central New Jersey."
-                    image="/images/Services.webp"
                 />
 
                 <div className="pt-12">
@@ -96,7 +96,7 @@ export default function ServicesPage() {
 
                             <div className="relative">
                                 <img
-                                    src="/images/Licensed.webp"
+                                    src="/img/licensed.webp"
                                     alt="Guardian Air technician inspecting an outdoor AC unit in New Jersey"
                                     className="w-full rounded-2xl object-cover shadow-xl"
                                 />
@@ -118,6 +118,8 @@ export default function ServicesPage() {
                     </div>
                 </section>
             </article>
+
+            <ScheduleSection />
 
             <CtaBanner />
         </SiteLayout>

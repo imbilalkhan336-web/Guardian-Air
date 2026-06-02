@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Admin panel: render every heading in Montserrat, including the display-font ones. */
+.admin-panel h1,
+.admin-panel h2,
+.admin-panel h3,
+.admin-panel h4,
+.admin-panel h5,
+.admin-panel h6,
+.admin-panel .font-display {
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Admin panel: every heading is 20px on mobile. */
+@media (max-width: 639px) {
+    .admin-panel h1,
+    .admin-panel h2,
+    .admin-panel h3,
+    .admin-panel h4,
+    .admin-panel h5,
+    .admin-panel h6,
+    .admin-panel .font-display {
+        font-size: 20px;
+        line-height: 1.3;
+    }
+}

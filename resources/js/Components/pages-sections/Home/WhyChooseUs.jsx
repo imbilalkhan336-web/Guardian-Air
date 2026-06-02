@@ -30,7 +30,7 @@ export default function WhyChooseUs() {
                 <div className="overflow-hidden rounded-2xl shadow-xl">
                     <div
                         className="relative bg-[#07264A] bg-cover bg-center p-8 sm:p-10 lg:p-14"
-                        style={{ backgroundImage: "url('/website/bgforwhy.png')" }}
+                        style={{ backgroundImage: "url('/img/whychoose.webp')" }}
                     >
                         <div className="absolute inset-0 bg-[#07264A]/70 lg:hidden" aria-hidden="true" />
                         <div className="relative z-10 ml-auto lg:w-1/2">
@@ -42,7 +42,7 @@ export default function WhyChooseUs() {
                                 <br />
                                 By Real Expertise.
                             </h2>
-                            <p className="mt-5 font-body text-[10px] leading-relaxed text-white/80">
+                            <p className="mt-5 font-body text-[12px] leading-relaxed text-white/80">
                                 From emergency repairs to complete system installations, Guardian
                                 Air and our plumbing solutions designed to keep your home
                                 comfortable year-round. Our licensed technicians combine fast
