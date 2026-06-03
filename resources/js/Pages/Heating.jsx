@@ -5,7 +5,7 @@ import ServiceArticle from '@/Components/FrontComponents/ServiceArticle';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 import Reviews from '@/Components/pages-sections/Home/Reviews';
 
-export default function HeatingPage({ blocks = [] }) {
+export default function HeatingPage({ blocks = [], tags = [] }) {
     return (
         <SiteLayout showReviews={false}>
             <Head>
@@ -30,6 +30,7 @@ export default function HeatingPage({ blocks = [] }) {
 
                 <ServiceArticle
                     page="heating"
+                    tags={tags}
                     blocks={blocks}
                     metaLabel="Heating Guide"
                     faqEyebrow="New Jersey Heating Repair Contractors"

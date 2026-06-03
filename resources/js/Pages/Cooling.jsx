@@ -4,7 +4,7 @@ import PageHeader from '@/Components/FrontComponents/PageHeader';
 import ServiceArticle from '@/Components/FrontComponents/ServiceArticle';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 
-export default function CoolingPage({ blocks = [] }) {
+export default function CoolingPage({ blocks = [], tags = [] }) {
     return (
         <SiteLayout>
             <Head>
@@ -28,6 +28,7 @@ export default function CoolingPage({ blocks = [] }) {
 
                 <ServiceArticle
                     page="cooling"
+                    tags={tags}
                     blocks={blocks}
                     metaLabel="Cooling Guide"
                     faqEyebrow="New Jersey Cooling Repair Contractors"

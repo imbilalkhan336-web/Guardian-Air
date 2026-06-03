@@ -33,37 +33,43 @@ Route::get('/contact', function () {
 
 Route::get('/heating', function () {
     return Inertia::render('Heating', [
-        'blocks' => ContentBlock::forPage('heating')->get(),
+        'blocks' => ContentBlock::forPage('heating')->with('tags')->get(),
+        'tags' => Tag::orderBy('name')->get(),
     ]);
 })->name('heating');
 
 Route::get('/cooling', function () {
     return Inertia::render('Cooling', [
-        'blocks' => ContentBlock::forPage('cooling')->get(),
+        'blocks' => ContentBlock::forPage('cooling')->with('tags')->get(),
+        'tags' => Tag::orderBy('name')->get(),
     ]);
 })->name('cooling');
 
 Route::get('/plumbing', function () {
     return Inertia::render('Plumbing', [
-        'blocks' => ContentBlock::forPage('plumbing')->get(),
+        'blocks' => ContentBlock::forPage('plumbing')->with('tags')->get(),
+        'tags' => Tag::orderBy('name')->get(),
     ]);
 })->name('plumbing');
 
 Route::get('/indoor-air-quality', function () {
     return Inertia::render('AirQuality', [
-        'blocks' => ContentBlock::forPage('indoor-air-quality')->get(),
+        'blocks' => ContentBlock::forPage('indoor-air-quality')->with('tags')->get(),
+        'tags' => Tag::orderBy('name')->get(),
     ]);
 })->name('air-quality');
 
 Route::get('/drains', function () {
     return Inertia::render('Drains', [
-        'blocks' => ContentBlock::forPage('drains')->get(),
+        'blocks' => ContentBlock::forPage('drains')->with('tags')->get(),
+        'tags' => Tag::orderBy('name')->get(),
     ]);
 })->name('drains');
 
 Route::get('/commercial', function () {
     return Inertia::render('Commercial', [
-        'blocks' => ContentBlock::forPage('commercial')->get(),
+        'blocks' => ContentBlock::forPage('commercial')->with('tags')->get(),
+        'tags' => Tag::orderBy('name')->get(),
     ]);
 })->name('commercial');
 

@@ -4,7 +4,7 @@ import PageHeader from '@/Components/FrontComponents/PageHeader';
 import ServiceArticle from '@/Components/FrontComponents/ServiceArticle';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 
-export default function PlumbingPage({ blocks = [] }) {
+export default function PlumbingPage({ blocks = [], tags = [] }) {
     return (
         <SiteLayout>
             <Head>
@@ -28,6 +28,7 @@ export default function PlumbingPage({ blocks = [] }) {
 
                 <ServiceArticle
                     page="plumbing"
+                    tags={tags}
                     blocks={blocks}
                     metaLabel="Plumbing Guide"
                     faqEyebrow="New Jersey Plumbing Repair Contractors"

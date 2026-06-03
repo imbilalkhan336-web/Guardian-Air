@@ -10,6 +10,8 @@ import {
     LuChevronUp,
     LuChevronDown,
     LuX,
+    LuTag,
+    LuExternalLink,
 } from 'react-icons/lu';
 
 const inputClass =
@@ -68,6 +70,33 @@ function ArticleBlock({ block, headingSizeClass }) {
                     <img src={block.image_path} alt={block.heading || ''} className="h-full w-full object-cover" />
                 </div>
             )}
+            {block.tags?.length > 0 && (
+                <div className="mt-4 flex flex-wrap gap-2">
+                    {block.tags.map((tag) =>
+                        tag.link ? (
+                            <a
+                                key={tag.id}
+                                href={tag.link}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-semibold text-gray-600 transition-colors hover:bg-brand-orange hover:text-white"
+                            >
+                                {tag.image_path && <img src={tag.image_path} alt="" className="h-4 w-4 rounded-full object-cover" />}
+                                {tag.name}
+                                <LuExternalLink className="h-3 w-3 opacity-70" />
+                            </a>
+                        ) : (
+                            <span
+                                key={tag.id}
+                                className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-semibold text-gray-600"
+                            >
+                                {tag.image_path && <img src={tag.image_path} alt="" className="h-4 w-4 rounded-full object-cover" />}
+                                {tag.name}
+                            </span>
+                        )
+                    )}
+                </div>
+            )}
         </section>
     );
 }
@@ -106,10 +135,11 @@ function FaqItem({ question, answer, isOpen, onToggle }) {
  * Admin editing
  * ------------------------------------------------------------------ */
 
-function BlockForm({ block, onSave, onCancel, saving }) {
+function BlockForm({ block, tags, onSave, onCancel, saving }) {
     const [heading, setHeading] = useState(block.heading || '');
     const [body, setBody] = useState(block.body || '');
     const [imagePath, setImagePath] = useState(block.image_path || '');
+    const [selectedTagIds, setSelectedTagIds] = useState(block.tags?.map((t) => t.id) || []);
 
     const labels = {
         section: { heading: 'Section Title', body: 'Content (separate paragraphs with a blank line)' },
@@ -117,9 +147,15 @@ function BlockForm({ block, onSave, onCancel, saving }) {
         image: { heading: 'Image Alt Text', body: null },
     }[block.type] || { heading: 'Heading', body: 'Body' };
 
+    const toggleTag = (tagId) => {
+        setSelectedTagIds((prev) =>
+            prev.includes(tagId) ? prev.filter((id) => id !== tagId) : [...prev, tagId]
+        );
+    };
+
     const submit = (e) => {
         e.preventDefault();
-        onSave({ heading, body, image_path: imagePath });
+        onSave({ heading, body, image_path: imagePath, tag_ids: selectedTagIds });
     };
 
     return (
@@ -157,6 +193,37 @@ function BlockForm({ block, onSave, onCancel, saving }) {
                             onChange={(e) => setBody(e.target.value)}
                             className={inputClass}
                         />
+                    </div>
+                )}
+
+                {tags.length > 0 && (
+                    <div className="border-t border-gray-100 pt-4">
+                        <label className={labelClass}>Tags</label>
+                        <div className="mt-2 flex flex-wrap gap-2">
+                            {tags.map((tag) => {
+                                const selected = selectedTagIds.includes(tag.id);
+                                return (
+                                    <button
+                                        key={tag.id}
+                                        type="button"
+                                        onClick={() => toggleTag(tag.id)}
+                                        className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-all ${
+                                            selected
+                                                ? 'bg-brand-orange text-white shadow-sm'
+                                                : 'border border-gray-200 bg-white text-gray-600 hover:border-brand-orange hover:text-brand-orange'
+                                        }`}
+                                    >
+                                        {tag.image_path && (
+                                            <img src={tag.image_path} alt="" className="h-4 w-4 rounded-full object-cover" />
+                                        )}
+                                        {!tag.image_path && <LuTag className="h-3 w-3" />}
+                                        {tag.name}
+                                        {tag.link && <LuExternalLink className="h-3 w-3 opacity-70" />}
+                                        {selected && <LuCheck className="h-3 w-3" />}
+                                    </button>
+                                );
+                            })}
+                        </div>
                     </div>
                 )}
             </div>
@@ -212,7 +279,7 @@ function BlockToolbar({ onEdit, onDelete, onUp, onDown, isFirst, isLast }) {
  * ServiceArticle — shared two-column article + editor + sticky form
  * ------------------------------------------------------------------ */
 
-export default function ServiceArticle({ page, blocks = [], metaLabel = 'Service Guide', faqEyebrow, headingSizeClass, formHeadingClassName = '' }) {
+export default function ServiceArticle({ page, blocks = [], tags = [], metaLabel = 'Service Guide', faqEyebrow, headingSizeClass, formHeadingClassName = '' }) {
     const { auth } = usePage().props;
     const isAdmin = Boolean(auth?.user?.is_admin);
 
@@ -281,6 +348,7 @@ export default function ServiceArticle({ page, blocks = [], metaLabel = 'Service
                                         {editing && editingId === block.id ? (
                                             <BlockForm
                                                 block={block}
+                                                tags={tags}
                                                 saving={saving}
                                                 onSave={(data) => saveBlock(block, data)}
                                                 onCancel={() => setEditingId(null)}
@@ -335,6 +403,7 @@ export default function ServiceArticle({ page, blocks = [], metaLabel = 'Service
                                             {editing && editingId === block.id ? (
                                                 <BlockForm
                                                     block={block}
+                                                    tags={tags}
                                                     saving={saving}
                                                     onSave={(data) => saveBlock(block, data)}
                                                     onCancel={() => setEditingId(null)}

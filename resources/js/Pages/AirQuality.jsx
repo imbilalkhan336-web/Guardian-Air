@@ -4,7 +4,7 @@ import PageHeader from '@/Components/FrontComponents/PageHeader';
 import ServiceArticle from '@/Components/FrontComponents/ServiceArticle';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 
-export default function AirQualityPage({ blocks = [] }) {
+export default function AirQualityPage({ blocks = [], tags = [] }) {
     return (
         <SiteLayout>
             <Head>
@@ -28,6 +28,7 @@ export default function AirQualityPage({ blocks = [] }) {
 
                 <ServiceArticle
                     page="indoor-air-quality"
+                    tags={tags}
                     blocks={blocks}
                     metaLabel="Air Quality Guide"
                     faqEyebrow="New Jersey Indoor Air Quality Experts"

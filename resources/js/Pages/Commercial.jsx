@@ -4,7 +4,7 @@ import PageHeader from '@/Components/FrontComponents/PageHeader';
 import ServiceArticle from '@/Components/FrontComponents/ServiceArticle';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 
-export default function CommercialPage({ blocks = [] }) {
+export default function CommercialPage({ blocks = [], tags = [] }) {
     return (
         <SiteLayout>
             <Head>
@@ -29,6 +29,7 @@ export default function CommercialPage({ blocks = [] }) {
 
                 <ServiceArticle
                     page="commercial"
+                    tags={tags}
                     blocks={blocks}
                     metaLabel="Commercial Guide"
                     faqEyebrow="New Jersey Commercial HVAC Contractors"
