@@ -11,6 +11,7 @@ class Tag extends Model
         'name',
         'slug',
         'image_path',
+        'link',
     ];
 
     public static function booted(): void

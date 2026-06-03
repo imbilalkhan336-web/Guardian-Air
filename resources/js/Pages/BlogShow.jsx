@@ -1,7 +1,7 @@
 import { Head, Link } from '@inertiajs/react';
 import SiteLayout from '@/Layouts/SiteLayout';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
-import { LuArrowLeft, LuArrowRight } from 'react-icons/lu';
+import { LuArrowLeft, LuArrowRight, LuExternalLink } from 'react-icons/lu';
 
 function formatDate(value) {
     if (!value) return '';
@@ -81,6 +81,38 @@ export default function BlogShow({ post, related = [] }) {
                     )}
 
                     <Body text={post.body} />
+
+                    {post.tags?.length > 0 && (
+                        <div className="mt-10 flex flex-wrap gap-2">
+                            {post.tags.map((tag) =>
+                                tag.link ? (
+                                    <a
+                                        key={tag.id}
+                                        href={tag.link}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-semibold text-gray-600 transition-colors hover:bg-brand-orange hover:text-white"
+                                    >
+                                        {tag.image_path && (
+                                            <img src={tag.image_path} alt="" className="h-4 w-4 rounded-full object-cover" />
+                                        )}
+                                        {tag.name}
+                                        <LuExternalLink className="h-3 w-3 opacity-70" />
+                                    </a>
+                                ) : (
+                                    <span
+                                        key={tag.id}
+                                        className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-semibold text-gray-600"
+                                    >
+                                        {tag.image_path && (
+                                            <img src={tag.image_path} alt="" className="h-4 w-4 rounded-full object-cover" />
+                                        )}
+                                        {tag.name}
+                                    </span>
+                                )
+                            )}
+                        </div>
+                    )}
                 </div>
             </article>
 

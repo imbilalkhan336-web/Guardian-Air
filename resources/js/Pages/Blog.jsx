@@ -2,7 +2,7 @@ import { Head, Link, usePage } from '@inertiajs/react';
 import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
-import { LuArrowRight, LuPencil } from 'react-icons/lu';
+import { LuArrowRight, LuPencil, LuExternalLink } from 'react-icons/lu';
 
 function formatDate(value) {
     if (!value) return '';
@@ -15,35 +15,67 @@ function formatDate(value) {
 
 function PostCard({ post }) {
     return (
-        <Link
-            href={`/blog/${post.slug}`}
-            className="group flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
-        >
-            <div className="aspect-[16/10] overflow-hidden bg-gray-100">
-                <img
-                    src={post.image_path || '/img/cover.webp'}
-                    alt={post.title}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-            </div>
+        <div className="group flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
+            <Link href={`/blog/${post.slug}`} className="block">
+                <div className="aspect-[16/10] overflow-hidden bg-gray-100">
+                    <img
+                        src={post.image_path || '/img/cover.webp'}
+                        alt={post.title}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                </div>
+            </Link>
             <div className="flex flex-1 flex-col p-6">
                 <p className="text-[11px] font-extrabold uppercase tracking-widest text-brand-orange">
                     {formatDate(post.created_at)}
                 </p>
-                <h2 className="mt-2 font-display text-xl uppercase leading-tight text-[#07264A]">
-                    {post.title}
-                </h2>
+                <Link href={`/blog/${post.slug}`} className="block">
+                    <h2 className="mt-2 font-display text-xl uppercase leading-tight text-[#07264A]">
+                        {post.title}
+                    </h2>
+                </Link>
                 {post.excerpt && (
                     <p className="mt-3 flex-1 font-body text-sm leading-relaxed text-gray-600">
                         {post.excerpt}
                     </p>
                 )}
-                <span className="mt-5 inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-widest text-brand-orange">
+
+                {post.tags?.length > 0 && (
+                    <div className="mt-4 flex flex-wrap gap-2">
+                        {post.tags.map((tag) => (
+                            <TagBadge key={tag.id} tag={tag} />
+                        ))}
+                    </div>
+                )}
+
+                <Link href={`/blog/${post.slug}`} className="mt-5 inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-widest text-brand-orange">
                     Read More
                     <LuArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                </span>
+                </Link>
             </div>
-        </Link>
+        </div>
+    );
+}
+
+function TagBadge({ tag }) {
+    const baseClasses =
+        'inline-flex items-center gap-1 rounded-full bg-gray-100 px-2.5 py-1 text-[11px] font-semibold text-gray-600 transition-colors hover:bg-brand-orange hover:text-white';
+
+    if (tag.link) {
+        return (
+            <a href={tag.link} target="_blank" rel="noreferrer" className={baseClasses}>
+                {tag.image_path && <img src={tag.image_path} alt="" className="h-3.5 w-3.5 rounded-full object-cover" />}
+                {tag.name}
+                <LuExternalLink className="h-3 w-3 opacity-70" />
+            </a>
+        );
+    }
+
+    return (
+        <span className={baseClasses}>
+            {tag.image_path && <img src={tag.image_path} alt="" className="h-3.5 w-3.5 rounded-full object-cover" />}
+            {tag.name}
+        </span>
     );
 }
 

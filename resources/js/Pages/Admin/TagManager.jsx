@@ -28,6 +28,7 @@ function TagModal({ tag, onClose }) {
         name: tag?.name || '',
         slug: tag?.slug || '',
         image_path: tag?.image_path || '',
+        link: tag?.link || '',
         image: null,
     });
     const { data, setData, errors, processing } = form;
@@ -91,6 +92,18 @@ function TagModal({ tag, onClose }) {
                             placeholder="hvac-tips"
                         />
                         {errors.slug && <p className="mt-1 text-xs font-semibold text-red-500">{errors.slug}</p>}
+                    </div>
+
+                    <div>
+                        <label className={labelClass}>Link (URL — makes the tag clickable)</label>
+                        <input
+                            type="text"
+                            value={data.link}
+                            onChange={(e) => setData('link', e.target.value)}
+                            className={inputClass}
+                            placeholder="https://facebook.com/your-page"
+                        />
+                        {errors.link && <p className="mt-1 text-xs font-semibold text-red-500">{errors.link}</p>}
                     </div>
 
                     {/* Tag image */}
@@ -206,6 +219,16 @@ export default function TagManager({ tags = [] }) {
                                 <div className="min-w-0 flex-1">
                                     <p className="truncate font-display text-base uppercase text-[#07264A]">{tag.name}</p>
                                     <p className="truncate text-xs text-gray-400">/{tag.slug}</p>
+                                    {tag.link && (
+                                        <a
+                                            href={tag.link}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="truncate text-[11px] text-brand-orange hover:underline"
+                                        >
+                                            {tag.link}
+                                        </a>
+                                    )}
                                 </div>
                             </div>
 

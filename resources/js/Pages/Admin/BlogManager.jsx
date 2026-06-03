@@ -32,6 +32,7 @@ function PostModal({ post, tags, onClose, onTagCreated }) {
     const [preview, setPreview] = useState(post?.image_path || '');
     const [showNewTag, setShowNewTag] = useState(false);
     const [newTagName, setNewTagName] = useState('');
+    const [newTagLink, setNewTagLink] = useState('');
 
     const form = useForm({
         ...(isEdit ? { _method: 'put' } : {}),
@@ -77,11 +78,12 @@ function PostModal({ post, tags, onClose, onTagCreated }) {
         if (!newTagName.trim()) return;
         router.post(
             route('tags.store'),
-            { name: newTagName.trim() },
+            { name: newTagName.trim(), link: newTagLink.trim() || null },
             {
                 preserveScroll: true,
                 onSuccess: (page) => {
                     setNewTagName('');
+                    setNewTagLink('');
                     setShowNewTag(false);
                     if (onTagCreated) onTagCreated();
                 },
@@ -207,12 +209,14 @@ function PostModal({ post, tags, onClose, onTagCreated }) {
                                                     ? 'bg-brand-orange text-white shadow-sm'
                                                     : 'border border-gray-200 bg-white text-gray-600 hover:border-brand-orange hover:text-brand-orange'
                                             }`}
+                                            title={tag.link ? tag.link : undefined}
                                         >
                                             {tag.image_path && (
                                                 <img src={tag.image_path} alt="" className="h-4 w-4 rounded-full object-cover" />
                                             )}
                                             {!tag.image_path && <LuTag className="h-3 w-3" />}
                                             {tag.name}
+                                            {tag.link && <LuExternalLink className="h-3 w-3 opacity-70" />}
                                             {selected && <LuCheck className="h-3 w-3" />}
                                         </button>
                                     );

@@ -58,6 +58,7 @@ class TagController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'slug' => ['nullable', 'string', 'max:255', 'alpha_dash', Rule::unique('tags', 'slug')->ignore($tag?->id)],
             'image_path' => ['nullable', 'string', 'max:500'],
+            'link' => ['nullable', 'string', 'max:500', 'url'],
             'image' => ['nullable', 'image', 'max:5120'],
         ]);
 

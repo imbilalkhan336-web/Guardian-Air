@@ -210,6 +210,7 @@ function InlineEditor({ block, page, tags, onDone }) {
                                     )}
                                     {!tag.image_path && <LuTag className="h-3 w-3" />}
                                     {tag.name}
+                                    {tag.link && <LuExternalLink className="h-3 w-3 opacity-70" />}
                                     {selected && <LuCheck className="h-3 w-3" />}
                                 </button>
                             );
@@ -475,6 +476,7 @@ function AddSectionModal({ page, tags, onClose }) {
                                             )}
                                             {!tag.image_path && <LuTag className="h-3 w-3" />}
                                             {tag.name}
+                                            {tag.link && <LuExternalLink className="h-3 w-3 opacity-70" />}
                                             {selected && <LuCheck className="h-3 w-3" />}
                                         </button>
                                     );
