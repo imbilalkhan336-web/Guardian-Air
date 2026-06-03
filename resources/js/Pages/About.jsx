@@ -6,9 +6,9 @@ import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 import ScheduleSection from '@/Components/FrontComponents/ScheduleSection';
 import { LuUsers } from 'react-icons/lu';
 
-export default function AboutPage() {
+export default function AboutPage({ reviews = [] }) {
     return (
-        <SiteLayout>
+        <SiteLayout reviews={reviews}>
             <Head>
                 <title>About Guardian Air — NJ's Trusted HVAC & Plumbing Pros</title>
                 <meta

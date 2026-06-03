@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -37,6 +38,7 @@ class HandleInertiaRequests extends Middleware
             'flash' => [
                 'status' => fn () => $request->session()->get('status'),
             ],
+            'reviews' => fn () => Review::published()->get(),
         ];
     }
 }

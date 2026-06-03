@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Inertia\Inertia;
 
 class PostController extends Controller
 {
@@ -19,6 +21,28 @@ class PostController extends Controller
     }
 
     /**
+     * Admin: show the full-page editor for creating a new post.
+     */
+    public function create()
+    {
+        return Inertia::render('Admin/BlogEditor', [
+            'post' => null,
+            'tags' => Tag::orderBy('name')->get(),
+        ]);
+    }
+
+    /**
+     * Admin: show the full-page editor for editing an existing post.
+     */
+    public function edit(Post $post)
+    {
+        return Inertia::render('Admin/BlogEditor', [
+            'post' => $post->load('tags'),
+            'tags' => Tag::orderBy('name')->get(),
+        ]);
+    }
+
+    /**
      * Create a new blog post.
      */
     public function store(Request $request)
@@ -29,7 +53,7 @@ class PostController extends Controller
         $post = Post::create($data);
         $post->tags()->sync($tagIds);
 
-        return redirect()->route('admin.blog')->with('status', 'Post published.');
+        return redirect()->route('admin.blog.edit', $post->id)->with('status', 'Post created.');
     }
 
     /**
@@ -43,7 +67,7 @@ class PostController extends Controller
         $post->update($data);
         $post->tags()->sync($tagIds);
 
-        return redirect()->route('admin.blog')->with('status', 'Post updated.');
+        return redirect()->route('admin.blog.edit', $post->id)->with('status', 'Post updated.');
     }
 
     /**

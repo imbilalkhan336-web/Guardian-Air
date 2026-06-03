@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Head, Link, router, useForm, usePage } from '@inertiajs/react';
 import AdminLayout from '@/Layouts/AdminLayout';
 import SectionHeading from '@/Components/FrontComponents/SectionHeading';
+import RichTextarea from '@/Components/RichTextarea';
 import {
     LuPlus,
     LuPencil,
@@ -37,7 +38,18 @@ const labelClass = 'block text-[11px] font-extrabold uppercase tracking-widest t
  * ------------------------------------------------------------------ */
 
 function Paragraphs({ text }) {
-    const paras = (text || '')
+    if (!text) return null;
+
+    if (/<[a-z][\s\S]*>/i.test(text)) {
+        return (
+            <div
+                className="mt-6 space-y-4 font-body text-[15px] leading-relaxed text-gray-600 md:text-base [&_a]:font-semibold [&_a]:text-blue-600 [&_a]:underline"
+                dangerouslySetInnerHTML={{ __html: text }}
+            />
+        );
+    }
+
+    const paras = text
         .split(/\n\n+/)
         .map((p) => p.trim())
         .filter(Boolean);
@@ -111,7 +123,7 @@ function InlineEditor({ block, page, tags, onDone }) {
     };
 
     const labels = {
-        section: { heading: 'Section Title', body: 'Content (separate paragraphs with a blank line)' },
+        section: { heading: 'Section Title', body: 'Content' },
         image: { heading: 'Image Alt Text', body: null },
     }[block.type] || { heading: 'Heading', body: 'Body' };
 
@@ -147,7 +159,7 @@ function InlineEditor({ block, page, tags, onDone }) {
             {labels.body && (
                 <div>
                     <label className={labelClass}>{labels.body}</label>
-                    <textarea
+                    <RichTextarea
                         rows={8}
                         value={data.body}
                         onChange={(e) => setData('body', e.target.value)}
@@ -270,13 +282,13 @@ function EditableBlock({
 
     return (
         <div className={`group relative rounded-2xl border bg-white p-6 shadow-sm transition-all sm:p-8 ${border}`}>
-            {/* Hover/active toolbar */}
-            <div className={`absolute right-3 top-3 z-10 flex items-center gap-1.5 transition-opacity ${editing ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}>
+            {/* Block action toolbar — always visible so it works on touch devices */}
+            <div className="absolute right-3 top-3 z-10 flex items-center gap-1.5">
                 {/* Grab handle — double-tap to pick up */}
                 <button
                     type="button"
                     onClick={() => onDoubleClick(block, index)}
-                    className={`flex h-8 w-8 items-center justify-center rounded-lg border shadow-sm transition-colors ${
+                    className={`flex h-9 w-9 items-center justify-center rounded-lg border shadow-sm transition-colors sm:h-8 sm:w-8 ${
                         moving ? 'border-brand-orange bg-brand-orange text-white' : 'border-gray-200 bg-white text-gray-400 hover:border-brand-orange hover:text-brand-orange'
                     }`}
                     title="Pick up / drop"
@@ -287,7 +299,7 @@ function EditableBlock({
                     type="button"
                     onClick={() => onMove(index, -1)}
                     disabled={index === 0}
-                    className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-500 shadow-sm transition-colors hover:border-brand-orange hover:text-brand-orange disabled:cursor-not-allowed disabled:opacity-30"
+                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-500 shadow-sm transition-colors hover:border-brand-orange hover:text-brand-orange disabled:cursor-not-allowed disabled:opacity-30 sm:h-8 sm:w-8"
                     title="Move up"
                 >
                     <LuChevronUp className="h-4 w-4" />
@@ -296,7 +308,7 @@ function EditableBlock({
                     type="button"
                     onClick={() => onMove(index, 1)}
                     disabled={index === total - 1}
-                    className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-500 shadow-sm transition-colors hover:border-brand-orange hover:text-brand-orange disabled:cursor-not-allowed disabled:opacity-30"
+                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-500 shadow-sm transition-colors hover:border-brand-orange hover:text-brand-orange disabled:cursor-not-allowed disabled:opacity-30 sm:h-8 sm:w-8"
                     title="Move down"
                 >
                     <LuChevronDown className="h-4 w-4" />
@@ -304,7 +316,7 @@ function EditableBlock({
                 <button
                     type="button"
                     onClick={() => onDelete(block)}
-                    className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-500 shadow-sm transition-colors hover:border-red-400 hover:text-red-500"
+                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-500 shadow-sm transition-colors hover:border-red-400 hover:text-red-500 sm:h-8 sm:w-8"
                     title="Delete"
                 >
                     <LuTrash2 className="h-4 w-4" />
@@ -426,8 +438,8 @@ function AddSectionModal({ page, tags, onClose }) {
                     </div>
 
                     <div>
-                        <label className={labelClass}>Content (separate paragraphs with a blank line)</label>
-                        <textarea
+                        <label className={labelClass}>Content</label>
+                        <RichTextarea
                             rows={8}
                             value={data.body}
                             onChange={(e) => setData('body', e.target.value)}

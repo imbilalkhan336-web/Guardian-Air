@@ -3,73 +3,85 @@
 use App\Http\Controllers\ContentBlockController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TagController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SubmissionController;
 use App\Models\ContentBlock;
 use App\Models\Post;
+use App\Models\Review;
 use App\Models\Tag;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Home');
+$getReviews = fn () => Review::published()->latest()->get();
+
+Route::get('/', function () use ($getReviews) {
+    return Inertia::render('Home', ['reviews' => $getReviews()]);
 });
 
-Route::get('/about', function () {
-    return Inertia::render('About');
+Route::get('/about', function () use ($getReviews) {
+    return Inertia::render('About', ['reviews' => $getReviews()]);
 })->name('about');
 
-Route::get('/services', function () {
-    return Inertia::render('Services');
+Route::get('/services', function () use ($getReviews) {
+    return Inertia::render('Services', ['reviews' => $getReviews()]);
 })->name('services');
 
-Route::get('/test', function () {
-    return Inertia::render('Test');
+Route::get('/test', function () use ($getReviews) {
+    return Inertia::render('Test', ['reviews' => $getReviews()]);
 })->name('test');
 
-Route::get('/contact', function () {
-    return Inertia::render('Contact');
+Route::get('/contact', function () use ($getReviews) {
+    return Inertia::render('Contact', ['reviews' => $getReviews()]);
 })->name('contact');
 
-Route::get('/heating', function () {
+Route::post('/submissions', [SubmissionController::class, 'store'])->name('submissions.store');
+
+Route::get('/heating', function () use ($getReviews) {
     return Inertia::render('Heating', [
         'blocks' => ContentBlock::forPage('heating')->with('tags')->get(),
         'tags' => Tag::orderBy('name')->get(),
+        'reviews' => $getReviews(),
     ]);
 })->name('heating');
 
-Route::get('/cooling', function () {
+Route::get('/cooling', function () use ($getReviews) {
     return Inertia::render('Cooling', [
         'blocks' => ContentBlock::forPage('cooling')->with('tags')->get(),
         'tags' => Tag::orderBy('name')->get(),
+        'reviews' => $getReviews(),
     ]);
 })->name('cooling');
 
-Route::get('/plumbing', function () {
+Route::get('/plumbing', function () use ($getReviews) {
     return Inertia::render('Plumbing', [
         'blocks' => ContentBlock::forPage('plumbing')->with('tags')->get(),
         'tags' => Tag::orderBy('name')->get(),
+        'reviews' => $getReviews(),
     ]);
 })->name('plumbing');
 
-Route::get('/indoor-air-quality', function () {
+Route::get('/indoor-air-quality', function () use ($getReviews) {
     return Inertia::render('AirQuality', [
         'blocks' => ContentBlock::forPage('indoor-air-quality')->with('tags')->get(),
         'tags' => Tag::orderBy('name')->get(),
+        'reviews' => $getReviews(),
     ]);
 })->name('air-quality');
 
-Route::get('/drains', function () {
+Route::get('/drains', function () use ($getReviews) {
     return Inertia::render('Drains', [
         'blocks' => ContentBlock::forPage('drains')->with('tags')->get(),
         'tags' => Tag::orderBy('name')->get(),
+        'reviews' => $getReviews(),
     ]);
 })->name('drains');
 
-Route::get('/commercial', function () {
+Route::get('/commercial', function () use ($getReviews) {
     return Inertia::render('Commercial', [
         'blocks' => ContentBlock::forPage('commercial')->with('tags')->get(),
         'tags' => Tag::orderBy('name')->get(),
+        'reviews' => $getReviews(),
     ]);
 })->name('commercial');
 
@@ -115,15 +127,15 @@ Route::get('/service-areas/{area}', function (string $area) {
 
     abort_unless(isset($areas[$area]), 404);
 
-    return Inertia::render('ServiceArea', ['area' => $areas[$area]]);
+    return Inertia::render('ServiceArea', ['area' => $areas[$area], 'reviews' => $getReviews()]);
 })->name('service-area');
 
-Route::get('/resources', function () {
-    return Inertia::render('Resources');
+Route::get('/resources', function () use ($getReviews) {
+    return Inertia::render('Resources', ['reviews' => $getReviews()]);
 })->name('resources');
 
-Route::get('/offers', function () {
-    return Inertia::render('Offers');
+Route::get('/offers', function () use ($getReviews) {
+    return Inertia::render('Offers', ['reviews' => $getReviews()]);
 })->name('offers');
 
 Route::get('/dashboard', function () {
@@ -172,19 +184,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         ]);
     })->name('pages.edit');
 
-    // Blog manager — list, add, edit, and delete posts.
-    Route::get('/blog', function () {
-        return Inertia::render('Admin/BlogManager', [
-            'posts' => Post::with('tags')->latest()->get(),
-            'tags' => Tag::orderBy('name')->get(),
-        ]);
-    })->name('blog');
-
-    // Tag manager
-    Route::get('/tags', [TagController::class, 'index'])->name('tags');
-    Route::post('/tags', [TagController::class, 'store'])->name('tags.store');
-    Route::put('/tags/{tag}', [TagController::class, 'update'])->name('tags.update');
-    Route::delete('/tags/{tag}', [TagController::class, 'destroy'])->name('tags.destroy');
+    // Blog manager — list, create, edit, and delete posts.
+    Route::get('/blog', [PostController::class, 'index'])->name('blog');
+    Route::get('/blog/create', [PostController::class, 'create'])->name('blog.create');
+    Route::get('/blog/{post:id}/edit', [PostController::class, 'edit'])->name('blog.edit');
 
     // FAQ manager — lists all FAQ blocks for a page with add/edit/delete.
     Route::get('/pages/{page}/faqs', function (string $page) {
@@ -208,6 +211,20 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
             'tags' => Tag::orderBy('name')->get(),
         ]);
     })->name('blocks.edit');
+
+    // Submissions manager
+    Route::get('/submissions', [SubmissionController::class, 'index'])->name('submissions');
+    Route::post('/submissions/{submission}/read', [SubmissionController::class, 'markAsRead'])->name('submissions.read');
+    Route::post('/submissions/{submission}/unread', [SubmissionController::class, 'markAsUnread'])->name('submissions.unread');
+    Route::delete('/submissions/{submission}', [SubmissionController::class, 'destroy'])->name('submissions.destroy');
+});
+
+// Review manager — accessible to all authenticated users (not just admins)
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
+    Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update');
+    Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 });
 
 require __DIR__.'/auth.php';

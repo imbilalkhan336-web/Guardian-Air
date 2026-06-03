@@ -1,19 +1,41 @@
 import { useRef, useState, useEffect } from 'react';
+import { LuStar } from 'react-icons/lu';
 
-const reviews = [
-    { name: 'Jessica Nunno', initial: 'J', avatarBg: 'bg-emerald-600', timeAgo: '1 day ago', body: 'They did a great job installing our new HVAC. They worked quickly and everything went smoothly from quote to cleanup. Truly a five-star experience!' },
-    { name: 'Barbara Caroleo', initial: 'B', avatarBg: 'bg-emerald-500', timeAgo: '1 day ago', body: 'Very professional and reliable. The crew arrived right on time, walked me through the work, and left the place spotless.' },
-    { name: 'Richard Singer', initial: 'R', avatarBg: 'bg-rose-600', timeAgo: '1 day ago', body: 'Matt was friendly but professional. Replaced the capacitor for $307 when the AC stopped cooling — back up and running in under an hour.' },
-    { name: 'Vic Alvarado', initial: 'V', avatarBg: 'bg-slate-700', timeAgo: '2 days ago', body: 'Tech Dawan Carter went beyond what was expected and was very knowledgeable. He took time to explain the issue and fixed it the first visit.' },
-    { name: 'Baba Estates LLC', initial: 'B', avatarBg: 'bg-teal-600', timeAgo: '2 days ago', body: 'Excellent service from start to finish — quoted fairly, scheduled fast, and delivered exactly what we needed for our property.' },
-    { name: 'Tom Reilly', initial: 'T', avatarBg: 'bg-indigo-600', timeAgo: '3 days ago', body: 'On time, courteous, and explained the work clearly before starting. Pricing was upfront and honest. Highly recommended for HVAC service.' },
-    { name: 'Maria Lopez', initial: 'M', avatarBg: 'bg-orange-500', timeAgo: '4 days ago', body: 'Replaced our old furnace with no issues at all. Crew was friendly, neat, and the new system is dramatically quieter than the old one.' },
-    { name: 'Daniel Park', initial: 'D', avatarBg: 'bg-cyan-600', timeAgo: '5 days ago', body: 'Quick response when our AC went out during a heatwave. Fair pricing and the technician walked me through everything before doing the work.' },
-    { name: 'Sarah Whitfield', initial: 'S', avatarBg: 'bg-purple-600', timeAgo: '6 days ago', body: 'Booked online in the evening and they were here next morning. Diagnosed a leak in the line set and had us cooling again same day.' },
-    { name: 'Anthony Russo', initial: 'A', avatarBg: 'bg-amber-600', timeAgo: '1 week ago', body: 'Five stars all around. Honest tech, no upsell pressure, and the new thermostat install made our energy bill noticeably lower.' },
-    { name: 'Lakeisha Brown', initial: 'L', avatarBg: 'bg-pink-600', timeAgo: '1 week ago', body: 'I called for a clogged drain and they had someone here within two hours. Fixed it in 30 minutes and gave me tips to keep it from happening again.' },
-    { name: 'Michael O\'Connor', initial: 'M', avatarBg: 'bg-blue-700', timeAgo: '2 weeks ago', body: 'Used Arctic Air for both heating tune-up and a small electrical project. One company, one invoice, two crews — couldn\'t be easier.' },
+const FALLBACK_REVIEWS = [
+    { name: 'Jessica Nunno', initial: 'J', avatarBg: 'bg-emerald-600', timeAgo: '1 day ago', body: 'They did a great job installing our new HVAC. They worked quickly and everything went smoothly from quote to cleanup. Truly a five-star experience!', rating: 5 },
+    { name: 'Barbara Caroleo', initial: 'B', avatarBg: 'bg-emerald-500', timeAgo: '1 day ago', body: 'Very professional and reliable. The crew arrived right on time, walked me through the work, and left the place spotless.', rating: 5 },
+    { name: 'Richard Singer', initial: 'R', avatarBg: 'bg-rose-600', timeAgo: '1 day ago', body: 'Matt was friendly but professional. Replaced the capacitor for $307 when the AC stopped cooling — back up and running in under an hour.', rating: 5 },
+    { name: 'Vic Alvarado', initial: 'V', avatarBg: 'bg-slate-700', timeAgo: '2 days ago', body: 'Tech Dawan Carter went beyond what was expected and was very knowledgeable. He took time to explain the issue and fixed it the first visit.', rating: 5 },
+    { name: 'Baba Estates LLC', initial: 'B', avatarBg: 'bg-teal-600', timeAgo: '2 days ago', body: 'Excellent service from start to finish — quoted fairly, scheduled fast, and delivered exactly what we needed for our property.', rating: 5 },
+    { name: 'Tom Reilly', initial: 'T', avatarBg: 'bg-indigo-600', timeAgo: '3 days ago', body: 'On time, courteous, and explained the work clearly before starting. Pricing was upfront and honest. Highly recommended for HVAC service.', rating: 5 },
+    { name: 'Maria Lopez', initial: 'M', avatarBg: 'bg-orange-500', timeAgo: '4 days ago', body: 'Replaced our old furnace with no issues at all. Crew was friendly, neat, and the new system is dramatically quieter than the old one.', rating: 5 },
+    { name: 'Daniel Park', initial: 'D', avatarBg: 'bg-cyan-600', timeAgo: '5 days ago', body: 'Quick response when our AC went out during a heatwave. Fair pricing and the technician walked me through everything before doing the work.', rating: 5 },
+    { name: 'Sarah Whitfield', initial: 'S', avatarBg: 'bg-purple-600', timeAgo: '6 days ago', body: 'Booked online in the evening and they were here next morning. Diagnosed a leak in the line set and had us cooling again same day.', rating: 5 },
+    { name: 'Anthony Russo', initial: 'A', avatarBg: 'bg-amber-600', timeAgo: '1 week ago', body: 'Five stars all around. Honest tech, no upsell pressure, and the new thermostat install made our energy bill noticeably lower.', rating: 5 },
+    { name: 'Lakeisha Brown', initial: 'L', avatarBg: 'bg-pink-600', timeAgo: '1 week ago', body: 'I called for a clogged drain and they had someone here within two hours. Fixed it in 30 minutes and gave me tips to keep it from happening again.', rating: 5 },
+    { name: 'Michael O\'Connor', initial: 'M', avatarBg: 'bg-blue-700', timeAgo: '2 weeks ago', body: 'Used Arctic Air for both heating tune-up and a small electrical project. One company, one invoice, two crews — couldn\'t be easier.', rating: 5 },
 ];
+
+function timeAgo(dateString) {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    const now = new Date();
+    const seconds = Math.floor((now - date) / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    const weeks = Math.floor(days / 7);
+    const months = Math.floor(days / 30);
+    const years = Math.floor(days / 365);
+
+    if (seconds < 60) return 'just now';
+    if (minutes < 60) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+    if (hours < 24) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+    if (days < 7) return `${days} day${days > 1 ? 's' : ''} ago`;
+    if (weeks < 4) return `${weeks} week${weeks > 1 ? 's' : ''} ago`;
+    if (months < 12) return `${months} month${months > 1 ? 's' : ''} ago`;
+    return `${years} year${years > 1 ? 's' : ''} ago`;
+}
 
 function VerifiedCheck() {
     return (
@@ -23,13 +45,14 @@ function VerifiedCheck() {
     );
 }
 
-function StarRow() {
+function StarRow({ rating = 5 }) {
     return (
         <div className="flex gap-0.5">
-            {[...Array(5)].map((_, i) => (
-                <svg key={i} className="h-4 w-4 text-brand-yellow" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
+            {[1, 2, 3, 4, 5].map((star) => (
+                <LuStar
+                    key={star}
+                    className={`h-4 w-4 ${star <= rating ? 'fill-current text-brand-yellow' : 'text-gray-300'}`}
+                />
             ))}
         </div>
     );
@@ -68,22 +91,32 @@ function ReviewCard({ review }) {
             </div>
 
             <div className="mt-4">
-                <StarRow />
+                <StarRow rating={review.rating} />
                 <p className="mt-2 text-sm leading-relaxed text-gray-700">{review.body}</p>
-                <a href="#" className="mt-2 inline-block text-sm font-semibold text-[#1A73E8] hover:underline">
-                    Read more
-                </a>
             </div>
         </div>
     );
 }
 
-export default function Reviews() {
+export default function Reviews({ reviews = [] }) {
     const scrollerRef = useRef(null);
     const dragRef = useRef({ active: false, startX: 0, startScroll: 0, moved: 0 });
     const [activeDot, setActiveDot] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
-    const dotCount = 5;
+
+    // Transform database reviews or use fallback
+    const reviewList = reviews.length > 0
+        ? reviews.map((r) => ({
+              name: r.name,
+              initial: r.initials || r.name.charAt(0).toUpperCase(),
+              avatarBg: r.avatar_color || 'bg-emerald-600',
+              timeAgo: timeAgo(r.created_at),
+              body: r.body,
+              rating: r.rating || 5,
+          }))
+        : FALLBACK_REVIEWS;
+
+    const dotCount = Math.min(5, Math.ceil(reviewList.length / 2.5)) || 1;
 
     function scrollByCard(direction) {
         const el = scrollerRef.current;
@@ -103,14 +136,13 @@ export default function Reviews() {
         }
         el.addEventListener('scroll', onScroll, { passive: true });
         return () => el.removeEventListener('scroll', onScroll);
-    }, []);
+    }, [dotCount]);
 
     function onPointerDown(e) {
         const el = scrollerRef.current;
         if (!el) return;
         dragRef.current = { active: true, startX: e.clientX, startScroll: el.scrollLeft, moved: 0 };
         setIsDragging(true);
-        // Track the pointer 1:1 while dragging — disable smooth scroll & snap so it feels fluid.
         el.style.scrollBehavior = 'auto';
         el.style.scrollSnapType = 'none';
         el.setPointerCapture?.(e.pointerId);
@@ -131,7 +163,6 @@ export default function Reviews() {
         setIsDragging(false);
         const el = scrollerRef.current;
         if (el) {
-            // Restore smooth scroll & snap for button/dot navigation.
             el.style.scrollBehavior = '';
             el.style.scrollSnapType = '';
         }
@@ -160,7 +191,7 @@ export default function Reviews() {
                     Hear What Our Customers Are Saying
                 </p>
                 <h2 className="mt-2 text-center font-poppins text-2xl font-extrabold uppercase italic text-[#0A2A4A] md:text-3xl lg:text-4xl">
-                    Over 3,500+ Reviews
+                    Over {reviewList.length > 5 ? '3,500+' : `${reviewList.length}+`} Reviews
                 </h2>
 
                 <div className="relative mt-12">
@@ -176,8 +207,8 @@ export default function Reviews() {
                             isDragging ? 'cursor-grabbing' : 'cursor-grab'
                         }`}
                     >
-                        {reviews.map((r) => (
-                            <div key={r.name} data-review-card>
+                        {reviewList.map((r, i) => (
+                            <div key={i} data-review-card>
                                 <ReviewCard review={r} />
                             </div>
                         ))}
@@ -207,19 +238,21 @@ export default function Reviews() {
                 </div>
 
                 {/* Pagination dots */}
-                <div className="mt-8 flex justify-center gap-2">
-                    {[...Array(dotCount)].map((_, i) => (
-                        <button
-                            key={i}
-                            type="button"
-                            aria-label={`Go to review group ${i + 1}`}
-                            onClick={() => scrollToDot(i)}
-                            className={`h-2.5 w-2.5 rounded-full transition-colors hover:scale-125 ${
-                                i === activeDot ? 'bg-[#0A2A4A]' : 'bg-gray-400'
-                            }`}
-                        />
-                    ))}
-                </div>
+                {dotCount > 1 && (
+                    <div className="mt-8 flex justify-center gap-2">
+                        {[...Array(dotCount)].map((_, i) => (
+                            <button
+                                key={i}
+                                type="button"
+                                aria-label={`Go to review group ${i + 1}`}
+                                onClick={() => scrollToDot(i)}
+                                className={`h-2.5 w-2.5 rounded-full transition-colors hover:scale-125 ${
+                                    i === activeDot ? 'bg-[#0A2A4A]' : 'bg-gray-400'
+                                }`}
+                            />
+                        ))}
+                    </div>
+                )}
             </div>
         </section>
     );

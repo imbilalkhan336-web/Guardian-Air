@@ -4,9 +4,9 @@ import PageHeader from '@/Components/FrontComponents/PageHeader';
 import ServiceArticle from '@/Components/FrontComponents/ServiceArticle';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 
-export default function CommercialPage({ blocks = [], tags = [] }) {
+export default function CommercialPage({ blocks = [], tags = [], reviews = [] }) {
     return (
-        <SiteLayout>
+        <SiteLayout reviews={reviews}>
             <Head>
                 <title>Commercial HVAC & Plumbing — NJ Business Services | Guardian Air</title>
                 <meta

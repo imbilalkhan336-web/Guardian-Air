@@ -4,9 +4,9 @@ import PageHeader from '@/Components/FrontComponents/PageHeader';
 import ServiceArticle from '@/Components/FrontComponents/ServiceArticle';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 
-export default function CoolingPage({ blocks = [], tags = [] }) {
+export default function CoolingPage({ blocks = [], tags = [], reviews = [] }) {
     return (
-        <SiteLayout>
+        <SiteLayout reviews={reviews}>
             <Head>
                 <title>Cooling Services — AC Repair & Install in NJ | Guardian Air</title>
                 <meta

@@ -78,9 +78,9 @@ const seasonalTips = [
     },
 ];
 
-export default function ResourcesPage() {
+export default function ResourcesPage({ reviews = [] }) {
     return (
-        <SiteLayout>
+        <SiteLayout reviews={reviews}>
             <Head>
                 <title>Resources & Tips — HVAC, Plumbing & Electrical Guides | Guardian Air</title>
                 <meta

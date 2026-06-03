@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Head, Link, router, useForm, usePage } from '@inertiajs/react';
 import AdminLayout from '@/Layouts/AdminLayout';
+import RichTextarea from '@/Components/RichTextarea';
 import {
     LuArrowLeft,
     LuPlus,
@@ -68,7 +69,7 @@ function AddFaqModal({ page, onClose }) {
 
                     <div>
                         <label className={labelClass}>Answer</label>
-                        <textarea
+                        <RichTextarea
                             rows={5}
                             value={data.body}
                             onChange={(e) => setData('body', e.target.value)}
@@ -179,7 +180,10 @@ export default function FaqManager({ page, label, faqs = [] }) {
                                     <div className="min-w-0 flex-1">
                                         <p className="text-sm font-bold text-[#07264A]">{faq.heading}</p>
                                         {faq.body && (
-                                            <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-gray-500">{faq.body}</p>
+                                            <p
+                                                className="mt-1 line-clamp-2 text-sm leading-relaxed text-gray-500 [&_a]:font-semibold [&_a]:text-blue-600 [&_a]:underline"
+                                                dangerouslySetInnerHTML={{ __html: faq.body }}
+                                            />
                                         )}
                                     </div>
                                 </div>

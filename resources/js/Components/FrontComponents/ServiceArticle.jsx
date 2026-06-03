@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { router, usePage } from '@inertiajs/react';
 import SectionHeading from '@/Components/FrontComponents/SectionHeading';
 import ScheduleForm from '@/Components/FrontComponents/ScheduleForm';
+import RichTextarea from '@/Components/RichTextarea';
 import {
     LuCheck,
     LuPencil,
@@ -25,7 +26,20 @@ const labelClass = 'block text-[11px] font-extrabold uppercase tracking-widest t
 // Section body: blank-line-separated paragraphs, with a bold lead-in for
 // "Term — explanation" lines so the article keeps its styled look.
 function Paragraphs({ text }) {
-    const paras = (text || '')
+    if (!text) return null;
+
+    // Content produced by the WYSIWYG editor (or previously converted)
+    if (/<[a-z][\s\S]*>/i.test(text)) {
+        return (
+            <div
+                className="mt-6 space-y-4 font-body text-[15px] leading-relaxed text-gray-600 md:text-base [&_a]:font-semibold [&_a]:text-blue-600 [&_a]:underline"
+                dangerouslySetInnerHTML={{ __html: text }}
+            />
+        );
+    }
+
+    // Legacy plain-text fallback
+    const paras = text
         .split(/\n\n+/)
         .map((p) => p.trim())
         .filter(Boolean);
@@ -124,7 +138,16 @@ function FaqItem({ question, answer, isOpen, onToggle }) {
             </button>
             <div className={`grid transition-all duration-300 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
                 <div className="overflow-hidden">
-                    <p className="pb-4 pl-[56px] pr-5 font-body text-[14px] leading-relaxed text-gray-600">{answer}</p>
+                    {/<[a-z][\s\S]*>/i.test(answer) ? (
+                        <div
+                            className="pb-4 pl-[56px] pr-5 font-body text-[14px] leading-relaxed text-gray-600 [&_a]:font-semibold [&_a]:text-blue-600 [&_a]:underline"
+                            dangerouslySetInnerHTML={{ __html: answer }}
+                        />
+                    ) : (
+                        <p className="pb-4 pl-[56px] pr-5 font-body text-[14px] leading-relaxed text-gray-600">
+                            {answer}
+                        </p>
+                    )}
                 </div>
             </div>
         </div>
@@ -142,7 +165,7 @@ function BlockForm({ block, tags, onSave, onCancel, saving }) {
     const [selectedTagIds, setSelectedTagIds] = useState(block.tags?.map((t) => t.id) || []);
 
     const labels = {
-        section: { heading: 'Section Title', body: 'Content (separate paragraphs with a blank line)' },
+        section: { heading: 'Section Title', body: 'Content' },
         faq: { heading: 'Question', body: 'Answer' },
         image: { heading: 'Image Alt Text', body: null },
     }[block.type] || { heading: 'Heading', body: 'Body' };
@@ -187,7 +210,7 @@ function BlockForm({ block, tags, onSave, onCancel, saving }) {
                 {labels.body && (
                     <div>
                         <label className={labelClass}>{labels.body}</label>
-                        <textarea
+                        <RichTextarea
                             rows={block.type === 'faq' ? 4 : 7}
                             value={body}
                             onChange={(e) => setBody(e.target.value)}

@@ -7,9 +7,9 @@ import Services from '@/Components/pages-sections/Home/Services';
 import AreaWeServe from '@/Components/pages-sections/Home/AreaWeServe';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 
-export default function Home() {
+export default function Home({ reviews = [] }) {
     return (
-        <SiteLayout>
+        <SiteLayout reviews={reviews}>
             <Head title="Guardian Air | HVAC, Plumbing & Electrical" />
             <Hero />
             <About />

@@ -5,7 +5,7 @@ import ServiceArticle from '@/Components/FrontComponents/ServiceArticle';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 import Reviews from '@/Components/pages-sections/Home/Reviews';
 
-export default function HeatingPage({ blocks = [], tags = [] }) {
+export default function HeatingPage({ blocks = [], tags = [], reviews = [] }) {
     return (
         <SiteLayout showReviews={false}>
             <Head>
@@ -39,7 +39,7 @@ export default function HeatingPage({ blocks = [], tags = [] }) {
                 />
             </article>
 
-            <Reviews />
+            <Reviews reviews={reviews} />
             <CtaBanner titleWeightClass="font-normal" />
         </SiteLayout>
     );

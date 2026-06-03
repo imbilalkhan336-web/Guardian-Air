@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { LuCheck } from 'react-icons/lu';
+import { router } from '@inertiajs/react';
+import { LuCheck, LuLoader } from 'react-icons/lu';
 import { PillButton, PhonePillButton } from '@/Components/FrontComponents/PillButton';
 
 const PHONE = '(732) 239-0932';
@@ -11,19 +12,44 @@ const labelClass = 'block text-[11px] font-extrabold uppercase tracking-widest t
 export default function ScheduleForm({ headingClassName = '' }) {
     const [form, setForm] = useState({ name: '', phone: '', email: '', date: '', message: '' });
     const [submitted, setSubmitted] = useState(false);
+    const [processing, setProcessing] = useState(false);
+    const [error, setError] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setForm((prev) => ({ ...prev, [name]: value }));
+        if (error) setError('');
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setSubmitted(true);
-        setTimeout(() => {
-            setSubmitted(false);
-            setForm({ name: '', phone: '', email: '', date: '', message: '' });
-        }, 4000);
+        setProcessing(true);
+        setError('');
+
+        router.post(
+            route('submissions.store'),
+            {
+                form_type: 'schedule',
+                name: form.name,
+                phone: form.phone,
+                email: form.email,
+                preferred_date: form.date,
+                message: form.message,
+            },
+            {
+                preserveScroll: true,
+                onSuccess: () => {
+                    setSubmitted(true);
+                    setProcessing(false);
+                    setForm({ name: '', phone: '', email: '', date: '', message: '' });
+                    setTimeout(() => setSubmitted(false), 5000);
+                },
+                onError: (errors) => {
+                    setProcessing(false);
+                    setError(errors.message || Object.values(errors)[0] || 'Something went wrong. Please try again.');
+                },
+            }
+        );
     };
 
     return (
@@ -47,13 +73,19 @@ export default function ScheduleForm({ headingClassName = '' }) {
                     </div>
                 ) : (
                     <form onSubmit={handleSubmit} className="space-y-4">
+                        {error && (
+                            <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-xs font-semibold text-red-600">
+                                {error}
+                            </div>
+                        )}
+
                         <div>
                             <label htmlFor="schedule-name" className={labelClass}>Full Name</label>
                             <input id="schedule-name" name="name" type="text" required value={form.name} onChange={handleChange} className={inputClass} placeholder="John Smith" />
                         </div>
                         <div>
                             <label htmlFor="schedule-phone" className={labelClass}>Phone Number</label>
-                            <input id="schedule-phone" name="phone" type="number" required value={form.phone} onChange={handleChange} className={inputClass} placeholder="7325551234" />
+                            <input id="schedule-phone" name="phone" type="tel" required value={form.phone} onChange={handleChange} className={inputClass} placeholder="(732) 555-1234" />
                         </div>
                         <div>
                             <label htmlFor="schedule-email" className={labelClass}>Email Address</label>
@@ -69,8 +101,15 @@ export default function ScheduleForm({ headingClassName = '' }) {
                         </div>
 
                         <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
-                            <PillButton type="submit" variant="yellow" icon="calendar" size="md" className="w-full text-sm sm:flex-1">
-                                Schedule Online
+                            <PillButton type="submit" variant="yellow" icon="calendar" size="md" className="w-full text-sm sm:flex-1" disabled={processing}>
+                                {processing ? (
+                                    <span className="inline-flex items-center gap-2">
+                                        <LuLoader className="h-4 w-4 animate-spin" />
+                                        Sending…
+                                    </span>
+                                ) : (
+                                    'Schedule Online'
+                                )}
                             </PillButton>
                             <PhonePillButton phone={PHONE} label="Call" size="md" className="w-full text-sm sm:flex-1" />
                         </div>

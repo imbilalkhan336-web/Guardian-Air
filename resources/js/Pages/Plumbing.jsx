@@ -4,9 +4,9 @@ import PageHeader from '@/Components/FrontComponents/PageHeader';
 import ServiceArticle from '@/Components/FrontComponents/ServiceArticle';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 
-export default function PlumbingPage({ blocks = [], tags = [] }) {
+export default function PlumbingPage({ blocks = [], tags = [], reviews = [] }) {
     return (
-        <SiteLayout>
+        <SiteLayout reviews={reviews}>
             <Head>
                 <title>Plumbing Services — Repair & Install in NJ | Guardian Air</title>
                 <meta

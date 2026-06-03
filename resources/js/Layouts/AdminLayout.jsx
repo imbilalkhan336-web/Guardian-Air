@@ -9,7 +9,8 @@ import {
     LuX,
     LuChevronDown,
     LuNewspaper,
-    LuTag,
+    LuInbox,
+    LuMessageSquare,
 } from 'react-icons/lu';
 
 const PAGES = [
@@ -22,7 +23,8 @@ const PAGES = [
 ];
 
 function SidebarContent() {
-    const { url } = usePage();
+    const { url, props } = usePage();
+    const isAdmin = props.auth.user?.is_admin;
     const isDashboard = url === '/admin' || url === '/admin/';
     const [pagesOpen, setPagesOpen] = useState(true);
 
@@ -30,72 +32,90 @@ function SidebarContent() {
         <div className="flex h-full flex-col">
             <div className="flex items-center gap-3 border-b border-white/10 px-6 py-5">
                 <img src="/img/logo.webp" alt="Guardian Air" className="h-8 w-auto" />
-                <span className="text-xs font-extrabold uppercase tracking-widest text-white/60">Admin</span>
+                <span className="text-xs font-extrabold uppercase tracking-widest text-white/60">{isAdmin ? 'Admin' : 'Panel'}</span>
             </div>
 
             <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-4">
-                <Link
-                    href={route('admin.dashboard')}
-                    className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors ${
-                        isDashboard ? 'bg-brand-orange text-white' : 'text-white/80 hover:bg-white/10'
-                    }`}
-                >
-                    <LuLayoutDashboard className="h-4 w-4" />
-                    Dashboard
-                </Link>
-
-                <Link
-                    href={route('admin.blog')}
-                    className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors ${
-                        url.startsWith('/admin/blog') ? 'bg-brand-orange text-white' : 'text-white/80 hover:bg-white/10'
-                    }`}
-                >
-                    <LuNewspaper className="h-4 w-4" />
-                    Blog Posts
-                </Link>
-
-                <Link
-                    href={route('admin.tags')}
-                    className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors ${
-                        url.startsWith('/admin/tags') ? 'bg-brand-orange text-white' : 'text-white/80 hover:bg-white/10'
-                    }`}
-                >
-                    <LuTag className="h-4 w-4" />
-                    Tags
-                </Link>
-
-                <div className="pt-3">
-                    <button
-                        type="button"
-                        onClick={() => setPagesOpen((v) => !v)}
-                        aria-expanded={pagesOpen}
-                        className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold text-white/80 transition-colors hover:bg-white/10"
+                {isAdmin && (
+                    <Link
+                        href={route('admin.dashboard')}
+                        className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors ${
+                            isDashboard ? 'bg-brand-orange text-white' : 'text-white/80 hover:bg-white/10'
+                        }`}
                     >
-                        <LuFileStack className="h-4 w-4" />
-                        <span className="flex-1 text-left">Page Content</span>
-                        <LuChevronDown className={`h-4 w-4 transition-transform ${pagesOpen ? 'rotate-180' : ''}`} />
-                    </button>
+                        <LuLayoutDashboard className="h-4 w-4" />
+                        Dashboard
+                    </Link>
+                )}
 
-                    {pagesOpen && (
-                        <div className="mt-1 space-y-1 pl-4">
-                            {PAGES.map((p) => {
-                                const active = url.startsWith(`/admin/pages/${p.slug}`);
-                                return (
-                                    <Link
-                                        key={p.slug}
-                                        href={route('admin.pages.edit', p.slug)}
-                                        className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-semibold transition-colors ${
-                                            active ? 'bg-brand-orange text-white' : 'text-white/70 hover:bg-white/10'
-                                        }`}
-                                    >
-                                        <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-current opacity-60" />
-                                        {p.label}
-                                    </Link>
-                                );
-                            })}
-                        </div>
-                    )}
-                </div>
+                {isAdmin && (
+                    <Link
+                        href={route('admin.blog')}
+                        className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors ${
+                            url.startsWith('/admin/blog') ? 'bg-brand-orange text-white' : 'text-white/80 hover:bg-white/10'
+                        }`}
+                    >
+                        <LuNewspaper className="h-4 w-4" />
+                        Blog Posts
+                    </Link>
+                )}
+
+                {isAdmin && (
+                    <Link
+                        href={route('admin.submissions')}
+                        className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors ${
+                            url.startsWith('/admin/submissions') ? 'bg-brand-orange text-white' : 'text-white/80 hover:bg-white/10'
+                        }`}
+                    >
+                        <LuInbox className="h-4 w-4" />
+                        Submissions
+                    </Link>
+                )}
+
+                <Link
+                    href={route('admin.reviews')}
+                    className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors ${
+                        url.startsWith('/admin/reviews') ? 'bg-brand-orange text-white' : 'text-white/80 hover:bg-white/10'
+                    }`}
+                >
+                    <LuMessageSquare className="h-4 w-4" />
+                    Reviews
+                </Link>
+
+                {isAdmin && (
+                    <div className="pt-3">
+                        <button
+                            type="button"
+                            onClick={() => setPagesOpen((v) => !v)}
+                            aria-expanded={pagesOpen}
+                            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold text-white/80 transition-colors hover:bg-white/10"
+                        >
+                            <LuFileStack className="h-4 w-4" />
+                            <span className="flex-1 text-left">Page Content</span>
+                            <LuChevronDown className={`h-4 w-4 transition-transform ${pagesOpen ? 'rotate-180' : ''}`} />
+                        </button>
+
+                        {pagesOpen && (
+                            <div className="mt-1 space-y-1 pl-4">
+                                {PAGES.map((p) => {
+                                    const active = url.startsWith(`/admin/pages/${p.slug}`);
+                                    return (
+                                        <Link
+                                            key={p.slug}
+                                            href={route('admin.pages.edit', p.slug)}
+                                            className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-semibold transition-colors ${
+                                                active ? 'bg-brand-orange text-white' : 'text-white/70 hover:bg-white/10'
+                                            }`}
+                                        >
+                                            <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-current opacity-60" />
+                                            {p.label}
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        )}
+                    </div>
+                )}
             </nav>
 
             <div className="space-y-1 border-t border-white/10 px-3 py-4">
@@ -139,7 +159,7 @@ export default function AdminLayout({ header, children }) {
                         <button
                             type="button"
                             onClick={() => setMobileOpen(false)}
-                            className="absolute right-3 top-4 text-white/70 hover:text-white"
+                            className="absolute right-2 top-3 flex h-10 w-10 items-center justify-center rounded-lg text-white/70 hover:bg-white/10 hover:text-white"
                             aria-label="Close menu"
                         >
                             <LuX className="h-6 w-6" />
@@ -154,13 +174,13 @@ export default function AdminLayout({ header, children }) {
                     <button
                         type="button"
                         onClick={() => setMobileOpen(true)}
-                        className="text-gray-500 hover:text-gray-800 lg:hidden"
+                        className="-ml-2 flex h-10 w-10 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100 hover:text-gray-800 lg:hidden"
                         aria-label="Open menu"
                     >
                         <LuMenu className="h-6 w-6" />
                     </button>
                     <div className="flex-1">
-                        {header || <h1 className="text-lg font-bold text-[#07264A]">Admin Panel</h1>}
+                        {header || <h1 className="text-lg font-bold text-[#07264A]">{user?.is_admin ? 'Admin Panel' : 'Review Panel'}</h1>}
                     </div>
                     <span className="hidden text-sm font-semibold text-gray-500 sm:block">{user?.name}</span>
                 </header>

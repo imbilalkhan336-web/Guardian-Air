@@ -56,9 +56,9 @@ const process = [
     },
 ];
 
-export default function TestPage() {
+export default function TestPage({ reviews = [] }) {
     return (
-        <SiteLayout>
+        <SiteLayout reviews={reviews}>
             <Head title="Test — Guardian Air" />
 
             <PageHeader

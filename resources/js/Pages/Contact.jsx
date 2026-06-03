@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Head } from '@inertiajs/react';
+import { Head, router } from '@inertiajs/react';
 import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
 import ServiceAreas from '@/Components/pages-sections/Home/ServiceAreas';
@@ -11,6 +11,7 @@ import {
     LuSend,
     LuCheck,
     LuArrowRight,
+    LuLoader,
 } from 'react-icons/lu';
 
 const PHONE = '(732) 239-0932';
@@ -40,7 +41,7 @@ function InfoCard({ icon: Icon, title, lines, delay = 0 }) {
     );
 }
 
-export default function ContactPage() {
+export default function ContactPage({ reviews = [] }) {
     const [form, setForm] = useState({
         name: '',
         email: '',
@@ -49,23 +50,48 @@ export default function ContactPage() {
         message: '',
     });
     const [submitted, setSubmitted] = useState(false);
+    const [processing, setProcessing] = useState(false);
+    const [error, setError] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setForm((prev) => ({ ...prev, [name]: value }));
+        if (error) setError('');
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setSubmitted(true);
-        setTimeout(() => {
-            setSubmitted(false);
-            setForm({ name: '', email: '', phone: '', service: '', message: '' });
-        }, 4000);
+        setProcessing(true);
+        setError('');
+
+        router.post(
+            route('submissions.store'),
+            {
+                form_type: 'contact',
+                name: form.name,
+                email: form.email,
+                phone: form.phone,
+                service: form.service,
+                message: form.message,
+            },
+            {
+                preserveScroll: true,
+                onSuccess: () => {
+                    setSubmitted(true);
+                    setProcessing(false);
+                    setForm({ name: '', email: '', phone: '', service: '', message: '' });
+                    setTimeout(() => setSubmitted(false), 5000);
+                },
+                onError: (errors) => {
+                    setProcessing(false);
+                    setError(errors.message || Object.values(errors)[0] || 'Something went wrong. Please try again.');
+                },
+            }
+        );
     };
 
     return (
-        <SiteLayout>
+        <SiteLayout reviews={reviews}>
             <Head>
                 <title>Contact Us — Guardian Air HVAC & Plumbing | NJ</title>
                 <meta
@@ -163,6 +189,11 @@ export default function ContactPage() {
                                         </div>
                                     ) : (
                                         <form onSubmit={handleSubmit} className="mt-8 space-y-5">
+                                            {error && (
+                                                <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-xs font-semibold text-red-600">
+                                                    {error}
+                                                </div>
+                                            )}
                                             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                                                 <div>
                                                     <label htmlFor="name" className="block text-xs font-extrabold uppercase tracking-widest text-gray-500">
@@ -254,10 +285,20 @@ export default function ContactPage() {
 
                                             <button
                                                 type="submit"
-                                                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-orange to-brand-orange-dark px-8 py-4 text-sm font-extrabold uppercase tracking-widest text-white shadow-lg shadow-brand-orange/30 transition-all hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0 sm:w-auto"
+                                                disabled={processing}
+                                                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-orange to-brand-orange-dark px-8 py-4 text-sm font-extrabold uppercase tracking-widest text-white shadow-lg shadow-brand-orange/30 transition-all hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0 disabled:opacity-60 sm:w-auto"
                                             >
-                                                <LuSend className="h-4 w-4" />
-                                                Send Message
+                                                {processing ? (
+                                                    <span className="inline-flex items-center gap-2">
+                                                        <LuLoader className="h-4 w-4 animate-spin" />
+                                                        Sending…
+                                                    </span>
+                                                ) : (
+                                                    <>
+                                                        <LuSend className="h-4 w-4" />
+                                                        Send Message
+                                                    </>
+                                                )}
                                             </button>
                                         </form>
                                     )}

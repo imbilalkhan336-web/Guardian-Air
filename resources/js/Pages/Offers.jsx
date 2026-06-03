@@ -89,9 +89,9 @@ const howToRedeem = [
     },
 ];
 
-export default function OffersPage() {
+export default function OffersPage({ reviews = [] }) {
     return (
-        <SiteLayout>
+        <SiteLayout reviews={reviews}>
             <Head>
                 <title>Special Offers — HVAC, Plumbing & Electrical Deals | Guardian Air</title>
                 <meta

@@ -16,7 +16,7 @@ const services = [
     { label: 'Commercial', href: '/commercial' },
 ];
 
-export default function ServiceArea({ area }) {
+export default function ServiceArea({ area, reviews = [] }) {
     return (
         <SiteLayout showReviews={false}>
             <Head>
@@ -114,7 +114,7 @@ export default function ServiceArea({ area }) {
                 </div>
             </article>
 
-            <Reviews />
+            <Reviews reviews={reviews} />
             <CtaBanner titleWeightClass="font-normal" />
         </SiteLayout>
     );

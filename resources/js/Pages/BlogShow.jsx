@@ -15,7 +15,18 @@ function formatDate(value) {
 // Render the body as blank-line-separated paragraphs, matching the
 // article styling used across the service pages.
 function Body({ text }) {
-    const paras = (text || '')
+    if (!text) return null;
+
+    if (/<[a-z][\s\S]*>/i.test(text)) {
+        return (
+            <div
+                className="mt-8 space-y-5 font-body text-[15px] leading-relaxed text-gray-700 md:text-base [&_a]:font-semibold [&_a]:text-blue-600 [&_a]:underline"
+                dangerouslySetInnerHTML={{ __html: text }}
+            />
+        );
+    }
+
+    const paras = text
         .split(/\n\n+/)
         .map((p) => p.trim())
         .filter(Boolean);

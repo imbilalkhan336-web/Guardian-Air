@@ -4,9 +4,9 @@ import PageHeader from '@/Components/FrontComponents/PageHeader';
 import Services from '@/Components/pages-sections/Home/Services';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 import ScheduleSection from '@/Components/FrontComponents/ScheduleSection';
-export default function ServicesPage() {
+export default function ServicesPage({ reviews = [] }) {
     return (
-        <SiteLayout>
+        <SiteLayout reviews={reviews}>
             <Head>
                 <title>Services — HVAC, Plumbing & Electrical in NJ | Guardian Air</title>
                 <meta

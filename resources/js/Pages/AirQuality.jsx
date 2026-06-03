@@ -4,9 +4,9 @@ import PageHeader from '@/Components/FrontComponents/PageHeader';
 import ServiceArticle from '@/Components/FrontComponents/ServiceArticle';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 
-export default function AirQualityPage({ blocks = [], tags = [] }) {
+export default function AirQualityPage({ blocks = [], tags = [], reviews = [] }) {
     return (
-        <SiteLayout>
+        <SiteLayout reviews={reviews}>
             <Head>
                 <title>Indoor Air Quality — Purifiers & Filters in NJ | Guardian Air</title>
                 <meta

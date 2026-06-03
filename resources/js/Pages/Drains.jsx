@@ -4,9 +4,9 @@ import PageHeader from '@/Components/FrontComponents/PageHeader';
 import ServiceArticle from '@/Components/FrontComponents/ServiceArticle';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 
-export default function DrainsPage({ blocks = [], tags = [] }) {
+export default function DrainsPage({ blocks = [], tags = [], reviews = [] }) {
     return (
-        <SiteLayout>
+        <SiteLayout reviews={reviews}>
             <Head>
                 <title>Drain Services — Cleaning & Repair in NJ | Guardian Air</title>
                 <meta

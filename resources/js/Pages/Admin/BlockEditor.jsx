@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Head, Link, useForm } from '@inertiajs/react';
 import AdminLayout from '@/Layouts/AdminLayout';
+import RichTextarea from '@/Components/RichTextarea';
 import {
     LuArrowLeft,
     LuCheck,
@@ -19,7 +20,7 @@ const TYPE_META = {
 };
 
 const FIELD_LABELS = {
-    section: { heading: 'Section Title', body: 'Content (separate paragraphs with a blank line)' },
+    section: { heading: 'Section Title', body: 'Content' },
     faq: { heading: 'Question', body: 'Answer' },
     image: { heading: 'Image Alt Text', body: null },
 };
@@ -176,7 +177,7 @@ export default function BlockEditor({ page, label, block, tags = [] }) {
                         {labels.body && (
                             <div>
                                 <label className={labelClass}>{labels.body}</label>
-                                <textarea
+                                <RichTextarea
                                     rows={block.type === 'faq' ? 5 : 12}
                                     value={data.body}
                                     onChange={(e) => setData('body', e.target.value)}
