@@ -9,6 +9,7 @@ import {
     LuX,
     LuUpload,
     LuTag,
+    LuExternalLink,
 } from 'react-icons/lu';
 
 const inputClass =
@@ -77,7 +78,7 @@ function TagModal({ tag, onClose }) {
                             value={data.name}
                             onChange={(e) => setData('name', e.target.value)}
                             className={inputClass}
-                            placeholder="e.g. HVAC Tips"
+                            placeholder="e.g. Facebook"
                         />
                         {errors.name && <p className="mt-1 text-xs font-semibold text-red-500">{errors.name}</p>}
                     </div>
@@ -89,7 +90,7 @@ function TagModal({ tag, onClose }) {
                             value={data.slug}
                             onChange={(e) => setData('slug', e.target.value)}
                             className={inputClass}
-                            placeholder="hvac-tips"
+                            placeholder="facebook"
                         />
                         {errors.slug && <p className="mt-1 text-xs font-semibold text-red-500">{errors.slug}</p>}
                     </div>
@@ -164,7 +165,7 @@ export default function TagManager({ tags = [] }) {
     const [modal, setModal] = useState(null); // null | 'new' | tag object
 
     const remove = (tag) => {
-        if (!window.confirm(`Delete tag “${tag.name}”? This cannot be undone.`)) return;
+        if (!window.confirm(`Delete tag "${tag.name}"? This cannot be undone.`)) return;
         router.delete(route('tags.destroy', tag.id), { preserveScroll: true });
     };
 
@@ -197,57 +198,59 @@ export default function TagManager({ tags = [] }) {
 
             {tags.length === 0 ? (
                 <div className="rounded-2xl border-2 border-dashed border-gray-200 p-12 text-center">
-                    <p className="text-sm font-semibold text-gray-400">No tags yet. Click “New Tag” to create your first one.</p>
+                    <p className="text-sm font-semibold text-gray-400">No tags yet. Click "New Tag" to create your first one.</p>
                 </div>
             ) : (
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="space-y-3">
                     {tags.map((tag) => (
                         <div
                             key={tag.id}
-                            className="flex flex-col gap-4 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+                            className="flex items-center gap-4 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
                         >
-                            <div className="flex items-center gap-4">
-                                <div className="h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl bg-gray-100">
-                                    {tag.image_path ? (
-                                        <img src={tag.image_path} alt={tag.name} className="h-full w-full object-cover" />
-                                    ) : (
-                                        <div className="flex h-full w-full items-center justify-center text-gray-300">
-                                            <LuTag className="h-6 w-6" />
-                                        </div>
-                                    )}
-                                </div>
-                                <div className="min-w-0 flex-1">
-                                    <p className="truncate font-display text-base uppercase text-[#07264A]">{tag.name}</p>
-                                    <p className="truncate text-xs text-gray-400">/{tag.slug}</p>
+                            <div className="h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl bg-gray-100">
+                                {tag.image_path ? (
+                                    <img src={tag.image_path} alt={tag.name} className="h-full w-full object-cover" />
+                                ) : (
+                                    <div className="flex h-full w-full items-center justify-center text-gray-300">
+                                        <LuTag className="h-6 w-6" />
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className="min-w-0 flex-1">
+                                <p className="font-display text-base uppercase text-[#07264A]">{tag.name}</p>
+                                <div className="mt-0.5 flex flex-wrap items-center gap-2">
+                                    <span className="text-xs text-gray-400">/{tag.slug}</span>
                                     {tag.link && (
                                         <a
                                             href={tag.link}
                                             target="_blank"
                                             rel="noreferrer"
-                                            className="truncate text-[11px] text-brand-orange hover:underline"
+                                            className="inline-flex items-center gap-1 text-[11px] text-brand-orange hover:underline"
                                         >
+                                            <LuExternalLink className="h-3 w-3" />
                                             {tag.link}
                                         </a>
                                     )}
                                 </div>
                             </div>
 
-                            <div className="flex items-center justify-end gap-2 border-t border-gray-100 pt-3">
+                            <div className="flex flex-shrink-0 items-center gap-2">
                                 <button
                                     type="button"
                                     onClick={() => setModal(tag)}
-                                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-500 shadow-sm transition-colors hover:border-brand-orange hover:text-brand-orange"
-                                    title="Edit"
+                                    className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-widest text-gray-500 shadow-sm transition-colors hover:border-brand-orange hover:text-brand-orange"
                                 >
-                                    <LuPencil className="h-4 w-4" />
+                                    <LuPencil className="h-3.5 w-3.5" />
+                                    Edit
                                 </button>
                                 <button
                                     type="button"
                                     onClick={() => remove(tag)}
-                                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-500 shadow-sm transition-colors hover:border-red-400 hover:text-red-500"
-                                    title="Delete"
+                                    className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-widest text-gray-500 shadow-sm transition-colors hover:border-red-400 hover:text-red-500"
                                 >
-                                    <LuTrash2 className="h-4 w-4" />
+                                    <LuTrash2 className="h-3.5 w-3.5" />
+                                    Delete
                                 </button>
                             </div>
                         </div>
