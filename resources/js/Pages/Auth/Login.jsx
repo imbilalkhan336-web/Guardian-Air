@@ -17,7 +17,9 @@ export default function Login({ status, canResetPassword }) {
 
     return (
         <GuestLayout>
-            <Head title="Log in" />
+            <Head title="Log in">
+                <meta name="robots" content="noindex, nofollow" />
+            </Head>
 
             <div className="mb-8 text-center">
                 <h1 className="font-display text-3xl uppercase text-[#07264A]">

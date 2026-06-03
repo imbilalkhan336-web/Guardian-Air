@@ -18,7 +18,9 @@ export default function Register() {
 
     return (
         <GuestLayout>
-            <Head title="Register" />
+            <Head title="Register">
+                <meta name="robots" content="noindex, nofollow" />
+            </Head>
 
             <div className="mb-8 text-center">
                 <h1 className="font-display text-3xl uppercase text-[#07264A]">
