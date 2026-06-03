@@ -3,8 +3,10 @@
 use App\Http\Controllers\ContentBlockController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TagController;
 use App\Models\ContentBlock;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -67,7 +69,7 @@ Route::get('/commercial', function () {
 
 Route::get('/blog', function () {
     return Inertia::render('Blog', [
-        'posts' => Post::published()->get(),
+        'posts' => Post::published()->with('tags')->get(),
     ]);
 })->name('blog');
 
@@ -75,8 +77,8 @@ Route::get('/blog/{post:slug}', function (Post $post) {
     abort_unless($post->is_published, 404);
 
     return Inertia::render('BlogShow', [
-        'post' => $post,
-        'related' => Post::published()->where('id', '!=', $post->id)->take(3)->get(),
+        'post' => $post->load('tags'),
+        'related' => Post::published()->where('id', '!=', $post->id)->with('tags')->take(3)->get(),
     ]);
 })->name('blog.show');
 
@@ -159,16 +161,24 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         return Inertia::render('Admin/PageEditor', [
             'page' => $page,
             'label' => ContentBlock::PAGES[$page],
-            'blocks' => ContentBlock::forPage($page)->get(),
+            'blocks' => ContentBlock::forPage($page)->with('tags')->get(),
+            'tags' => Tag::orderBy('name')->get(),
         ]);
     })->name('pages.edit');
 
     // Blog manager — list, add, edit, and delete posts.
     Route::get('/blog', function () {
         return Inertia::render('Admin/BlogManager', [
-            'posts' => Post::latest()->get(),
+            'posts' => Post::with('tags')->latest()->get(),
+            'tags' => Tag::orderBy('name')->get(),
         ]);
     })->name('blog');
+
+    // Tag manager
+    Route::get('/tags', [TagController::class, 'index'])->name('tags');
+    Route::post('/tags', [TagController::class, 'store'])->name('tags.store');
+    Route::put('/tags/{tag}', [TagController::class, 'update'])->name('tags.update');
+    Route::delete('/tags/{tag}', [TagController::class, 'destroy'])->name('tags.destroy');
 
     // FAQ manager — lists all FAQ blocks for a page with add/edit/delete.
     Route::get('/pages/{page}/faqs', function (string $page) {
@@ -188,7 +198,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         return Inertia::render('Admin/BlockEditor', [
             'page' => $page,
             'label' => ContentBlock::PAGES[$page],
-            'block' => $contentBlock,
+            'block' => $contentBlock->load('tags'),
+            'tags' => Tag::orderBy('name')->get(),
         ]);
     })->name('blocks.edit');
 });

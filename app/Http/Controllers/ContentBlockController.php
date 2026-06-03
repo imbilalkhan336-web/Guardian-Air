@@ -14,10 +14,12 @@ class ContentBlockController extends Controller
     public function store(Request $request)
     {
         $data = $this->validateBlock($request);
+        $tagIds = $request->input('tag_ids', []);
 
         $data['position'] = (int) ContentBlock::where('page', $data['page'])->max('position') + 1;
 
         $block = ContentBlock::create($data);
+        $block->tags()->sync($tagIds);
 
         // When created from the admin panel, jump straight to its edit page so
         // the admin can add images and content right away.
@@ -34,8 +36,10 @@ class ContentBlockController extends Controller
     public function update(Request $request, ContentBlock $contentBlock)
     {
         $data = $this->validateBlock($request);
+        $tagIds = $request->input('tag_ids', []);
 
         $contentBlock->update($data);
+        $contentBlock->tags()->sync($tagIds);
 
         // The dedicated edit page sends where to return to after saving.
         if ($request->filled('return_to')) {
@@ -81,6 +85,8 @@ class ContentBlockController extends Controller
             'body' => ['nullable', 'string'],
             'image_path' => ['nullable', 'string', 'max:500'],
             'image' => ['nullable', 'image', 'max:5120'], // uploaded file, up to 5 MB
+            'tag_ids' => ['nullable', 'array'],
+            'tag_ids.*' => ['integer', 'exists:tags,id'],
         ]);
 
         // If an image file was uploaded, store it on the public disk and use

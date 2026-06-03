@@ -14,6 +14,7 @@ import {
     LuUpload,
     LuX,
     LuGripVertical,
+    LuTag,
 } from 'react-icons/lu';
 
 const PAGE_PATH = {
@@ -85,7 +86,7 @@ function LiveBlock({ block }) {
  * Inline editor — opens in place when a block is clicked
  * ------------------------------------------------------------------ */
 
-function InlineEditor({ block, page, onDone }) {
+function InlineEditor({ block, page, tags, onDone }) {
     const [preview, setPreview] = useState(block.image_path || '');
     const form = useForm({
         _method: 'put',
@@ -95,8 +96,19 @@ function InlineEditor({ block, page, onDone }) {
         body: block.body || '',
         image_path: block.image_path || '',
         image: null,
+        tag_ids: block.tags?.map((t) => t.id) || [],
     });
     const { data, setData, errors, processing } = form;
+
+    const toggleTag = (tagId) => {
+        const current = new Set(data.tag_ids);
+        if (current.has(tagId)) {
+            current.delete(tagId);
+        } else {
+            current.add(tagId);
+        }
+        setData('tag_ids', Array.from(current));
+    };
 
     const labels = {
         section: { heading: 'Section Title', body: 'Content (separate paragraphs with a blank line)' },
@@ -173,6 +185,39 @@ function InlineEditor({ block, page, onDone }) {
                 {preview && <img src={preview} alt="" className="max-h-40 rounded-xl border border-gray-200 object-cover" />}
             </div>
 
+            {/* Tags */}
+            <div className="space-y-3 border-t border-gray-100 pt-4">
+                <label className={labelClass}>Tags</label>
+                {tags.length === 0 ? (
+                    <p className="text-xs text-gray-400">No tags available. Create one in the Tags section.</p>
+                ) : (
+                    <div className="flex flex-wrap gap-2">
+                        {tags.map((tag) => {
+                            const selected = data.tag_ids.includes(tag.id);
+                            return (
+                                <button
+                                    key={tag.id}
+                                    type="button"
+                                    onClick={() => toggleTag(tag.id)}
+                                    className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-all ${
+                                        selected
+                                            ? 'bg-brand-orange text-white shadow-sm'
+                                            : 'border border-gray-200 bg-white text-gray-600 hover:border-brand-orange hover:text-brand-orange'
+                                    }`}
+                                >
+                                    {tag.image_path && (
+                                        <img src={tag.image_path} alt="" className="h-4 w-4 rounded-full object-cover" />
+                                    )}
+                                    {!tag.image_path && <LuTag className="h-3 w-3" />}
+                                    {tag.name}
+                                    {selected && <LuCheck className="h-3 w-3" />}
+                                </button>
+                            );
+                        })}
+                    </div>
+                )}
+            </div>
+
             <div className="flex flex-col gap-3 border-t border-gray-100 pt-4 sm:flex-row sm:items-center">
                 <button
                     type="submit"
@@ -202,6 +247,7 @@ function InlineEditor({ block, page, onDone }) {
 function EditableBlock({
     block,
     page,
+    tags,
     index,
     total,
     editing,
@@ -265,7 +311,7 @@ function EditableBlock({
             </div>
 
             {editing ? (
-                <InlineEditor block={block} page={page} onDone={onDone} />
+                <InlineEditor block={block} page={page} tags={tags} onDone={onDone} />
             ) : (
                 <button
                     type="button"
@@ -310,7 +356,7 @@ function EditableBlock({
  * Add Section modal
  * ------------------------------------------------------------------ */
 
-function AddSectionModal({ page, onClose }) {
+function AddSectionModal({ page, tags, onClose }) {
     const [preview, setPreview] = useState('');
     const form = useForm({
         page,
@@ -318,8 +364,19 @@ function AddSectionModal({ page, onClose }) {
         heading: '',
         body: '',
         image: null,
+        tag_ids: [],
     });
     const { data, setData, errors, processing } = form;
+
+    const toggleTag = (tagId) => {
+        const current = new Set(data.tag_ids);
+        if (current.has(tagId)) {
+            current.delete(tagId);
+        } else {
+            current.add(tagId);
+        }
+        setData('tag_ids', Array.from(current));
+    };
 
     const pickFile = (e) => {
         const file = e.target.files?.[0] || null;
@@ -393,6 +450,39 @@ function AddSectionModal({ page, onClose }) {
                         {preview && <img src={preview} alt="" className="max-h-36 rounded-xl border border-gray-200 object-cover" />}
                     </div>
 
+                    {/* Tags */}
+                    <div className="space-y-3 border-t border-gray-100 pt-5">
+                        <label className={labelClass}>Tags</label>
+                        {tags.length === 0 ? (
+                            <p className="text-xs text-gray-400">No tags available. Create one in the Tags section.</p>
+                        ) : (
+                            <div className="flex flex-wrap gap-2">
+                                {tags.map((tag) => {
+                                    const selected = data.tag_ids.includes(tag.id);
+                                    return (
+                                        <button
+                                            key={tag.id}
+                                            type="button"
+                                            onClick={() => toggleTag(tag.id)}
+                                            className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-all ${
+                                                selected
+                                                    ? 'bg-brand-orange text-white shadow-sm'
+                                                    : 'border border-gray-200 bg-white text-gray-600 hover:border-brand-orange hover:text-brand-orange'
+                                            }`}
+                                        >
+                                            {tag.image_path && (
+                                                <img src={tag.image_path} alt="" className="h-4 w-4 rounded-full object-cover" />
+                                            )}
+                                            {!tag.image_path && <LuTag className="h-3 w-3" />}
+                                            {tag.name}
+                                            {selected && <LuCheck className="h-3 w-3" />}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        )}
+                    </div>
+
                     <div className="flex flex-col gap-3 border-t border-gray-100 pt-5 sm:flex-row sm:items-center">
                         <button
                             type="submit"
@@ -420,7 +510,7 @@ function AddSectionModal({ page, onClose }) {
  * Page editor
  * ------------------------------------------------------------------ */
 
-export default function PageEditor({ page, label, blocks = [] }) {
+export default function PageEditor({ page, label, blocks = [], tags = [] }) {
     const flash = usePage().props.flash;
     const [adding, setAdding] = useState(false);
     const [editingId, setEditingId] = useState(null);
@@ -582,6 +672,7 @@ export default function PageEditor({ page, label, blocks = [] }) {
                             key={block.id}
                             block={block}
                             page={page}
+                            tags={tags}
                             index={i}
                             total={order.length}
                             editing={editingId === block.id}
@@ -617,7 +708,7 @@ export default function PageEditor({ page, label, blocks = [] }) {
                 </span>
             </Link>
 
-            {adding && <AddSectionModal page={page} onClose={() => setAdding(false)} />}
+            {adding && <AddSectionModal page={page} tags={tags} onClose={() => setAdding(false)} />}
         </AdminLayout>
     );
 }

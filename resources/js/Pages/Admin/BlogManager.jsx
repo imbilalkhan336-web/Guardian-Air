@@ -11,6 +11,7 @@ import {
     LuExternalLink,
     LuEye,
     LuEyeOff,
+    LuTag,
 } from 'react-icons/lu';
 
 const inputClass =
@@ -26,9 +27,11 @@ function formatDate(value) {
  * Add / Edit modal
  * ------------------------------------------------------------------ */
 
-function PostModal({ post, onClose }) {
+function PostModal({ post, tags, onClose, onTagCreated }) {
     const isEdit = Boolean(post);
     const [preview, setPreview] = useState(post?.image_path || '');
+    const [showNewTag, setShowNewTag] = useState(false);
+    const [newTagName, setNewTagName] = useState('');
 
     const form = useForm({
         ...(isEdit ? { _method: 'put' } : {}),
@@ -39,6 +42,7 @@ function PostModal({ post, onClose }) {
         image_path: post?.image_path || '',
         image: null,
         is_published: post ? post.is_published : true,
+        tag_ids: post?.tags?.map((t) => t.id) || [],
     });
     const { data, setData, errors, processing } = form;
 
@@ -46,6 +50,16 @@ function PostModal({ post, onClose }) {
         const file = e.target.files?.[0] || null;
         setData('image', file);
         if (file) setPreview(URL.createObjectURL(file));
+    };
+
+    const toggleTag = (tagId) => {
+        const current = new Set(data.tag_ids);
+        if (current.has(tagId)) {
+            current.delete(tagId);
+        } else {
+            current.add(tagId);
+        }
+        setData('tag_ids', Array.from(current));
     };
 
     const submit = (e) => {
@@ -56,6 +70,23 @@ function PostModal({ post, onClose }) {
         } else {
             form.post(route('posts.store'), opts);
         }
+    };
+
+    const createQuickTag = (e) => {
+        e.preventDefault();
+        if (!newTagName.trim()) return;
+        router.post(
+            route('tags.store'),
+            { name: newTagName.trim() },
+            {
+                preserveScroll: true,
+                onSuccess: (page) => {
+                    setNewTagName('');
+                    setShowNewTag(false);
+                    if (onTagCreated) onTagCreated();
+                },
+            }
+        );
     };
 
     return (
@@ -127,6 +158,70 @@ function PostModal({ post, onClose }) {
                         {errors.body && <p className="mt-1 text-xs font-semibold text-red-500">{errors.body}</p>}
                     </div>
 
+                    {/* Tags */}
+                    <div className="space-y-3 border-t border-gray-100 pt-5">
+                        <div className="flex items-center justify-between">
+                            <label className={labelClass}>Tags</label>
+                            <button
+                                type="button"
+                                onClick={() => setShowNewTag((v) => !v)}
+                                className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-gray-600 transition-colors hover:bg-gray-200"
+                            >
+                                <LuPlus className="h-3 w-3" />
+                                {showNewTag ? 'Cancel' : 'Quick Add Tag'}
+                            </button>
+                        </div>
+
+                        {showNewTag && (
+                            <form onSubmit={createQuickTag} className="flex items-center gap-2">
+                                <input
+                                    type="text"
+                                    value={newTagName}
+                                    onChange={(e) => setNewTagName(e.target.value)}
+                                    className={`${inputClass} flex-1`}
+                                    placeholder="New tag name…"
+                                />
+                                <button
+                                    type="submit"
+                                    className="inline-flex items-center gap-1 rounded-full bg-brand-orange px-4 py-2 text-[10px] font-extrabold uppercase tracking-widest text-white shadow-sm transition-colors hover:bg-brand-orange-dark"
+                                >
+                                    <LuCheck className="h-3 w-3" />
+                                    Add
+                                </button>
+                            </form>
+                        )}
+
+                        {tags.length === 0 ? (
+                            <p className="text-xs text-gray-400">No tags available. Create one first.</p>
+                        ) : (
+                            <div className="flex flex-wrap gap-2">
+                                {tags.map((tag) => {
+                                    const selected = data.tag_ids.includes(tag.id);
+                                    return (
+                                        <button
+                                            key={tag.id}
+                                            type="button"
+                                            onClick={() => toggleTag(tag.id)}
+                                            className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-all ${
+                                                selected
+                                                    ? 'bg-brand-orange text-white shadow-sm'
+                                                    : 'border border-gray-200 bg-white text-gray-600 hover:border-brand-orange hover:text-brand-orange'
+                                            }`}
+                                        >
+                                            {tag.image_path && (
+                                                <img src={tag.image_path} alt="" className="h-4 w-4 rounded-full object-cover" />
+                                            )}
+                                            {!tag.image_path && <LuTag className="h-3 w-3" />}
+                                            {tag.name}
+                                            {selected && <LuCheck className="h-3 w-3" />}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        )}
+                        {errors.tag_ids && <p className="mt-1 text-xs font-semibold text-red-500">{errors.tag_ids}</p>}
+                    </div>
+
                     {/* Cover image */}
                     <div className="space-y-3 border-t border-gray-100 pt-5">
                         <label className={labelClass}>Cover Image</label>
@@ -193,12 +288,12 @@ function PostModal({ post, onClose }) {
  * Blog manager
  * ------------------------------------------------------------------ */
 
-export default function BlogManager({ posts = [] }) {
+export default function BlogManager({ posts = [], tags = [] }) {
     const flash = usePage().props.flash;
     const [modal, setModal] = useState(null); // null | 'new' | post object
 
     const remove = (post) => {
-        if (!window.confirm(`Delete “${post.title}”? This cannot be undone.`)) return;
+        if (!window.confirm(`Delete "${post.title}"? This cannot be undone.`)) return;
         router.delete(route('posts.destroy', post.id), { preserveScroll: true });
     };
 
@@ -242,7 +337,7 @@ export default function BlogManager({ posts = [] }) {
 
             {posts.length === 0 ? (
                 <div className="rounded-2xl border-2 border-dashed border-gray-200 p-12 text-center">
-                    <p className="text-sm font-semibold text-gray-400">No posts yet. Click “New Post” to write your first one.</p>
+                    <p className="text-sm font-semibold text-gray-400">No posts yet. Click "New Post" to write your first one.</p>
                 </div>
             ) : (
                 <div className="space-y-3">
@@ -277,6 +372,21 @@ export default function BlogManager({ posts = [] }) {
                                 <p className="mt-0.5 truncate text-xs text-gray-400">
                                     {formatDate(post.created_at)} · /blog/{post.slug}
                                 </p>
+                                {post.tags?.length > 0 && (
+                                    <div className="mt-2 flex flex-wrap gap-1.5">
+                                        {post.tags.map((tag) => (
+                                            <span
+                                                key={tag.id}
+                                                className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-semibold text-gray-600"
+                                            >
+                                                {tag.image_path && (
+                                                    <img src={tag.image_path} alt="" className="h-3 w-3 rounded-full object-cover" />
+                                                )}
+                                                {tag.name}
+                                            </span>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                             </div>
 
@@ -306,7 +416,9 @@ export default function BlogManager({ posts = [] }) {
             {modal && (
                 <PostModal
                     post={modal === 'new' ? null : modal}
+                    tags={tags}
                     onClose={() => setModal(null)}
+                    onTagCreated={() => router.reload({ only: ['tags'] })}
                 />
             )}
         </AdminLayout>

@@ -24,8 +24,10 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $data = $this->validatePost($request);
+        $tagIds = $request->input('tag_ids', []);
 
-        Post::create($data);
+        $post = Post::create($data);
+        $post->tags()->sync($tagIds);
 
         return redirect()->route('admin.blog')->with('status', 'Post published.');
     }
@@ -36,8 +38,10 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $data = $this->validatePost($request, $post);
+        $tagIds = $request->input('tag_ids', []);
 
         $post->update($data);
+        $post->tags()->sync($tagIds);
 
         return redirect()->route('admin.blog')->with('status', 'Post updated.');
     }
@@ -65,6 +69,8 @@ class PostController extends Controller
             'image_path' => ['nullable', 'string', 'max:500'],
             'image' => ['nullable', 'image', 'max:5120'], // uploaded file, up to 5 MB
             'is_published' => ['boolean'],
+            'tag_ids' => ['nullable', 'array'],
+            'tag_ids.*' => ['integer', 'exists:tags,id'],
         ]);
 
         // Derive the slug from the title when none was supplied.

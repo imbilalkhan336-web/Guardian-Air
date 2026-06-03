@@ -9,6 +9,7 @@ import {
     LuCircleHelp,
     LuUpload,
     LuExternalLink,
+    LuTag,
 } from 'react-icons/lu';
 
 const TYPE_META = {
@@ -27,7 +28,7 @@ const inputClass =
     'mt-1.5 block w-full rounded-xl border border-gray-200 bg-gray-50 px-3.5 py-2.5 font-body text-sm text-[#07264A] shadow-sm outline-none transition-all focus:border-brand-orange focus:bg-white focus:ring-2 focus:ring-brand-orange/20';
 const labelClass = 'block text-[11px] font-extrabold uppercase tracking-widest text-gray-500';
 
-export default function BlockEditor({ page, label, block }) {
+export default function BlockEditor({ page, label, block, tags = [] }) {
     const meta = TYPE_META[block.type] || TYPE_META.section;
     const Icon = meta.icon;
     const labels = FIELD_LABELS[block.type] || { heading: 'Heading', body: 'Body' };
@@ -47,9 +48,20 @@ export default function BlockEditor({ page, label, block }) {
         image_path: block.image_path || '',
         image: null,
         return_to: returnTo,
+        tag_ids: block.tags?.map((t) => t.id) || [],
     });
 
     const { data, setData, errors, processing } = form;
+
+    const toggleTag = (tagId) => {
+        const current = new Set(data.tag_ids);
+        if (current.has(tagId)) {
+            current.delete(tagId);
+        } else {
+            current.add(tagId);
+        }
+        setData('tag_ids', Array.from(current));
+    };
 
     const pickFile = (e) => {
         const file = e.target.files?.[0] || null;
@@ -176,6 +188,40 @@ export default function BlockEditor({ page, label, block }) {
 
                         {/* Section blocks: optional image, placed at the bottom. */}
                         {block.type === 'section' && imageField}
+
+                        {/* Tags */}
+                        <div className="space-y-3 border-t border-gray-100 pt-5">
+                            <label className={labelClass}>Tags</label>
+                            {tags.length === 0 ? (
+                                <p className="text-xs text-gray-400">No tags available. Create one in the Tags section.</p>
+                            ) : (
+                                <div className="flex flex-wrap gap-2">
+                                    {tags.map((tag) => {
+                                        const selected = data.tag_ids.includes(tag.id);
+                                        return (
+                                            <button
+                                                key={tag.id}
+                                                type="button"
+                                                onClick={() => toggleTag(tag.id)}
+                                                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-all ${
+                                                    selected
+                                                        ? 'bg-brand-orange text-white shadow-sm'
+                                                        : 'border border-gray-200 bg-white text-gray-600 hover:border-brand-orange hover:text-brand-orange'
+                                                }`}
+                                            >
+                                                {tag.image_path && (
+                                                    <img src={tag.image_path} alt="" className="h-4 w-4 rounded-full object-cover" />
+                                                )}
+                                                {!tag.image_path && <LuTag className="h-3 w-3" />}
+                                                {tag.name}
+                                                {selected && <LuCheck className="h-3 w-3" />}
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                            )}
+                            {errors.tag_ids && <p className="mt-1 text-xs font-semibold text-red-500">{errors.tag_ids}</p>}
+                        </div>
                     </div>
 
                     {/* Actions */}

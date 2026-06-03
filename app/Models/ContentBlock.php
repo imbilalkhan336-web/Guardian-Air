@@ -39,4 +39,9 @@ class ContentBlock extends Model
     {
         return $query->where('page', $page)->orderBy('position');
     }
+
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
 }

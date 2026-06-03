@@ -9,6 +9,7 @@ import {
     LuX,
     LuChevronDown,
     LuNewspaper,
+    LuTag,
 } from 'react-icons/lu';
 
 const PAGES = [
@@ -51,6 +52,16 @@ function SidebarContent() {
                 >
                     <LuNewspaper className="h-4 w-4" />
                     Blog Posts
+                </Link>
+
+                <Link
+                    href={route('admin.tags')}
+                    className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors ${
+                        url.startsWith('/admin/tags') ? 'bg-brand-orange text-white' : 'text-white/80 hover:bg-white/10'
+                    }`}
+                >
+                    <LuTag className="h-4 w-4" />
+                    Tags
                 </Link>
 
                 <div className="pt-3">
