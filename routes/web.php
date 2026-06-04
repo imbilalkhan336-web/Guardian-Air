@@ -143,15 +143,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Private pages — noindex for search engines
-Route::middleware(function ($request, $next) {
-    return $next($request)->header('X-Robots-Tag', 'noindex, nofollow');
-})->group(function () {
-
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'robots'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 });
 
 // Admin-only content management
