@@ -78,7 +78,7 @@ class PageSeo extends Model
         ],
         'drains' => [
             'title' => 'Drain Cleaning & Sewer Services in NJ | Guardian Air',
-            'description' => 'Professional drain cleaning, hydro jetting, camera inspections, and sewer repair across New Jersey. We clear the clog completely — same-day emergency service.',
+            'description' => 'Need drain cleaning in NJ? Guardian Air offers licensed, insured drain & sewer service across Monmouth, Middlesex & Ocean counties. Call today!',
         ],
         'commercial' => [
             'title' => 'Commercial HVAC, Plumbing & Electrical in NJ | Guardian Air',
