@@ -138,7 +138,7 @@ export default function Footer() {
 
             {/* Van decoration sitting on top of wave (desktop) */}
             <div className="pointer-events-none absolute -top-[25px] left-[35px] hidden w-[296px] md:block lg:left-[95px] lg:-top-[20px] lg:w-[344px]">
-                <img src="/img/side-view.webp" alt="" aria-hidden="true" className="w-full h-auto" />
+                <img src="/img/side-view.webp" alt="Guardian Air heating, cooling, and plumbing service van" className="w-full h-auto" />
             </div>
 
             <div className="relative mx-auto max-w-7xl px-4 pt-28 pb-10 md:pt-32 lg:pt-40">
