@@ -65,8 +65,8 @@ class PageSeo extends Model
             'description' => 'Need furnace repair in NJ? Guardian Air offers same-day, licensed & insured heating repair across Monmouth, Middlesex & Ocean counties. Call today!',
         ],
         'cooling' => [
-            'title' => 'Air Conditioning & Cooling Services in NJ | Guardian Air',
-            'description' => 'AC repair, installation, and maintenance across New Jersey. Central air, heat pumps, and ductless systems serviced fast with upfront, honest pricing.',
+            'title' => 'AC Repair & Air Conditioning Services in NJ | Guardian Air',
+            'description' => 'Need AC repair in NJ? Guardian Air delivers same-day, licensed & insured air conditioning repair across Monmouth, Middlesex & Ocean counties. Call now!',
         ],
         'plumbing' => [
             'title' => 'Plumbing Services in NJ | Guardian Air',
