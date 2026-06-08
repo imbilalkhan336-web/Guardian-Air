@@ -29,9 +29,13 @@ const linkGroups = [
     {
         title: 'Areas We Serve',
         items: [
+            { label: 'All Service Areas', href: '/service-areas' },
             { label: 'Monmouth County', href: '/service-areas/monmouth-county' },
             { label: 'Middlesex County', href: '/service-areas/middlesex-county' },
-            { label: 'Ocean County, NJ', href: '/service-areas/ocean-county' },
+            { label: 'Ocean County', href: '/service-areas/ocean-county' },
+            { label: 'Toms River', href: '/service-areas/toms-river' },
+            { label: 'Freehold', href: '/service-areas/freehold' },
+            { label: 'Brick', href: '/service-areas/brick' },
         ],
     },
 ];

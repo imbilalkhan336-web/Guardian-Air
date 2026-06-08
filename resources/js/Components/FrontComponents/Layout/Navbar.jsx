@@ -12,6 +12,8 @@ const navLinks = [
 const moreServices = [
     { label: 'Indoor Air Quality', href: '/indoor-air-quality' },
     { label: 'Drains', href: '/drains' },
+    { label: 'Service Areas', href: '/service-areas' },
+    { label: 'Cost Guides', href: '/cost-guides' },
     { label: 'Blog', href: '/blog' },
 ];
 
