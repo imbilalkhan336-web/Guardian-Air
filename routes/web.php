@@ -243,7 +243,7 @@ Route::get('/{trade}/{slug}', function (string $trade, string $slug) use ($getRe
 
         return Inertia::render('ServiceSubpage', [
             'trade' => ['slug' => $trade, 'label' => $t['label']],
-            'service' => $t['services'][$slug],
+            'service' => array_merge(['slug' => $slug], $t['services'][$slug]),
             'siblings' => $siblings,
             'reviews' => $getReviews(),
         ]);
@@ -259,10 +259,21 @@ Route::get('/{trade}/{slug}', function (string $trade, string $slug) use ($getRe
         ->map(fn ($v, $k) => ['slug' => $k, 'label' => $v['label'], 'href' => "/{$k}/{$slug}"])
         ->values();
 
+    // Two nearby same-trade location pages (other cities in the same county).
+    $county = SiteStructure::counties()[$loc['county_slug']];
+    $nearby = collect($county['cities'])
+        ->reject(fn ($name, $citySlug) => $citySlug === $slug)
+        ->map(fn ($name, $citySlug) => ['slug' => $citySlug, 'name' => $name, 'href' => "/{$trade}/{$citySlug}"])
+        ->take(2)
+        ->values();
+
+    $info = SiteStructure::tradeLocationInfo()[$trade] ?? ['issues' => []];
+
     return Inertia::render('TradeLocation', [
-        'trade' => ['slug' => $trade, 'label' => $t['label'], 'locationName' => $t['locationName']],
+        'trade' => ['slug' => $trade, 'label' => $t['label'], 'locationName' => $t['locationName'], 'issues' => $info['issues']],
         'location' => $loc,
         'otherTrades' => $otherTrades,
+        'nearby' => $nearby,
         'reviews' => $getReviews(),
     ]);
 })

@@ -26,36 +26,89 @@ class SiteStructure
         return [
             'heating' => [
                 'label' => 'Heating',
-                // Used for /{trade}/{location} combo page titles.
-                'locationName' => 'Furnace & Heating Repair',
+                // Used for /{trade}/{location} combo page titles & H1s.
+                'locationName' => 'Furnace Repair',
                 'services' => [
                     'furnace-replacement' => [
                         'name' => 'Furnace Replacement',
-                        'title' => 'Furnace Replacement in NJ | Guardian Air',
-                        'description' => 'Furnace replacement and new furnace installation across Monmouth, Middlesex, and Ocean counties. Right-sized, efficient systems with honest quotes.',
-                        'intro' => "When repairs no longer make sense, a new furnace restores reliable, efficient heat for years to come. We help you choose a properly sized, high-efficiency system and install it cleanly — with a clear quote and no pressure.",
-                        'highlights' => ['Free replacement estimates', 'Properly sized systems', 'High-efficiency options', 'Clean, professional installs'],
+                        'title' => 'Furnace Replacement & Installation in NJ | Guardian Air',
+                        'description' => 'Need furnace replacement in NJ? Guardian Air installs right-sized, high-efficiency furnaces across Monmouth, Middlesex & Ocean counties. Licensed & insured — call!',
+                        'h1' => 'Furnace Replacement & Installation in New Jersey',
+                        'intro' => "When repairs no longer make sense, professional furnace replacement in NJ restores reliable, efficient heat for years to come. Guardian Air helps homeowners across Monmouth, Middlesex, and Ocean counties — from Toms River to Freehold — choose a properly sized, high-efficiency system and install it cleanly, with a clear quote and no pressure.",
+                        'highlights' => ['Free replacement estimates', 'Properly sized systems', 'High-efficiency options', 'Flexible financing'],
+                        'sections' => [
+                            ['heading' => 'When to Replace vs. Repair', 'body' => "If your furnace is over 15 years old, needs frequent repairs, heats unevenly, or is driving up your energy bills, replacement is usually the smarter long-term investment. A single minor repair on a newer system is worth fixing — but once repair costs start adding up on aging equipment, a new high-efficiency furnace pays you back in lower bills and reliability.\n\nWe give you an honest recommendation either way. If a repair makes more sense, we'll tell you."],
+                            ['heading' => 'Furnace Sizing & Efficiency', 'body' => "A furnace that's too small struggles on the coldest nights; one that's too large short-cycles and wastes fuel. We perform a proper load calculation based on your home's square footage, insulation, and layout to size the system correctly.\n\nWe install high-efficiency furnaces with AFUE ratings from 90% to 98%, meaning up to 98 cents of every fuel dollar becomes heat for your home — a major upgrade over older 70–80% units."],
+                            ['heading' => 'Our Installation Process', 'body' => "Every replacement starts with a free in-home assessment and a written, flat-rate quote. On installation day, our licensed technicians protect your floors, remove the old unit, install and test the new system, and clean up completely — most installs are done in a single day.\n\nWe handle permitting and code compliance so your new furnace is documented, inspected, and backed by warranty."],
+                            ['heading' => 'Financing & Rebates', 'body' => "A new furnace is a big purchase, so we offer flexible financing options to fit your budget. We'll also help you take advantage of available manufacturer rebates and NJ energy-efficiency incentives on qualifying high-efficiency equipment, lowering your out-of-pocket cost."],
+                            ['heading' => 'Serving Monmouth, Middlesex & Ocean County', 'body' => "Guardian Air installs and replaces furnaces throughout central New Jersey, including Toms River, Freehold, Brick, Old Bridge, Red Bank, and Lakewood. Our local technicians know the homes and systems common to the area and deliver honest, flat-rate pricing on every job."],
+                        ],
+                        'faqs' => [
+                            ['q' => 'How much does furnace replacement cost in NJ?', 'a' => 'Most furnace replacements in New Jersey range from about $4,000 to $8,000 depending on the size, efficiency, and type of system, plus any ductwork or venting changes. We provide a free, written, flat-rate quote upfront and offer financing.'],
+                            ['q' => 'How long does a furnace installation take?', 'a' => 'A standard furnace replacement is usually completed in a single day — typically four to eight hours. Switching fuel types or modifying ductwork can add time, which we explain in your estimate.'],
+                            ['q' => 'What furnace efficiency rating should I choose?', 'a' => 'Furnace efficiency is measured by AFUE. Standard units start around 80%, while high-efficiency models reach 90–98%. A higher AFUE costs more upfront but lowers your heating bills — we help you weigh the payback for your home.'],
+                            ['q' => 'Are there rebates for a high-efficiency furnace in NJ?', 'a' => 'Often, yes. Manufacturer promotions and New Jersey energy-efficiency programs frequently offer rebates on qualifying high-efficiency furnaces. We help you identify and apply any available incentives.'],
+                        ],
                     ],
                     'boiler-repair' => [
                         'name' => 'Boiler Repair',
-                        'title' => 'Boiler Repair in NJ | Guardian Air',
-                        'description' => 'Expert boiler repair for hot water and steam systems across New Jersey. We fix leaks, no-heat, and pressure problems fast — with upfront pricing.',
-                        'intro' => "Boilers deliver steady, comfortable heat — until a leak, low pressure, or a failed component leaves you in the cold. We service hydronic and steam boilers of every age, restoring safe, reliable warmth with clean workmanship and clear quotes.",
+                        'title' => 'Boiler Repair & Service in NJ | Guardian Air',
+                        'description' => 'Need boiler repair in NJ? Guardian Air fixes hot water & steam boilers across Monmouth, Middlesex & Ocean counties — licensed, insured, fast. Call today!',
+                        'h1' => 'Boiler Repair & Service in New Jersey',
+                        'intro' => "Reliable boiler repair in NJ keeps your home warm when you need it most. Guardian Air services hot water and steam boilers of every age across Monmouth, Middlesex, and Ocean counties — from Red Bank to Lakewood — fixing leaks, low pressure, and no-heat problems fast, with upfront flat-rate pricing.",
                         'highlights' => ['Hot water & steam boilers', 'Leak & pressure diagnostics', 'No-heat emergency service', 'Repair or replace guidance'],
+                        'sections' => [
+                            ['heading' => 'Boiler Repair in NJ', 'body' => "Boilers deliver steady, comfortable radiant heat — until a leak, low pressure, a failed circulator pump, or a faulty control leaves you in the cold. Our licensed technicians diagnose the real problem and repair it on the spot whenever possible, restoring safe, reliable warmth.\n\nWe service boilers across central New Jersey with honest quotes and clean workmanship, and we offer emergency service when your heat goes out."],
+                            ['heading' => 'Boiler Types We Service', 'body' => "We repair and maintain every common residential boiler type: natural gas, oil, and electric; hot water (hydronic) and steam systems; and high-efficiency condensing boilers. Whether your home in Freehold or Toms River runs cast-iron radiators, baseboard, or in-floor radiant heat, we have the parts and expertise to fix it."],
+                            ['heading' => 'Boiler Maintenance', 'body' => "Annual boiler maintenance prevents the most common breakdowns and keeps your system running efficiently. We check pressure and water levels, inspect for leaks and corrosion, test safety controls, and clean key components — protecting your investment and your warranty."],
+                            ['heading' => 'Serving Monmouth, Middlesex & Ocean County', 'body' => "Guardian Air provides boiler repair and service throughout Monmouth, Middlesex, and Ocean counties, including Toms River, Freehold, Brick, Old Bridge, Red Bank, and Lakewood. Local technicians mean faster response when your heat fails."],
+                        ],
+                        'faqs' => [
+                            ['q' => 'How much does boiler repair cost in NJ?', 'a' => 'Most boiler repairs in New Jersey range from about $200 to $700 depending on the failed part — a circulator pump, valve, or control board, for example. We provide a flat-rate quote before any work begins.'],
+                            ['q' => 'What are common boiler problems?', 'a' => 'The most common issues are low pressure, leaks from valves or fittings, a failed circulator pump, no heat from a faulty control or thermostat, and strange banging (kettling) from scale buildup. We diagnose and fix all of these.'],
+                            ['q' => 'Should I repair or replace my boiler?', 'a' => 'Most boiler problems are repairable. A leaking heat exchanger or a unit over 15–20 years old with frequent failures usually points to replacement. We give you an honest recommendation either way.'],
+                            ['q' => 'How often should a boiler be serviced?', 'a' => 'At least once a year, ideally in early fall before heating season. Annual maintenance catches small problems early, keeps the boiler efficient, and helps avoid mid-winter breakdowns.'],
+                        ],
                     ],
                     'heat-pump' => [
                         'name' => 'Heat Pump Service',
                         'title' => 'Heat Pump Installation & Repair in NJ | Guardian Air',
-                        'description' => 'Heat pump installation, repair, and maintenance across New Jersey. Energy-efficient year-round comfort from licensed HVAC pros.',
-                        'intro' => "Heat pumps heat and cool your home efficiently year-round — when they're properly sized, installed, and maintained. We install, repair, and tune up every type of heat pump so you get dependable comfort and lower energy bills.",
-                        'highlights' => ['Install, repair & replace', 'Energy-efficient systems', 'Year-round heating & cooling', 'Honest sizing recommendations'],
+                        'description' => 'Considering heat pump installation in NJ? Guardian Air installs & repairs energy-efficient heat pumps across Monmouth, Middlesex & Ocean counties. Call today!',
+                        'h1' => 'Heat Pump Installation & Repair in New Jersey',
+                        'intro' => "Professional heat pump installation in NJ delivers efficient heating and cooling from a single system. Guardian Air installs, repairs, and maintains heat pumps across Monmouth, Middlesex, and Ocean counties — from Toms River to Old Bridge — for dependable year-round comfort and lower energy bills.",
+                        'highlights' => ['Install, repair & replace', 'Year-round heating & cooling', 'Energy-efficient systems', 'Rebates & financing'],
+                        'sections' => [
+                            ['heading' => 'Heat Pump Installation in NJ', 'body' => "A properly sized, professionally installed heat pump is one of the most efficient ways to heat and cool a New Jersey home. We help you choose between air-source and ductless (mini-split) systems, perform a load calculation for correct sizing, and install it cleanly with a clear, flat-rate quote.\n\nWe install heat pumps across central New Jersey, handling permitting and code compliance so the job is documented and warranty-backed."],
+                            ['heading' => 'How Heat Pumps Work', 'body' => "Instead of burning fuel, a heat pump moves heat — pulling warmth from outdoor air into your home in winter and reversing in summer to cool. Because it transfers heat rather than generating it, a heat pump can deliver several times more energy than it consumes, which is why it's so efficient."],
+                            ['heading' => 'Efficiency & Savings', 'body' => "Modern heat pumps carry high SEER2 (cooling) and HSPF2 (heating) ratings, often cutting energy use compared with older systems and electric resistance heat. Pairing one system for heating and cooling also simplifies maintenance and can qualify for valuable rebates and tax incentives."],
+                            ['heading' => 'Cold-Climate Performance, Repair & Service', 'body' => "Today's cold-climate heat pumps perform efficiently well below freezing, making them a strong fit for New Jersey winters. We also repair and tune up existing heat pumps — addressing refrigerant, defrost, and airflow issues — across Monmouth, Middlesex, and Ocean counties, including Freehold, Brick, Red Bank, and Lakewood."],
+                        ],
+                        'faqs' => [
+                            ['q' => 'How much does heat pump installation cost in NJ?', 'a' => 'Heat pump installation in New Jersey typically ranges from about $5,000 to $12,000 depending on system type (ducted or ductless), capacity, and the number of zones. We provide a free written quote and offer financing.'],
+                            ['q' => 'Are heat pumps energy efficient?', 'a' => 'Very. Because a heat pump moves heat rather than generating it, it can deliver two to four times more energy than it uses, often lowering both heating and cooling costs compared with older systems.'],
+                            ['q' => 'Do heat pumps work in cold New Jersey winters?', 'a' => 'Yes. Modern cold-climate heat pumps are designed to heat efficiently well below freezing. For the coldest snaps, we can pair one with backup heat or recommend a dual-fuel setup.'],
+                            ['q' => 'Are there rebates for heat pumps in NJ?', 'a' => 'Often, yes. New Jersey energy programs and federal incentives frequently offer rebates and tax credits on qualifying high-efficiency heat pumps. We help you identify and apply any available savings.'],
+                        ],
                     ],
                     'furnace-tune-up' => [
                         'name' => 'Furnace Tune-Up',
                         'title' => 'Furnace Tune-Up & HVAC Maintenance in NJ | Guardian Air',
-                        'description' => 'Annual furnace tune-ups and HVAC maintenance that prevent breakdowns, improve efficiency, and extend the life of your system across NJ.',
-                        'intro' => "A short annual tune-up keeps your furnace running safely and efficiently all winter. Our multi-point maintenance catches small problems before they become no-heat emergencies and helps lower your energy bills.",
-                        'highlights' => ['Multi-point safety inspection', 'Prevents winter breakdowns', 'Improves energy efficiency', 'Extends equipment lifespan'],
+                        'description' => 'Book a furnace tune up in NJ with Guardian Air — HVAC maintenance across Monmouth, Middlesex & Ocean counties to prevent breakdowns. Licensed & insured. Call!',
+                        'h1' => 'Furnace Tune-Up & HVAC Maintenance in New Jersey',
+                        'intro' => "A professional furnace tune up in NJ keeps your heating system safe, efficient, and reliable all winter. Guardian Air provides multi-point furnace maintenance across Monmouth, Middlesex, and Ocean counties — from Toms River to Freehold — catching small problems before they become no-heat emergencies.",
+                        'highlights' => ['Multi-point safety inspection', 'Prevents winter breakdowns', 'Improves energy efficiency', 'Maintenance plans available'],
+                        'sections' => [
+                            ['heading' => 'Furnace Tune-Up in NJ', 'body' => "Most no-heat emergencies are preventable with a short annual tune-up. Our licensed technicians inspect, clean, and test your furnace so it runs safely and efficiently through the coldest months — and we recommend scheduling in early fall, before the first cold snap.\n\nWe provide furnace tune-ups across central New Jersey with flat-rate pricing and no upsells."],
+                            ['heading' => "What's Included", 'body' => "Our multi-point tune-up covers the components that matter: we inspect and clean the burners and flame sensor, check the heat exchanger for cracks, test the ignition and safety controls, verify gas pressure and airflow, replace or check the filter, and run a carbon monoxide safety check — then give you a clear report on your system's condition."],
+                            ['heading' => 'HVAC Maintenance Plans', 'body' => "Our maintenance plans bundle your annual heating and cooling tune-ups with priority scheduling and discounts on repairs. It's the easiest way to protect your equipment, keep warranties valid, and never forget seasonal service — popular with homeowners in Brick, Old Bridge, and Red Bank."],
+                            ['heading' => 'Why It Matters & Where We Serve', 'body' => "Regular maintenance prevents breakdowns, lowers energy bills, extends equipment life, and keeps your family safe. Guardian Air serves Monmouth, Middlesex, and Ocean counties, including Toms River, Freehold, Brick, Old Bridge, Red Bank, and Lakewood."],
+                        ],
+                        'faqs' => [
+                            ['q' => 'How much does a furnace tune-up cost in NJ?', 'a' => 'A single furnace tune-up in New Jersey typically runs about $100 to $200, and is often discounted or included with a maintenance plan. We quote the price upfront with no hidden fees.'],
+                            ['q' => 'How often should I tune up my furnace?', 'a' => 'At least once a year, ideally in early fall before heating season. An annual tune-up keeps the system efficient, catches issues early, and helps avoid mid-winter breakdowns.'],
+                            ['q' => "What's included in a furnace tune-up?", 'a' => 'A full tune-up covers inspecting and cleaning the burners and flame sensor, checking the heat exchanger, testing ignition and safety controls, verifying gas pressure and airflow, checking the filter, and a carbon monoxide safety check.'],
+                            ['q' => 'Do you offer HVAC maintenance plans?', 'a' => 'Yes. Our maintenance plans include seasonal heating and cooling tune-ups, priority scheduling, and repair discounts — tailored to your equipment and budget.'],
+                        ],
                     ],
                 ],
             ],
@@ -203,6 +256,22 @@ class SiteStructure
                     ],
                 ],
             ],
+        ];
+    }
+
+    /**
+     * Per-trade copy used to generate the trade-in-location pages
+     * (/{trade}/{location}) — common problems we fix in that area.
+     */
+    public static function tradeLocationInfo(): array
+    {
+        return [
+            'heating' => ['issues' => ['A furnace that won\'t ignite or start', 'No heat or weak, uneven heat', 'Short-cycling or constant running', 'Strange banging or rattling noises', 'A cracked heat exchanger or pilot/ignition faults']],
+            'cooling' => ['issues' => ['An AC blowing warm air', 'Frozen evaporator coils', 'Water leaks around the unit', 'A failed capacitor, contactor, or compressor', 'Weak airflow or short-cycling']],
+            'plumbing' => ['issues' => ['Burst or leaking pipes', 'No hot water or a failing water heater', 'Clogged or slow drains', 'Running or leaking toilets', 'Low water pressure and hidden leaks']],
+            'indoor-air-quality' => ['issues' => ['Excess dust that resettles quickly', 'Allergy and asthma triggers', 'Musty or stale odors', 'Humidity that\'s too high or too low', 'Poor ventilation and airflow']],
+            'drains' => ['issues' => ['Slow or fully clogged drains', 'Recurring backups', 'Main sewer line blockages', 'Foul drain odors', 'Tree-root intrusion in the line']],
+            'commercial-hvac' => ['issues' => ['Rooftop unit (RTU) failures', 'No heat or cooling during business hours', 'Boiler and chiller problems', 'Poor or uneven airflow', 'After-hours emergency breakdowns']],
         ];
     }
 
