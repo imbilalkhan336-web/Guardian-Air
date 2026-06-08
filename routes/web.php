@@ -111,7 +111,7 @@ Route::get('/blog/{post:slug}', function (Post $post) {
     ]);
 })->name('blog.show');
 
-Route::get('/service-areas/{area}', function (string $area) {
+Route::get('/service-areas/{area}', function (string $area) use ($getReviews) {
     $areas = [
         'monmouth-county' => [
             'slug' => 'monmouth-county',
