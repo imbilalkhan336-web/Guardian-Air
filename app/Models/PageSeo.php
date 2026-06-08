@@ -73,8 +73,8 @@ class PageSeo extends Model
             'description' => 'Need a licensed plumber in NJ? Guardian Air offers 24/7 insured plumbing repair across Monmouth, Middlesex & Ocean counties. Call now for fast service!',
         ],
         'indoor-air-quality' => [
-            'title' => 'Indoor Air Quality Services in NJ | Guardian Air',
-            'description' => 'Whole-home air purifiers, humidifiers, UV germicidal lights, and duct cleaning across New Jersey. Breathe cleaner, healthier air at home year-round.',
+            'title' => 'Indoor Air Quality & Air Quality Testing in NJ | Guardian Air',
+            'description' => "Worried about your home's air? Guardian Air provides licensed indoor air quality testing across Monmouth, Middlesex & Ocean counties, NJ. Call today!",
         ],
         'drains' => [
             'title' => 'Drain Cleaning & Sewer Services in NJ | Guardian Air',
