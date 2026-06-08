@@ -107,19 +107,6 @@ export default function OffersPage({ reviews = [], seo = {} }) {
                     description="Real savings on real services. No gimmicks, no hidden conditions — just honest discounts from a local team that values your business."
                 />
 
-                {/* Deals Image Banner */}
-                <section className="bg-white py-12 lg:py-16">
-                    <div className="mx-auto max-w-7xl px-4">
-                        <div className="relative overflow-hidden rounded-2xl shadow-xl">
-                            <img
-                                src="/img/deals.webp"
-                                alt="Guardian Air special deals and promotions"
-                                className="w-full object-cover"
-                            />
-                        </div>
-                    </div>
-                </section>
-
                 {/* Offer Cards */}
                 <section className="relative overflow-hidden bg-gradient-to-b from-white via-gray-50 to-white py-20 lg:py-28">
                     <div

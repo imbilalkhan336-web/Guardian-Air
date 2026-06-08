@@ -193,7 +193,7 @@ export default function Reviews({ reviews = [] }) {
                 <p className="text-center font-poppins text-[10px] font-bold uppercase tracking-[0.2em] text-[#1A73E8]">
                     Hear What Our Customers Are Saying
                 </p>
-                <h2 className="mt-2 text-center font-poppins text-2xl font-extrabold uppercase italic text-[#0A2A4A] md:text-3xl lg:text-4xl">
+                <h2 className="mt-2 text-center font-display text-2xl uppercase text-[#0A2A4A] md:text-3xl lg:text-4xl">
                     Over {reviewsCount}+ Reviews
                 </h2>
 

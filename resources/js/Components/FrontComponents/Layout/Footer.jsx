@@ -145,7 +145,7 @@ export default function Footer() {
                 <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-12">
                     {/* Left brand block */}
                     <div className="lg:col-span-5">
-                        <h2 className="text-xl font-extrabold uppercase italic leading-tight text-white md:text-2xl lg:text-3xl">
+                        <h2 className="font-display text-xl uppercase leading-tight text-white md:text-2xl lg:text-3xl">
                             Services &amp; Quality<br />You Can Trust
                         </h2>
 

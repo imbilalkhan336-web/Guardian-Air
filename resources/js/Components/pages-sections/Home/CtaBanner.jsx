@@ -39,7 +39,7 @@ export default function CtaBanner({ titleWeightClass = 'font-bold' }) {
                             <p className="text-[12px] font-extrabold uppercase text-brand-orange lg:text-[12px]">
                                 Ready When You Are
                             </p>
-                            <h2 className={`mt-3 font-poppins text-[36px] ${titleWeightClass} uppercase leading-[0.95] text-white md:text-[42px] lg:text-[52px]`}>
+                            <h2 className={`mt-3 font-display text-[36px] ${titleWeightClass} uppercase leading-[0.95] text-white md:text-[42px] lg:text-[52px]`}>
                                 Need <span className="text-brand-orange">Service</span>?
                                 <br />
                                 We're Here to Help.
