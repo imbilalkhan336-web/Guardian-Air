@@ -1,3 +1,5 @@
+import { useScheduleModal } from '@/Components/FrontComponents/ScheduleModalProvider';
+
 function ShineSweep({ tint = 'light' }) {
     const tintClasses = tint === 'dark'
         ? 'from-[#003B73]/30 via-[#003B73]/15 to-transparent'
@@ -117,9 +119,10 @@ export function PhonePillButton({ phone, label, size = 'sm', className = '' }) {
     );
 }
 
-export function SchedulePillButton({ children = 'Schedule Online', size = 'sm', href = '/contact', className = '' }) {
+export function SchedulePillButton({ children = 'Schedule Online', size = 'sm', className = '' }) {
+    const { open } = useScheduleModal();
     return (
-        <PillButton href={href} variant="yellow" size={size} icon="calendar" className={className}>
+        <PillButton onClick={open} variant="yellow" size={size} icon="calendar" className={className}>
             {children}
         </PillButton>
     );

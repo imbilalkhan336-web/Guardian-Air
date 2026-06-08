@@ -1,28 +1,17 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/Components/Seo';
 import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
 import Services from '@/Components/pages-sections/Home/Services';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 import ScheduleSection from '@/Components/FrontComponents/ScheduleSection';
-export default function ServicesPage({ reviews = [] }) {
+export default function ServicesPage({ reviews = [], seo = {} }) {
     return (
         <SiteLayout reviews={reviews}>
-            <Head>
-                <title>Services — HVAC, Plumbing & Electrical in NJ | Guardian Air</title>
-                <meta
-                    name="description"
-                    content="Guardian Air offers full-service HVAC, plumbing, and electrical work across Monmouth, Middlesex, and Ocean counties — licensed, insured, upfront pricing on every job."
-                />
-                <meta name="robots" content="index, follow" />
-                <link rel="canonical" href="/services" />
-                <meta property="og:type" content="website" />
-                <meta property="og:title" content="Services — HVAC, Plumbing & Electrical in NJ | Guardian Air" />
-                <meta
-                    property="og:description"
-                    content="Heating, cooling, plumbing, electrical, indoor air quality, and drain services across central New Jersey."
-                />
-                <meta property="og:url" content="/services" />
-            </Head>
+            <Seo
+                seo={seo}
+                fallbackTitle="Services — HVAC, Plumbing & Electrical in NJ | Guardian Air"
+                fallbackDescription="Guardian Air offers full-service HVAC, plumbing, and electrical work across Monmouth, Middlesex, and Ocean counties — licensed, insured, upfront pricing on every job."
+            />
 
             <article>
                 <PageHeader

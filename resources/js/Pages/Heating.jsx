@@ -1,22 +1,18 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/Components/Seo';
 import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
 import ServiceArticle from '@/Components/FrontComponents/ServiceArticle';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 import Reviews from '@/Components/pages-sections/Home/Reviews';
 
-export default function HeatingPage({ blocks = [], tags = [], reviews = [] }) {
+export default function HeatingPage({ blocks = [], tags = [], reviews = [], seo = {} }) {
     return (
         <SiteLayout showReviews={false}>
-            <Head>
-                <title>Furnace & Heating Services in NJ | Guardian Air</title>
-                <meta
-                    name="description"
-                    content="Furnace inspection, repair, installation, and replacement across Monmouth, Middlesex, and Ocean counties. Learn when to replace your furnace, why maintenance matters, and the furnace types we service."
-                />
-                <meta name="robots" content="index, follow" />
-                <link rel="canonical" href="/heating" />
-            </Head>
+            <Seo
+                seo={seo}
+                fallbackTitle="Furnace & Heating Services in NJ | Guardian Air"
+                fallbackDescription="Furnace inspection, repair, installation, and replacement across Monmouth, Middlesex, and Ocean counties. Learn when to replace your furnace, why maintenance matters, and the furnace types we service."
+            />
 
             <article>
                 <PageHeader

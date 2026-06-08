@@ -4,8 +4,11 @@ use App\Http\Controllers\ContentBlockController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SeoController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SubmissionController;
 use App\Models\ContentBlock;
+use App\Models\PageSeo;
 use App\Models\Post;
 use App\Models\Review;
 use App\Models\Tag;
@@ -14,80 +17,88 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 $getReviews = fn () => Review::published()->latest()->get();
+$seo = fn (string $page) => PageSeo::resolve($page);
 
-Route::get('/', function () use ($getReviews) {
-    return Inertia::render('Home', ['reviews' => $getReviews()]);
+Route::get('/', function () use ($getReviews, $seo) {
+    return Inertia::render('Home', ['reviews' => $getReviews(), 'seo' => $seo('home')]);
 });
 
-Route::get('/about', function () use ($getReviews) {
-    return Inertia::render('About', ['reviews' => $getReviews()]);
+Route::get('/about', function () use ($getReviews, $seo) {
+    return Inertia::render('About', ['reviews' => $getReviews(), 'seo' => $seo('about')]);
 })->name('about');
 
-Route::get('/services', function () use ($getReviews) {
-    return Inertia::render('Services', ['reviews' => $getReviews()]);
+Route::get('/services', function () use ($getReviews, $seo) {
+    return Inertia::render('Services', ['reviews' => $getReviews(), 'seo' => $seo('services')]);
 })->name('services');
 
 Route::get('/test', function () use ($getReviews) {
     return Inertia::render('Test', ['reviews' => $getReviews()]);
 })->name('test');
 
-Route::get('/contact', function () use ($getReviews) {
-    return Inertia::render('Contact', ['reviews' => $getReviews()]);
+Route::get('/contact', function () use ($getReviews, $seo) {
+    return Inertia::render('Contact', ['reviews' => $getReviews(), 'seo' => $seo('contact')]);
 })->name('contact');
 
 Route::post('/submissions', [SubmissionController::class, 'store'])->name('submissions.store');
 
-Route::get('/heating', function () use ($getReviews) {
+Route::get('/heating', function () use ($getReviews, $seo) {
     return Inertia::render('Heating', [
         'blocks' => ContentBlock::forPage('heating')->with('tags')->get(),
         'tags' => Tag::orderBy('name')->get(),
         'reviews' => $getReviews(),
+        'seo' => $seo('heating'),
     ]);
 })->name('heating');
 
-Route::get('/cooling', function () use ($getReviews) {
+Route::get('/cooling', function () use ($getReviews, $seo) {
     return Inertia::render('Cooling', [
         'blocks' => ContentBlock::forPage('cooling')->with('tags')->get(),
         'tags' => Tag::orderBy('name')->get(),
         'reviews' => $getReviews(),
+        'seo' => $seo('cooling'),
     ]);
 })->name('cooling');
 
-Route::get('/plumbing', function () use ($getReviews) {
+Route::get('/plumbing', function () use ($getReviews, $seo) {
     return Inertia::render('Plumbing', [
         'blocks' => ContentBlock::forPage('plumbing')->with('tags')->get(),
         'tags' => Tag::orderBy('name')->get(),
         'reviews' => $getReviews(),
+        'seo' => $seo('plumbing'),
     ]);
 })->name('plumbing');
 
-Route::get('/indoor-air-quality', function () use ($getReviews) {
+Route::get('/indoor-air-quality', function () use ($getReviews, $seo) {
     return Inertia::render('AirQuality', [
         'blocks' => ContentBlock::forPage('indoor-air-quality')->with('tags')->get(),
         'tags' => Tag::orderBy('name')->get(),
         'reviews' => $getReviews(),
+        'seo' => $seo('indoor-air-quality'),
     ]);
 })->name('air-quality');
 
-Route::get('/drains', function () use ($getReviews) {
+Route::get('/drains', function () use ($getReviews, $seo) {
     return Inertia::render('Drains', [
         'blocks' => ContentBlock::forPage('drains')->with('tags')->get(),
         'tags' => Tag::orderBy('name')->get(),
         'reviews' => $getReviews(),
+        'seo' => $seo('drains'),
     ]);
 })->name('drains');
 
-Route::get('/commercial', function () use ($getReviews) {
+Route::get('/commercial', function () use ($getReviews, $seo) {
     return Inertia::render('Commercial', [
         'blocks' => ContentBlock::forPage('commercial')->with('tags')->get(),
         'tags' => Tag::orderBy('name')->get(),
         'reviews' => $getReviews(),
+        'seo' => $seo('commercial'),
     ]);
 })->name('commercial');
 
-Route::get('/blog', function () {
+Route::get('/blog', function () use ($seo) {
     return Inertia::render('Blog', [
         'posts' => Post::published()->with('tags')->get(),
+        'seo' => $seo('blog'),
     ]);
 })->name('blog');
 
@@ -130,12 +141,12 @@ Route::get('/service-areas/{area}', function (string $area) {
     return Inertia::render('ServiceArea', ['area' => $areas[$area], 'reviews' => $getReviews()]);
 })->name('service-area');
 
-Route::get('/resources', function () use ($getReviews) {
-    return Inertia::render('Resources', ['reviews' => $getReviews()]);
+Route::get('/resources', function () use ($getReviews, $seo) {
+    return Inertia::render('Resources', ['reviews' => $getReviews(), 'seo' => $seo('resources')]);
 })->name('resources');
 
-Route::get('/offers', function () use ($getReviews) {
-    return Inertia::render('Offers', ['reviews' => $getReviews()]);
+Route::get('/offers', function () use ($getReviews, $seo) {
+    return Inertia::render('Offers', ['reviews' => $getReviews(), 'seo' => $seo('offers')]);
 })->name('offers');
 
 Route::get('/dashboard', function () {
@@ -218,6 +229,15 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::post('/submissions/{submission}/read', [SubmissionController::class, 'markAsRead'])->name('submissions.read');
     Route::post('/submissions/{submission}/unread', [SubmissionController::class, 'markAsUnread'])->name('submissions.unread');
     Route::delete('/submissions/{submission}', [SubmissionController::class, 'destroy'])->name('submissions.destroy');
+
+    // SEO manager — edit per-page meta (title, description, OG, canonical, robots).
+    Route::get('/seo', [SeoController::class, 'index'])->name('seo');
+    Route::get('/seo/{page}/edit', [SeoController::class, 'edit'])->name('seo.edit');
+    Route::put('/seo/{page}', [SeoController::class, 'update'])->name('seo.update');
+
+    // Global site settings (reviews count, rating, phone).
+    Route::get('/settings', [SettingsController::class, 'edit'])->name('settings');
+    Route::put('/settings', [SettingsController::class, 'update'])->name('settings.update');
 });
 
 // Review manager — accessible to all authenticated users (not just admins)

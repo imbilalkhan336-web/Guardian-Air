@@ -1,21 +1,17 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/Components/Seo';
 import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
 import ServiceArticle from '@/Components/FrontComponents/ServiceArticle';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 
-export default function DrainsPage({ blocks = [], tags = [], reviews = [] }) {
+export default function DrainsPage({ blocks = [], tags = [], reviews = [], seo = {} }) {
     return (
         <SiteLayout reviews={reviews}>
-            <Head>
-                <title>Drain Services — Cleaning & Repair in NJ | Guardian Air</title>
-                <meta
-                    name="description"
-                    content="Professional drain cleaning, clogged drain repair, sewer line service, and hydro jetting across Monmouth, Middlesex, and Ocean counties. Fast, honest, no mess left behind."
-                />
-                <meta name="robots" content="index, follow" />
-                <link rel="canonical" href="/drains" />
-            </Head>
+            <Seo
+                seo={seo}
+                fallbackTitle="Drain Services — Cleaning & Repair in NJ | Guardian Air"
+                fallbackDescription="Professional drain cleaning, clogged drain repair, sewer line service, and hydro jetting across Monmouth, Middlesex, and Ocean counties. Fast, honest, no mess left behind."
+            />
 
             <article>
                 <PageHeader

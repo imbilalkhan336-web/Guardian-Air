@@ -1,4 +1,5 @@
-import { Head, Link, usePage } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
+import Seo from '@/Components/Seo';
 import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
@@ -79,21 +80,17 @@ function TagBadge({ tag }) {
     );
 }
 
-export default function Blog({ posts = [] }) {
+export default function Blog({ posts = [], seo = {} }) {
     const { auth } = usePage().props;
     const isAdmin = Boolean(auth?.user?.is_admin);
 
     return (
         <SiteLayout showReviews={false}>
-            <Head>
-                <title>Blog & HVAC Tips | Guardian Air</title>
-                <meta
-                    name="description"
-                    content="Heating, cooling, and indoor air quality tips, guides, and news from the Guardian Air team serving New Jersey homeowners."
-                />
-                <meta name="robots" content="index, follow" />
-                <link rel="canonical" href="/blog" />
-            </Head>
+            <Seo
+                seo={seo}
+                fallbackTitle="Blog & HVAC Tips | Guardian Air"
+                fallbackDescription="Heating, cooling, and indoor air quality tips, guides, and news from the Guardian Air team serving New Jersey homeowners."
+            />
 
             <PageHeader
                 label="From Our Team"

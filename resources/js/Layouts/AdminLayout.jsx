@@ -11,6 +11,8 @@ import {
     LuNewspaper,
     LuInbox,
     LuMessageSquare,
+    LuSearch,
+    LuSettings,
 } from 'react-icons/lu';
 
 const PAGES = [
@@ -115,6 +117,30 @@ function SidebarContent() {
                             </div>
                         )}
                     </div>
+                )}
+
+                {isAdmin && (
+                    <Link
+                        href={route('admin.seo')}
+                        className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors ${
+                            url.startsWith('/admin/seo') ? 'bg-brand-orange text-white' : 'text-white/80 hover:bg-white/10'
+                        }`}
+                    >
+                        <LuSearch className="h-4 w-4" />
+                        SEO
+                    </Link>
+                )}
+
+                {isAdmin && (
+                    <Link
+                        href={route('admin.settings')}
+                        className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors ${
+                            url.startsWith('/admin/settings') ? 'bg-brand-orange text-white' : 'text-white/80 hover:bg-white/10'
+                        }`}
+                    >
+                        <LuSettings className="h-4 w-4" />
+                        Settings
+                    </Link>
                 )}
             </nav>
 

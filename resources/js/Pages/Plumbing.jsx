@@ -1,21 +1,17 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/Components/Seo';
 import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
 import ServiceArticle from '@/Components/FrontComponents/ServiceArticle';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 
-export default function PlumbingPage({ blocks = [], tags = [], reviews = [] }) {
+export default function PlumbingPage({ blocks = [], tags = [], reviews = [], seo = {} }) {
     return (
         <SiteLayout reviews={reviews}>
-            <Head>
-                <title>Plumbing Services — Repair & Install in NJ | Guardian Air</title>
-                <meta
-                    name="description"
-                    content="Professional plumbing repair, water heater install, pipe replacement, and leak detection across Monmouth, Middlesex, and Ocean counties. Licensed plumbers, upfront pricing."
-                />
-                <meta name="robots" content="index, follow" />
-                <link rel="canonical" href="/plumbing" />
-            </Head>
+            <Seo
+                seo={seo}
+                fallbackTitle="Plumbing Services — Repair & Install in NJ | Guardian Air"
+                fallbackDescription="Professional plumbing repair, water heater install, pipe replacement, and leak detection across Monmouth, Middlesex, and Ocean counties. Licensed plumbers, upfront pricing."
+            />
 
             <article>
                 <PageHeader

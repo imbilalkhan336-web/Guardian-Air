@@ -1,21 +1,17 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/Components/Seo';
 import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
 import ServiceArticle from '@/Components/FrontComponents/ServiceArticle';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 
-export default function CoolingPage({ blocks = [], tags = [], reviews = [] }) {
+export default function CoolingPage({ blocks = [], tags = [], reviews = [], seo = {} }) {
     return (
         <SiteLayout reviews={reviews}>
-            <Head>
-                <title>Cooling Services — AC Repair & Install in NJ | Guardian Air</title>
-                <meta
-                    name="description"
-                    content="Air conditioning repair, AC installation, and central cooling service across Monmouth, Middlesex, and Ocean counties. Fast response, honest pricing, licensed techs."
-                />
-                <meta name="robots" content="index, follow" />
-                <link rel="canonical" href="/cooling" />
-            </Head>
+            <Seo
+                seo={seo}
+                fallbackTitle="Cooling Services — AC Repair & Install in NJ | Guardian Air"
+                fallbackDescription="Air conditioning repair, AC installation, and central cooling service across Monmouth, Middlesex, and Ocean counties. Fast response, honest pricing, licensed techs."
+            />
 
             <article>
                 <PageHeader

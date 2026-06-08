@@ -1,21 +1,17 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/Components/Seo';
 import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
 import ServiceArticle from '@/Components/FrontComponents/ServiceArticle';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 
-export default function AirQualityPage({ blocks = [], tags = [], reviews = [] }) {
+export default function AirQualityPage({ blocks = [], tags = [], reviews = [], seo = {} }) {
     return (
         <SiteLayout reviews={reviews}>
-            <Head>
-                <title>Indoor Air Quality — Purifiers & Filters in NJ | Guardian Air</title>
-                <meta
-                    name="description"
-                    content="Indoor air quality solutions including air purifiers, humidifiers, dehumidifiers, and duct cleaning across Monmouth, Middlesex, and Ocean counties. Breathe cleaner air today."
-                />
-                <meta name="robots" content="index, follow" />
-                <link rel="canonical" href="/indoor-air-quality" />
-            </Head>
+            <Seo
+                seo={seo}
+                fallbackTitle="Indoor Air Quality — Purifiers & Filters in NJ | Guardian Air"
+                fallbackDescription="Indoor air quality solutions including air purifiers, humidifiers, dehumidifiers, and duct cleaning across Monmouth, Middlesex, and Ocean counties. Breathe cleaner air today."
+            />
 
             <article>
                 <PageHeader

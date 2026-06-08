@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
+import { usePage } from '@inertiajs/react';
 import { LuStar } from 'react-icons/lu';
 
 const FALLBACK_REVIEWS = [
@@ -99,6 +100,8 @@ function ReviewCard({ review }) {
 }
 
 export default function Reviews({ reviews = [] }) {
+    const { siteSettings = {} } = usePage().props;
+    const reviewsCount = siteSettings.reviews_count || '200';
     const scrollerRef = useRef(null);
     const dragRef = useRef({ active: false, startX: 0, startScroll: 0, moved: 0 });
     const [activeDot, setActiveDot] = useState(0);
@@ -191,7 +194,7 @@ export default function Reviews({ reviews = [] }) {
                     Hear What Our Customers Are Saying
                 </p>
                 <h2 className="mt-2 text-center font-poppins text-2xl font-extrabold uppercase italic text-[#0A2A4A] md:text-3xl lg:text-4xl">
-                    Over {reviewList.length > 5 ? '3,500+' : `${reviewList.length}+`} Reviews
+                    Over {reviewsCount}+ Reviews
                 </h2>
 
                 <div className="relative mt-12">

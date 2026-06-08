@@ -1,8 +1,9 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/Components/Seo';
 import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 import ScheduleSection from '@/Components/FrontComponents/ScheduleSection';
+import { useScheduleModal } from '@/Components/FrontComponents/ScheduleModalProvider';
 import {
     LuPercent,
     LuBadgeCheck,
@@ -89,25 +90,15 @@ const howToRedeem = [
     },
 ];
 
-export default function OffersPage({ reviews = [] }) {
+export default function OffersPage({ reviews = [], seo = {} }) {
+    const { open } = useScheduleModal();
     return (
         <SiteLayout reviews={reviews}>
-            <Head>
-                <title>Special Offers — HVAC, Plumbing & Electrical Deals | Guardian Air</title>
-                <meta
-                    name="description"
-                    content="Save on HVAC, plumbing, and electrical services with Guardian Air's current offers. Free estimates, repair discounts, and membership savings across central New Jersey."
-                />
-                <meta name="robots" content="index, follow" />
-                <link rel="canonical" href="/offers" />
-                <meta property="og:type" content="website" />
-                <meta property="og:title" content="Special Offers — Guardian Air HVAC & Plumbing" />
-                <meta
-                    property="og:description"
-                    content="Current promotions, discounts, and membership deals on heating, cooling, plumbing, and electrical services in NJ."
-                />
-                <meta property="og:url" content="/offers" />
-            </Head>
+            <Seo
+                seo={seo}
+                fallbackTitle="Special Offers — HVAC, Plumbing & Electrical Deals | Guardian Air"
+                fallbackDescription="Save on HVAC, plumbing, and electrical services with Guardian Air's current offers. Free estimates, repair discounts, and membership savings across central New Jersey."
+            />
 
             <article>
                 <PageHeader
@@ -235,13 +226,14 @@ export default function OffersPage({ reviews = [] }) {
                         </div>
 
                         <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                            <a
-                                href="/contact"
+                            <button
+                                type="button"
+                                onClick={open}
                                 className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-orange to-brand-orange-dark px-8 py-3.5 text-sm font-extrabold uppercase tracking-widest text-white shadow-lg shadow-brand-orange/30 transition-all hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0"
                             >
                                 <LuArrowRight className="h-4 w-4" />
                                 Schedule Online
-                            </a>
+                            </button>
                             <a
                                 href="tel:7322390932"
                                 className="inline-flex items-center gap-2 rounded-full border-2 border-white/20 px-8 py-3.5 text-sm font-extrabold uppercase tracking-widest text-white transition-all hover:border-white/40 hover:bg-white/5"

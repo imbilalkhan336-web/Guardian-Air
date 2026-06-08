@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Review;
+use App\Models\SiteSetting;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -39,6 +40,7 @@ class HandleInertiaRequests extends Middleware
                 'status' => fn () => $request->session()->get('status'),
             ],
             'reviews' => fn () => Review::published()->get(),
+            'siteSettings' => fn () => SiteSetting::map(),
         ];
     }
 }

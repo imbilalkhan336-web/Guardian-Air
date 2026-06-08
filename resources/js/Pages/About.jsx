@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/Components/Seo';
 import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
 import About from '@/Components/pages-sections/Home/About';
@@ -6,25 +6,14 @@ import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 import ScheduleSection from '@/Components/FrontComponents/ScheduleSection';
 import { LuUsers } from 'react-icons/lu';
 
-export default function AboutPage({ reviews = [] }) {
+export default function AboutPage({ reviews = [], seo = {} }) {
     return (
         <SiteLayout reviews={reviews}>
-            <Head>
-                <title>About Guardian Air — NJ's Trusted HVAC & Plumbing Pros</title>
-                <meta
-                    name="description"
-                    content="Locally owned Guardian Air delivers honest HVAC, plumbing, and electrical service across Monmouth, Middlesex, and Ocean counties — licensed, insured, no upsells."
-                />
-                <meta name="robots" content="index, follow" />
-                <link rel="canonical" href="/about" />
-                <meta property="og:type" content="website" />
-                <meta property="og:title" content="About Guardian Air — Trusted NJ HVAC, Plumbing & Electrical" />
-                <meta
-                    property="og:description"
-                    content="Family-run NJ home-services company serving Monmouth, Middlesex, and Ocean counties with licensed HVAC, plumbing, and electrical pros."
-                />
-                <meta property="og:url" content="/about" />
-            </Head>
+            <Seo
+                seo={seo}
+                fallbackTitle="About Guardian Air — NJ's Trusted HVAC & Plumbing Pros"
+                fallbackDescription="Locally owned Guardian Air delivers honest HVAC, plumbing, and electrical service across Monmouth, Middlesex, and Ocean counties — licensed, insured, no upsells."
+            />
 
             <article>
                 <PageHeader

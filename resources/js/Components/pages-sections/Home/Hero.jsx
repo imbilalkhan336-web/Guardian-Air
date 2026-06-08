@@ -1,4 +1,5 @@
 import HeroServicesStrip from './HeroServicesStrip';
+import { useScheduleModal } from '@/Components/FrontComponents/ScheduleModalProvider';
 
 function CalendarOutlineIcon({ className }) {
     return (
@@ -17,10 +18,12 @@ function PhoneSolidIcon({ className }) {
     );
 }
 
-function HeroScheduleButton({ href = '/contact' }) {
+function HeroScheduleButton() {
+    const { open } = useScheduleModal();
     return (
-        <a
-            href={href}
+        <button
+            type="button"
+            onClick={open}
             className="group relative isolate flex items-center justify-start gap-2 overflow-hidden rounded-xl bg-gradient-to-b from-brand-yellow to-brand-orange px-3 py-1.5 text-[#003B73] shadow-lg shadow-black/30 ring-1 ring-black/5 sm:min-w-[210px] sm:gap-3 sm:pl-3 sm:pr-6 sm:py-1.5"
         >
             <span
@@ -32,7 +35,7 @@ function HeroScheduleButton({ href = '/contact' }) {
                 <div className="text-[10px] font-semibold uppercase tracking-wide sm:text-sm">Schedule Online</div>
                 <div className="mt-[3px] text-[9px] font-normal text-[#003B73]/80 sm:text-[11px]">It's fast &amp; easy</div>
             </div>
-        </a>
+        </button>
     );
 }
 
@@ -214,7 +217,7 @@ export default function Hero() {
                     </p>
 
                     <div className="mt-6 flex flex-nowrap items-center gap-2">
-                        <HeroScheduleButton href="/contact" />
+                        <HeroScheduleButton />
                         <HeroPhoneButton phone="(732) 239-0932" displayPhone="(732) 239-0932" />
                     </div>
 

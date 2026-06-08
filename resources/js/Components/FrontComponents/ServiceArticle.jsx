@@ -68,7 +68,7 @@ function ArticleBlock({ block, headingSizeClass }) {
             <div className="overflow-hidden rounded-2xl shadow-xl">
                 <img
                     src={block.image_path || '/img/heating.webp'}
-                    alt={block.heading || ''}
+                    alt={block.heading || 'Guardian Air HVAC and plumbing service in New Jersey'}
                     className="h-full w-full object-cover"
                 />
             </div>
@@ -81,7 +81,7 @@ function ArticleBlock({ block, headingSizeClass }) {
             <Paragraphs text={block.body} />
             {block.image_path && (
                 <div className="mt-6 overflow-hidden rounded-2xl shadow-lg">
-                    <img src={block.image_path} alt={block.heading || ''} className="h-full w-full object-cover" />
+                    <img src={block.image_path} alt={block.heading || 'Guardian Air HVAC and plumbing service in New Jersey'} className="h-full w-full object-cover" />
                 </div>
             )}
             {block.tags?.length > 0 && (

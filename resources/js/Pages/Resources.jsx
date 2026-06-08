@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/Components/Seo';
 import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
@@ -78,25 +78,14 @@ const seasonalTips = [
     },
 ];
 
-export default function ResourcesPage({ reviews = [] }) {
+export default function ResourcesPage({ reviews = [], seo = {} }) {
     return (
         <SiteLayout reviews={reviews}>
-            <Head>
-                <title>Resources & Tips — HVAC, Plumbing & Electrical Guides | Guardian Air</title>
-                <meta
-                    name="description"
-                    content="Free guides, checklists, and tips for HVAC maintenance, plumbing prevention, and electrical safety from Guardian Air — serving Monmouth, Middlesex, and Ocean counties."
-                />
-                <meta name="robots" content="index, follow" />
-                <link rel="canonical" href="/resources" />
-                <meta property="og:type" content="website" />
-                <meta property="og:title" content="Resources & Tips — Guardian Air HVAC & Plumbing" />
-                <meta
-                    property="og:description"
-                    content="Free maintenance guides, seasonal checklists, and home safety tips from New Jersey's trusted HVAC and plumbing pros."
-                />
-                <meta property="og:url" content="/resources" />
-            </Head>
+            <Seo
+                seo={seo}
+                fallbackTitle="Resources & Tips — HVAC, Plumbing & Electrical Guides | Guardian Air"
+                fallbackDescription="Free guides, checklists, and tips for HVAC maintenance, plumbing prevention, and electrical safety from Guardian Air — serving Monmouth, Middlesex, and Ocean counties."
+            />
 
             <article>
                 <PageHeader

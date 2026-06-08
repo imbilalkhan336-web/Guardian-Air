@@ -1,21 +1,17 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/Components/Seo';
 import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
 import ServiceArticle from '@/Components/FrontComponents/ServiceArticle';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 
-export default function CommercialPage({ blocks = [], tags = [], reviews = [] }) {
+export default function CommercialPage({ blocks = [], tags = [], reviews = [], seo = {} }) {
     return (
         <SiteLayout reviews={reviews}>
-            <Head>
-                <title>Commercial HVAC & Plumbing — NJ Business Services | Guardian Air</title>
-                <meta
-                    name="description"
-                    content="Commercial HVAC, plumbing, and electrical services for businesses across Monmouth, Middlesex, and Ocean counties. Rooftop units, boilers, preventative maintenance, and emergency repairs."
-                />
-                <meta name="robots" content="index, follow" />
-                <link rel="canonical" href="/commercial" />
-            </Head>
+            <Seo
+                seo={seo}
+                fallbackTitle="Commercial HVAC & Plumbing — NJ Business Services | Guardian Air"
+                fallbackDescription="Commercial HVAC, plumbing, and electrical services for businesses across Monmouth, Middlesex, and Ocean counties. Rooftop units, boilers, preventative maintenance, and emergency repairs."
+            />
 
             <article>
                 <PageHeader

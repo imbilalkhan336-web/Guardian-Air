@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Head, router } from '@inertiajs/react';
+import { router } from '@inertiajs/react';
+import Seo from '@/Components/Seo';
 import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
 import ServiceAreas from '@/Components/pages-sections/Home/ServiceAreas';
@@ -41,7 +42,7 @@ function InfoCard({ icon: Icon, title, lines, delay = 0 }) {
     );
 }
 
-export default function ContactPage({ reviews = [] }) {
+export default function ContactPage({ reviews = [], seo = {} }) {
     const [form, setForm] = useState({
         name: '',
         email: '',
@@ -92,22 +93,11 @@ export default function ContactPage({ reviews = [] }) {
 
     return (
         <SiteLayout reviews={reviews}>
-            <Head>
-                <title>Contact Us — Guardian Air HVAC & Plumbing | NJ</title>
-                <meta
-                    name="description"
-                    content="Contact Guardian Air for HVAC, plumbing, and electrical service across Monmouth, Middlesex, and Ocean counties. Call (732) 239-0932 or request a free estimate online."
-                />
-                <meta name="robots" content="index, follow" />
-                <link rel="canonical" href="/contact" />
-                <meta property="og:type" content="website" />
-                <meta property="og:title" content="Contact Guardian Air — NJ HVAC, Plumbing & Electrical" />
-                <meta
-                    property="og:description"
-                    content="Reach out for same-day service, free estimates, or emergency repairs across central New Jersey."
-                />
-                <meta property="og:url" content="/contact" />
-            </Head>
+            <Seo
+                seo={seo}
+                fallbackTitle="Contact Us — Guardian Air HVAC & Plumbing | NJ"
+                fallbackDescription="Contact Guardian Air for HVAC, plumbing, and electrical service across Monmouth, Middlesex, and Ocean counties. Call (732) 239-0932 or request a free estimate online."
+            />
 
             <article>
                 <PageHeader
