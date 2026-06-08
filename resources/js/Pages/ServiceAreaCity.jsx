@@ -9,7 +9,7 @@ import Reviews from '@/Components/pages-sections/Home/Reviews';
 import { LuArrowLeft, LuArrowRight, LuCheck } from 'react-icons/lu';
 
 export default function ServiceAreaCity({ city, county, trades = [], reviews = [], seo = {} }) {
-    const title = `${city.name} HVAC, Plumbing & Electrical | Guardian Air`;
+    const title = `${city.name} HVAC & Plumbing | Guardian Air`;
     const description = `Fast, reliable heating, cooling, and plumbing service in ${city.name}, ${county.name}, NJ. Licensed technicians, upfront pricing, and same-day response.`;
 
     return (

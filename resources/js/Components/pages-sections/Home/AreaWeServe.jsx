@@ -41,7 +41,7 @@ export default function AreaWeServe() {
                     </h2>
                     <p className="mt-6 max-w-xl font-body text-base leading-relaxed text-black">
                         Guardian Air covers homes and businesses across three New Jersey counties
-                        with fast, dependable HVAC, plumbing, and electrical service —
+                        with fast, dependable HVAC and plumbing service —
                         same trusted technicians, no matter where you live.
                     </p>
                 </div>

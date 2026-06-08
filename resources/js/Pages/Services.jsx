@@ -9,15 +9,15 @@ export default function ServicesPage({ reviews = [], seo = {} }) {
         <SiteLayout reviews={reviews}>
             <Seo
                 seo={seo}
-                fallbackTitle="Services — HVAC, Plumbing & Electrical in NJ | Guardian Air"
-                fallbackDescription="Guardian Air offers full-service HVAC, plumbing, and electrical work across Monmouth, Middlesex, and Ocean counties — licensed, insured, upfront pricing on every job."
+                fallbackTitle="HVAC & Plumbing Services in NJ | Guardian Air"
+                fallbackDescription="Guardian Air offers full-service heating, cooling, plumbing, and drain work across Monmouth, Middlesex, and Ocean counties — licensed, insured, upfront pricing on every job."
             />
 
             <article>
                 <PageHeader
                     label="What we do"
                     title="Our Services"
-                    description="From heating and cooling to plumbing and electrical, Guardian Air handles every home-comfort job with licensed technicians, honest quotes, and same-day response across central New Jersey."
+                    description="From heating and cooling to plumbing and drains, Guardian Air handles every home-comfort job with licensed technicians, honest quotes, and same-day response across central New Jersey."
                 />
 
                 <div className="pt-12">
@@ -54,7 +54,7 @@ export default function ServicesPage({ reviews = [], seo = {} }) {
                                     van and a toolbox. Over ten years later, we're still family-owned
                                     — just with more trucks and a whole lot of repeat customers
                                     across Monmouth, Middlesex, and Ocean counties who trust us with
-                                    their heating, cooling, plumbing, and electrical work. When your
+                                    their heating, cooling, and plumbing work. When your
                                     furnace dies at midnight in January or your AC quits during a
                                     heatwave, you need a tech who shows up fast, finds the actual
                                     problem, and tells you the real cost before touching a wrench.
@@ -66,10 +66,10 @@ export default function ServicesPage({ reviews = [], seo = {} }) {
 
                                 <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
                                     {[
-                                        { label: 'HVAC Repair', href: '#' },
-                                        { label: 'Plumbing', href: '#' },
-                                        { label: 'Electrical', href: '#' },
-                                        { label: 'Drains', href: '#' },
+                                        { label: 'Heating', href: '/heating' },
+                                        { label: 'Cooling', href: '/cooling' },
+                                        { label: 'Plumbing', href: '/plumbing' },
+                                        { label: 'Drains', href: '/drains' },
                                     ].map((item) => (
                                         <a
                                             key={item.label}

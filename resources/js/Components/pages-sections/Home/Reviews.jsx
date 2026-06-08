@@ -14,7 +14,7 @@ const FALLBACK_REVIEWS = [
     { name: 'Sarah Whitfield', initial: 'S', avatarBg: 'bg-purple-600', timeAgo: '6 days ago', body: 'Booked online in the evening and they were here next morning. Diagnosed a leak in the line set and had us cooling again same day.', rating: 5 },
     { name: 'Anthony Russo', initial: 'A', avatarBg: 'bg-amber-600', timeAgo: '1 week ago', body: 'Five stars all around. Honest tech, no upsell pressure, and the new thermostat install made our energy bill noticeably lower.', rating: 5 },
     { name: 'Lakeisha Brown', initial: 'L', avatarBg: 'bg-pink-600', timeAgo: '1 week ago', body: 'I called for a clogged drain and they had someone here within two hours. Fixed it in 30 minutes and gave me tips to keep it from happening again.', rating: 5 },
-    { name: 'Michael O\'Connor', initial: 'M', avatarBg: 'bg-blue-700', timeAgo: '2 weeks ago', body: 'Used Arctic Air for both heating tune-up and a small electrical project. One company, one invoice, two crews — couldn\'t be easier.', rating: 5 },
+    { name: 'Michael O\'Connor', initial: 'M', avatarBg: 'bg-blue-700', timeAgo: '2 weeks ago', body: 'Used Guardian Air for both a heating tune-up and a plumbing repair. One company, one invoice — couldn\'t be easier.', rating: 5 },
 ];
 
 function timeAgo(dateString) {

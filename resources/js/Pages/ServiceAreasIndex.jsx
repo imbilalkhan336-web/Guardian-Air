@@ -10,8 +10,8 @@ export default function ServiceAreasIndex({ counties = [], reviews = [], seo = {
         <SiteLayout reviews={reviews}>
             <Seo
                 seo={seo}
-                fallbackTitle="Service Areas — HVAC, Plumbing & Electrical in NJ | Guardian Air"
-                fallbackDescription="Guardian Air serves Monmouth, Middlesex, and Ocean counties, NJ with fast, reliable HVAC, plumbing, and electrical service. Find your county and town."
+                fallbackTitle="Service Areas — HVAC & Plumbing in NJ | Guardian Air"
+                fallbackDescription="Guardian Air serves Monmouth, Middlesex, and Ocean counties, NJ with fast, reliable HVAC and plumbing service. Find your county and town."
             />
 
             <article>

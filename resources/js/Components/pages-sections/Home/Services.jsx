@@ -70,7 +70,7 @@ export default function Services() {
                         Complete <span className="text-brand-orange">Comfort</span> Solutions
                     </h2>
                     <p className="mx-auto mt-5 max-w-xl font-body text-base leading-relaxed text-gray-600">
-                        Professional HVAC, plumbing, and electrical services designed to keep
+                        Professional heating, cooling, plumbing, and drain services designed to keep
                         your home safe, efficient, and comfortable year-round.
                     </p>
                 </div>

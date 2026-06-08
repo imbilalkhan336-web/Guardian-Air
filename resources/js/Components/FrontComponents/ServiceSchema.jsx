@@ -15,7 +15,7 @@ export default function ServiceSchema({ serviceName, serviceType, description, p
         '@type': 'HVACBusiness',
         '@id': `${BASE_URL}/#business`,
         name: 'Guardian Air',
-        description: 'Licensed and insured HVAC, plumbing, and electrical service across Monmouth, Middlesex, and Ocean counties, New Jersey.',
+        description: 'Licensed and insured HVAC and plumbing service across Monmouth, Middlesex, and Ocean counties, New Jersey.',
         url: BASE_URL,
         telephone: PHONE,
         areaServed: COUNTIES.map((name) => ({ '@type': 'AdministrativeArea', name })),

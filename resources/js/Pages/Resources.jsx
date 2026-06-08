@@ -31,10 +31,10 @@ const resources = [
     },
     {
         icon: LuZap,
-        title: 'Electrical Safety at Home',
+        title: 'Indoor Air Quality Tips',
         description:
-            'Essential safety checks every homeowner should know. Panel inspections, outlet testing, and warning signs of electrical issues.',
-        tag: 'Electrical',
+            'Simple steps to breathe easier at home. Filter changes, humidity control, duct cleaning, and the warning signs of poor air quality.',
+        tag: 'Air Quality',
     },
     {
         icon: LuShieldCheck,
@@ -83,8 +83,8 @@ export default function ResourcesPage({ reviews = [], seo = {} }) {
         <SiteLayout reviews={reviews}>
             <Seo
                 seo={seo}
-                fallbackTitle="Resources & Tips — HVAC, Plumbing & Electrical Guides | Guardian Air"
-                fallbackDescription="Free guides, checklists, and tips for HVAC maintenance, plumbing prevention, and electrical safety from Guardian Air — serving Monmouth, Middlesex, and Ocean counties."
+                fallbackTitle="HVAC & Plumbing Resources & Tips | Guardian Air"
+                fallbackDescription="Free guides, checklists, and tips for HVAC maintenance, plumbing prevention, and indoor air quality from Guardian Air — serving Monmouth, Middlesex, and Ocean counties."
             />
 
             <article>

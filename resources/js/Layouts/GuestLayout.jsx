@@ -21,8 +21,8 @@ export default function GuestLayout({ children }) {
 
                 <div className="relative z-10">
                     <h2 className="font-display text-4xl uppercase leading-tight">
-                        Trusted HVAC, Plumbing
-                        <br />& Electrical in NJ
+                        Trusted Heating, Cooling
+                        <br />& Plumbing in NJ
                     </h2>
                     <p className="mt-4 max-w-sm text-sm text-white/70">
                         Licensed technicians serving Monmouth, Middlesex & Ocean counties.

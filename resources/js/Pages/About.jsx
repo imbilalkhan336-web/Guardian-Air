@@ -12,14 +12,14 @@ export default function AboutPage({ reviews = [], seo = {} }) {
             <Seo
                 seo={seo}
                 fallbackTitle="About Guardian Air — NJ's Trusted HVAC & Plumbing Pros"
-                fallbackDescription="Locally owned Guardian Air delivers honest HVAC, plumbing, and electrical service across Monmouth, Middlesex, and Ocean counties — licensed, insured, no upsells."
+                fallbackDescription="Locally owned Guardian Air delivers honest HVAC and plumbing service across Monmouth, Middlesex, and Ocean counties — licensed, insured, no upsells."
             />
 
             <article>
                 <PageHeader
                     label="Get to know us"
                     title="About Guardian Air"
-                    description="Family-run heating, cooling, plumbing, and electrical specialists serving homeowners across Monmouth, Middlesex, and Ocean counties — licensed, insured, and committed to honest pricing on every job."
+                    description="Family-run heating, cooling, and plumbing specialists serving homeowners across Monmouth, Middlesex, and Ocean counties — licensed, insured, and committed to honest pricing on every job."
                 />
 
                 <About image="/img/about-page-img.webp" />
@@ -81,8 +81,8 @@ export default function AboutPage({ reviews = [], seo = {} }) {
                                         where technicians take the time to explain the problem,
                                         write up a clear quote before any wrench turns, and only fix
                                         what actually needs fixing. No commission-driven upsells.
-                                        No vague hourly meters. Just straightforward HVAC, plumbing,
-                                        and electrical work, performed by people who care whether
+                                        No vague hourly meters. Just straightforward HVAC and
+                                        plumbing work, performed by people who care whether
                                         the system still runs in five years.
                                     </p>
                                     <p>

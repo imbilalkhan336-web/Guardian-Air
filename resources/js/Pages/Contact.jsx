@@ -98,7 +98,7 @@ export default function ContactPage({ reviews = [], seo = {} }) {
             <Seo
                 seo={seo}
                 fallbackTitle="Contact Us — Guardian Air HVAC & Plumbing | NJ"
-                fallbackDescription="Contact Guardian Air for HVAC, plumbing, and electrical service across Monmouth, Middlesex, and Ocean counties. Call (732) 239-0932 or request a free estimate online."
+                fallbackDescription="Contact Guardian Air for HVAC and plumbing service across Monmouth, Middlesex, and Ocean counties. Call (732) 239-0932 or request a free estimate online."
             />
 
             <article>
@@ -155,7 +155,7 @@ export default function ContactPage({ reviews = [], seo = {} }) {
 
                                     {/* Service tag pills */}
                                     <div className="mt-5 flex flex-wrap gap-2">
-                                        {['HVAC Repair', 'Plumbing', 'Electrical', 'Drains'].map((tag) => (
+                                        {['Heating', 'Cooling', 'Plumbing', 'Drains'].map((tag) => (
                                             <span
                                                 key={tag}
                                                 className="rounded-full bg-gray-100 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-gray-600"

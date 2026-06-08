@@ -45,15 +45,15 @@ class PageSeo extends Model
      */
     public const DEFAULTS = [
         'home' => [
-            'title' => 'Guardian Air | HVAC, Plumbing & Electrical',
-            'description' => 'Guardian Air delivers expert heating, cooling, plumbing, and electrical service across Monmouth, Middlesex, and Ocean counties, NJ. Honest pricing, 24/7 response.',
+            'title' => 'Guardian Air | Heating, Cooling & Plumbing in NJ',
+            'description' => 'Guardian Air delivers expert heating, cooling, and plumbing service across Monmouth, Middlesex, and Ocean counties, NJ. Honest pricing, 24/7 response.',
         ],
         'about' => [
             'title' => "About Guardian Air — NJ's Trusted HVAC & Plumbing Pros",
             'description' => 'Locally owned Guardian Air delivers honest HVAC, plumbing, and electrical service across Monmouth, Middlesex, and Ocean counties — licensed, insured, no upsells.',
         ],
         'services' => [
-            'title' => 'HVAC, Plumbing & Electrical Services in NJ | Guardian Air',
+            'title' => 'HVAC & Plumbing Services in NJ | Guardian Air',
             'description' => 'Heating, cooling, plumbing, drains, indoor air quality, and commercial service across New Jersey — licensed technicians, upfront pricing, and same-day response.',
         ],
         'contact' => [
@@ -81,8 +81,8 @@ class PageSeo extends Model
             'description' => 'Need drain cleaning in NJ? Guardian Air offers licensed, insured drain & sewer service across Monmouth, Middlesex & Ocean counties. Call today!',
         ],
         'commercial' => [
-            'title' => 'Commercial HVAC, Plumbing & Electrical in NJ | Guardian Air',
-            'description' => 'Commercial HVAC, plumbing, and electrical service for offices, restaurants, retail, and multi-family buildings across NJ — preventative maintenance and 24/7 response.',
+            'title' => 'Commercial HVAC Services in NJ | Guardian Air',
+            'description' => 'Need commercial HVAC in NJ? Guardian Air keeps offices, restaurants & retail comfortable across Monmouth, Middlesex & Ocean counties. Licensed & insured.',
         ],
         'resources' => [
             'title' => 'HVAC & Plumbing Resources | Guardian Air',
@@ -90,7 +90,7 @@ class PageSeo extends Model
         ],
         'offers' => [
             'title' => 'Special Offers & Coupons | Guardian Air',
-            'description' => 'Save on HVAC, plumbing, and electrical service with current Guardian Air specials and coupons across Monmouth, Middlesex, and Ocean counties, NJ.',
+            'description' => 'Save on HVAC and plumbing service with current Guardian Air specials and coupons across Monmouth, Middlesex, and Ocean counties, NJ.',
         ],
         'blog' => [
             'title' => 'Blog | Guardian Air HVAC & Plumbing Tips',

@@ -12,8 +12,8 @@ export default function Home({ reviews = [], seo = {} }) {
         <SiteLayout reviews={reviews}>
             <Seo
                 seo={seo}
-                fallbackTitle="Guardian Air | HVAC, Plumbing & Electrical"
-                fallbackDescription="Guardian Air delivers expert heating, cooling, plumbing, and electrical service across Monmouth, Middlesex, and Ocean counties, NJ. Honest pricing, 24/7 response."
+                fallbackTitle="Guardian Air | Heating, Cooling & Plumbing in NJ"
+                fallbackDescription="Guardian Air delivers expert heating, cooling, and plumbing service across Monmouth, Middlesex, and Ocean counties, NJ. Honest pricing, 24/7 response."
             />
             <Hero />
             <About />

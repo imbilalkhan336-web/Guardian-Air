@@ -21,7 +21,7 @@ const offers = [
         badge: 'Limited Time',
         title: '$50 Off Any Repair',
         description:
-            'Get $50 off any heating, cooling, plumbing, or electrical repair over $250. Mention this offer when you call or schedule online.',
+            'Get $50 off any heating, cooling, or plumbing repair over $250. Mention this offer when you call or schedule online.',
         expires: 'Expires June 30, 2026',
         cta: 'Claim Offer',
     },
@@ -96,8 +96,8 @@ export default function OffersPage({ reviews = [], seo = {} }) {
         <SiteLayout reviews={reviews}>
             <Seo
                 seo={seo}
-                fallbackTitle="Special Offers — HVAC, Plumbing & Electrical Deals | Guardian Air"
-                fallbackDescription="Save on HVAC, plumbing, and electrical services with Guardian Air's current offers. Free estimates, repair discounts, and membership savings across central New Jersey."
+                fallbackTitle="Special Offers — HVAC & Plumbing Deals | Guardian Air"
+                fallbackDescription="Save on HVAC and plumbing services with Guardian Air's current offers. Free estimates, repair discounts, and membership savings across central New Jersey."
             />
 
             <article>
