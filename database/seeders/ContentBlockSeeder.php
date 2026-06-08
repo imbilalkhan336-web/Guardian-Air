@@ -10,8 +10,13 @@ class ContentBlockSeeder extends Seeder
     /**
      * Seed the service pages' article content as editable blocks.
      *
-     * Idempotent per page: clears a page's existing blocks before
-     * re-inserting, so re-running resets seeded pages to defaults.
+     * Non-destructive: a page is only populated when it currently has NO
+     * blocks. Pages the admin has already added to or edited are left
+     * untouched, so running this seeder never wipes admin changes. This
+     * makes it safe to run on every deploy to fill in any empty pages.
+     *
+     * To intentionally reset a page back to these defaults, delete its
+     * blocks in the admin panel (or the DB) first, then re-run the seeder.
      */
     public function run(): void
     {
@@ -26,7 +31,11 @@ class ContentBlockSeeder extends Seeder
         ];
 
         foreach ($pages as $page => $blocks) {
-            ContentBlock::where('page', $page)->delete();
+            // Skip any page that already has content — preserves admin edits.
+            if (ContentBlock::where('page', $page)->exists()) {
+                continue;
+            }
+
             foreach ($blocks as $i => $block) {
                 ContentBlock::create(array_merge($block, ['page' => $page, 'position' => $i]));
             }
