@@ -309,6 +309,42 @@ class SiteStructure
         return $out;
     }
 
+    /**
+     * Unique, hand-written intro copy for priority city hubs so each
+     * /service-areas/{city} page has distinct local content (towns,
+     * landmarks, why-choose) rather than templated duplication. Cities not
+     * listed here fall back to a localized intro generated in the view.
+     */
+    public static function cityContent(): array
+    {
+        return [
+            'toms-river' => [
+                "Guardian Air is a trusted name for HVAC in Toms River, NJ. As the seat of Ocean County, Toms River blends busy Route 37 corridors with quiet bayside neighborhoods near Barnegat Bay — and our licensed technicians serve them all with fast, same-day heating, cooling, plumbing, and drain service.",
+                "From homes near downtown and Ocean County Mall to shore properties out toward Seaside Heights, the salt air and humid summers here are hard on equipment. We keep your systems running with honest, flat-rate pricing and clean workmanship on every visit.",
+            ],
+            'freehold' => [
+                "Looking for dependable HVAC in Freehold, NJ? Guardian Air serves both Freehold Borough and Freehold Township with licensed heating, cooling, plumbing, and drain service — often the same day.",
+                "From the shops around Freehold Raceway Mall to the historic neighborhoods near Monmouth Battlefield and the Route 9 and Route 33 corridors, our local technicians respond fast with upfront, flat-rate pricing and friendly, professional service.",
+            ],
+            'brick' => [
+                "Guardian Air delivers reliable HVAC in Brick, NJ to homes and businesses across Brick Township. From neighborhoods along the Metedeconk River to bayside homes near Barnegat Bay, our licensed technicians handle heating, cooling, plumbing, and drains with fast, same-day response.",
+                "Brick's shore-area climate puts real strain on AC systems and water heaters. Whether you're off Route 70, Route 88, or near the Brick Reservoir, we keep your home comfortable with honest, flat-rate pricing year-round.",
+            ],
+            'old-bridge' => [
+                "Guardian Air is your local choice for HVAC in Old Bridge, NJ. We serve Old Bridge Township and nearby Sayreville and Matawan with licensed heating, cooling, plumbing, and drain service.",
+                "From neighborhoods near Cheesequake State Park to homes along Route 9 and the Garden State Parkway, our technicians respond fast with upfront, flat-rate pricing — no overtime fees and no surprises.",
+            ],
+            'red-bank' => [
+                "Guardian Air provides trusted HVAC in Red Bank, NJ to homes and businesses throughout this riverside Monmouth County town. Our licensed technicians deliver fast, same-day heating, cooling, plumbing, and drain service.",
+                "From the historic homes near the Navesink River and the shops along Broad Street to the neighborhoods around the Count Basie Center for the Arts, we keep Red Bank comfortable with honest, flat-rate pricing on every visit.",
+            ],
+            'lakewood' => [
+                "Guardian Air is a trusted provider of HVAC in Lakewood, NJ, serving one of Ocean County's largest and fastest-growing communities. Our licensed technicians handle heating, cooling, plumbing, and drains with fast, same-day response.",
+                "From neighborhoods near Lake Carasaljo and FirstEnergy Park to homes along Route 9 and Route 70, we deliver honest, flat-rate pricing and clean, professional service — whether it's a no-heat morning or an AC failure in peak summer.",
+            ],
+        ];
+    }
+
     public static function costGuides(): array
     {
         return [

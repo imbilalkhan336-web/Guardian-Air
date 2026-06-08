@@ -182,7 +182,11 @@ Route::get('/service-areas/{location}', function (string $location) use ($getRev
     }
 
     return Inertia::render('ServiceAreaCity', [
-        'city' => ['slug' => $loc['slug'], 'name' => $loc['name']],
+        'city' => [
+            'slug' => $loc['slug'],
+            'name' => $loc['name'],
+            'intro' => SiteStructure::cityContent()[$location] ?? null,
+        ],
         'county' => ['slug' => $loc['county_slug'], 'name' => $loc['county_name']],
         'trades' => $trades,
         'reviews' => $getReviews(),

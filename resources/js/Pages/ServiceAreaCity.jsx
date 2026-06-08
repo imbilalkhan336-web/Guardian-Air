@@ -2,6 +2,8 @@ import { Link } from '@inertiajs/react';
 import Seo from '@/Components/Seo';
 import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
+import Breadcrumbs from '@/Components/FrontComponents/Breadcrumbs';
+import ServiceSchema from '@/Components/FrontComponents/ServiceSchema';
 import SectionHeading from '@/Components/FrontComponents/SectionHeading';
 import ScheduleForm from '@/Components/FrontComponents/ScheduleForm';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
@@ -9,20 +11,42 @@ import Reviews from '@/Components/pages-sections/Home/Reviews';
 import { LuArrowLeft, LuArrowRight, LuCheck } from 'react-icons/lu';
 
 export default function ServiceAreaCity({ city, county, trades = [], reviews = [], seo = {} }) {
-    const title = `${city.name} HVAC & Plumbing | Guardian Air`;
-    const description = `Fast, reliable heating, cooling, and plumbing service in ${city.name}, ${county.name}, NJ. Licensed technicians, upfront pricing, and same-day response.`;
+    const title = `HVAC, Plumbing & Drains in ${city.name}, NJ | Guardian Air`;
+    const description = `HVAC ${city.name} NJ — Guardian Air offers licensed heating, cooling, plumbing, and drain service in ${city.name}, ${county.name}. Same-day response and flat-rate pricing. Call now!`;
+
+    // Unique per-city copy when available; otherwise a localized fallback.
+    const intro = city.intro?.length
+        ? city.intro
+        : [
+              `Guardian Air provides trusted HVAC in ${city.name}, NJ to homeowners and businesses throughout ${county.name}. Our licensed technicians deliver fast, same-day heating, cooling, plumbing, and drain service with honest, flat-rate pricing.`,
+              `Whether it's a furnace that won't start in January or an air conditioner struggling through a July heatwave, our local team is nearby and ready to help in ${city.name} — clean workmanship, no surprises, on every visit.`,
+          ];
 
     return (
         <SiteLayout showReviews={false}>
             <Seo seo={seo} fallbackTitle={title} fallbackDescription={description} />
+            <ServiceSchema
+                serviceName={`HVAC, Plumbing & Drains in ${city.name}`}
+                serviceType="HVAC, plumbing, and drain service"
+                description={description}
+                path={`/service-areas/${city.slug}`}
+            />
+
+            <Breadcrumbs
+                items={[
+                    { label: 'Service Areas', href: '/service-areas' },
+                    { label: county.name, href: `/service-areas/${county.slug}` },
+                    { label: city.name, href: `/service-areas/${city.slug}` },
+                ]}
+            />
 
             <article>
                 <PageHeader
                     label={county.name}
-                    title={`${city.name}, NJ`}
+                    title={`Guardian Air in ${city.name}, NJ — HVAC, Plumbing & Drains`}
                     image="/img/hero.webp"
                     imageCover
-                    description={description}
+                    description={`Licensed heating, cooling, plumbing, and drain service in ${city.name}, ${county.name}. Same-day response, flat-rate pricing, and a local team you can trust.`}
                     titleClassName="font-normal"
                 />
 
@@ -40,20 +64,12 @@ export default function ServiceAreaCity({ city, county, trades = [], reviews = [
 
                                 <section className="mt-6">
                                     <SectionHeading sizeClass="text-[30px] font-normal">
-                                        Your Local HVAC Team in {city.name}
+                                        Your Local HVAC &amp; Plumbing Team in {city.name}
                                     </SectionHeading>
                                     <div className="mt-6 space-y-4 font-body text-[15px] leading-relaxed text-gray-600 md:text-base">
-                                        <p>
-                                            Guardian Air proudly serves homeowners and businesses throughout {city.name} and the
-                                            rest of {county.name}. Whether it&apos;s a furnace that won&apos;t start in January or
-                                            an air conditioner struggling through a July heatwave, our licensed technicians are
-                                            nearby and ready to help — often the same day.
-                                        </p>
-                                        <p>
-                                            From routine maintenance to full system replacements, we deliver honest quotes, clean
-                                            workmanship, and friendly service on every visit in {city.name}. No surprises, no
-                                            pressure — just reliable comfort for your home.
-                                        </p>
+                                        {intro.map((p, i) => (
+                                            <p key={i}>{p}</p>
+                                        ))}
                                     </div>
                                 </section>
 
