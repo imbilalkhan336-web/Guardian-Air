@@ -6,16 +6,19 @@ const counties = [
         name: 'Monmouth',
         towns: 'Freehold, Red Bank, Middletown, Howell',
         tag: 'Same-Day',
+        href: '/service-areas/monmouth-county',
     },
     {
         name: 'Middlesex',
         towns: 'Edison, New Brunswick, Woodbridge, Piscataway',
         tag: 'Same-Day',
+        href: '/service-areas/middlesex-county',
     },
     {
         name: 'Ocean',
         towns: 'Toms River, Brick, Lakewood, Point Pleasant',
         tag: 'Same-Day',
+        href: '/service-areas/ocean-county',
     },
 ];
 
@@ -79,8 +82,9 @@ export default function ServiceAreas() {
                         {/* County cards */}
                         <div className="mt-8 space-y-3">
                             {counties.map((area) => (
-                                <div
+                                <Link
                                     key={area.name}
+                                    href={area.href}
                                     className="group flex items-center gap-4 rounded-xl border border-white/10 bg-white/5 px-5 py-4 backdrop-blur-sm transition-all duration-500 hover:border-brand-orange/40 hover:bg-white/10"
                                 >
                                     <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-brand-orange/20 text-brand-orange transition-colors duration-300 group-hover:bg-brand-orange group-hover:text-white">
@@ -100,7 +104,7 @@ export default function ServiceAreas() {
                                         </p>
                                     </div>
                                     <LuArrowRight className="h-4 w-4 text-white/30 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-orange" />
-                                </div>
+                                </Link>
                             ))}
                         </div>
 
