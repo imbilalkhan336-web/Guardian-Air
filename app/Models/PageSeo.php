@@ -69,8 +69,8 @@ class PageSeo extends Model
             'description' => 'Need AC repair in NJ? Guardian Air delivers same-day, licensed & insured air conditioning repair across Monmouth, Middlesex & Ocean counties. Call now!',
         ],
         'plumbing' => [
-            'title' => 'Plumbing Services in NJ | Guardian Air',
-            'description' => 'Licensed plumbers for leak detection, water heaters, repiping, and emergency repairs across Monmouth, Middlesex, and Ocean counties — flat-rate quotes, no hidden fees.',
+            'title' => 'Licensed Plumber NJ | Monmouth, Middlesex & Ocean County | Guardian Air',
+            'description' => 'Need a licensed plumber in NJ? Guardian Air offers 24/7 insured plumbing repair across Monmouth, Middlesex & Ocean counties. Call now for fast service!',
         ],
         'indoor-air-quality' => [
             'title' => 'Indoor Air Quality Services in NJ | Guardian Air',
