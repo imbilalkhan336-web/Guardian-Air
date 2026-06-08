@@ -135,6 +135,7 @@ Route::get('/service-areas', function () use ($getReviews) {
     $counties = collect(SiteStructure::counties())->map(fn ($c) => [
         'slug' => $c['slug'],
         'name' => $c['name'],
+        'description' => $c['description'],
         'cities' => collect($c['cities'])->map(fn ($name, $slug) => [
             'slug' => $slug,
             'name' => $name,
