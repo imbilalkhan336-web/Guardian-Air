@@ -14,17 +14,13 @@ export default function TopBar() {
                 <div className="flex items-center gap-3 md:ml-auto md:gap-4">
                     {/* Utility links — desktop only */}
                     <span className="hidden items-center gap-3 md:flex md:gap-4">
-                        <Link href="/contact" className="hover:text-brand-orange transition-colors">Contact Us</Link>
-                        <span className="text-gray-300">|</span>
-                        <Link href="/offers" className="hover:text-brand-orange transition-colors">Offers</Link>
-                        <span className="text-gray-300">|</span>
                         <Link href="/services" className="hover:text-brand-orange transition-colors">Services</Link>
                         <span className="text-gray-300">|</span>
                         <Link href="/about" className="hover:text-brand-orange transition-colors">About</Link>
                         <span className="text-gray-300">|</span>
-                        <Link href="/resources" className="hover:text-brand-orange transition-colors">Resources</Link>
-                        <span className="text-gray-300">|</span>
                         <Link href="/blog" className="hover:text-brand-orange transition-colors">Blog</Link>
+                        <span className="text-gray-300">|</span>
+                        <Link href="/contact" className="hover:text-brand-orange transition-colors">Contact Us</Link>
                         {isAdmin && <span className="text-gray-300">|</span>}
                     </span>
 
