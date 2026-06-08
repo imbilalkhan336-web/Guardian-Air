@@ -1,6 +1,9 @@
-import { Head, Link } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
+import Seo from '@/Components/Seo';
 import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
+import Breadcrumbs from '@/Components/FrontComponents/Breadcrumbs';
+import ServiceSchema from '@/Components/FrontComponents/ServiceSchema';
 import ScheduleForm from '@/Components/FrontComponents/ScheduleForm';
 import SectionHeading from '@/Components/FrontComponents/SectionHeading';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
@@ -8,19 +11,35 @@ import Reviews from '@/Components/pages-sections/Home/Reviews';
 import { LuMapPin, LuArrowRight, LuCheck } from 'react-icons/lu';
 
 export default function ServiceArea({ area, cities = [], trades = [], reviews = [] }) {
+    const intro = area.intro?.length
+        ? area.intro
+        : [`Guardian Air proudly serves homeowners and businesses throughout ${area.name} with licensed heating, cooling, plumbing, and drain service.`];
+
     return (
         <SiteLayout showReviews={false}>
-            <Head>
-                <title>{`${area.title} | Guardian Air`}</title>
-                <meta name="description" content={area.description} />
-                <meta name="robots" content="index, follow" />
-                <link rel="canonical" href={`/service-areas/${area.slug}`} />
-            </Head>
+            <Seo
+                seo={{}}
+                fallbackTitle={`${area.title} | Guardian Air`}
+                fallbackDescription={area.description}
+            />
+            <ServiceSchema
+                serviceName={`HVAC, Plumbing & Drain Services in ${area.name}`}
+                serviceType="HVAC, plumbing, and drain service"
+                description={area.description}
+                path={`/service-areas/${area.slug}`}
+            />
+
+            <Breadcrumbs
+                items={[
+                    { label: 'Service Areas', href: '/service-areas' },
+                    { label: area.name, href: `/service-areas/${area.slug}` },
+                ]}
+            />
 
             <article>
                 <PageHeader
                     label="Service Area"
-                    title={area.title}
+                    title={`Guardian Air in ${area.name}, NJ`}
                     image="/img/hero.webp"
                     imageCover
                     description={area.description}
@@ -33,24 +52,16 @@ export default function ServiceArea({ area, cities = [], trades = [], reviews = 
                             <div className="lg:col-span-7">
                                 <section>
                                     <SectionHeading sizeClass="text-[30px] font-normal">
-                                        Your Local HVAC Team in {area.name}
+                                        Your Local HVAC &amp; Plumbing Team in {area.name}
                                     </SectionHeading>
                                     <div className="mt-6 space-y-4 font-body text-[15px] leading-relaxed text-gray-600 md:text-base">
-                                        <p>
-                                            Guardian Air proudly serves homeowners and businesses throughout {area.name}. Whether
-                                            it&apos;s a furnace that won&apos;t start in January or an air conditioner struggling
-                                            through a July heatwave, our licensed technicians are nearby and ready to help — often
-                                            the same day.
-                                        </p>
-                                        <p>
-                                            From routine maintenance to full system replacements, we deliver honest quotes, clean
-                                            workmanship, and friendly service on every visit. No surprises, no pressure — just
-                                            reliable comfort for your home.
-                                        </p>
+                                        {intro.map((p, i) => (
+                                            <p key={i}>{p}</p>
+                                        ))}
                                     </div>
                                 </section>
 
-                                {/* Services offered */}
+                                {/* Services offered in this county */}
                                 <section className="mt-12">
                                     <SectionHeading sizeClass="text-[26px] font-normal">
                                         Services We Offer in {area.name}
@@ -72,10 +83,10 @@ export default function ServiceArea({ area, cities = [], trades = [], reviews = 
                                     </div>
                                 </section>
 
-                                {/* Towns served — each links to its city page */}
+                                {/* Towns served — each links to its city hub */}
                                 <section className="mt-12">
                                     <SectionHeading sizeClass="text-[26px] font-normal">
-                                        Towns We Serve
+                                        Towns We Serve in {area.name}
                                     </SectionHeading>
                                     <div className="mt-6 flex flex-wrap gap-2.5">
                                         {(cities.length > 0
@@ -108,7 +119,7 @@ export default function ServiceArea({ area, cities = [], trades = [], reviews = 
                                 </section>
                             </div>
 
-                            {/* Sticky Schedule form */}
+                            {/* Sticky schedule form */}
                             <aside className="lg:col-span-5">
                                 <div className="lg:sticky lg:top-24">
                                     <ScheduleForm headingClassName="font-normal" />

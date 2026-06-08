@@ -164,6 +164,7 @@ Route::get('/service-areas/{location}', function (string $location) use ($getRev
             'name' => $county['name'],
             'title' => $county['title'],
             'description' => $county['description'],
+            'intro' => $county['intro'] ?? [],
             'towns' => array_values($county['cities']),
         ];
         $cities = collect($county['cities'])->map(fn ($name, $slug) => [

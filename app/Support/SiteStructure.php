@@ -226,8 +226,12 @@ class SiteStructure
             'monmouth-county' => [
                 'slug' => 'monmouth-county',
                 'name' => 'Monmouth County',
-                'title' => 'Monmouth County HVAC Services',
-                'description' => 'Trusted heating, cooling, and plumbing service across Monmouth County, NJ — licensed technicians, upfront pricing, and same-day response.',
+                'title' => 'HVAC, Plumbing & Drain Services in Monmouth County, NJ',
+                'description' => 'HVAC Monmouth County NJ — Guardian Air offers licensed heating, cooling, plumbing, and drain service across Freehold, Red Bank, Middletown, and the Jersey Shore. Call today!',
+                'intro' => [
+                    "Guardian Air is your trusted choice for HVAC in Monmouth County, NJ. From the Jersey Shore in Long Branch to the boroughs around Red Bank and inland Freehold, Howell, and Middletown, our licensed technicians deliver fast, reliable heating, cooling, plumbing, and drain service — often the same day.",
+                    "Monmouth County homes range from historic shore cottages near Sandy Hook to newer developments off the Garden State Parkway, and we know the systems each one runs. Whether you're near Monmouth Park, the Freehold Raceway Mall, or the PNC Bank Arts Center in Holmdel, honest, flat-rate service is just a call away.",
+                ],
                 'cities' => [
                     'freehold' => 'Freehold',
                     'red-bank' => 'Red Bank',
@@ -240,8 +244,12 @@ class SiteStructure
             'middlesex-county' => [
                 'slug' => 'middlesex-county',
                 'name' => 'Middlesex County',
-                'title' => 'Middlesex County HVAC Services',
-                'description' => 'Full-service HVAC, plumbing, and indoor air quality solutions for homes and businesses throughout Middlesex County, NJ.',
+                'title' => 'HVAC, Plumbing & Drain Services in Middlesex County, NJ',
+                'description' => 'HVAC Middlesex County NJ — Guardian Air offers licensed heating, cooling, plumbing, and drain service across Edison, Woodbridge, Old Bridge, and New Brunswick. Call today!',
+                'intro' => [
+                    "Looking for dependable HVAC in Middlesex County, NJ? Guardian Air serves homeowners and businesses across Edison, Woodbridge, Old Bridge, New Brunswick, South Amboy, and Perth Amboy with licensed heating, cooling, plumbing, and drain service.",
+                    "From the busy commercial corridors near Menlo Park Mall to the neighborhoods around Rutgers University and along the Raritan River, our local technicians respond fast with honest, flat-rate pricing. Wherever you are in Middlesex County, the same trusted team keeps your home comfortable year-round.",
+                ],
                 'cities' => [
                     'old-bridge' => 'Old Bridge',
                     'edison' => 'Edison',
@@ -254,8 +262,12 @@ class SiteStructure
             'ocean-county' => [
                 'slug' => 'ocean-county',
                 'name' => 'Ocean County',
-                'title' => 'Ocean County HVAC Services',
-                'description' => 'Dependable heating and air conditioning service across Ocean County, NJ — from the shore to inland towns, we keep your home comfortable year-round.',
+                'title' => 'HVAC, Plumbing & Drain Services in Ocean County, NJ',
+                'description' => 'HVAC Ocean County NJ — Guardian Air offers licensed heating, cooling, plumbing, and drain service across Toms River, Brick, Lakewood, and Point Pleasant. Call today!',
+                'intro' => [
+                    "Guardian Air delivers trusted HVAC in Ocean County, NJ to homes and businesses from the Toms River and Brick area down the shore to Point Pleasant, Barnegat, and Lakewood. Our licensed technicians handle heating, cooling, plumbing, and drains with fast, same-day response.",
+                    "Ocean County's shore climate is hard on equipment — salt air, humid summers, and seasonal homes near Barnegat Bay all take their toll. From the boardwalk at Point Pleasant Beach to the neighborhoods near Six Flags Great Adventure in Jackson, we keep your systems running with upfront, flat-rate pricing.",
+                ],
                 'cities' => [
                     'toms-river' => 'Toms River',
                     'brick' => 'Brick',
