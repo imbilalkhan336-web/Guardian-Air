@@ -12,6 +12,7 @@ use App\Models\PageSeo;
 use App\Models\Post;
 use App\Models\Review;
 use App\Models\Tag;
+use App\Support\SiteStructure;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -86,7 +87,7 @@ Route::get('/drains', function () use ($getReviews, $seo) {
     ]);
 })->name('drains');
 
-Route::get('/commercial', function () use ($getReviews, $seo) {
+Route::get('/commercial-hvac', function () use ($getReviews, $seo) {
     return Inertia::render('Commercial', [
         'blocks' => ContentBlock::forPage('commercial')->with('tags')->get(),
         'tags' => Tag::orderBy('name')->get(),
@@ -94,6 +95,24 @@ Route::get('/commercial', function () use ($getReviews, $seo) {
         'seo' => $seo('commercial'),
     ]);
 })->name('commercial');
+
+// Legacy /commercial path → /commercial-hvac (preserves link equity).
+Route::permanentRedirect('/commercial', '/commercial-hvac');
+
+// Standalone commercial plumbing page.
+Route::get('/commercial-plumbing', function () use ($getReviews) {
+    $service = SiteStructure::commercialPlumbing();
+    $siblings = collect(SiteStructure::trades()['commercial-hvac']['services'])
+        ->map(fn ($v, $k) => ['slug' => $k, 'name' => $v['name'], 'href' => "/commercial-hvac/{$k}"])
+        ->values();
+
+    return Inertia::render('ServiceSubpage', [
+        'trade' => ['slug' => 'commercial-hvac', 'label' => 'Commercial HVAC'],
+        'service' => $service,
+        'siblings' => $siblings,
+        'reviews' => $getReviews(),
+    ]);
+})->name('commercial-plumbing');
 
 Route::get('/blog', function () use ($seo) {
     return Inertia::render('Blog', [
@@ -111,34 +130,61 @@ Route::get('/blog/{post:slug}', function (Post $post) {
     ]);
 })->name('blog.show');
 
-Route::get('/service-areas/{area}', function (string $area) use ($getReviews) {
-    $areas = [
-        'monmouth-county' => [
-            'slug' => 'monmouth-county',
-            'name' => 'Monmouth County',
-            'title' => 'Monmouth County HVAC Services',
-            'description' => 'Trusted heating, cooling, and plumbing service across Monmouth County, NJ — licensed technicians, upfront pricing, and same-day response.',
-            'towns' => ['Freehold', 'Howell', 'Marlboro', 'Manalapan', 'Middletown', 'Red Bank', 'Wall', 'Holmdel'],
-        ],
-        'middlesex-county' => [
-            'slug' => 'middlesex-county',
-            'name' => 'Middlesex County',
-            'title' => 'Middlesex County HVAC Services',
-            'description' => 'Full-service HVAC, plumbing, and indoor air quality solutions for homes and businesses throughout Middlesex County, NJ.',
-            'towns' => ['Edison', 'Old Bridge', 'East Brunswick', 'Sayreville', 'Woodbridge', 'Piscataway', 'Monroe', 'South Brunswick'],
-        ],
-        'ocean-county' => [
-            'slug' => 'ocean-county',
-            'name' => 'Ocean County, NJ',
-            'title' => 'Ocean County HVAC Services',
-            'description' => 'Dependable heating and air conditioning service across Ocean County, NJ — from the shore to inland towns, we keep your home comfortable year-round.',
-            'towns' => ['Toms River', 'Brick', 'Jackson', 'Lakewood', 'Manchester', 'Point Pleasant', 'Lacey', 'Berkeley'],
-        ],
-    ];
+// Service areas index — lists every county and its (flat) city hubs.
+Route::get('/service-areas', function () use ($getReviews) {
+    $counties = collect(SiteStructure::counties())->map(fn ($c) => [
+        'slug' => $c['slug'],
+        'name' => $c['name'],
+        'cities' => collect($c['cities'])->map(fn ($name, $slug) => [
+            'slug' => $slug,
+            'name' => $name,
+            'href' => "/service-areas/{$slug}",
+        ])->values(),
+    ])->values();
 
-    abort_unless(isset($areas[$area]), 404);
+    return Inertia::render('ServiceAreasIndex', ['counties' => $counties, 'reviews' => $getReviews()]);
+})->name('service-areas');
 
-    return Inertia::render('ServiceArea', ['area' => $areas[$area], 'reviews' => $getReviews()]);
+// Service-area hub — one route serves both county hubs and flat city hubs.
+Route::get('/service-areas/{location}', function (string $location) use ($getReviews) {
+    $locations = SiteStructure::locationLookup();
+    abort_unless(isset($locations[$location]), 404);
+    $loc = $locations[$location];
+
+    // Trades that have a per-location page, linked from the hub.
+    $trades = collect(SiteStructure::trades())
+        ->map(fn ($t, $slug) => ['slug' => $slug, 'label' => $t['label'], 'href' => "/{$slug}/{$location}"])
+        ->values();
+
+    if ($loc['type'] === 'county') {
+        $county = SiteStructure::counties()[$location];
+        $area = [
+            'slug' => $county['slug'],
+            'name' => $county['name'],
+            'title' => $county['title'],
+            'description' => $county['description'],
+            'towns' => array_values($county['cities']),
+        ];
+        $cities = collect($county['cities'])->map(fn ($name, $slug) => [
+            'slug' => $slug,
+            'name' => $name,
+            'href' => "/service-areas/{$slug}",
+        ])->values();
+
+        return Inertia::render('ServiceArea', [
+            'area' => $area,
+            'cities' => $cities,
+            'trades' => $trades,
+            'reviews' => $getReviews(),
+        ]);
+    }
+
+    return Inertia::render('ServiceAreaCity', [
+        'city' => ['slug' => $loc['slug'], 'name' => $loc['name']],
+        'county' => ['slug' => $loc['county_slug'], 'name' => $loc['county_name']],
+        'trades' => $trades,
+        'reviews' => $getReviews(),
+    ]);
 })->name('service-area');
 
 Route::get('/resources', function () use ($getReviews, $seo) {
@@ -148,6 +194,75 @@ Route::get('/resources', function () use ($getReviews, $seo) {
 Route::get('/offers', function () use ($getReviews, $seo) {
     return Inertia::render('Offers', ['reviews' => $getReviews(), 'seo' => $seo('offers')]);
 })->name('offers');
+
+// Cost guides.
+Route::get('/cost-guides', function () use ($getReviews) {
+    $guides = collect(SiteStructure::costGuides())->map(fn ($g, $slug) => [
+        'slug' => $slug,
+        'name' => $g['name'],
+        'description' => $g['description'],
+        'href' => "/cost-guides/{$slug}",
+    ])->values();
+
+    return Inertia::render('CostGuidesIndex', ['guides' => $guides, 'reviews' => $getReviews()]);
+})->name('cost-guides');
+
+Route::get('/cost-guides/{slug}', function (string $slug) use ($getReviews) {
+    $guides = SiteStructure::costGuides();
+    abort_unless(isset($guides[$slug]), 404);
+
+    return Inertia::render('CostGuide', [
+        'guide' => array_merge(['slug' => $slug], $guides[$slug]),
+        'reviews' => $getReviews(),
+    ]);
+})->name('cost-guide');
+
+// 301 redirect for the legacy /hvac-commercial URL referenced in older nav/links.
+Route::permanentRedirect('/hvac-commercial', '/commercial-hvac');
+
+// Trade sub-pages: /{trade}/{slug} resolves to either a sub-service page
+// or a trade-in-location page (county or city). The trade constraint keeps
+// this from shadowing other two-segment routes.
+Route::get('/{trade}/{slug}', function (string $trade, string $slug) use ($getReviews) {
+    $trades = SiteStructure::trades();
+    abort_unless(isset($trades[$trade]), 404);
+    $t = $trades[$trade];
+
+    // 1) Defined sub-service page.
+    if (isset($t['services'][$slug])) {
+        $siblings = collect($t['services'])
+            ->reject(fn ($v, $k) => $k === $slug)
+            ->map(fn ($v, $k) => ['slug' => $k, 'name' => $v['name'], 'href' => "/{$trade}/{$k}"])
+            ->values();
+
+        return Inertia::render('ServiceSubpage', [
+            'trade' => ['slug' => $trade, 'label' => $t['label']],
+            'service' => $t['services'][$slug],
+            'siblings' => $siblings,
+            'reviews' => $getReviews(),
+        ]);
+    }
+
+    // 2) Trade-in-location page (county or city).
+    $locations = SiteStructure::locationLookup();
+    abort_unless(isset($locations[$slug]), 404);
+    $loc = $locations[$slug];
+
+    $otherTrades = collect($trades)
+        ->reject(fn ($v, $k) => $k === $trade)
+        ->map(fn ($v, $k) => ['slug' => $k, 'label' => $v['label'], 'href' => "/{$k}/{$slug}"])
+        ->values();
+
+    return Inertia::render('TradeLocation', [
+        'trade' => ['slug' => $trade, 'label' => $t['label'], 'locationName' => $t['locationName']],
+        'location' => $loc,
+        'otherTrades' => $otherTrades,
+        'reviews' => $getReviews(),
+    ]);
+})
+    ->where('trade', 'heating|cooling|plumbing|commercial-hvac|indoor-air-quality|drains')
+    ->where('slug', '[a-z0-9-]+')
+    ->name('trade-subpage');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

@@ -96,7 +96,7 @@ export default function Services() {
                         icon={LuBuilding2}
                         title="HVAC Commercial"
                         body="Commercial heating, cooling, and plumbing for offices, retail, and multi-unit properties. Keep your business running comfortably year-round."
-                        href="/commercial"
+                        href="/commercial-hvac"
                     />
                 </div>
 

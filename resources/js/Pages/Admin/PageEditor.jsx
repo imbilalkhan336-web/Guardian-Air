@@ -24,7 +24,7 @@ const PAGE_PATH = {
     plumbing: '/plumbing',
     'indoor-air-quality': '/indoor-air-quality',
     drains: '/drains',
-    commercial: '/commercial',
+    commercial: '/commercial-hvac',
 };
 
 const HEADING_SIZE = 'text-[30px] md:text-[34px]';

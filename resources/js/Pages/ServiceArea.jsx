@@ -7,16 +7,7 @@ import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 import Reviews from '@/Components/pages-sections/Home/Reviews';
 import { LuMapPin, LuArrowRight, LuCheck } from 'react-icons/lu';
 
-const services = [
-    { label: 'Heating', href: '/heating' },
-    { label: 'Cooling', href: '/cooling' },
-    { label: 'Plumbing', href: '/plumbing' },
-    { label: 'Indoor Air Quality', href: '/indoor-air-quality' },
-    { label: 'Drains', href: '/drains' },
-    { label: 'Commercial', href: '/commercial' },
-];
-
-export default function ServiceArea({ area, reviews = [] }) {
+export default function ServiceArea({ area, cities = [], trades = [], reviews = [] }) {
     return (
         <SiteLayout showReviews={false}>
             <Head>
@@ -65,15 +56,15 @@ export default function ServiceArea({ area, reviews = [] }) {
                                         Services We Offer in {area.name}
                                     </SectionHeading>
                                     <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                                        {services.map((s) => (
+                                        {trades.map((s) => (
                                             <Link
-                                                key={s.label}
+                                                key={s.slug}
                                                 href={s.href}
                                                 className="group flex items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3 shadow-sm transition-all hover:border-brand-orange/50 hover:shadow-md"
                                             >
                                                 <span className="flex items-center gap-2 font-body text-sm font-bold text-[#07264A]">
                                                     <LuCheck className="h-4 w-4 text-brand-orange" />
-                                                    {s.label}
+                                                    {s.label} in {area.name}
                                                 </span>
                                                 <LuArrowRight className="h-4 w-4 text-gray-300 transition-all group-hover:translate-x-1 group-hover:text-brand-orange" />
                                             </Link>
@@ -81,21 +72,35 @@ export default function ServiceArea({ area, reviews = [] }) {
                                     </div>
                                 </section>
 
-                                {/* Towns served */}
+                                {/* Towns served — each links to its city page */}
                                 <section className="mt-12">
                                     <SectionHeading sizeClass="text-[26px] font-normal">
                                         Towns We Serve
                                     </SectionHeading>
                                     <div className="mt-6 flex flex-wrap gap-2.5">
-                                        {area.towns.map((town) => (
-                                            <span
-                                                key={town}
-                                                className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-gray-50 px-3.5 py-1.5 font-body text-sm font-semibold text-[#07264A]"
-                                            >
-                                                <LuMapPin className="h-3.5 w-3.5 text-brand-orange" />
-                                                {town}
-                                            </span>
-                                        ))}
+                                        {(cities.length > 0
+                                            ? cities
+                                            : area.towns.map((t) => ({ slug: t, name: t, href: null }))
+                                        ).map((town) =>
+                                            town.href ? (
+                                                <Link
+                                                    key={town.slug}
+                                                    href={town.href}
+                                                    className="group inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-gray-50 px-3.5 py-1.5 font-body text-sm font-semibold text-[#07264A] transition-all hover:border-brand-orange/50 hover:bg-white hover:text-brand-orange"
+                                                >
+                                                    <LuMapPin className="h-3.5 w-3.5 text-brand-orange" />
+                                                    {town.name}
+                                                </Link>
+                                            ) : (
+                                                <span
+                                                    key={town.slug}
+                                                    className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-gray-50 px-3.5 py-1.5 font-body text-sm font-semibold text-[#07264A]"
+                                                >
+                                                    <LuMapPin className="h-3.5 w-3.5 text-brand-orange" />
+                                                    {town.name}
+                                                </span>
+                                            )
+                                        )}
                                     </div>
                                     <p className="mt-4 font-body text-sm text-gray-500">
                                         Don&apos;t see your town? We likely still serve it — give us a call to confirm.

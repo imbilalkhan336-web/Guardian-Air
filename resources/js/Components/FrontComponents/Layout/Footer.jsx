@@ -12,7 +12,7 @@ const linkGroups = [
             { label: 'Air Quality', href: '/indoor-air-quality' },
             { label: 'Plumbing', href: '/plumbing' },
             { label: 'Drains', href: '/drains' },
-            { label: 'Commercial', href: '/commercial' },
+            { label: 'Commercial', href: '/commercial-hvac' },
         ],
     },
     {

@@ -10,7 +10,7 @@ const SERVICE_LINKS = [
     { name: 'Plumbing', href: '/plumbing' },
     { name: 'Indoor Air Quality', href: '/indoor-air-quality' },
     { name: 'Drains', href: '/drains' },
-    { name: 'Commercial', href: '/commercial' },
+    { name: 'Commercial', href: '/commercial-hvac' },
 ];
 
 function BlogSidebar() {

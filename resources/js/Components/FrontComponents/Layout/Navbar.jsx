@@ -6,7 +6,7 @@ const navLinks = [
     { label: 'Heating', href: '/heating' },
     { label: 'Cooling', href: '/cooling' },
     { label: 'Plumbing', href: '/plumbing' },
-    { label: 'HVAC Commercial', href: '/commercial' },
+    { label: 'HVAC Commercial', href: '/commercial-hvac' },
 ];
 
 const moreServices = [
