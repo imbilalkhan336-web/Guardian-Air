@@ -3,6 +3,8 @@ import { router } from '@inertiajs/react';
 import Seo from '@/Components/Seo';
 import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
+import { PillButton } from '@/Components/FrontComponents/PillButton';
+import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 import ServiceAreas from '@/Components/pages-sections/Home/ServiceAreas';
 import {
     LuPhone,
@@ -273,10 +275,12 @@ export default function ContactPage({ reviews = [], seo = {} }) {
                                                 />
                                             </div>
 
-                                            <button
+                                            <PillButton
                                                 type="submit"
+                                                variant="yellow"
+                                                size="md"
                                                 disabled={processing}
-                                                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-orange to-brand-orange-dark px-8 py-4 text-sm font-extrabold uppercase tracking-widest text-white shadow-lg shadow-brand-orange/30 transition-all hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0 disabled:opacity-60 sm:w-auto"
+                                                className="w-full sm:w-auto"
                                             >
                                                 {processing ? (
                                                     <span className="inline-flex items-center gap-2">
@@ -284,12 +288,12 @@ export default function ContactPage({ reviews = [], seo = {} }) {
                                                         Sending…
                                                     </span>
                                                 ) : (
-                                                    <>
+                                                    <span className="inline-flex items-center gap-2">
                                                         <LuSend className="h-4 w-4" />
                                                         Send Message
-                                                    </>
+                                                    </span>
                                                 )}
-                                            </button>
+                                            </PillButton>
                                         </form>
                                     )}
                                 </div>
@@ -380,6 +384,8 @@ export default function ContactPage({ reviews = [], seo = {} }) {
 
                 <ServiceAreas />
             </article>
+
+            <CtaBanner titleWeightClass="font-normal" />
         </SiteLayout>
     );
 }

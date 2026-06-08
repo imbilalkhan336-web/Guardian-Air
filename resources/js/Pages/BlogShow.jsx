@@ -1,7 +1,8 @@
 import { Head, Link } from '@inertiajs/react';
 import SiteLayout from '@/Layouts/SiteLayout';
-import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
+import PageHeader from '@/Components/FrontComponents/PageHeader';
 import ScheduleForm from '@/Components/FrontComponents/ScheduleForm';
+import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 import { LuArrowLeft, LuArrowRight, LuExternalLink, LuChevronRight } from 'react-icons/lu';
 
 const SERVICE_LINKS = [
@@ -10,15 +11,15 @@ const SERVICE_LINKS = [
     { name: 'Plumbing', href: '/plumbing' },
     { name: 'Indoor Air Quality', href: '/indoor-air-quality' },
     { name: 'Drains', href: '/drains' },
-    { name: 'Commercial', href: '/commercial-hvac' },
+    { name: 'Commercial HVAC', href: '/commercial-hvac' },
 ];
 
 function BlogSidebar() {
     return (
-        <aside className="lg:col-span-1">
+        <aside className="lg:col-span-5">
             <div className="space-y-6 lg:sticky lg:top-24">
                 {/* Contact / schedule form */}
-                <ScheduleForm />
+                <ScheduleForm headingClassName="font-normal" />
 
                 {/* Service page links */}
                 <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
@@ -90,86 +91,65 @@ export default function BlogShow({ post, related = [] }) {
                 <link rel="canonical" href={`/blog/${post.slug}`} />
             </Head>
 
-            <article className="bg-white">
-                {/* Hero */}
-                <div className="relative">
-                    <div className="aspect-[21/9] max-h-[460px] w-full overflow-hidden bg-[#0A2A4A]">
-                        <img
-                            src={post.image_path || '/img/cover.webp'}
-                            alt={post.title}
-                            className="h-full w-full object-cover opacity-80"
-                        />
-                        <div
-                            aria-hidden="true"
-                            className="absolute inset-0 bg-gradient-to-t from-[#07264A] via-[#07264A]/40 to-transparent"
-                        />
-                    </div>
-                    <div className="absolute inset-x-0 bottom-0">
-                        <div className="mx-auto max-w-3xl px-4 pb-8 sm:pb-10">
-                            <p className="text-[11px] font-extrabold uppercase tracking-widest text-brand-orange">
-                                {formatDate(post.created_at)}
-                            </p>
-                            <h1 className="mt-3 font-display text-[30px] uppercase leading-[1.05] text-white md:text-[44px]">
-                                {post.title}
-                            </h1>
+            <article>
+                <PageHeader
+                    label={formatDate(post.created_at)}
+                    title={post.title}
+                    image={post.image_path || '/img/cover.webp'}
+                    imageCover
+                    description={post.excerpt}
+                    titleClassName="font-normal"
+                />
+
+                <div className="bg-white">
+                    <div className="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-4 lg:py-24">
+                        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-14">
+                            <div className="min-w-0 lg:col-span-7">
+                                <Link
+                                    href="/blog"
+                                    className="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-widest text-gray-500 transition-colors hover:text-brand-orange"
+                                >
+                                    <LuArrowLeft className="h-3.5 w-3.5" />
+                                    Back to Blog
+                                </Link>
+
+                                <Body text={post.body} />
+
+                                {post.tags?.length > 0 && (
+                                    <div className="mt-10 flex flex-wrap gap-2">
+                                        {post.tags.map((tag) =>
+                                            tag.link ? (
+                                                <a
+                                                    key={tag.id}
+                                                    href={tag.link}
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                    className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-semibold text-gray-600 transition-colors hover:bg-brand-orange hover:text-white"
+                                                >
+                                                    {tag.image_path && (
+                                                        <img src={tag.image_path} alt="" className="h-4 w-4 rounded-full object-cover" />
+                                                    )}
+                                                    {tag.name}
+                                                    <LuExternalLink className="h-3 w-3 opacity-70" />
+                                                </a>
+                                            ) : (
+                                                <span
+                                                    key={tag.id}
+                                                    className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-semibold text-gray-600"
+                                                >
+                                                    {tag.image_path && (
+                                                        <img src={tag.image_path} alt="" className="h-4 w-4 rounded-full object-cover" />
+                                                    )}
+                                                    {tag.name}
+                                                </span>
+                                            )
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+
+                            <BlogSidebar />
                         </div>
-                    </div>
-                </div>
-
-                {/* Content + sidebar */}
-                <div className="mx-auto max-w-7xl px-4 py-12 lg:py-16">
-                    <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-12">
-                        <div className="min-w-0 lg:col-span-2">
-                            <Link
-                                href="/blog"
-                                className="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-widest text-gray-500 transition-colors hover:text-brand-orange"
-                            >
-                                <LuArrowLeft className="h-3.5 w-3.5" />
-                                Back to Blog
-                            </Link>
-
-                            {post.excerpt && (
-                                <p className="mt-6 font-body text-lg font-semibold leading-relaxed text-[#07264A]">
-                                    {post.excerpt}
-                                </p>
-                            )}
-
-                            <Body text={post.body} />
-
-                            {post.tags?.length > 0 && (
-                                <div className="mt-10 flex flex-wrap gap-2">
-                                    {post.tags.map((tag) =>
-                                        tag.link ? (
-                                            <a
-                                                key={tag.id}
-                                                href={tag.link}
-                                                target="_blank"
-                                                rel="noreferrer"
-                                                className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-semibold text-gray-600 transition-colors hover:bg-brand-orange hover:text-white"
-                                            >
-                                                {tag.image_path && (
-                                                    <img src={tag.image_path} alt="" className="h-4 w-4 rounded-full object-cover" />
-                                                )}
-                                                {tag.name}
-                                                <LuExternalLink className="h-3 w-3 opacity-70" />
-                                            </a>
-                                        ) : (
-                                            <span
-                                                key={tag.id}
-                                                className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-semibold text-gray-600"
-                                            >
-                                                {tag.image_path && (
-                                                    <img src={tag.image_path} alt="" className="h-4 w-4 rounded-full object-cover" />
-                                                )}
-                                                {tag.name}
-                                            </span>
-                                        )
-                                    )}
-                                </div>
-                            )}
-                        </div>
-
-                        <BlogSidebar />
                     </div>
                 </div>
             </article>
