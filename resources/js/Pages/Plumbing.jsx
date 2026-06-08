@@ -7,6 +7,7 @@ import ServiceArticle from '@/Components/FrontComponents/ServiceArticle';
 import RelatedLinks from '@/Components/FrontComponents/RelatedLinks';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 import Reviews from '@/Components/pages-sections/Home/Reviews';
+import { PillButton } from '@/Components/FrontComponents/PillButton';
 import { LuPhone } from 'react-icons/lu';
 
 const PHONE = '(732) 239-0932';
@@ -75,13 +76,9 @@ export default function PlumbingPage({ blocks = [], tags = [], reviews = [], seo
                     description="Licensed plumbers for emergency repairs, water heaters, leak detection, and repiping across central New Jersey. Flat-rate pricing, 24/7 response — call Guardian Air today."
                     titleClassName="font-normal"
                 >
-                    <a
-                        href={TEL}
-                        className="inline-flex items-center gap-2 rounded-full bg-gradient-to-b from-brand-yellow to-brand-orange px-6 py-3 text-sm font-bold uppercase tracking-wide text-[#003B73] shadow-lg shadow-black/25 ring-1 ring-black/5"
-                    >
-                        <LuPhone className="h-4 w-4" />
+                    <PillButton href={TEL} variant="yellow" size="md" icon="phone">
                         24/7 Emergency: {PHONE}
-                    </a>
+                    </PillButton>
                 </PageHeader>
 
                 <ServiceArticle

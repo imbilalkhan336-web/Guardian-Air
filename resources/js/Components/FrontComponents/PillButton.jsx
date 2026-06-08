@@ -1,3 +1,4 @@
+import { Link } from '@inertiajs/react';
 import { useScheduleModal } from '@/Components/FrontComponents/ScheduleModalProvider';
 
 function ShineSweep({ tint = 'light' }) {
@@ -42,9 +43,14 @@ const SIZE_CLASSES = {
     lg: { wrap: 'gap-2 px-12 py-4 text-base', icon: 'h-5 w-5' },
 };
 
+// Each variant carries its own colors, shadow, and ring so the base stays
+// neutral. `text` and `shine` drive the label color and the sweep tint.
 const VARIANT_CLASSES = {
-    light: 'bg-gradient-to-b from-white to-gray-200 transition-colors hover:from-gray-100 hover:to-gray-300',
-    yellow: 'bg-gradient-to-b from-brand-yellow to-brand-orange',
+    light: { bg: 'bg-gradient-to-b from-white to-gray-200 shadow-lg shadow-black/25 ring-1 ring-black/5 transition-colors hover:from-gray-100 hover:to-gray-300', text: 'text-[#003B73]', shine: 'dark' },
+    yellow: { bg: 'bg-gradient-to-b from-brand-yellow to-brand-orange shadow-lg shadow-black/25 ring-1 ring-black/5', text: 'text-[#003B73]', shine: 'light' },
+    orange: { bg: 'bg-gradient-to-r from-brand-orange to-brand-orange-dark shadow-lg shadow-brand-orange/30 ring-1 ring-black/5', text: 'text-white', shine: 'light' },
+    dark: { bg: 'bg-[#07264A] shadow-lg shadow-black/25 transition-colors hover:bg-brand-orange', text: 'text-white', shine: 'light' },
+    outline: { bg: 'border-2 border-brand-orange bg-transparent transition-colors hover:bg-brand-orange hover:text-white', text: 'text-brand-orange', shine: null },
 };
 
 export function PillButton({
@@ -62,25 +68,33 @@ export function PillButton({
     const Icon = icon === 'phone' ? PhoneIcon : icon === 'calendar' ? CalendarIcon : null;
 
     const classes = [
-        'group relative isolate flex cursor-pointer items-center justify-center overflow-hidden rounded-full',
-        'font-bold uppercase tracking-wide text-[#003B73]',
-        'shadow-lg shadow-black/25 ring-1 ring-black/5 whitespace-nowrap',
-        vr,
+        'group relative isolate inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-full',
+        'font-bold uppercase tracking-wide whitespace-nowrap',
+        vr.bg,
+        vr.text,
         sz.wrap,
         className,
     ].join(' ');
 
     const inner = (
         <>
-            <ShineSweep tint={variant === 'light' ? 'dark' : 'light'} />
+            {vr.shine && <ShineSweep tint={vr.shine} />}
             {Icon && <Icon className={`relative z-10 ${sz.icon}`} />}
-            <span className="relative z-10">{children}</span>
+            <span className="relative z-10 inline-flex items-center gap-2">{children}</span>
         </>
     );
 
-    // Render as an anchor when given an href, otherwise a real <button>
-    // (so it can act as a form submit/control).
+    // Internal route → Inertia <Link> (SPA nav); tel/mailto/external → <a>;
+    // no href → real <button> (form submit / onClick actions).
     if (href) {
+        const isInternal = href.startsWith('/');
+        if (isInternal) {
+            return (
+                <Link href={href} {...rest} className={classes}>
+                    {inner}
+                </Link>
+            );
+        }
         return (
             <a href={href} {...rest} className={classes}>
                 {inner}

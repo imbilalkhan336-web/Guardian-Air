@@ -8,7 +8,8 @@ import SectionHeading from '@/Components/FrontComponents/SectionHeading';
 import ScheduleForm from '@/Components/FrontComponents/ScheduleForm';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 import Reviews from '@/Components/pages-sections/Home/Reviews';
-import { LuArrowLeft, LuArrowRight, LuCheck, LuPhone } from 'react-icons/lu';
+import { PillButton } from '@/Components/FrontComponents/PillButton';
+import { LuArrowLeft, LuArrowRight, LuCheck } from 'react-icons/lu';
 
 const PHONE = '(732) 239-0932';
 
@@ -75,10 +76,33 @@ export default function TradeLocation({ trade, location, otherTrades = [], nearb
                                             throughout {loc} and the surrounding {location.county_name} area — with fast, often
                                             same-day response and honest, flat-rate pricing.
                                         </p>
-                                        <p>
+                                <p>
                                             Our technicians know the homes and systems common to {loc}, so we diagnose the real
                                             problem quickly and fix it right the first time. No upsells, no surprises — just
                                             reliable comfort backed by a satisfaction guarantee.
+                                        </p>
+                                        <p>
+                                            Visit our main{' '}
+                                            <Link href={`/${trade.slug}`} className="font-semibold text-blue-600 underline">
+                                                {trade.label.toLowerCase()} page
+                                            </Link>{' '}
+                                            for all our services, see{' '}
+                                            <Link href={`/service-areas/${location.county_slug}`} className="font-semibold text-blue-600 underline">
+                                                {location.county_name}
+                                            </Link>
+                                            {nearby.length > 0 && (
+                                                <>
+                                                    , or find us in{' '}
+                                                    {nearby.map((n, i) => (
+                                                        <span key={n.href}>
+                                                            <Link href={n.href} className="font-semibold text-blue-600 underline">
+                                                                {n.name}
+                                                            </Link>
+                                                            {i < nearby.length - 1 ? ' and ' : ''}
+                                                        </span>
+                                                    ))}
+                                                </>
+                                            )}.
                                         </p>
                                     </div>
                                 </section>
@@ -121,13 +145,9 @@ export default function TradeLocation({ trade, location, otherTrades = [], nearb
                                         confirm a time that works for you, often the same day.
                                     </p>
                                     <div className="mt-5">
-                                        <a
-                                            href={`tel:+1${PHONE.replace(/[^\d]/g, '')}`}
-                                            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-b from-brand-yellow to-brand-orange px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-[#003B73] shadow-lg shadow-black/20 ring-1 ring-black/5"
-                                        >
-                                            <LuPhone className="h-4 w-4" />
+                                        <PillButton href={`tel:+1${PHONE.replace(/[^\d]/g, '')}`} variant="yellow" size="md" icon="phone">
                                             Call {PHONE}
-                                        </a>
+                                        </PillButton>
                                     </div>
                                 </section>
 

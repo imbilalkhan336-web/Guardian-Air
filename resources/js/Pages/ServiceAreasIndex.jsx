@@ -90,7 +90,7 @@ export default function ServiceAreasIndex({ counties = [], reviews = [] }) {
                 {/* County hubs + city hubs */}
                 <section className="bg-gray-50 py-14 lg:py-20">
                     <div className="mx-auto max-w-7xl px-4">
-                        <div className="mb-10 text-center">
+                        <div className="mb-10">
                             <p className="text-[12px] font-extrabold uppercase tracking-[0.25em] text-brand-orange">Counties We Serve</p>
                             <h2 className="mt-2 font-display text-[28px] uppercase leading-[0.95] text-[#07264A] md:text-[34px]">
                                 Choose Your County

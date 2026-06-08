@@ -106,15 +106,15 @@ export default function ResourcesPage({ reviews = [], seo = {} }) {
                     />
 
                     <div className="relative mx-auto max-w-7xl px-4">
-                        <div className="mb-14 text-center lg:mb-16">
+                        <div className="mb-14 lg:mb-16">
                             <p className="text-[12px] font-extrabold uppercase tracking-[0.25em] text-brand-orange">
                                 Knowledge Base
                             </p>
                             <span
                                 aria-hidden="true"
-                                className="mx-auto mt-3 block h-0.5 w-10 rounded-full bg-brand-orange"
+                                className="mt-3 block h-0.5 w-10 rounded-full bg-brand-orange"
                             />
-                            <h2 className="mx-auto mt-4 max-w-2xl font-display text-[34px] uppercase leading-[0.95] text-[#07264A] md:text-[46px] lg:text-[54px]">
+                            <h2 className="mt-4 max-w-2xl font-display text-[34px] uppercase leading-[0.95] text-[#07264A] md:text-[46px] lg:text-[54px]">
                                 Expert Advice for <span className="text-brand-orange">Homeowners</span>
                             </h2>
                         </div>
@@ -161,15 +161,15 @@ export default function ResourcesPage({ reviews = [], seo = {} }) {
                     />
 
                     <div className="relative mx-auto max-w-7xl px-4">
-                        <div className="mb-14 text-center lg:mb-16">
+                        <div className="mb-14 lg:mb-16">
                             <p className="text-[12px] font-extrabold uppercase tracking-[0.25em] text-brand-orange">
                                 Stay Ahead
                             </p>
                             <span
                                 aria-hidden="true"
-                                className="mx-auto mt-3 block h-0.5 w-10 rounded-full bg-brand-orange"
+                                className="mt-3 block h-0.5 w-10 rounded-full bg-brand-orange"
                             />
-                            <h2 className="mx-auto mt-4 max-w-2xl font-display text-[34px] uppercase leading-[0.95] text-white md:text-[46px] lg:text-[54px]">
+                            <h2 className="mt-4 max-w-2xl font-display text-[34px] uppercase leading-[0.95] text-white md:text-[46px] lg:text-[54px]">
                                 Seasonal <span className="text-brand-orange">Maintenance</span> Checklist
                             </h2>
                         </div>

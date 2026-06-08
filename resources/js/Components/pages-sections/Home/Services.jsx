@@ -1,4 +1,5 @@
 import { LuSnowflake, LuDroplet, LuBuilding2, LuArrowRight } from 'react-icons/lu';
+import { PillButton, PhonePillButton } from '@/Components/FrontComponents/PillButton';
 
 function ServiceCard({ icon: Icon, title, body, href = '#', index }) {
     return (
@@ -58,18 +59,18 @@ export default function Services() {
 
             <div className="relative mx-auto max-w-7xl px-4">
                 {/* Section header */}
-                <div className="mx-auto max-w-3xl text-center">
+                <div className="max-w-3xl">
                     <p className="text-[12px] font-extrabold uppercase tracking-[0.25em] text-brand-orange">
                         Our Services
                     </p>
                     <span
                         aria-hidden="true"
-                        className="mx-auto mt-3 block h-0.5 w-10 rounded-full bg-brand-orange"
+                        className="mt-3 block h-0.5 w-10 rounded-full bg-brand-orange"
                     />
                     <h2 className="mt-4 font-display text-[38px] uppercase leading-[0.95] text-[#07264A] md:text-[50px] lg:text-[60px]">
                         Complete <span className="text-brand-orange">Comfort</span> Solutions
                     </h2>
-                    <p className="mx-auto mt-5 max-w-xl font-body text-base leading-relaxed text-gray-600">
+                    <p className="mt-5 max-w-xl font-body text-base leading-relaxed text-gray-600">
                         Professional heating, cooling, plumbing, and drain services designed to keep
                         your home safe, efficient, and comfortable year-round.
                     </p>
@@ -82,14 +83,14 @@ export default function Services() {
                         icon={LuSnowflake}
                         title="HVAC Services"
                         body="Installation, repair, and maintenance for heating and cooling systems. Stay comfortable in every season with our licensed technicians."
-                        href="#"
+                        href="/heating"
                     />
                     <ServiceCard
                         index={1}
                         icon={LuDroplet}
                         title="Plumbing Services"
                         body="Expert plumbing solutions for repairs, installations, drain cleaning, and emergencies. Fast response when you need it most."
-                        href="#"
+                        href="/plumbing"
                     />
                     <ServiceCard
                         index={2}
@@ -100,22 +101,18 @@ export default function Services() {
                     />
                 </div>
 
-                {/* Bottom CTA */}
-                <div className="mt-14 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                    <a
-                        href="/services"
-                        className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-b from-brand-yellow to-brand-orange px-8 py-3.5 text-sm font-bold uppercase tracking-wide text-[#003B73] shadow-lg shadow-black/15 ring-1 ring-black/5 transition-all hover:shadow-xl hover:shadow-black/20"
-                    >
+                {/* Bottom CTA — same pill style as the header buttons */}
+                <div className="mt-14 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                    <PillButton href="/services" variant="yellow" size="md" className="w-full sm:w-auto">
                         View All Services
-                        <LuArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </a>
-                    <span className="hidden text-sm text-gray-400 sm:block">or</span>
-                    <a
-                        href="tel:+17322390932"
-                        className="text-sm font-bold uppercase tracking-wide text-[#003B73] underline decoration-brand-orange underline-offset-4 transition-colors hover:text-brand-orange"
-                    >
-                        Call (732) 239-0932
-                    </a>
+                        <LuArrowRight className="h-4 w-4" />
+                    </PillButton>
+                    <PhonePillButton
+                        phone="(732) 239-0932"
+                        label="Call (732) 239-0932"
+                        size="md"
+                        className="w-full sm:w-auto"
+                    />
                 </div>
             </div>
         </section>

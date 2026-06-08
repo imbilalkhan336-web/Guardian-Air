@@ -7,7 +7,8 @@ import ServiceSchema from '@/Components/FrontComponents/ServiceSchema';
 import SectionHeading from '@/Components/FrontComponents/SectionHeading';
 import ScheduleForm from '@/Components/FrontComponents/ScheduleForm';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
-import { LuArrowLeft, LuArrowRight, LuCheck, LuPhone } from 'react-icons/lu';
+import { PillButton } from '@/Components/FrontComponents/PillButton';
+import { LuArrowLeft, LuArrowRight, LuCheck } from 'react-icons/lu';
 
 const PHONE = '(732) 239-0932';
 
@@ -74,6 +75,35 @@ export default function ServiceSubpage({ trade, service, siblings = [], reviews 
                                         {service.intro}
                                     </p>
                                 )}
+
+                                {/* In-content contextual links */}
+                                <p className="mt-4 font-body text-[15px] leading-relaxed text-gray-600 md:text-base">
+                                    Explore our full range of{' '}
+                                    <Link href={`/${trade.slug}`} className="font-semibold text-blue-600 underline">
+                                        {trade.label.toLowerCase()} services
+                                    </Link>
+                                    {related.length > 0 && (
+                                        <>
+                                            {' '}— including{' '}
+                                            {related.map((s, i) => (
+                                                <span key={s.href}>
+                                                    <Link href={s.href} className="font-semibold text-blue-600 underline">
+                                                        {s.name.toLowerCase()}
+                                                    </Link>
+                                                    {i < related.length - 1 ? ' and ' : ''}
+                                                </span>
+                                            ))}
+                                        </>
+                                    )}
+                                    {' '}— or{' '}
+                                    <Link href="/contact" className="font-semibold text-blue-600 underline">
+                                        contact us
+                                    </Link>{' '}
+                                    for fast service across{' '}
+                                    <Link href="/service-areas" className="font-semibold text-blue-600 underline">
+                                        Monmouth, Middlesex &amp; Ocean counties
+                                    </Link>.
+                                </p>
 
                                 {service.highlights?.length > 0 && (
                                     <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -144,13 +174,15 @@ export default function ServiceSubpage({ trade, service, siblings = [], reviews 
                             <aside className="lg:col-span-5">
                                 <div className="space-y-6 lg:sticky lg:top-24">
                                     <ScheduleForm headingClassName="font-normal" />
-                                    <a
+                                    <PillButton
                                         href={`tel:+1${PHONE.replace(/[^\d]/g, '')}`}
-                                        className="flex items-center justify-center gap-2 rounded-2xl bg-[#07264A] px-6 py-4 font-display text-lg uppercase tracking-wide text-white transition-colors hover:bg-brand-orange"
+                                        variant="dark"
+                                        size="md"
+                                        icon="phone"
+                                        className="w-full"
                                     >
-                                        <LuPhone className="h-5 w-5" />
                                         {PHONE}
-                                    </a>
+                                    </PillButton>
                                 </div>
                             </aside>
                         </div>

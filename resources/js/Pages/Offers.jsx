@@ -3,6 +3,7 @@ import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 import ScheduleSection from '@/Components/FrontComponents/ScheduleSection';
+import { PillButton } from '@/Components/FrontComponents/PillButton';
 import { useScheduleModal } from '@/Components/FrontComponents/ScheduleModalProvider';
 import {
     LuPercent,
@@ -119,15 +120,15 @@ export default function OffersPage({ reviews = [], seo = {} }) {
                     />
 
                     <div className="relative mx-auto max-w-7xl px-4">
-                        <div className="mb-14 text-center lg:mb-16">
+                        <div className="mb-14 lg:mb-16">
                             <p className="text-[12px] font-extrabold uppercase tracking-[0.25em] text-brand-orange">
                                 Active Promotions
                             </p>
                             <span
                                 aria-hidden="true"
-                                className="mx-auto mt-3 block h-0.5 w-10 rounded-full bg-brand-orange"
+                                className="mt-3 block h-0.5 w-10 rounded-full bg-brand-orange"
                             />
-                            <h2 className="mx-auto mt-4 max-w-2xl font-display text-[34px] uppercase leading-[0.95] text-[#07264A] md:text-[46px] lg:text-[54px]">
+                            <h2 className="mt-4 max-w-2xl font-display text-[34px] uppercase leading-[0.95] text-[#07264A] md:text-[46px] lg:text-[54px]">
                                 Deals You Can <span className="text-brand-orange">Use Today</span>
                             </h2>
                         </div>
@@ -155,13 +156,10 @@ export default function OffersPage({ reviews = [], seo = {} }) {
                                     <p className="mt-4 text-[10px] font-extrabold uppercase tracking-widest text-gray-400">
                                         {offer.expires}
                                     </p>
-                                    <a
-                                        href="/contact"
-                                        className="mt-5 inline-flex items-center justify-center gap-2 rounded-full border-2 border-brand-orange px-6 py-2.5 text-xs font-extrabold uppercase tracking-widest text-brand-orange transition-all hover:bg-brand-orange hover:text-white"
-                                    >
+                                    <PillButton href="/contact" variant="outline" size="sm" className="mt-5 tracking-widest">
                                         {offer.cta}
                                         <LuArrowRight className="h-3.5 w-3.5" />
-                                    </a>
+                                    </PillButton>
                                 </div>
                             ))}
                         </div>
@@ -180,15 +178,15 @@ export default function OffersPage({ reviews = [], seo = {} }) {
                     />
 
                     <div className="relative mx-auto max-w-7xl px-4">
-                        <div className="mb-14 text-center lg:mb-16">
+                        <div className="mb-14 lg:mb-16">
                             <p className="text-[12px] font-extrabold uppercase tracking-[0.25em] text-brand-orange">
                                 Easy Savings
                             </p>
                             <span
                                 aria-hidden="true"
-                                className="mx-auto mt-3 block h-0.5 w-10 rounded-full bg-brand-orange"
+                                className="mt-3 block h-0.5 w-10 rounded-full bg-brand-orange"
                             />
-                            <h2 className="mx-auto mt-4 max-w-2xl font-display text-[34px] uppercase leading-[0.95] text-white md:text-[46px] lg:text-[54px]">
+                            <h2 className="mt-4 max-w-2xl font-display text-[34px] uppercase leading-[0.95] text-white md:text-[46px] lg:text-[54px]">
                                 How to <span className="text-brand-orange">Redeem</span>
                             </h2>
                         </div>
@@ -213,21 +211,13 @@ export default function OffersPage({ reviews = [], seo = {} }) {
                         </div>
 
                         <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                            <button
-                                type="button"
-                                onClick={open}
-                                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-orange to-brand-orange-dark px-8 py-3.5 text-sm font-extrabold uppercase tracking-widest text-white shadow-lg shadow-brand-orange/30 transition-all hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0"
-                            >
+                            <PillButton onClick={open} variant="orange" size="md">
                                 <LuArrowRight className="h-4 w-4" />
                                 Schedule Online
-                            </button>
-                            <a
-                                href="tel:7322390932"
-                                className="inline-flex items-center gap-2 rounded-full border-2 border-white/20 px-8 py-3.5 text-sm font-extrabold uppercase tracking-widest text-white transition-all hover:border-white/40 hover:bg-white/5"
-                            >
-                                <LuPhone className="h-4 w-4" />
+                            </PillButton>
+                            <PillButton href="tel:+17322390932" variant="light" size="md" icon="phone">
                                 Call (732) 239-0932
-                            </a>
+                            </PillButton>
                         </div>
                     </div>
                 </section>

@@ -1,5 +1,6 @@
 import { Link } from '@inertiajs/react';
 import { LuArrowRight, LuChevronRight } from 'react-icons/lu';
+import { PillButton } from '@/Components/FrontComponents/PillButton';
 
 /**
  * Polished internal-links block used at the bottom of service pages.
@@ -12,7 +13,7 @@ export default function RelatedLinks({ eyebrow = 'Explore', heading = 'Related S
     return (
         <section className="border-t border-gray-100 bg-gradient-to-b from-gray-50 to-white py-16 lg:py-20">
             <div className="mx-auto max-w-7xl px-4">
-                <div className="mb-10 text-center">
+                <div className="mb-10">
                     {eyebrow && (
                         <p className="text-[12px] font-extrabold uppercase tracking-[0.25em] text-brand-orange">{eyebrow}</p>
                     )}
@@ -53,13 +54,10 @@ export default function RelatedLinks({ eyebrow = 'Explore', heading = 'Related S
                 {(viewAll || note) && (
                     <div className="mt-12 flex flex-col items-center gap-4">
                         {viewAll && (
-                            <Link
-                                href={viewAll.href}
-                                className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-b from-brand-yellow to-brand-orange px-8 py-3.5 text-sm font-bold uppercase tracking-wide text-[#003B73] shadow-lg shadow-black/20 ring-1 ring-black/5 transition-transform hover:-translate-y-0.5"
-                            >
+                            <PillButton href={viewAll.href} variant="yellow" size="md">
                                 {viewAll.label}
-                                <LuArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                            </Link>
+                                <LuArrowRight className="h-4 w-4" />
+                            </PillButton>
                         )}
                         {note}
                     </div>
