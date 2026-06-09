@@ -45,3 +45,11 @@
 .admin-sidebar-scroll:hover::-webkit-scrollbar-thumb {
     background-color: rgba(247, 148, 29, 0.6); /* brand orange on hover */
 }
+
+/* Mobile: give headings extra line-height so wrapped titles aren't cramped.
+   Uses !important to override tight Tailwind leading-[0.95]/leading-tight utilities. */
+@media (max-width: 639px) {
+    h1, h2, h3, h4, h5, h6 {
+        line-height: 1.25 !important;
+    }
+}

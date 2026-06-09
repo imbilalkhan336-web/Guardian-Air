@@ -4,6 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        @unless (config('app.indexable', true))
+            <meta name="robots" content="noindex, nofollow">
+        @endunless
+
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="/images/fav-icon.png">
         <link rel="shortcut icon" type="image/png" href="/images/fav-icon.png">

@@ -16,6 +16,12 @@ return [
     'name' => env('APP_NAME', 'Laravel'),
 
     /*
+    | Whether search engines may index the site. Set APP_INDEXABLE=false in
+    | the environment to force noindex site-wide (e.g. pre-launch on live).
+    */
+    'indexable' => env('APP_INDEXABLE', true),
+
+    /*
     |--------------------------------------------------------------------------
     | Application Environment
     |--------------------------------------------------------------------------

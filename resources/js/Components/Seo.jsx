@@ -1,18 +1,22 @@
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 
 /**
  * Renders SEO meta tags from an admin-managed `seo` object (passed as a
  * page prop). Falls back to the provided fallback title/description when
  * a page has no SEO record yet.
+ *
+ * When the site is flagged non-indexable (pre-launch via APP_INDEXABLE),
+ * every page is forced to noindex regardless of its own robots setting.
  */
 export default function Seo({ seo = {}, fallbackTitle = '', fallbackDescription = '' }) {
+    const { indexable = true } = usePage().props;
     const title = seo.title || fallbackTitle;
     const description = seo.description || fallbackDescription;
     const ogTitle = seo.og_title || title;
     const ogDescription = seo.og_description || description;
     const ogImage = seo.og_image || null;
     const canonical = seo.canonical || null;
-    const robots = seo.robots || 'index, follow';
+    const robots = indexable === false ? 'noindex, nofollow' : seo.robots || 'index, follow';
 
     return (
         <Head>

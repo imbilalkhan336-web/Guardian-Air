@@ -41,6 +41,8 @@ class HandleInertiaRequests extends Middleware
             ],
             'reviews' => fn () => Review::published()->get(),
             'siteSettings' => fn () => SiteSetting::map(),
+            // Pre-launch flag: when false, every page renders noindex.
+            'indexable' => (bool) config('app.indexable', true),
         ];
     }
 }
