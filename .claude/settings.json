@@ -3,7 +3,11 @@
     "allow": [
       "Bash(php -l app/Support/SiteStructure.php)",
       "Bash(php -r ' *)",
-      "Bash(awk 'NR>=27 && NR<=267' app/Support/SiteStructure.php)"
+      "Bash(awk 'NR>=27 && NR<=267' app/Support/SiteStructure.php)",
+      "Bash(php -r '$s=file_get_contents\\(\"database/seeders/ContentBlockSeeder.php\"\\); preg_match_all\\(\"/<p>\\(.*?\\)<\\\\/p>/s\",$s,$m\\); foreach\\($m[1] as $i=>$p\\){$n=substr_count\\($p,\"<a href\"\\); if\\($n>2\\) echo \"#$i: $n links\\\\n\".$p.\"\\\\n\\\\n\";}')",
+      "Bash(php -r '$s=file_get_contents\\(\"database/seeders/ContentBlockSeeder.php\"\\); preg_match_all\\(\"/<p>\\(.*?\\)<\\\\/p>/s\",$s,$m\\); foreach\\($m[1] as $i=>$p\\){$n=substr_count\\($p,\"<a href\"\\); if\\($n>2\\) echo \"#$i: $n links\\\\n\".$p.\"\\\\n\\\\n\";} echo \"DETECTOR DONE\\\\n\";')",
+      "Bash(php -l database/seeders/ContentBlockSeeder.php)",
+      "Bash(php /tmp/linkcheck.php)"
     ]
   }
 }
