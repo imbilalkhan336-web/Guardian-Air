@@ -14,6 +14,7 @@ class Submission extends Model
         'service',
         'preferred_date',
         'message',
+        'source_page',
         'is_read',
     ];
 

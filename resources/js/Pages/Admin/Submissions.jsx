@@ -15,6 +15,7 @@ import {
     LuArrowRight,
     LuEye,
     LuX,
+    LuExternalLink,
 } from 'react-icons/lu';
 
 function formatDate(value) {
@@ -112,6 +113,22 @@ function SubmissionDetail({ submission, onClose, onToggleRead, onDelete }) {
                             <p className="mt-1 whitespace-pre-wrap rounded-xl bg-gray-50 p-4 text-sm leading-relaxed text-gray-700">
                                 {submission.message}
                             </p>
+                        </div>
+                    )}
+
+                    {/* Submitted From (source page) */}
+                    {submission.source_page && (
+                        <div>
+                            <p className="text-[11px] font-extrabold uppercase tracking-widest text-gray-400">Submitted From</p>
+                            <a
+                                href={submission.source_page}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="mt-0.5 inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 underline"
+                            >
+                                <LuExternalLink className="h-3.5 w-3.5" />
+                                {submission.source_page}
+                            </a>
                         </div>
                     )}
 

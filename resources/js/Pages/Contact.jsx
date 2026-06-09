@@ -76,6 +76,7 @@ export default function ContactPage({ reviews = [], seo = {} }) {
                 phone: form.phone,
                 service: form.service,
                 message: form.message,
+                source_page: typeof window !== 'undefined' ? window.location.pathname : null,
             },
             {
                 preserveScroll: true,

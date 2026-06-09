@@ -21,6 +21,7 @@ class SubmissionController extends Controller
             'service' => ['nullable', 'string', 'max:100'],
             'preferred_date' => ['nullable', 'date'],
             'message' => ['nullable', 'string', 'max:5000'],
+            'source_page' => ['nullable', 'string', 'max:255'],
         ]);
 
         Submission::create($validated);
@@ -43,6 +44,7 @@ class SubmissionController extends Controller
                 'service' => $s->service,
                 'preferred_date' => $s->preferred_date?->toDateString(),
                 'message' => $s->message,
+                'source_page' => $s->source_page,
                 'is_read' => $s->is_read,
                 'created_at' => $s->created_at->toDateTimeString(),
             ]),

@@ -35,6 +35,7 @@ export default function ScheduleForm({ headingClassName = '' }) {
                 email: form.email,
                 preferred_date: form.date,
                 message: form.message,
+                source_page: typeof window !== 'undefined' ? window.location.pathname : null,
             },
             {
                 preserveScroll: true,
