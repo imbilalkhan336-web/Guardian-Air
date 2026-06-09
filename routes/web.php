@@ -201,6 +201,14 @@ Route::get('/offers', function () use ($getReviews, $seo) {
     return Inertia::render('Offers', ['reviews' => $getReviews(), 'seo' => $seo('offers')]);
 })->name('offers');
 
+// Testimonials.
+Route::get('/testimonials', function () use ($getReviews) {
+    return Inertia::render('Testimonials', ['reviews' => $getReviews()]);
+})->name('testimonials');
+
+// Careers / Join Our Team.
+Route::get('/careers', fn () => Inertia::render('Careers'))->name('careers');
+
 // Legal pages.
 Route::get('/terms', fn () => Inertia::render('Terms'))->name('terms');
 Route::get('/privacy', fn () => Inertia::render('Privacy'))->name('privacy');

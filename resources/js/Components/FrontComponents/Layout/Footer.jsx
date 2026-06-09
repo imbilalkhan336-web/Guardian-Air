@@ -19,8 +19,8 @@ const linkGroups = [
         title: 'Company',
         items: [
             { label: 'About Us', href: '/about' },
-            { label: 'Join Our Team', href: '#' },
-            { label: 'Testimonials', href: '#' },
+            { label: 'Join Our Team', href: '/careers' },
+            { label: 'Testimonials', href: '/testimonials' },
             { label: 'Blog', href: '/blog' },
             { label: 'Contact', href: '/contact' },
             { label: 'Offers', href: '/offers' },
