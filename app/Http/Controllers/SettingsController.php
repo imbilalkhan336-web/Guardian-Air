@@ -27,6 +27,7 @@ class SettingsController extends Controller
             'reviews_count' => ['nullable', 'string', 'max:20'],
             'reviews_rating' => ['nullable', 'string', 'max:10'],
             'phone' => ['nullable', 'string', 'max:30'],
+            'notification_email' => ['nullable', 'email', 'max:255'],
         ]);
 
         foreach ($validated as $key => $value) {

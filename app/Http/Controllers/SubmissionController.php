@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SubmissionReceived;
+use App\Models\SiteSetting;
 use App\Models\Submission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 
 class SubmissionController extends Controller
@@ -24,7 +28,18 @@ class SubmissionController extends Controller
             'source_page' => ['nullable', 'string', 'max:255'],
         ]);
 
-        Submission::create($validated);
+        $submission = Submission::create($validated);
+
+        // Email the lead to the configured recipient. A mail failure must
+        // never break the visitor's submission, so it's wrapped and logged.
+        $recipient = SiteSetting::get('notification_email');
+        if ($recipient) {
+            try {
+                Mail::to($recipient)->send(new SubmissionReceived($submission));
+            } catch (\Throwable $e) {
+                Log::error('Submission notification email failed: '.$e->getMessage());
+            }
+        }
 
         return back()->with('success', 'Your submission has been received. We will contact you soon.');
     }

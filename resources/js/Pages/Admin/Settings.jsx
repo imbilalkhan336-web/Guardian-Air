@@ -11,6 +11,7 @@ export default function Settings({ settings = {} }) {
         reviews_count: settings.reviews_count ?? '',
         reviews_rating: settings.reviews_rating ?? '',
         phone: settings.phone ?? '',
+        notification_email: settings.notification_email ?? '',
     });
 
     const submit = (e) => {
@@ -70,18 +71,33 @@ export default function Settings({ settings = {} }) {
 
                 {/* Contact */}
                 <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-                    <p className="font-display text-xl uppercase text-[#07264A]">Contact</p>
-                    <div className="mt-4">
-                        <label htmlFor="phone" className={labelClass}>Phone Number</label>
-                        <input
-                            id="phone"
-                            type="text"
-                            value={data.phone}
-                            onChange={(e) => setData('phone', e.target.value)}
-                            placeholder="(732) 239-0932"
-                            className={inputClass}
-                        />
-                        {errors.phone && <p className="mt-1 text-xs text-red-600">{errors.phone}</p>}
+                    <p className="font-display text-xl uppercase text-[#07264A]">Contact & Leads</p>
+                    <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                        <div>
+                            <label htmlFor="phone" className={labelClass}>Phone Number</label>
+                            <input
+                                id="phone"
+                                type="text"
+                                value={data.phone}
+                                onChange={(e) => setData('phone', e.target.value)}
+                                placeholder="(732) 239-0932"
+                                className={inputClass}
+                            />
+                            {errors.phone && <p className="mt-1 text-xs text-red-600">{errors.phone}</p>}
+                        </div>
+                        <div>
+                            <label htmlFor="notification_email" className={labelClass}>Lead Notification Email</label>
+                            <input
+                                id="notification_email"
+                                type="email"
+                                value={data.notification_email}
+                                onChange={(e) => setData('notification_email', e.target.value)}
+                                placeholder="info@guardianairnj.com"
+                                className={inputClass}
+                            />
+                            <p className="mt-1 text-[11px] text-gray-400">Contact &amp; schedule form submissions are emailed here.</p>
+                            {errors.notification_email && <p className="mt-1 text-xs text-red-600">{errors.notification_email}</p>}
+                        </div>
                     </div>
                 </div>
 

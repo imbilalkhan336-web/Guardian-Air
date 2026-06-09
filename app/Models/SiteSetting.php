@@ -15,6 +15,8 @@ class SiteSetting extends Model
         'reviews_count' => '200',
         'reviews_rating' => '4.8',
         'phone' => '(732) 239-0932',
+        // Email address that receives contact/schedule form submissions.
+        'notification_email' => 'info@guardianairnj.com',
     ];
 
     /**
