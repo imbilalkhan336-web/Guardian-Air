@@ -122,7 +122,7 @@ function ReviewModal({ review, onClose }) {
                             rows={5}
                             value={data.body}
                             onChange={(e) => setData('body', e.target.value)}
-                            className={inputClass}
+                            className="mt-1.5"
                             placeholder="Write the review here…"
                         />
                         {errors.body && <p className="mt-1 text-xs font-semibold text-red-500">{errors.body}</p>}

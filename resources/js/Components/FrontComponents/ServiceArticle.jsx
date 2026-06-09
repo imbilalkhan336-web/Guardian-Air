@@ -214,7 +214,7 @@ function BlockForm({ block, tags, onSave, onCancel, saving }) {
                             rows={block.type === 'faq' ? 4 : 7}
                             value={body}
                             onChange={(e) => setBody(e.target.value)}
-                            className={inputClass}
+                            className="mt-1.5"
                         />
                     </div>
                 )}

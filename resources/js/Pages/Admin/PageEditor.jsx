@@ -163,7 +163,7 @@ function InlineEditor({ block, page, tags, onDone }) {
                         rows={8}
                         value={data.body}
                         onChange={(e) => setData('body', e.target.value)}
-                        className={inputClass}
+                        className="mt-1.5"
                     />
                     {errors.body && <p className="mt-1 text-xs font-semibold text-red-500">{errors.body}</p>}
                 </div>
@@ -443,7 +443,7 @@ function AddSectionModal({ page, tags, onClose }) {
                             rows={8}
                             value={data.body}
                             onChange={(e) => setData('body', e.target.value)}
-                            className={inputClass}
+                            className="mt-1.5"
                             placeholder="Write the section content here…"
                         />
                         {errors.body && <p className="mt-1 text-xs font-semibold text-red-500">{errors.body}</p>}

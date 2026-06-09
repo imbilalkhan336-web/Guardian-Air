@@ -147,7 +147,7 @@ export default function BlogEditor({ post = null, tags = [] }) {
                                 rows={14}
                                 value={data.body}
                                 onChange={(val) => setData('body', val)}
-                                className={inputClass}
+                                className="mt-1.5"
                                 placeholder="Write the article here…"
                             />
                             {errors.body && <p className="mt-1 text-xs font-semibold text-red-500">{errors.body}</p>}
