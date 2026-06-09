@@ -1,6 +1,27 @@
 import { LuSnowflake, LuDroplet, LuBuilding2, LuArrowRight } from 'react-icons/lu';
 import { PillButton, PhonePillButton } from '@/Components/FrontComponents/PillButton';
 
+const DEFAULT_SERVICES = [
+    {
+        icon: LuSnowflake,
+        title: 'HVAC Services',
+        body: 'Installation, repair, and maintenance for heating and cooling systems. Stay comfortable in every season with our licensed technicians.',
+        href: '/heating',
+    },
+    {
+        icon: LuDroplet,
+        title: 'Plumbing Services',
+        body: 'Expert plumbing solutions for repairs, installations, drain cleaning, and emergencies. Fast response when you need it most.',
+        href: '/plumbing',
+    },
+    {
+        icon: LuBuilding2,
+        title: 'HVAC Commercial',
+        body: 'Commercial heating, cooling, and plumbing for offices, retail, and multi-unit properties. Keep your business running comfortably year-round.',
+        href: '/commercial-hvac',
+    },
+];
+
 function ServiceCard({ icon: Icon, title, body, href = '#', index }) {
     return (
         <div className="group relative isolate flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white p-7 shadow-sm transition-all duration-500 ease-out hover:-translate-y-2 hover:border-brand-orange/40 hover:shadow-2xl sm:p-8">
@@ -44,7 +65,7 @@ function ServiceCard({ icon: Icon, title, body, href = '#', index }) {
     );
 }
 
-export default function Services() {
+export default function Services({ items = DEFAULT_SERVICES }) {
     return (
         <section className="relative overflow-hidden bg-gradient-to-b from-white via-gray-50 to-white py-20 lg:py-28">
             {/* Decorative blur orbs */}
@@ -78,27 +99,16 @@ export default function Services() {
 
                 {/* Service cards */}
                 <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    <ServiceCard
-                        index={0}
-                        icon={LuSnowflake}
-                        title="HVAC Services"
-                        body="Installation, repair, and maintenance for heating and cooling systems. Stay comfortable in every season with our licensed technicians."
-                        href="/heating"
-                    />
-                    <ServiceCard
-                        index={1}
-                        icon={LuDroplet}
-                        title="Plumbing Services"
-                        body="Expert plumbing solutions for repairs, installations, drain cleaning, and emergencies. Fast response when you need it most."
-                        href="/plumbing"
-                    />
-                    <ServiceCard
-                        index={2}
-                        icon={LuBuilding2}
-                        title="HVAC Commercial"
-                        body="Commercial heating, cooling, and plumbing for offices, retail, and multi-unit properties. Keep your business running comfortably year-round."
-                        href="/commercial-hvac"
-                    />
+                    {items.map((item, index) => (
+                        <ServiceCard
+                            key={item.title}
+                            index={index}
+                            icon={item.icon}
+                            title={item.title}
+                            body={item.body}
+                            href={item.href}
+                        />
+                    ))}
                 </div>
 
                 {/* Bottom CTA — same pill style as the header buttons */}

@@ -1,9 +1,50 @@
+import { LuFlame, LuSnowflake, LuDroplet, LuWind, LuWaves, LuBuilding2 } from 'react-icons/lu';
 import Seo from '@/Components/Seo';
 import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
 import Services from '@/Components/pages-sections/Home/Services';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 import ScheduleSection from '@/Components/FrontComponents/ScheduleSection';
+
+const ALL_SERVICES = [
+    {
+        icon: LuFlame,
+        title: 'Heating',
+        body: 'Furnace and heat pump repair, replacement, and tune-ups to keep your home warm through every NJ winter.',
+        href: '/heating',
+    },
+    {
+        icon: LuSnowflake,
+        title: 'Cooling',
+        body: 'AC repair, installation, and seasonal maintenance so you stay comfortable when the heat and humidity hit.',
+        href: '/cooling',
+    },
+    {
+        icon: LuDroplet,
+        title: 'Plumbing',
+        body: 'Licensed plumbers for leaks, water heaters, fixtures, and emergencies — fast response when you need it most.',
+        href: '/plumbing',
+    },
+    {
+        icon: LuWind,
+        title: 'Indoor Air Quality',
+        body: 'Air duct cleaning, filtration, and humidity control to keep the air in your home cleaner and healthier.',
+        href: '/indoor-air-quality',
+    },
+    {
+        icon: LuWaves,
+        title: 'Drains',
+        body: 'Drain cleaning, clog removal, and camera inspections to clear blockages and prevent backups.',
+        href: '/drains',
+    },
+    {
+        icon: LuBuilding2,
+        title: 'Commercial HVAC',
+        body: 'Heating, cooling, and plumbing for offices, retail, and multi-unit properties — keep your business running.',
+        href: '/commercial-hvac',
+    },
+];
+
 export default function ServicesPage({ reviews = [], seo = {} }) {
     return (
         <SiteLayout reviews={reviews}>
@@ -21,7 +62,7 @@ export default function ServicesPage({ reviews = [], seo = {} }) {
                 />
 
                 <div className="pt-12">
-                    <Services />
+                    <Services items={ALL_SERVICES} />
                 </div>
 
                 {/* SEO Content — Why Guardian Air */}
