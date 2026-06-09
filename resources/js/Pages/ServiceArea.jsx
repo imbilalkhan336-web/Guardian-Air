@@ -53,9 +53,9 @@ export default function ServiceArea({ area, cities = [], trades = [], reviews = 
                                     <SectionHeading sizeClass="text-[30px] font-normal">
                                         Your Local HVAC &amp; Plumbing Team in {area.name}
                                     </SectionHeading>
-                                    <div className="mt-6 space-y-4 font-body text-[15px] leading-relaxed text-gray-600 md:text-base">
+                                    <div className="mt-6 space-y-4 font-body text-[15px] leading-relaxed text-gray-600 md:text-base [&_a]:font-semibold [&_a]:text-blue-600 [&_a]:underline">
                                         {intro.map((p, i) => (
-                                            <p key={i}>{p}</p>
+                                            <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
                                         ))}
                                     </div>
                                 </section>

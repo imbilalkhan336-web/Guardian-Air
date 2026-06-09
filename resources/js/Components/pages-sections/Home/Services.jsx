@@ -65,7 +65,7 @@ function ServiceCard({ icon: Icon, title, body, href = '#', index }) {
     );
 }
 
-export default function Services({ items = DEFAULT_SERVICES }) {
+export default function Services({ items = DEFAULT_SERVICES, showViewAll = true }) {
     return (
         <section className="relative overflow-hidden bg-gradient-to-b from-white via-gray-50 to-white py-20 lg:py-28">
             {/* Decorative blur orbs */}
@@ -113,10 +113,12 @@ export default function Services({ items = DEFAULT_SERVICES }) {
 
                 {/* Bottom CTA — same pill style as the header buttons */}
                 <div className="mt-14 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                    <PillButton href="/services" variant="yellow" size="md" className="w-full sm:w-auto">
-                        View All Services
-                        <LuArrowRight className="h-4 w-4" />
-                    </PillButton>
+                    {showViewAll && (
+                        <PillButton href="/services" variant="yellow" size="md" className="w-full sm:w-auto">
+                            View All Services
+                            <LuArrowRight className="h-4 w-4" />
+                        </PillButton>
+                    )}
                     <PhonePillButton
                         phone="(732) 239-0932"
                         label="Call (732) 239-0932"

@@ -62,7 +62,7 @@ export default function ServicesPage({ reviews = [], seo = {} }) {
                 />
 
                 <div className="pt-12">
-                    <Services items={ALL_SERVICES} />
+                    <Services items={ALL_SERVICES} showViewAll={false} />
                 </div>
 
                 {/* SEO Content — Why Guardian Air */}

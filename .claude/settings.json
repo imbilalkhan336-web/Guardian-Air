@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php -l app/Support/SiteStructure.php)",
+      "Bash(php -r ' *)",
+      "Bash(awk 'NR>=27 && NR<=267' app/Support/SiteStructure.php)"
+    ]
+  }
+}
