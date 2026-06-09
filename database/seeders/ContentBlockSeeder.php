@@ -18,9 +18,13 @@ class ContentBlockSeeder extends Seeder
      * To intentionally reset a page back to these defaults, delete its
      * blocks in the admin panel (or the DB) first, then re-run the seeder.
      */
-    public function run(): void
+    /**
+     * The full default content for every page, keyed by page slug.
+     * Exposed so the `content:reset` command can re-apply defaults.
+     */
+    public function data(): array
     {
-        $pages = [
+        return [
             'heating' => $this->heating(),
             'cooling' => $this->cooling(),
             'plumbing' => $this->plumbing(),
@@ -29,6 +33,11 @@ class ContentBlockSeeder extends Seeder
             'drains' => $this->drains(),
             'commercial' => $this->commercial(),
         ];
+    }
+
+    public function run(): void
+    {
+        $pages = $this->data();
 
         foreach ($pages as $page => $blocks) {
             // Skip any page that already has content — preserves admin edits.
