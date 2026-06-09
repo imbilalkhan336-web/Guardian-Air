@@ -37,7 +37,7 @@ function SidebarContent() {
                 <span className="text-xs font-extrabold uppercase tracking-widest text-white/60">{isAdmin ? 'Admin' : 'Panel'}</span>
             </div>
 
-            <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-4">
+            <nav className="admin-sidebar-scroll flex-1 space-y-1 overflow-y-auto px-3 py-4">
                 {isAdmin && (
                     <Link
                         href={route('admin.dashboard')}

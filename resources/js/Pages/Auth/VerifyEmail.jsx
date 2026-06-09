@@ -17,6 +17,8 @@ export default function VerifyEmail({ status }) {
                 <meta name="robots" content="noindex, nofollow" />
             </Head>
 
+            <h1 className="mb-3 font-display text-2xl uppercase text-[#07264A]">Verify Your Email</h1>
+
             <div className="mb-4 text-sm text-gray-600">
                 Thanks for signing up! Before getting started, could you verify
                 your email address by clicking on the link we just emailed to

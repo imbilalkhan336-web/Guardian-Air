@@ -21,6 +21,8 @@ export default function ForgotPassword({ status }) {
                 <meta name="robots" content="noindex, nofollow" />
             </Head>
 
+            <h1 className="mb-3 font-display text-2xl uppercase text-[#07264A]">Forgot Password</h1>
+
             <div className="mb-4 text-sm text-gray-600">
                 Forgot your password? No problem. Just let us know your email
                 address and we will email you a password reset link that will

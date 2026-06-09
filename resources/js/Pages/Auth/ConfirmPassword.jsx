@@ -24,6 +24,8 @@ export default function ConfirmPassword() {
                 <meta name="robots" content="noindex, nofollow" />
             </Head>
 
+            <h1 className="mb-3 font-display text-2xl uppercase text-[#07264A]">Confirm Password</h1>
+
             <div className="mb-4 text-sm text-gray-600">
                 This is a secure area of the application. Please confirm your
                 password before continuing.

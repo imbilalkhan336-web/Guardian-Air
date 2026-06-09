@@ -27,6 +27,8 @@ export default function ResetPassword({ token, email }) {
                 <meta name="robots" content="noindex, nofollow" />
             </Head>
 
+            <h1 className="mb-4 font-display text-2xl uppercase text-[#07264A]">Reset Password</h1>
+
             <form onSubmit={submit}>
                 <div>
                     <InputLabel htmlFor="email" value="Email" />
