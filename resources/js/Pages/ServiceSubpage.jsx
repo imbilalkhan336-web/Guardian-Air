@@ -10,7 +10,17 @@ import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 import { LuArrowLeft, LuArrowRight, LuCheck } from 'react-icons/lu';
 
 function Paragraphs({ text }) {
-    const paras = String(text || '')
+    const str = String(text || '');
+    // Render embedded HTML (e.g. in-content links) when present.
+    if (/<[a-z][\s\S]*>/i.test(str)) {
+        return (
+            <div
+                className="mt-4 space-y-4 font-body text-[15px] leading-relaxed text-gray-600 md:text-base [&_a]:font-semibold [&_a]:text-blue-600 [&_a]:underline"
+                dangerouslySetInnerHTML={{ __html: str }}
+            />
+        );
+    }
+    const paras = str
         .split(/\n\n+/)
         .map((p) => p.trim())
         .filter(Boolean);
