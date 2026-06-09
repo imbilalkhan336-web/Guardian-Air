@@ -22,6 +22,17 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Test User', 'password' => bcrypt('password')],
         );
 
+        // Admin account for the content/SEO panel.
+        User::firstOrCreate(
+            ['email' => 'admin@guardianairnj.com'],
+            [
+                'name' => 'Guardian Air Admin',
+                'password' => bcrypt('GuardianAir!2026'),
+                'is_admin' => true,
+                'email_verified_at' => now(),
+            ],
+        );
+
         $this->call([
             ContentBlockSeeder::class,
             PostSeeder::class,
