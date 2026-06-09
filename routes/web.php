@@ -216,6 +216,58 @@ Route::get('/privacy', fn () => Inertia::render('Privacy'))->name('privacy');
 // XML sitemap for search engines.
 Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap');
 
+// Human-readable HTML sitemap.
+Route::get('/sitemap', function () {
+    $groups = [];
+
+    // One group per trade: overview + sub-services.
+    foreach (SiteStructure::trades() as $slug => $t) {
+        $links = [['label' => $t['label'].' Overview', 'href' => "/{$slug}"]];
+        foreach ($t['services'] as $sub => $s) {
+            $links[] = ['label' => $s['name'], 'href' => "/{$slug}/{$sub}"];
+        }
+        if ($slug === 'commercial-hvac') {
+            $links[] = ['label' => 'Commercial Plumbing', 'href' => '/commercial-plumbing'];
+        }
+        $groups[] = ['title' => $t['label'], 'links' => $links];
+    }
+
+    // Service areas: hub + counties + cities.
+    $areaLinks = [['label' => 'All Service Areas', 'href' => '/service-areas']];
+    foreach (SiteStructure::counties() as $cslug => $c) {
+        $areaLinks[] = ['label' => $c['name'], 'href' => "/service-areas/{$cslug}"];
+        foreach ($c['cities'] as $citySlug => $name) {
+            $areaLinks[] = ['label' => $name, 'href' => "/service-areas/{$citySlug}"];
+        }
+    }
+    $groups[] = ['title' => 'Service Areas', 'links' => $areaLinks];
+
+    // Cost guides.
+    $guideLinks = [['label' => 'All Cost Guides', 'href' => '/cost-guides']];
+    foreach (SiteStructure::costGuides() as $g => $gd) {
+        $guideLinks[] = ['label' => $gd['name'], 'href' => "/cost-guides/{$g}"];
+    }
+    $groups[] = ['title' => 'Cost Guides', 'links' => $guideLinks];
+
+    // Company & legal.
+    $groups[] = ['title' => 'Company', 'links' => [
+        ['label' => 'Home', 'href' => '/'],
+        ['label' => 'About', 'href' => '/about'],
+        ['label' => 'Services', 'href' => '/services'],
+        ['label' => 'Blog', 'href' => '/blog'],
+        ['label' => 'Offers', 'href' => '/offers'],
+        ['label' => 'Testimonials', 'href' => '/testimonials'],
+        ['label' => 'Join Our Team', 'href' => '/careers'],
+        ['label' => 'Contact', 'href' => '/contact'],
+    ]];
+    $groups[] = ['title' => 'Legal', 'links' => [
+        ['label' => 'Terms & Conditions', 'href' => '/terms'],
+        ['label' => 'Privacy Policy', 'href' => '/privacy'],
+    ]];
+
+    return Inertia::render('Sitemap', ['groups' => $groups]);
+})->name('sitemap.html');
+
 // Cost guides.
 Route::get('/cost-guides', function () {
     $guides = collect(SiteStructure::costGuides())->map(fn ($g, $slug) => [
