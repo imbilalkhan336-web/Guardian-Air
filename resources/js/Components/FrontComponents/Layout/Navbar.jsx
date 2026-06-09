@@ -212,9 +212,9 @@ export default function Navbar() {
                             </Link>
                         ))}
                     </div>
-                    <div className="mt-4 flex flex-wrap items-center gap-3">
-                        <PhonePillButton phone={PHONE} label={PHONE} size="sm" />
-                        <SchedulePillButton size="sm" />
+                    <div className="mt-5 flex flex-col gap-3 border-t border-white/15 pt-5">
+                        <PhonePillButton phone={PHONE} label={PHONE} size="md" className="w-full justify-center" />
+                        <SchedulePillButton size="md" className="w-full justify-center" />
                     </div>
                 </div>
             )}
