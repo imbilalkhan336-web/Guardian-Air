@@ -7,10 +7,7 @@ import ServiceSchema from '@/Components/FrontComponents/ServiceSchema';
 import SectionHeading from '@/Components/FrontComponents/SectionHeading';
 import ScheduleForm from '@/Components/FrontComponents/ScheduleForm';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
-import { PillButton } from '@/Components/FrontComponents/PillButton';
 import { LuArrowLeft, LuArrowRight, LuCheck } from 'react-icons/lu';
-
-const PHONE = '(732) 239-0932';
 
 function Paragraphs({ text }) {
     const paras = String(text || '')
@@ -172,17 +169,8 @@ export default function ServiceSubpage({ trade, service, siblings = [], reviews 
 
                             {/* Sticky schedule form */}
                             <aside className="lg:col-span-5">
-                                <div className="space-y-6 lg:sticky lg:top-24">
+                                <div className="lg:sticky lg:top-24">
                                     <ScheduleForm headingClassName="font-normal" />
-                                    <PillButton
-                                        href={`tel:+1${PHONE.replace(/[^\d]/g, '')}`}
-                                        variant="dark"
-                                        size="md"
-                                        icon="phone"
-                                        className="w-full"
-                                    >
-                                        {PHONE}
-                                    </PillButton>
                                 </div>
                             </aside>
                         </div>
