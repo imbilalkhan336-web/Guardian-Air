@@ -7,7 +7,6 @@ import ServiceSchema from '@/Components/FrontComponents/ServiceSchema';
 import SectionHeading from '@/Components/FrontComponents/SectionHeading';
 import ScheduleForm from '@/Components/FrontComponents/ScheduleForm';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
-import Reviews from '@/Components/pages-sections/Home/Reviews';
 import { LuArrowLeft, LuArrowRight, LuCheck } from 'react-icons/lu';
 
 export default function ServiceAreaCity({ city, county, trades = [], reviews = [], seo = {} }) {
@@ -105,7 +104,6 @@ export default function ServiceAreaCity({ city, county, trades = [], reviews = [
                 </div>
             </article>
 
-            <Reviews reviews={reviews} />
             <CtaBanner titleWeightClass="font-normal" />
         </SiteLayout>
     );

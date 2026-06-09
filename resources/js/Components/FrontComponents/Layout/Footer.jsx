@@ -242,8 +242,8 @@ export default function Footer() {
                         &copy; {new Date().getFullYear()} Guardian Air. All rights reserved.
                     </p>
                     <div className="flex gap-4 text-xs text-white/50 md:text-sm">
-                        <a href="#" className="hover:text-white transition-colors">Terms &amp; Conditions</a>
-                        <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+                        <a href="/terms" className="hover:text-white transition-colors">Terms &amp; Conditions</a>
+                        <a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a>
                     </div>
                 </div>
             </div>

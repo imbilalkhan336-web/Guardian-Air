@@ -3,10 +3,44 @@ import { Link } from '@inertiajs/react';
 import { PhonePillButton, SchedulePillButton } from '../PillButton';
 
 const navLinks = [
-    { label: 'Heating', href: '/heating' },
-    { label: 'Cooling', href: '/cooling' },
-    { label: 'Plumbing', href: '/plumbing' },
-    { label: 'HVAC Commercial', href: '/commercial-hvac' },
+    {
+        label: 'Heating',
+        href: '/heating',
+        sublinks: [
+            { label: 'Furnace Replacement', href: '/heating/furnace-replacement' },
+            { label: 'Boiler Repair', href: '/heating/boiler-repair' },
+            { label: 'Heat Pump', href: '/heating/heat-pump' },
+            { label: 'Furnace Tune-Up', href: '/heating/furnace-tune-up' },
+        ],
+    },
+    {
+        label: 'Cooling',
+        href: '/cooling',
+        sublinks: [
+            { label: 'AC Installation', href: '/cooling/ac-installation' },
+            { label: 'Ductless Mini-Split', href: '/cooling/ductless-mini-split' },
+            { label: 'AC Tune-Up', href: '/cooling/ac-tune-up' },
+        ],
+    },
+    {
+        label: 'Plumbing',
+        href: '/plumbing',
+        sublinks: [
+            { label: 'Emergency Plumber', href: '/plumbing/emergency-plumber' },
+            { label: 'Water Heater', href: '/plumbing/water-heater' },
+            { label: 'Tankless Water Heater', href: '/plumbing/tankless-water-heater' },
+            { label: 'Leak Detection', href: '/plumbing/leak-detection' },
+        ],
+    },
+    {
+        label: 'HVAC Commercial',
+        href: '/commercial-hvac',
+        sublinks: [
+            { label: 'Maintenance Contracts', href: '/commercial-hvac/maintenance-contracts' },
+            { label: 'Commercial HVAC Repair', href: '/commercial-hvac/repair' },
+            { label: 'Commercial Plumbing', href: '/commercial-plumbing' },
+        ],
+    },
 ];
 
 const moreServices = [
@@ -30,6 +64,7 @@ function Caret() {
 export default function Navbar() {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [openMenu, setOpenMenu] = useState(null);
 
     return (
         <nav className="sticky top-0 z-50 bg-[#004C93] shadow-md">
@@ -48,13 +83,39 @@ export default function Navbar() {
                 {/* Desktop nav links */}
                 <div className="hidden items-center gap-1 lg:flex lg:mr-8 xl:mr-12">
                     {navLinks.map((link) => (
-                        <Link
+                        <div
                             key={link.label}
-                            href={link.href}
-                            className="flex items-center whitespace-nowrap px-3 py-2 text-xs font-semibold uppercase text-white transition-opacity hover:opacity-80"
+                            className="relative"
+                            onMouseEnter={() => setOpenMenu(link.label)}
+                            onMouseLeave={() => setOpenMenu(null)}
                         >
-                            {link.label}
-                        </Link>
+                            <Link
+                                href={link.href}
+                                className="flex items-center whitespace-nowrap px-3 py-2 text-xs font-semibold uppercase text-white transition-opacity hover:opacity-80"
+                            >
+                                {link.label}
+                                {link.sublinks && <Caret />}
+                            </Link>
+                            {link.sublinks && openMenu === link.label && (
+                                <div className="absolute left-0 top-full z-50 min-w-[210px] rounded-md bg-[#004C93] py-2 shadow-lg">
+                                    <Link
+                                        href={link.href}
+                                        className="block whitespace-nowrap border-b border-white/10 px-4 py-2 text-xs font-bold uppercase text-white transition-colors hover:bg-white/10"
+                                    >
+                                        All {link.label}
+                                    </Link>
+                                    {link.sublinks.map((sub) => (
+                                        <Link
+                                            key={sub.href}
+                                            href={sub.href}
+                                            className="block whitespace-nowrap px-4 py-2 text-xs font-semibold uppercase text-white/90 transition-colors hover:bg-white/10"
+                                        >
+                                            {sub.label}
+                                        </Link>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
                     ))}
 
                     <div
@@ -115,14 +176,29 @@ export default function Navbar() {
                 <div className="border-t border-white/10 bg-[#004C93] px-4 pb-6 lg:hidden">
                     <div className="flex flex-col gap-1 pt-4">
                         {navLinks.map((link) => (
-                            <Link
-                                key={link.label}
-                                href={link.href}
-                                onClick={() => setMobileOpen(false)}
-                                className="rounded-lg px-4 py-3 text-xs font-semibold uppercase text-white transition-colors hover:bg-white/10"
-                            >
-                                {link.label}
-                            </Link>
+                            <div key={link.label}>
+                                <Link
+                                    href={link.href}
+                                    onClick={() => setMobileOpen(false)}
+                                    className="block rounded-lg px-4 py-3 text-xs font-bold uppercase text-white transition-colors hover:bg-white/10"
+                                >
+                                    {link.label}
+                                </Link>
+                                {link.sublinks && (
+                                    <div className="ml-3 flex flex-col border-l border-white/15 pl-2">
+                                        {link.sublinks.map((sub) => (
+                                            <Link
+                                                key={sub.href}
+                                                href={sub.href}
+                                                onClick={() => setMobileOpen(false)}
+                                                className="rounded-lg px-4 py-2 text-[11px] font-semibold uppercase text-white/80 transition-colors hover:bg-white/10"
+                                            >
+                                                {sub.label}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
                         ))}
                         <div className="my-2 h-px bg-white/20" />
                         {moreServices.map((link) => (

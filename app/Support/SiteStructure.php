@@ -604,9 +604,11 @@ class SiteStructure
         return [
             'furnace-repair-cost' => [
                 'name' => 'Furnace Repair Cost',
-                'title' => 'How Much Does Furnace Repair Cost in NJ? | Guardian Air',
-                'description' => 'A clear breakdown of furnace repair costs in New Jersey — common repairs, price ranges, and what affects the final price.',
-                'intro' => "Wondering what a furnace repair will cost? Prices vary with the part, the problem, and your system, but this guide breaks down the typical ranges New Jersey homeowners can expect so there are no surprises.",
+                'title' => 'How Much Does Furnace Repair Cost in NJ? (2026 Guide) | Guardian Air',
+                'description' => 'How much does furnace repair cost in NJ? See 2026 price ranges by problem across Monmouth, Middlesex & Ocean counties — licensed & insured. Call Guardian Air!',
+                'h1' => 'How Much Does Furnace Repair Cost in New Jersey?',
+                'intro' => "Wondering how much furnace repair costs in NJ? Most furnace repairs across Monmouth, Middlesex, and Ocean counties fall between $150 and $750 depending on the failed part. This 2026 guide breaks down the typical ranges New Jersey homeowners can expect so there are no surprises.",
+                'serviceLink' => ['label' => 'Furnace & Heating Repair', 'href' => '/heating'],
                 'rows' => [
                     ['Igniter or flame sensor replacement', '$150 – $350'],
                     ['Blower motor repair / replacement', '$300 – $700'],
@@ -614,12 +616,26 @@ class SiteStructure
                     ['Gas valve replacement', '$300 – $600'],
                     ['Diagnostic / service call', '$89 – $150'],
                 ],
+                'sections' => [
+                    ['heading' => 'Average Furnace Repair Cost', 'body' => "Across New Jersey, the average furnace repair runs about $150 to $750, with most homeowners landing in the middle for common fixes like an igniter, flame sensor, or capacitor. A diagnostic service call typically costs $89 to $150 and is often applied toward the repair. Guardian Air provides a flat-rate quote before any work begins, so you approve the price first."],
+                    ['heading' => 'Cost by Problem', 'body' => "The table above shows typical ranges by part. Igniters and flame sensors are on the lower end; blower motors, control boards, and gas valves cost more because the parts and labor are greater. Older or specialty systems can run higher if parts are harder to source."],
+                    ['heading' => 'Repair vs. Replace', 'body' => "If your furnace is under 15 years old and the repair is minor, fixing it is usually the better value. For aging systems with frequent or expensive failures, a new high-efficiency unit often pays off in lower bills — see our <a href='/heating/furnace-replacement'>furnace replacement</a> guide, or learn about routine <a href='/heating/furnace-tune-up'>furnace tune-ups</a> that prevent costly repairs."],
+                    ['heading' => 'Serving Monmouth, Middlesex & Ocean County', 'body' => "Guardian Air provides <a href='/heating'>furnace repair</a> across central New Jersey, including Toms River, Freehold, Brick, Old Bridge, Red Bank, and Lakewood. Find your town on our <a href='/service-areas'>service areas</a> page."],
+                ],
+                'faqs' => [
+                    ['q' => 'How much does furnace repair cost in NJ?', 'a' => 'Most furnace repairs in New Jersey cost $150 to $750 depending on the part. A diagnostic visit runs $89 to $150 and is often credited toward the repair. We quote a flat rate before any work.'],
+                    ['q' => 'What affects the price of a furnace repair?', 'a' => 'The failed part, parts availability, your furnace type and age, and whether it is an emergency or after-hours call all affect the price. Our flat-rate pricing never adds overtime surcharges.'],
+                    ['q' => 'Is it worth repairing an old furnace?', 'a' => 'If the unit is over 15 years old and repairs are adding up, replacement is usually the smarter long-term investment. We give you an honest repair-or-replace recommendation.'],
+                    ['q' => 'Do you charge extra for emergency furnace repair?', 'a' => 'No. Guardian Air charges flat-rate pricing with no extra fees for nights, weekends, or holidays, so emergency repairs cost the same as scheduled ones.'],
+                ],
             ],
             'ac-repair-cost' => [
                 'name' => 'AC Repair Cost',
-                'title' => 'How Much Does AC Repair Cost in NJ? | Guardian Air',
-                'description' => 'A clear breakdown of air conditioning repair costs in New Jersey — common repairs, price ranges, and what affects the price.',
-                'intro' => "Air conditioning repair costs depend on the failed part and your system type. This guide covers the most common AC repairs and their typical New Jersey price ranges so you can budget with confidence.",
+                'title' => 'How Much Does AC Repair Cost in NJ? (2026 Guide) | Guardian Air',
+                'description' => 'How much does AC repair cost in NJ? See 2026 price ranges by problem across Monmouth, Middlesex & Ocean counties — licensed & insured. Call Guardian Air!',
+                'h1' => 'How Much Does AC Repair Cost in New Jersey?',
+                'intro' => "Wondering how much AC repair costs in NJ? Most air conditioning repairs across Monmouth, Middlesex, and Ocean counties range from $150 to $600, though a compressor can cost more. This 2026 guide covers the most common AC repairs and their typical New Jersey prices.",
+                'serviceLink' => ['label' => 'AC Repair & Cooling', 'href' => '/cooling'],
                 'rows' => [
                     ['Capacitor replacement', '$150 – $400'],
                     ['Refrigerant recharge', '$200 – $600'],
@@ -627,12 +643,26 @@ class SiteStructure
                     ['Compressor replacement', '$1,200 – $2,800'],
                     ['Diagnostic / service call', '$89 – $150'],
                 ],
+                'sections' => [
+                    ['heading' => 'Average AC Repair Cost', 'body' => "Across New Jersey, the average AC repair runs about $150 to $600 for common issues like a failed capacitor, contactor, or a refrigerant recharge. A diagnostic service call is $89 to $150 and is often applied to the repair. Guardian Air quotes a flat rate upfront before any work begins."],
+                    ['heading' => 'Cost by Problem', 'body' => "Capacitors and contactors are inexpensive parts on the lower end. Refrigerant recharges depend on the amount and type, and a leak repair adds to the cost. A compressor replacement is the most expensive AC repair, which is why it often tips the decision toward replacement on older units."],
+                    ['heading' => 'Repair vs. Replace', 'body' => "If your AC is under 10 years old and the repair is minor, fixing it makes sense. For older systems or a failed compressor, a new high-efficiency unit is often the better value — see our <a href='/cooling/ac-installation'>AC installation</a> options, or keep your system healthy with an <a href='/cooling/ac-tune-up'>AC tune-up</a>."],
+                    ['heading' => 'Serving Monmouth, Middlesex & Ocean County', 'body' => "Guardian Air provides <a href='/cooling'>AC repair</a> across central New Jersey, including Toms River, Freehold, Brick, Old Bridge, Red Bank, and Lakewood. Find your town on our <a href='/service-areas'>service areas</a> page."],
+                ],
+                'faqs' => [
+                    ['q' => 'How much does AC repair cost in NJ?', 'a' => 'Most AC repairs in New Jersey cost $150 to $600 depending on the part, while a compressor replacement runs $1,200 to $2,800. A diagnostic visit is $89 to $150, often credited toward the repair.'],
+                    ['q' => 'What affects the price of an AC repair?', 'a' => 'The failed component, refrigerant type and amount, your system size and age, and accessibility all affect the price. We provide a flat-rate quote with no overtime surcharges.'],
+                    ['q' => 'Is it worth repairing an old air conditioner?', 'a' => 'If the unit is over 10 years old and faces an expensive repair like a compressor, replacement is usually the smarter investment. We give you an honest recommendation either way.'],
+                    ['q' => 'Do you charge extra for emergency AC repair?', 'a' => 'No. Our flat-rate pricing applies day or night, so emergency AC repair during a heatwave costs the same as a scheduled visit.'],
+                ],
             ],
             'plumber-cost' => [
                 'name' => 'Plumber Cost',
-                'title' => 'How Much Does a Plumber Cost in NJ? | Guardian Air',
-                'description' => 'A clear breakdown of plumber costs in New Jersey — common jobs, price ranges, and what affects the final price.',
-                'intro' => "Plumbing costs range widely by job. This guide outlines typical New Jersey price ranges for the most common plumbing services so you know what to expect before you call.",
+                'title' => 'How Much Does a Plumber Cost in NJ? (2026 Guide) | Guardian Air',
+                'description' => 'How much does a plumber cost in NJ? See 2026 rates by job across Monmouth, Middlesex & Ocean counties — licensed & insured, flat-rate. Call Guardian Air!',
+                'h1' => 'How Much Does a Plumber Cost in New Jersey?',
+                'intro' => "Wondering how much a plumber costs in NJ? Rates across Monmouth, Middlesex, and Ocean counties vary widely by job — from about $150 for a clogged drain to $2,500 for a water heater replacement. This 2026 guide outlines typical New Jersey prices so you know what to expect before you call.",
+                'serviceLink' => ['label' => 'Licensed Plumbing', 'href' => '/plumbing'],
                 'rows' => [
                     ['Clogged drain clearing', '$150 – $400'],
                     ['Faucet repair / replacement', '$150 – $350'],
@@ -640,12 +670,26 @@ class SiteStructure
                     ['Leak detection', '$150 – $450'],
                     ['Service call', '$89 – $150'],
                 ],
+                'sections' => [
+                    ['heading' => 'Average Plumber Rates', 'body' => "Most New Jersey plumbers charge either a flat rate per job or an hourly rate of roughly $100 to $200, plus a service call fee of $89 to $150. Guardian Air uses flat-rate pricing, so you get one clear price for the job before we start — no hourly meter running."],
+                    ['heading' => 'Cost by Job', 'body' => "Simple jobs like clearing a drain or swapping a faucet are on the lower end. <a href='/plumbing/water-heater'>Water heater replacement</a> and <a href='/plumbing/leak-detection'>leak detection</a> cost more due to parts, labor, and equipment. The table above lists typical ranges for the most common requests."],
+                    ['heading' => 'Emergency Pricing', 'body' => "Many companies add overtime for after-hours work — we don't. Our <a href='/plumbing/emergency-plumber'>24/7 emergency plumber</a> service is billed at the same flat rate, so a burst pipe at midnight costs no more than a scheduled visit."],
+                    ['heading' => 'Serving Monmouth, Middlesex & Ocean County', 'body' => "Guardian Air provides <a href='/plumbing'>licensed plumbing</a> across central New Jersey, including Toms River, Freehold, Brick, Old Bridge, Red Bank, and Lakewood. Find your town on our <a href='/service-areas'>service areas</a> page."],
+                ],
+                'faqs' => [
+                    ['q' => 'How much does a plumber cost in NJ?', 'a' => 'New Jersey plumbers typically charge $100 to $200 per hour or a flat rate per job, plus an $89 to $150 service call. Guardian Air quotes a flat rate upfront so there are no surprises.'],
+                    ['q' => 'What affects what a plumber charges?', 'a' => 'The job type, parts required, difficulty and access, and whether it is an emergency all affect the price. Flat-rate pricing keeps it predictable regardless of how long the job takes.'],
+                    ['q' => 'How much is an emergency plumber in NJ?', 'a' => 'Emergency plumbing typically ranges from $150 to $500+ depending on the problem. Guardian Air does not add overtime fees, so emergency calls cost the same flat rate as scheduled service.'],
+                    ['q' => 'Do you offer free plumbing estimates?', 'a' => 'We provide upfront, flat-rate quotes before any work begins. For larger projects like repiping or water heater installs, we provide a free written estimate.'],
+                ],
             ],
             'duct-cleaning-cost' => [
                 'name' => 'Air Duct Cleaning Cost',
                 'title' => 'How Much Does Air Duct Cleaning Cost in NJ? | Guardian Air',
-                'description' => 'A clear breakdown of air duct cleaning costs in New Jersey — typical price ranges and what affects the final price.',
-                'intro' => "Air duct cleaning cost depends on the size of your home, the number of vents, and system accessibility. This guide outlines the typical New Jersey ranges so you know what to expect.",
+                'description' => 'How much does air duct cleaning cost in NJ? See typical price ranges across Monmouth, Middlesex & Ocean counties — licensed & insured. Call Guardian Air!',
+                'h1' => 'How Much Does Air Duct Cleaning Cost in New Jersey?',
+                'intro' => "Wondering about air duct cleaning cost in NJ? Most New Jersey homes pay between $300 and $1,000 depending on the size of the home and number of vents. This guide breaks down the typical ranges across Monmouth, Middlesex, and Ocean counties so you know what to expect.",
+                'serviceLink' => ['label' => 'Air Duct Cleaning', 'href' => '/indoor-air-quality/duct-cleaning'],
                 'rows' => [
                     ['Small home (1–10 vents)', '$300 – $500'],
                     ['Average home (10–20 vents)', '$450 – $750'],
@@ -653,12 +697,26 @@ class SiteStructure
                     ['Dryer vent cleaning (add-on)', '$100 – $200'],
                     ['Inspection / quote', 'Free'],
                 ],
+                'sections' => [
+                    ['heading' => 'Average Duct Cleaning Cost', 'body' => "Across New Jersey, professional air duct cleaning averages $300 to $1,000, with most homes in the $450 to $750 range. We provide a flat-rate quote based on your home rather than a vague per-vent fee, and inspections are free."],
+                    ['heading' => 'What Affects Price', 'body' => "The number of vents and returns, the size and layout of your home, system accessibility, and add-ons like dryer-vent cleaning or sanitizing all affect the price. Homes with heavy buildup, pets, or recent renovations may take longer."],
+                    ['heading' => 'Is It Worth It?', 'body' => "For homes with excess dust, allergies, pets, or visible debris in the vents, yes — clean ducts reduce recirculated allergens and can improve airflow and efficiency by up to 30%. Learn more on our <a href='/indoor-air-quality/duct-cleaning'>air duct cleaning</a> page, or explore <a href='/indoor-air-quality/mold-testing'>mold testing</a> if you suspect moisture."],
+                    ['heading' => 'Serving Monmouth, Middlesex & Ocean County', 'body' => "Guardian Air provides air duct cleaning across central New Jersey, including Toms River, Freehold, Brick, Old Bridge, Red Bank, and Lakewood. Find your town on our <a href='/service-areas'>service areas</a> page."],
+                ],
+                'faqs' => [
+                    ['q' => 'How much does air duct cleaning cost in NJ?', 'a' => 'Most New Jersey homes pay $300 to $1,000 for professional air duct cleaning depending on size and number of vents, with the average home around $450 to $750.'],
+                    ['q' => 'What affects the price of duct cleaning?', 'a' => 'The number of vents and returns, home size and layout, accessibility, level of buildup, and add-ons like dryer-vent cleaning all influence the final price.'],
+                    ['q' => 'Is air duct cleaning worth the cost?', 'a' => 'For homes with allergies, pets, heavy dust, or visible debris, yes — it reduces recirculated allergens and can improve airflow and efficiency. We give an honest assessment first.'],
+                    ['q' => 'How often should ducts be cleaned?', 'a' => 'Most homes benefit every three to five years, and sooner with pets, allergies, renovations, or signs of mold.'],
+                ],
             ],
             'drain-cleaning-cost' => [
                 'name' => 'Drain Cleaning Cost',
                 'title' => 'How Much Does Drain Cleaning Cost in NJ? | Guardian Air',
-                'description' => 'A clear breakdown of drain cleaning costs in New Jersey — common services, price ranges, and what affects the final price.',
-                'intro' => "Drain cleaning cost depends on the clog's location and severity. This guide covers the typical New Jersey price ranges for everything from a simple sink clog to hydro jetting a main line.",
+                'description' => 'How much does drain cleaning cost in NJ? See typical prices by method across Monmouth, Middlesex & Ocean counties — licensed & insured. Call Guardian Air!',
+                'h1' => 'How Much Does Drain Cleaning Cost in New Jersey?',
+                'intro' => "Wondering about drain cleaning cost in NJ? Most New Jersey drain cleanings run $150 to $500, while hydro jetting a main line costs more. This guide covers typical prices by method across Monmouth, Middlesex, and Ocean counties so there are no surprises.",
+                'serviceLink' => ['label' => 'Drain Cleaning & Sewer', 'href' => '/drains'],
                 'rows' => [
                     ['Sink, tub, or shower drain', '$150 – $350'],
                     ['Main line snaking', '$250 – $500'],
@@ -666,6 +724,32 @@ class SiteStructure
                     ['Camera inspection', '$150 – $350'],
                     ['Service call', '$89 – $150'],
                 ],
+                'sections' => [
+                    ['heading' => 'Average Drain Cleaning Cost', 'body' => "Across New Jersey, clearing a typical sink, tub, or shower drain runs $150 to $350, while a main-line snaking is $250 to $500. We provide a flat-rate quote upfront, and a camera inspection can confirm the cause before you commit to a bigger job."],
+                    ['heading' => 'Cost by Method', 'body' => "Snaking (augering) is the most economical method for a single clog. <a href='/drains/hydro-jetting'>Hydro jetting</a> costs more but scours the entire pipe for recurring or severe clogs. A <a href='/drains/camera-inspection'>camera inspection</a> is often added to diagnose chronic problems or root intrusion."],
+                    ['heading' => 'When to Call', 'body' => "Call when a drain is slow, gurgling, or backing up — and right away for multiple drains backing up at once, which points to a main-line issue that may need <a href='/drains/sewer-repair'>sewer repair</a>. Catching it early keeps the cost down."],
+                    ['heading' => 'Serving Monmouth, Middlesex & Ocean County', 'body' => "Guardian Air provides <a href='/drains'>drain cleaning</a> across central New Jersey, including Toms River, Freehold, Brick, Old Bridge, Red Bank, and Lakewood. Find your town on our <a href='/service-areas'>service areas</a> page."],
+                ],
+                'faqs' => [
+                    ['q' => 'How much does drain cleaning cost in NJ?', 'a' => 'Most drain cleanings in New Jersey cost $150 to $500 depending on the clog location and method, with hydro jetting on the higher end at $400 to $800.'],
+                    ['q' => 'What affects drain cleaning price?', 'a' => 'The location and severity of the clog, the method (snaking vs hydro jetting), and whether a camera inspection is needed all affect the price.'],
+                    ['q' => 'Is hydro jetting worth the extra cost?', 'a' => 'For recurring or severe clogs, yes — it cleans the full pipe interior of grease, scale, and roots for a longer-lasting result than snaking.'],
+                    ['q' => 'When should I call for drain cleaning?', 'a' => 'Call when drains are slow, gurgling, or smelly, and immediately if multiple drains back up at once, which usually signals a main-line problem.'],
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * Hub copy for the /cost-guides index page.
+     */
+    public static function costGuidesHub(): array
+    {
+        return [
+            'faqs' => [
+                ['q' => 'Why are your prices shown as ranges?', 'a' => 'Every home and system is different, so we publish typical New Jersey ranges for transparency. Your exact price is confirmed with a flat-rate quote before any work begins — no surprises.'],
+                ['q' => 'Do you charge for estimates?', 'a' => 'Diagnostic service calls carry a small fee that is often credited toward the repair, and we provide free written estimates for larger installations and replacements.'],
+                ['q' => 'Are these prices for all of New Jersey?', 'a' => 'These ranges reflect typical pricing across our service area — Monmouth, Middlesex, and Ocean counties — and may vary with your specific system and situation.'],
             ],
         ];
     }

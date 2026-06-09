@@ -6,7 +6,6 @@ import ServiceSchema from '@/Components/FrontComponents/ServiceSchema';
 import ServiceArticle from '@/Components/FrontComponents/ServiceArticle';
 import RelatedLinks from '@/Components/FrontComponents/RelatedLinks';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
-import Reviews from '@/Components/pages-sections/Home/Reviews';
 import { PillButton } from '@/Components/FrontComponents/PillButton';
 import { LuPhone } from 'react-icons/lu';
 
@@ -108,7 +107,6 @@ export default function PlumbingPage({ blocks = [], tags = [], reviews = [], seo
                 />
             </article>
 
-            <Reviews reviews={reviews} />
             <CtaBanner titleWeightClass="font-normal" />
         </SiteLayout>
     );

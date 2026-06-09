@@ -6,7 +6,6 @@ import ServiceSchema from '@/Components/FrontComponents/ServiceSchema';
 import ServiceArticle from '@/Components/FrontComponents/ServiceArticle';
 import RelatedLinks from '@/Components/FrontComponents/RelatedLinks';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
-import Reviews from '@/Components/pages-sections/Home/Reviews';
 
 const COLUMNS = [
     {
@@ -90,7 +89,6 @@ export default function AirQualityPage({ blocks = [], tags = [], reviews = [], s
                 />
             </article>
 
-            <Reviews reviews={reviews} />
             <CtaBanner titleWeightClass="font-normal" />
         </SiteLayout>
     );

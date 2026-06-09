@@ -7,7 +7,6 @@ import ServiceSchema from '@/Components/FrontComponents/ServiceSchema';
 import ScheduleForm from '@/Components/FrontComponents/ScheduleForm';
 import SectionHeading from '@/Components/FrontComponents/SectionHeading';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
-import Reviews from '@/Components/pages-sections/Home/Reviews';
 import { LuMapPin, LuArrowRight, LuCheck } from 'react-icons/lu';
 
 export default function ServiceArea({ area, cities = [], trades = [], reviews = [] }) {
@@ -130,7 +129,6 @@ export default function ServiceArea({ area, cities = [], trades = [], reviews = 
                 </div>
             </article>
 
-            <Reviews reviews={reviews} />
             <CtaBanner titleWeightClass="font-normal" />
         </SiteLayout>
     );

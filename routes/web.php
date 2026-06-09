@@ -201,16 +201,27 @@ Route::get('/offers', function () use ($getReviews, $seo) {
     return Inertia::render('Offers', ['reviews' => $getReviews(), 'seo' => $seo('offers')]);
 })->name('offers');
 
+// Legal pages.
+Route::get('/terms', fn () => Inertia::render('Terms'))->name('terms');
+Route::get('/privacy', fn () => Inertia::render('Privacy'))->name('privacy');
+
+// XML sitemap for search engines.
+Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap');
+
 // Cost guides.
-Route::get('/cost-guides', function () use ($getReviews) {
+Route::get('/cost-guides', function () {
     $guides = collect(SiteStructure::costGuides())->map(fn ($g, $slug) => [
         'slug' => $slug,
         'name' => $g['name'],
         'description' => $g['description'],
         'href' => "/cost-guides/{$slug}",
+        'service' => $g['serviceLink'] ?? null,
     ])->values();
 
-    return Inertia::render('CostGuidesIndex', ['guides' => $guides, 'reviews' => $getReviews()]);
+    return Inertia::render('CostGuidesIndex', [
+        'guides' => $guides,
+        'faqs' => SiteStructure::costGuidesHub()['faqs'],
+    ]);
 })->name('cost-guides');
 
 Route::get('/cost-guides/{slug}', function (string $slug) use ($getReviews) {

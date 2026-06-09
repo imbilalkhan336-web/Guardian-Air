@@ -7,7 +7,6 @@ import ServiceSchema from '@/Components/FrontComponents/ServiceSchema';
 import SectionHeading from '@/Components/FrontComponents/SectionHeading';
 import ScheduleForm from '@/Components/FrontComponents/ScheduleForm';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
-import Reviews from '@/Components/pages-sections/Home/Reviews';
 import { PillButton } from '@/Components/FrontComponents/PillButton';
 import { LuArrowLeft, LuArrowRight, LuCheck } from 'react-icons/lu';
 
@@ -205,7 +204,6 @@ export default function TradeLocation({ trade, location, otherTrades = [], nearb
                 </div>
             </article>
 
-            <Reviews reviews={reviews} />
             <CtaBanner titleWeightClass="font-normal" />
         </SiteLayout>
     );
