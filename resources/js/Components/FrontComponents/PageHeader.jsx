@@ -2,9 +2,9 @@ export default function PageHeader({
     label,
     title,
     description,
-    image = '/img/hero.webp',
+    image = '/img/heroes/company.webp',
     imagePosition = 'right',
-    imageCover = false,
+    imageCover = true,
     children,
     titleClassName = '',
 }) {

@@ -41,7 +41,7 @@ export default function ServiceArea({ area, cities = [], trades = [], reviews = 
                 <PageHeader
                     label="Service Area"
                     title={`Guardian Air in ${area.name}, NJ`}
-                    image="/img/hero.webp"
+                    image="/img/heroes/local.webp"
                     imageCover
                     description={area.description}
                     titleClassName="font-normal"

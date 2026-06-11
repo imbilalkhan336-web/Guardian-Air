@@ -33,6 +33,7 @@ export default function CostGuidesIndex({ guides = [], faqs: rawFaqs = [], seo =
                     label="Pricing"
                     title="What HVAC & Plumbing Services Cost in New Jersey"
                     description="No gimmicks, no hidden conditions — honest price ranges so you know what to expect before you call."
+                    image="/img/heroes/cost-guides.webp"
                     titleClassName="font-normal"
                 />
 

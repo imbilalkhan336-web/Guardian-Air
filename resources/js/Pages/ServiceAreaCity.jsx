@@ -45,7 +45,7 @@ export default function ServiceAreaCity({ city, county, trades = [], reviews = [
                 <PageHeader
                     label={county.name}
                     title={`Guardian Air in ${city.name}, NJ — HVAC, Plumbing & Drains`}
-                    image="/img/hero.webp"
+                    image="/img/heroes/local.webp"
                     imageCover
                     description={`Licensed heating, cooling, plumbing, and drain service in ${city.name}, ${county.name}. Same-day response, flat-rate pricing, and a local team you can trust.`}
                     titleClassName="font-normal"

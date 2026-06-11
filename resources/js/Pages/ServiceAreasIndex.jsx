@@ -36,6 +36,7 @@ export default function ServiceAreasIndex({ counties = [], reviews = [] }) {
                     label="Where We Work"
                     title="Areas We Serve Across New Jersey"
                     description="Find your county and town below — Guardian Air brings the same trusted technicians to homes and businesses across central New Jersey."
+                    image="/img/heroes/local.webp"
                 />
 
                 {/* Intro + map */}

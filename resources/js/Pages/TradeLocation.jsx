@@ -10,6 +10,16 @@ import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 import { PillButton } from '@/Components/FrontComponents/PillButton';
 import { LuArrowLeft, LuArrowRight, LuCheck } from 'react-icons/lu';
 
+// Theme-matched hero background per trade.
+const HERO_BY_TRADE = {
+    heating: '/img/heroes/heating.webp',
+    cooling: '/img/heroes/cooling.webp',
+    plumbing: '/img/heroes/plumbing.webp',
+    drains: '/img/heroes/drains.webp',
+    'commercial-hvac': '/img/heroes/commercial.webp',
+    'indoor-air-quality': '/img/heroes/air-quality.webp',
+};
+
 const PHONE = '(732) 239-0932';
 
 export default function TradeLocation({ trade, location, otherTrades = [], nearby = [], reviews = [], seo = {} }) {
@@ -48,7 +58,7 @@ export default function TradeLocation({ trade, location, otherTrades = [], nearb
                 <PageHeader
                     label={location.county_name}
                     title={`${svc} in ${loc}, NJ`}
-                    image="/img/hero.webp"
+                    image={HERO_BY_TRADE[trade.slug] || '/img/heroes/company.webp'}
                     imageCover
                     description={`Licensed ${trade.label.toLowerCase()} service in ${loc} — same-day response, flat-rate pricing, and a local team you can trust.`}
                     titleClassName="font-normal"

@@ -9,6 +9,16 @@ import ScheduleForm from '@/Components/FrontComponents/ScheduleForm';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 import { LuArrowLeft, LuArrowRight, LuCheck } from 'react-icons/lu';
 
+// Theme-matched hero background per trade.
+const HERO_BY_TRADE = {
+    heating: '/img/heroes/heating.webp',
+    cooling: '/img/heroes/cooling.webp',
+    plumbing: '/img/heroes/plumbing.webp',
+    drains: '/img/heroes/drains.webp',
+    'commercial-hvac': '/img/heroes/commercial.webp',
+    'indoor-air-quality': '/img/heroes/air-quality.webp',
+};
+
 function Paragraphs({ text }) {
     const str = String(text || '');
     // Render embedded HTML (e.g. in-content links) when present.
@@ -59,7 +69,7 @@ export default function ServiceSubpage({ trade, service, siblings = [], reviews 
                 <PageHeader
                     label={trade.label}
                     title={service.h1 || service.name}
-                    image="/img/hero.webp"
+                    image={HERO_BY_TRADE[trade.slug] || '/img/heroes/company.webp'}
                     imageCover
                     description={service.description}
                     titleClassName="font-normal"

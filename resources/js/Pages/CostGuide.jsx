@@ -44,7 +44,7 @@ export default function CostGuide({ guide, seo = {} }) {
             />
 
             <article>
-                <PageHeader label="Cost Guide" title={guide.h1 || guide.name} description={guide.description} titleClassName="font-normal" />
+                <PageHeader label="Cost Guide" title={guide.h1 || guide.name} description={guide.description} image="/img/heroes/cost-guides.webp" titleClassName="font-normal" />
 
                 <div className="bg-white">
                     <div className="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-4 lg:py-24">

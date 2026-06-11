@@ -95,7 +95,7 @@ export default function Blog({ posts = [], seo = {} }) {
             <PageHeader
                 label="From Our Team"
                 title="Guardian Air Blog"
-                image="/img/hero.webp"
+                image="/img/heroes/company.webp"
                 imageCover
                 description="HVAC tips, seasonal guides, and home comfort advice from our licensed New Jersey technicians."
                 titleClassName="font-normal"
