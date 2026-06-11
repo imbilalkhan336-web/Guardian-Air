@@ -50,7 +50,7 @@ export default function TradeLocation({ trade, location, otherTrades = [], nearb
                     title={`${svc} in ${loc}, NJ`}
                     image="/img/hero.webp"
                     imageCover
-                    description={`Licensed ${trade.label.toLowerCase()} service in ${loc} — same-day response, flat-rate pricing, and a local team you can trust.`}
+                    description={`Licensed ${trade.label.toLowerCase()} service in ${loc} — fast scheduling, upfront flat-rate quotes, and technicians based right in ${location.county_name}.`}
                     titleClassName="font-normal"
                 />
 
@@ -69,17 +69,15 @@ export default function TradeLocation({ trade, location, otherTrades = [], nearb
                                 <section className="mt-6">
                                     <SectionHeading sizeClass="text-[30px] font-normal">{svc} in {loc}</SectionHeading>
                                     <div className="mt-6 space-y-4 font-body text-[15px] leading-relaxed text-gray-600 md:text-base">
-                                        <p>
-                                            When you need {svcLower} in {loc}, Guardian Air is the local team to call. We provide
-                                            licensed, insured {trade.label.toLowerCase()} service to homeowners and businesses
-                                            throughout {loc} and the surrounding {location.county_name} area — with fast, often
-                                            same-day response and honest, flat-rate pricing.
-                                        </p>
-                                <p>
-                                            Our technicians know the homes and systems common to {loc}, so we diagnose the real
-                                            problem quickly and fix it right the first time. No upsells, no surprises — just
-                                            reliable comfort backed by a satisfaction guarantee.
-                                        </p>
+                                        {(trade.intro?.length
+                                            ? trade.intro
+                                            : [
+                                                  `When you need ${svcLower} in ${loc}, Guardian Air is the local team to call. We provide licensed, insured ${trade.label.toLowerCase()} service to homeowners and businesses throughout ${loc} and the surrounding ${location.county_name} area — with fast, often same-day response and honest, flat-rate pricing.`,
+                                                  `Our technicians know the homes and systems common to ${loc}, so we diagnose the real problem quickly and fix it right the first time. No upsells, no surprises — just reliable comfort backed by a satisfaction guarantee.`,
+                                              ]
+                                        ).map((p, i) => (
+                                            <p key={i}>{p}</p>
+                                        ))}
                                         <p>
                                             Visit our main{' '}
                                             <Link href={`/${trade.slug}`} className="font-semibold text-blue-600 underline">
@@ -125,15 +123,15 @@ export default function TradeLocation({ trade, location, otherTrades = [], nearb
                                 <section className="mt-12">
                                     <SectionHeading sizeClass="text-[26px] font-normal">Why {loc} Homeowners Choose Guardian Air</SectionHeading>
                                     <div className="mt-6 space-y-4 font-body text-[15px] leading-relaxed text-gray-600 md:text-base">
-                                        <p>
-                                            Families across {loc} choose Guardian Air because we show up fast, charge fair flat
-                                            rates, and treat your home like our own. Every technician is licensed and insured, and
-                                            every job comes with a clear quote before any work begins.
-                                        </p>
-                                        <p>
-                                            We're proud to be a local, family-owned company serving {location.county_name} — the
-                                            same trusted team your neighbors already rely on.
-                                        </p>
+                                        {(trade.why?.length
+                                            ? trade.why
+                                            : [
+                                                  `Families across ${loc} choose Guardian Air because we show up fast, charge fair flat rates, and treat your home like our own. Every technician is licensed and insured, and every job comes with a clear quote before any work begins.`,
+                                                  `We're proud to be a local, family-owned company serving ${location.county_name} — the same trusted team your neighbors already rely on.`,
+                                              ]
+                                        ).map((p, i) => (
+                                            <p key={i}>{p}</p>
+                                        ))}
                                     </div>
                                 </section>
 

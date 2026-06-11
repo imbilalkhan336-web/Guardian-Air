@@ -21,7 +21,11 @@ $getReviews = fn () => Review::published()->latest()->get();
 $seo = fn (string $page) => PageSeo::resolve($page);
 
 Route::get('/', function () use ($getReviews, $seo) {
-    return Inertia::render('Home', ['reviews' => $getReviews(), 'seo' => $seo('home')]);
+    return Inertia::render('Home', [
+        'reviews' => $getReviews(),
+        'posts' => \App\Models\Post::latest()->take(3)->get(['title', 'slug', 'excerpt', 'image_path', 'created_at']),
+        'seo' => $seo('home'),
+    ]);
 });
 
 Route::get('/about', function () use ($getReviews, $seo) {
@@ -165,6 +169,7 @@ Route::get('/service-areas/{location}', function (string $location) use ($getRev
             'title' => $county['title'],
             'description' => $county['description'],
             'intro' => $county['intro'] ?? [],
+            'faqs' => $county['faqs'] ?? [],
             'towns' => array_values($county['cities']),
         ];
         $cities = collect($county['cities'])->map(fn ($name, $slug) => [
@@ -201,10 +206,11 @@ Route::get('/offers', function () use ($getReviews, $seo) {
     return Inertia::render('Offers', ['reviews' => $getReviews(), 'seo' => $seo('offers')]);
 })->name('offers');
 
-// Testimonials.
+// Testimonials (also reachable at /reviews).
 Route::get('/testimonials', function () use ($getReviews) {
     return Inertia::render('Testimonials', ['reviews' => $getReviews()]);
 })->name('testimonials');
+Route::permanentRedirect('/reviews', '/testimonials');
 
 // Careers / Join Our Team.
 Route::get('/careers', fn () => Inertia::render('Careers'))->name('careers');
@@ -340,8 +346,18 @@ Route::get('/{trade}/{slug}', function (string $trade, string $slug) use ($getRe
 
     $info = SiteStructure::tradeLocationInfo()[$trade] ?? ['issues' => []];
 
+    // Fill the :city / :county placeholders in the per-trade copy.
+    $fill = fn (string $s) => str_replace([':city', ':county'], [$loc['name'], $loc['county_name']], $s);
+
     return Inertia::render('TradeLocation', [
-        'trade' => ['slug' => $trade, 'label' => $t['label'], 'locationName' => $t['locationName'], 'issues' => $info['issues']],
+        'trade' => [
+            'slug' => $trade,
+            'label' => $t['label'],
+            'locationName' => $t['locationName'],
+            'issues' => $info['issues'],
+            'intro' => array_map($fill, $info['intro'] ?? []),
+            'why' => array_map($fill, $info['why'] ?? []),
+        ],
         'location' => $loc,
         'otherTrades' => $otherTrades,
         'nearby' => $nearby,

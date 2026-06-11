@@ -77,11 +77,17 @@ export default function ServiceSubpage({ trade, service, siblings = [], reviews 
                                     All {trade.label} Services
                                 </Link>
 
-                                {service.intro && (
-                                    <p className="mt-6 font-body text-lg font-semibold leading-relaxed text-[#07264A]">
-                                        {service.intro}
-                                    </p>
-                                )}
+                                {service.intro &&
+                                    (/<[a-z][\s\S]*>/i.test(service.intro) ? (
+                                        <div
+                                            className="mt-6 space-y-4 font-body text-lg font-semibold leading-relaxed text-[#07264A] [&_a]:text-blue-600 [&_a]:underline"
+                                            dangerouslySetInnerHTML={{ __html: service.intro }}
+                                        />
+                                    ) : (
+                                        <p className="mt-6 font-body text-lg font-semibold leading-relaxed text-[#07264A]">
+                                            {service.intro}
+                                        </p>
+                                    ))}
 
                                 {/* In-content contextual links */}
                                 <p className="mt-4 font-body text-[15px] leading-relaxed text-gray-600 md:text-base">

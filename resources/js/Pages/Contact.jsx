@@ -105,8 +105,8 @@ export default function ContactPage({ reviews = [], seo = {} }) {
             <article>
                 <PageHeader
                     label="Reach Out"
-                    title="Contact Us"
-                    description="Need a repair, install, or just have a question? Call us directly or fill out the form below — we reply fast and never charge for estimates."
+                    title="Contact Guardian Air"
+                    description="The fastest way to reach an HVAC contact in NJ: call us directly or fill out the form below — we reply fast and never charge for estimates."
                 />
 
                 {/* Contact Form + Info */}
@@ -334,6 +334,18 @@ export default function ContactPage({ reviews = [], seo = {} }) {
                                         ]}
                                         delay={300}
                                     />
+
+                                    {/* Service-area map */}
+                                    <div className="overflow-hidden rounded-2xl shadow-lg ring-1 ring-gray-200">
+                                        <iframe
+                                            title="Guardian Air service area map — Monmouth, Middlesex & Ocean counties, NJ"
+                                            src="https://maps.google.com/maps?q=Monmouth+County,+New+Jersey&t=&z=8&ie=UTF8&iwloc=&output=embed"
+                                            className="block aspect-[4/3] w-full border-0"
+                                            loading="lazy"
+                                            referrerPolicy="no-referrer-when-downgrade"
+                                            allowFullScreen
+                                        />
+                                    </div>
                                 </div>
 
                                 {/* Call-now card */}

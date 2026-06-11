@@ -50,7 +50,14 @@ export default function CostGuide({ guide, seo = {} }) {
                     <div className="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-4 lg:py-24">
                         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-14">
                             <div className="lg:col-span-7">
-                                <p className="font-body text-lg font-semibold leading-relaxed text-[#07264A]">{guide.intro}</p>
+                                {/<[a-z][\s\S]*>/i.test(guide.intro || '') ? (
+                                    <div
+                                        className="space-y-4 font-body text-lg font-semibold leading-relaxed text-[#07264A] [&_a]:text-blue-600 [&_a]:underline"
+                                        dangerouslySetInnerHTML={{ __html: guide.intro }}
+                                    />
+                                ) : (
+                                    <p className="font-body text-lg font-semibold leading-relaxed text-[#07264A]">{guide.intro}</p>
+                                )}
 
                                 {/* Price table */}
                                 <section className="mt-8">

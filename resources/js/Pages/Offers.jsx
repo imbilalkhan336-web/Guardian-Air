@@ -97,15 +97,15 @@ export default function OffersPage({ reviews = [], seo = {} }) {
         <SiteLayout reviews={reviews}>
             <Seo
                 seo={seo}
-                fallbackTitle="Special Offers — HVAC & Plumbing Deals | Guardian Air"
-                fallbackDescription="Save on HVAC and plumbing services with Guardian Air's current offers. Free estimates, repair discounts, and membership savings across central New Jersey."
+                fallbackTitle="HVAC & Plumbing Specials & Coupons NJ | Guardian Air"
+                fallbackDescription="HVAC coupons in NJ — current Guardian Air specials on heating, cooling & plumbing across Monmouth, Middlesex & Ocean counties. Licensed & insured. Save now!"
             />
 
             <article>
                 <PageHeader
                     label="Save Big"
-                    title="Current Offers"
-                    description="Real savings on real services. No gimmicks, no hidden conditions — just honest discounts from a local team that values your business."
+                    title="Current Specials & Offers"
+                    description="HVAC coupons and plumbing specials for NJ homeowners — no gimmicks, no hidden conditions, just honest discounts from a local team that values your business."
                 />
 
                 {/* Offer Cards */}

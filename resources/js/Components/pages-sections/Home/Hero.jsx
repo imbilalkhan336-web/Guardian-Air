@@ -205,6 +205,7 @@ export default function Hero() {
                         Heating, Cooling
                         <br />
                         &amp; Plumbing
+                        <span className="sr-only"> Services in New Jersey</span>
                     </h1>
 
                     <p className="mt-2 font-script font-bold text-sky-300 text-4xl sm:text-5xl md:text-6xl lg:text-[67px] leading-[1.1]">
@@ -212,8 +213,8 @@ export default function Hero() {
                     </p>
 
                     <p className="mt-4 max-w-md text-xs leading-relaxed text-white md:text-sm">
-                        Expert service. Honest pricing. 100% satisfaction guaranteed.
-                        24/7 service for all your home comfort needs.
+                        Expert heating and cooling in NJ — plus plumbing and drains. Honest pricing,
+                        100% satisfaction guaranteed, and 24/7 service for all your home comfort needs.
                     </p>
 
                     <div className="mt-6 flex flex-nowrap items-center gap-2">

@@ -40,7 +40,7 @@ const ALL_SERVICES = [
     {
         icon: LuBuilding2,
         title: 'Commercial HVAC',
-        body: 'Heating, cooling, and plumbing for offices, retail, and multi-unit properties — keep your business running.',
+        body: 'Rooftop units, maintenance contracts, and 24/7 repair for businesses that can\'t afford downtime.',
         href: '/commercial-hvac',
     },
 ];
@@ -50,15 +50,15 @@ export default function ServicesPage({ reviews = [], seo = {} }) {
         <SiteLayout reviews={reviews}>
             <Seo
                 seo={seo}
-                fallbackTitle="HVAC & Plumbing Services in NJ | Guardian Air"
+                fallbackTitle="Our Services — HVAC, Plumbing & Drains NJ | Guardian Air"
                 fallbackDescription="Guardian Air offers full-service heating, cooling, plumbing, and drain work across Monmouth, Middlesex, and Ocean counties — licensed, insured, upfront pricing on every job."
             />
 
             <article>
                 <PageHeader
                     label="What we do"
-                    title="Our Services"
-                    description="From heating and cooling to plumbing and drains, Guardian Air handles every home-comfort job with licensed technicians, honest quotes, and same-day response across central New Jersey."
+                    title="HVAC, Plumbing & Drain Services in New Jersey"
+                    description="Looking for HVAC services in NJ? From heating and cooling to plumbing and drains, Guardian Air handles every home-comfort job with licensed technicians, honest quotes, and same-day response."
                 />
 
                 <div className="pt-12">

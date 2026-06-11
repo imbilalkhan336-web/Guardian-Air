@@ -3,7 +3,7 @@ import { useState } from 'react';
 const defaultFaqs = [
     {
         q: 'What areas do you service?',
-        a: 'We provide heating, cooling, plumbing, and electrical services across Monmouth, Middlesex, and Ocean counties in New Jersey. If you\'re nearby and not sure, just give us a call.',
+        a: 'We provide heating, cooling, plumbing, and drain services across Monmouth, Middlesex, and Ocean counties in New Jersey. If you\'re nearby and not sure, just give us a call.',
     },
     {
         q: 'Do you offer emergency service?',

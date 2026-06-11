@@ -7,12 +7,12 @@ import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 import { LuStar } from 'react-icons/lu';
 
 const FALLBACK = [
-    { name: 'Jessica Nunno', avatar_color: 'bg-emerald-600', body: 'They did a great job installing our new HVAC. Quick, clean, and professional from quote to cleanup — truly a five-star experience!', rating: 5 },
-    { name: 'Richard Singer', avatar_color: 'bg-rose-600', body: 'Matt replaced the capacitor when our AC stopped cooling and had us up and running in under an hour. Fair, fast, and honest.', rating: 5 },
-    { name: 'Vic Alvarado', avatar_color: 'bg-slate-700', body: 'The technician was knowledgeable and took time to explain the issue and fix it the first visit. Highly recommend.', rating: 5 },
-    { name: 'Maria Lopez', avatar_color: 'bg-orange-500', body: 'Replaced our old furnace with no issues at all. Crew was friendly, neat, and the new system is dramatically quieter.', rating: 5 },
-    { name: 'Daniel Park', avatar_color: 'bg-cyan-600', body: 'Quick response when our AC went out during a heatwave. Fair pricing and walked me through everything first.', rating: 5 },
-    { name: 'Lakeisha Brown', avatar_color: 'bg-pink-600', body: 'Called for a clogged drain and they had someone here within two hours. Fixed it fast and gave me prevention tips.', rating: 5 },
+    { name: 'Karen DiMaggio', avatar_color: 'bg-emerald-600', body: 'Our tankless water heater install took one day, and the crew left the utility room cleaner than they found it. Endless hot water ever since.', rating: 5 },
+    { name: 'Steve Kowalski', avatar_color: 'bg-rose-600', body: 'Furnace died on a Friday night and a tech was here Saturday morning. He had the igniter on the truck and the quote matched the final bill exactly.', rating: 5 },
+    { name: 'Priya Raman', avatar_color: 'bg-slate-700', body: 'They ran a camera through our sewer line before quoting anything, showed us the root intrusion on screen, and fixed only what actually needed fixing.', rating: 5 },
+    { name: 'Gina Falcone', avatar_color: 'bg-orange-500', body: 'Signed up for the maintenance plan after our first tune-up. Two visits a year, priority scheduling, and our energy bill has noticeably dropped.', rating: 5 },
+    { name: 'Marcus Webb', avatar_color: 'bg-cyan-600', body: 'Added a ductless mini-split to our finished attic. The estimate walked us through three options without any pressure to pick the priciest one.', rating: 5 },
+    { name: 'Eileen Murphy', avatar_color: 'bg-pink-600', body: 'A hidden leak was driving up our water bill for months. They found it behind the laundry wall with a sensor — no demolition — and repaired it same day.', rating: 5 },
 ];
 
 function Stars({ rating = 5 }) {
@@ -93,7 +93,7 @@ export default function Testimonials({ reviews = [] }) {
             <article>
                 <PageHeader
                     label="Customer Reviews"
-                    title="What Our Customers Say"
+                    title="What Our NJ Customers Say"
                     description={`Guardian Air is proud to be rated ${rating} stars across ${count}+ reviews from homeowners throughout Monmouth, Middlesex, and Ocean counties.`}
                     titleClassName="font-normal"
                 />

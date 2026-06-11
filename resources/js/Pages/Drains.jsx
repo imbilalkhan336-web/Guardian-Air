@@ -66,7 +66,7 @@ export default function DrainsPage({ blocks = [], tags = [], reviews = [], seo =
                     title="Drain Cleaning & Sewer Repair in New Jersey"
                     image="/img/drains-hero.webp"
                     imageCover
-                    description="Drain cleaning, sewer repair, hydro jetting, and camera inspection across Monmouth, Middlesex & Ocean counties. Licensed, insured, and same-day emergency service — no mess left behind."
+                    description="Slow drains cleared, sewer lines repaired, and stubborn clogs jetted away — licensed technicians, honest quotes, and emergency response when a backup can't wait."
                     titleClassName="font-normal"
                 />
 

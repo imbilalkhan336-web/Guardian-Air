@@ -1,6 +1,7 @@
 import Seo from '@/Components/Seo';
 import SiteLayout from '@/Layouts/SiteLayout';
 import PageHeader from '@/Components/FrontComponents/PageHeader';
+import ServiceSchema from '@/Components/FrontComponents/ServiceSchema';
 import About from '@/Components/pages-sections/Home/About';
 import CtaBanner from '@/Components/pages-sections/Home/CtaBanner';
 import ScheduleSection from '@/Components/FrontComponents/ScheduleSection';
@@ -14,12 +15,18 @@ export default function AboutPage({ reviews = [], seo = {} }) {
                 fallbackTitle="About Guardian Air — NJ's Trusted HVAC & Plumbing Pros"
                 fallbackDescription="Locally owned Guardian Air delivers honest HVAC and plumbing service across Monmouth, Middlesex, and Ocean counties — licensed, insured, no upsells."
             />
+            <ServiceSchema
+                serviceName="About Guardian Air"
+                serviceType="HVAC, plumbing, and drain service"
+                description="A family-run HVAC company in NJ serving Monmouth, Middlesex, and Ocean counties with licensed heating, cooling, plumbing, and drain service."
+                path="/about"
+            />
 
             <article>
                 <PageHeader
                     label="Get to know us"
                     title="About Guardian Air"
-                    description="Family-run heating, cooling, and plumbing specialists serving homeowners across Monmouth, Middlesex, and Ocean counties — licensed, insured, and committed to honest pricing on every job."
+                    description="A family-run HVAC company in NJ — heating, cooling, and plumbing specialists serving homeowners across Monmouth, Middlesex, and Ocean counties with licensed, insured, honest service on every job."
                 />
 
                 <About image="/img/about-page-img.webp" />

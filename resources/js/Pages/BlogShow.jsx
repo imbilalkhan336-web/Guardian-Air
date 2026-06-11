@@ -88,7 +88,21 @@ export default function BlogShow({ post, related = [] }) {
             <Head>
                 <title>{`${post.title} | Guardian Air Blog`}</title>
                 <meta name="description" content={post.excerpt || post.title} />
-                <link rel="canonical" href={`/blog/${post.slug}`} />
+                <link rel="canonical" href={`https://guardianairnj.com/blog/${post.slug}`} />
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@type': 'BlogPosting',
+                        headline: post.title,
+                        description: post.excerpt || undefined,
+                        image: post.image_path ? `https://guardianairnj.com${post.image_path}` : undefined,
+                        datePublished: post.created_at,
+                        dateModified: post.updated_at || post.created_at,
+                        author: { '@type': 'Organization', name: 'Guardian Air' },
+                        publisher: { '@type': 'Organization', name: 'Guardian Air', url: 'https://guardianairnj.com' },
+                        mainEntityOfPage: `https://guardianairnj.com/blog/${post.slug}`,
+                    })}
+                </script>
             </Head>
 
             <article>
