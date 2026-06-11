@@ -429,8 +429,21 @@ class SiteStructure
                         'name' => 'Maintenance Contracts',
                         'title' => 'Commercial HVAC Maintenance Contracts in NJ | Guardian Air',
                         'description' => 'Custom preventative HVAC maintenance contracts for commercial properties across New Jersey — scheduled visits, priority response, and documented service.',
+                        'h1' => 'Commercial HVAC Maintenance Contracts in New Jersey',
                         'intro' => "<p>A scheduled maintenance program protects your operation and your bottom line. We build custom preventative <a href='/commercial-hvac'>commercial HVAC</a> maintenance contracts with regular visits, priority response, and detailed service records so problems get caught before they become emergencies.</p>",
                         'highlights' => ['Custom scheduled visits', 'Priority emergency response', 'Documented service history', 'Lower long-term costs'],
+                        'sections' => [
+                            ['heading' => 'What Each Maintenance Visit Covers', 'body' => "<p>On every scheduled visit our technicians work a full checklist: we change or clean filters, tighten electrical connections, check refrigerant charge, clean condenser and evaporator coils, test belts and motors, flush condensate drains, and verify thermostat and control operation. Anything trending toward failure gets flagged in writing before it can strand you.</p><p>You receive a dated service report after each visit, so you always have documentation on hand for warranties, audits, and budgeting.</p>"],
+                            ['heading' => 'Priority Dispatch, No Overtime Premiums', 'body' => "<p>When a covered system does go down, your call jumps to the front of our queue — ahead of one-off service requests — and you won't see an after-hours surcharge on the bill. For multi-site operators, that predictable response is the difference between a minor hiccup and a closed-for-the-day sign.</p><p>Need a fix outside your plan's scope? We quote it flat-rate first, just like our standard <a href='/commercial-hvac/repair'>commercial repair</a> service.</p>"],
+                            ['heading' => 'Plans Built Around Your Equipment', 'body' => "<p>A storefront with two rooftop units doesn't need the same schedule as a facility running chillers and boilers, so we size each agreement to your equipment, runtime, and budget — usually two to four visits a year, timed for spring cooling and fall heating readiness.</p><p>We coordinate around your operating hours so maintenance never interrupts business, and we keep the same technicians on your account so they get to know your systems.</p>"],
+                            ['heading' => 'The Return on Preventive Maintenance', 'body' => "<p>Maintained equipment runs more efficiently, fails far less often, and lasts years longer than neglected systems, which is why a contract usually pays for itself by heading off even one emergency breakdown and trimming monthly energy costs. It also keeps manufacturer warranties intact, since most require documented service to stay valid.</p>"],
+                        ],
+                        'faqs' => [
+                            ['q' => "What's included in a maintenance plan?", 'a' => "Each plan covers scheduled multi-point visits — filters, coils, refrigerant, electrical, belts, drains, and controls — plus a written service report, priority dispatch, and no overtime surcharge on emergency calls. We tailor the visit count and scope to your equipment."],
+                            ['q' => 'How often will you service my facility?', 'a' => "Most commercial plans run two to four visits a year, scheduled for spring cooling and fall heating readiness. Facilities with chillers, boilers, or heavy runtime may call for more frequent visits, which we map out when we build your plan."],
+                            ['q' => 'Do maintenance-plan clients really get priority service?', 'a' => "Yes. On a contract, your service calls move ahead of one-off requests, so you're typically first in line during a heat wave or cold snap — often with a technician on-site the same day."],
+                            ['q' => 'Does a maintenance contract help keep my warranty valid?', 'a' => "It does. Most manufacturers require documented annual maintenance to honor equipment warranties, and our dated service reports give you exactly that paper trail — protecting your investment if a major component ever fails."],
+                        ],
                     ],
                     'repair' => [
                         'name' => 'Commercial HVAC Repair',
@@ -482,8 +495,21 @@ class SiteStructure
             'name' => 'Commercial Plumbing',
             'title' => 'Commercial Plumbing in NJ | Guardian Air',
             'description' => 'Commercial plumbing for water heaters, drain lines, fixtures, and backflow across New Jersey — sized for the demands of a busy property.',
-            'intro' => "Commercial plumbing demands more than a residential fix. From water heaters and drain lines to fixtures and backflow testing, we keep your facility running with code-compliant work sized for the higher demands of a busy property.",
+            'h1' => 'Commercial Plumbing in New Jersey',
+            'intro' => "<p>Commercial plumbing demands more than a residential fix. From water heaters and drain lines to fixtures and backflow testing, we keep your facility running with code-compliant work sized for the higher demands of a busy property — and we coordinate with our <a href='/commercial-hvac'>commercial HVAC</a> crew whenever a job spans both trades.</p>",
             'highlights' => ['Water heaters & drain lines', 'Backflow testing & repair', 'Code-compliant work', 'Built for high-demand use'],
+            'sections' => [
+                ['heading' => 'Commercial Water Heating', 'body' => "<p>Restaurants, salons, gyms, and multi-family buildings burn through hot water fast, and a failed unit can bring service to a halt. We repair and replace commercial tank and tankless water heaters — including high-recovery and gas-fired units — and size new systems to your real peak demand rather than a rule of thumb.</p>"],
+                ['heading' => 'Drain, Sewer & Grease Line Service', 'body' => "<p>We clear and maintain the high-traffic drain and sewer lines a busy property runs on, from floor drains and main stacks to kitchen grease lines. For recurring buildup we bring commercial hydro jetting to scour the pipe clean, plus a camera inspection to confirm the line is clear — the same tools behind our residential <a href='/drains'>drain service</a>, scaled up for volume.</p>"],
+                ['heading' => 'Backflow Testing & Certification', 'body' => "<p>Most commercial properties are required to test their backflow preventers every year to protect the public water supply. Our certified team tests, repairs, and certifies backflow assemblies and files the paperwork with your water authority, so you stay compliant without chasing the deadline.</p>"],
+                ['heading' => 'Fixtures, Repipes & Code Compliance', 'body' => "<p>From ADA-compliant restroom fixtures and tankless retrofits to full repipes of aging supply lines, we handle the upgrades commercial buildings need — permitted, inspected, and done to current code. We schedule the work around your hours to keep disruption to a minimum.</p>"],
+            ],
+            'faqs' => [
+                ['q' => 'What commercial plumbing services do you offer?', 'a' => "We handle commercial water heaters, drain and sewer cleaning, grease-line service, backflow testing and certification, fixture installation, repiping, and leak repair — sized and scheduled for busy offices, restaurants, retail, and multi-family properties."],
+                ['q' => 'Do you perform backflow testing and certification?', 'a' => "Yes. Our certified technicians test, repair, and certify commercial backflow preventers and file the required paperwork with your water authority, keeping your property compliant with annual testing rules."],
+                ['q' => 'Can you service restaurant grease traps and kitchen drains?', 'a' => "Absolutely. We clear and maintain kitchen grease lines and floor drains, and for stubborn or recurring buildup we use commercial hydro jetting to scour the pipe back to full flow — scheduled around your service hours."],
+                ['q' => 'Will the work be permitted and done to code?', 'a' => "Yes. We pull the necessary permits and complete commercial plumbing work to current code, with inspections where required, so your installations and upgrades pass cleanly and protect your business."],
+            ],
         ];
     }
 
@@ -629,6 +655,61 @@ class SiteStructure
             'lakewood' => [
                 "Guardian Air is a trusted provider of HVAC in Lakewood, NJ, serving one of <a href='/service-areas/ocean-county'>Ocean County</a>'s largest and fastest-growing communities. Our local crews cover heating, cooling, plumbing, and drain work, often the same day you call.",
                 "From neighborhoods near Lake Carasaljo and FirstEnergy Park to homes along Route 9 and Route 70, we deliver honest, flat-rate pricing and clean, professional service — whether it's a no-heat morning or an <a href='/cooling'>AC failure</a> in peak summer.",
+            ],
+            'aberdeen' => [
+                "Guardian Air brings reliable HVAC to Aberdeen, NJ, covering Aberdeen Township and the Cliffwood and Cliffwood Beach sections across <a href='/service-areas/monmouth-county'>Monmouth County</a>. Our local team handles heating, cooling, plumbing, and drains with straightforward flat-rate pricing.",
+                "With the Matawan train station drawing daily commuters and quiet streets running off Route 34 and the Garden State Parkway, Aberdeen homes range from mid-century capes to newer construction. We keep them all comfortable, whatever sits behind the wall.",
+                "Tucked against the Raritan Bayshore, Aberdeen catches the damp, salty air that wears on outdoor condensers and shortens the life of a <a href='/plumbing/water-heater'>water heater</a>. We service your equipment with that in mind and leave the job site clean every time.",
+            ],
+            'long-branch' => [
+                "Guardian Air delivers dependable HVAC to Long Branch, NJ, the historic oceanfront city in <a href='/service-areas/monmouth-county'>Monmouth County</a>. From Pier Village to the West End, our licensed crews take on heating, cooling, plumbing, and drains with fast, flat-rate service.",
+                "Long Branch blends beachfront condos and year-round homes near Seven Presidents Park with older neighborhoods inland off Route 36. Whether it's a high-rise air handler or a single-family furnace, we bring the right fix and a fair quote.",
+                "Right on the Atlantic, Long Branch homes fight salt air and humidity that corrode coils and age equipment early. We keep your <a href='/cooling'>cooling</a> and heating dependable through every shore season, with clean workmanship on every call.",
+            ],
+            'howell' => [
+                "Guardian Air is the local choice for HVAC in Howell, NJ, one of <a href='/service-areas/monmouth-county'>Monmouth County</a>'s largest townships. We cover the neighborhoods spread along Route 9 and Route 33 with licensed heating, cooling, plumbing, and drain service.",
+                "Howell's wooded lots and newer subdivisions near the Manasquan Reservoir and Echo Lake mean larger homes, and plenty of properties on private wells. Our trucks roll in stocked for exactly that kind of setup.",
+                "Because so many Howell homes run on well water and septic, we bring plumbing and <a href='/drains'>drain</a> know-how suited to them rather than city-water assumptions — paired with honest, flat-rate pricing on every visit.",
+            ],
+            'edison' => [
+                "Guardian Air provides trusted HVAC in Edison, NJ, serving this busy <a href='/service-areas/middlesex-county'>Middlesex County</a> township from Menlo Park to Oak Tree Road. Our local technicians handle heating, cooling, plumbing, and drains with upfront, flat-rate pricing.",
+                "Home to the Menlo Park Mall and the lab where Thomas Edison perfected the light bulb, the township packs dense neighborhoods, townhome communities, and commercial strips along Route 1 — and we serve every one of them.",
+                "Edison's blend of decades-old houses and newer developments means we see tired boilers right next to modern <a href='/heating/heat-pump'>heat pumps</a>. We match the repair or upgrade to the home, never a one-size-fits-all sales pitch.",
+            ],
+            'woodbridge' => [
+                "Guardian Air keeps Woodbridge, NJ comfortable, covering the township's many sections — Iselin, Colonia, Fords, Sewaren, and Avenel — across <a href='/service-areas/middlesex-county'>Middlesex County</a>. Heating, cooling, plumbing, and drains, all from one local team.",
+                "Sitting where the Garden State Parkway meets the Turnpike near Woodbridge Center, the township is a commuter hub of well-established neighborhoods. We respond quickly with honest, flat-rate <a href='/plumbing'>plumbing</a> and HVAC service.",
+                "A lot of Woodbridge's housing has stood for generations, so we're as comfortable coaxing another season out of an older boiler as we are installing a high-efficiency system. You set the pace; we lay out the options plainly.",
+            ],
+            'new-brunswick' => [
+                "Guardian Air serves New Brunswick, NJ — the Raritan River 'Hub City' and home of Rutgers University — throughout <a href='/service-areas/middlesex-county'>Middlesex County</a>. Our licensed crews handle heating, cooling, plumbing, and drains across the city.",
+                "Between campus housing, downtown apartments near the State Theatre, and the hospital district, New Brunswick runs a dense mix of rentals and historic homes. We work just as easily with homeowners as with property managers.",
+                "Older multi-unit buildings here often hide tired boilers, weak water pressure, and aging <a href='/plumbing/leak-detection'>plumbing</a>. We find the real cause, fix it cleanly, and keep tenant downtime as short as possible.",
+            ],
+            'south-amboy' => [
+                "Guardian Air provides reliable HVAC in South Amboy, NJ, the small waterfront city on Raritan Bay in <a href='/service-areas/middlesex-county'>Middlesex County</a>. We cover heating, cooling, plumbing, and drains with honest, flat-rate pricing.",
+                "South Amboy's tight blocks near the waterfront and the NJ Transit station are mostly older homes, many still on their original heating and plumbing. Our local team keeps them running without the upsell.",
+                "Because these homes sit so close together, we take extra care protecting floors and finishes and leaving the workspace spotless. Every repair is quoted flat-rate upfront, so nothing on the bill catches you off guard.",
+            ],
+            'perth-amboy' => [
+                "Guardian Air brings dependable HVAC to Perth Amboy, NJ, the historic waterfront city on Raritan Bay in <a href='/service-areas/middlesex-county'>Middlesex County</a>. We handle heating, cooling, plumbing, and drains for homes and businesses citywide.",
+                "From the Victorian-era homes near the waterfront and City Hall to the busy commercial blocks, Perth Amboy is one of the state's oldest cities — and its aging building stock keeps our repair crews steadily at work.",
+                "In a city this old, no two basements look alike, so we diagnose each <a href='/heating'>heating</a> and plumbing system on its own terms instead of guessing. You get a clear, flat-rate quote before any work begins.",
+            ],
+            'jackson' => [
+                "Guardian Air is the local HVAC team for Jackson, NJ, a large, fast-growing township in <a href='/service-areas/ocean-county'>Ocean County</a> known for Six Flags Great Adventure. We cover heating, cooling, plumbing, and drains along the Route 9 and Route 537 corridors.",
+                "Jackson's wooded lots and spread-out subdivisions mean larger homes that need real airflow planning, not a quick guess. Whatever heats or cools yours, our local crew services it at flat-rate pricing.",
+                "New construction is booming off Route 537 and around Adventure Crossing, so we're a go-to for sizing and installing <a href='/cooling/ac-installation'>new systems</a> in those big floor plans — while keeping established homes running with fast, honest service.",
+            ],
+            'barnegat' => [
+                "Guardian Air provides trusted HVAC in Barnegat, NJ, a Barnegat Bay community in southern <a href='/service-areas/ocean-county'>Ocean County</a> along Route 9 and the Garden State Parkway. Heating, cooling, plumbing, and drains, all handled by a local team.",
+                "Barnegat's mix of bayside homes and active-adult communities like Heritage Point keeps us busy with both quick repairs and full-system replacements. We explain every option in plain language, with zero pressure.",
+                "With seasonal and second homes common near the bay, we handle spring start-ups, winterizations, and the off-season <a href='/plumbing'>plumbing</a> work that keeps a part-time house ready the moment you arrive.",
+            ],
+            'point-pleasant' => [
+                "Guardian Air serves Point Pleasant, NJ, the lively shore town in <a href='/service-areas/ocean-county'>Ocean County</a> famous for its boardwalk and Jenkinson's. From the beach blocks to the homes along the Manasquan River, we cover heating, cooling, plumbing, and drains.",
+                "Point Pleasant runs hot all summer, with tourists, seasonal rentals, and year-round homes all leaning on their cooling at once. Our local crew keeps pace, with fast response and flat-rate pricing right through the busy season.",
+                "Salt air off the inlet is rough on outdoor units and <a href='/cooling/ac-tune-up'>condenser coils</a>, so a spring tune-up here genuinely pays for itself. We get your system beach-season ready and keep it running efficiently all summer long.",
             ],
         ];
     }
