@@ -606,6 +606,7 @@ class SiteStructure
             'freehold' => [
                 "Looking for dependable HVAC in Freehold, NJ? Guardian Air serves both Freehold Borough and Freehold Township throughout <a href='/service-areas/monmouth-county'>Monmouth County</a> with licensed heating, cooling, plumbing, and drain service — often the same day.",
                 "From the shops around Freehold Raceway Mall to the historic neighborhoods near Monmouth Battlefield and the Route 9 and Route 33 corridors, our local technicians respond fast with upfront, flat-rate <a href='/heating'>heating</a> and cooling service and friendly, professional workmanship.",
+                "Freehold splits between the older, walkable borough around Main Street and the fast-growing township subdivisions off Route 9 and Route 33, so we work on everything from century-old radiator-and-boiler setups to brand-new high-efficiency furnaces and central air. Knowing the difference means we arrive prepared instead of guessing, with a fair flat-rate quote before any work starts.",
             ],
             'brick' => [
                 "Guardian Air delivers reliable HVAC in Brick, NJ to homes and businesses across Brick Township. From neighborhoods along the Metedeconk River to bayside homes near Barnegat Bay, our licensed technicians handle heating, cooling, <a href='/plumbing'>plumbing</a>, and drains with fast, same-day response.",
@@ -639,6 +640,12 @@ class SiteStructure
     public static function cityFaqs(): array
     {
         return [
+            'freehold' => [
+                ['q' => 'Do you cover both Freehold Borough and Freehold Township?', 'a' => "Yes. We serve the dense borough around Main Street and the spread-out township developments off Route 9 and Route 33 alike — the same local crew and the same flat-rate pricing, wherever you are in Freehold."],
+                ['q' => 'Can you service the older boiler and radiator systems in downtown Freehold?', 'a' => "Definitely. Many homes near Main Street and Monmouth Battlefield still run hot-water or steam boilers with cast-iron radiators, and we repair, tune, and replace them — along with the oil and gas furnaces common in the surrounding neighborhoods."],
+                ['q' => 'My cooling bills spike every summer in Freehold — what helps?', 'a' => "Inland Freehold gets long, hot summers that push older AC units hard. On a tune-up we check refrigerant charge, coil cleanliness, and airflow, and where a system is past its prime we size an efficient replacement that brings those July and August bills back down."],
+                ['q' => 'Do you install smart thermostats and high-efficiency systems in Freehold?', 'a' => "Yes. The newer township homes are a natural fit for high-efficiency furnaces, heat pumps, and smart thermostats, and we retrofit the older borough homes too — matching the right equipment to each house for real comfort and lower running costs."],
+            ],
             'middletown' => [
                 ['q' => 'Can you come out the same day in Middletown?', 'a' => "Usually, yes. Middletown is right in our backyard, so most days we can have a technician at your door within hours — and we treat a dead furnace or a failed AC as the emergency it is, any day of the week."],
                 ['q' => 'What system issues do Middletown homes run into most?', 'a' => "Along the Bayshore we often find corroded outdoor AC units, aging boilers and oil furnaces in older homes, and water heaters worn down early by coastal moisture. We track each issue to its source and fix it for good, not just for the season."],
