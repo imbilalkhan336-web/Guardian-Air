@@ -20,6 +20,7 @@ export default function ServiceAreaCity({ city, county, trades = [], reviews = [
               `Guardian Air provides trusted HVAC in ${city.name}, NJ to homeowners and businesses throughout ${county.name}. Our licensed technicians deliver fast, same-day heating, cooling, plumbing, and drain service with honest, flat-rate pricing.`,
               `Whether it's a furnace that won't start in January or an air conditioner struggling through a July heatwave, our local team is nearby and ready to help in ${city.name} — clean workmanship, no surprises, on every visit.`,
           ];
+    const faqs = (city.faqs || []).map((f) => ({ question: f.q, answer: f.a }));
 
     return (
         <SiteLayout showReviews={false}>
@@ -29,6 +30,7 @@ export default function ServiceAreaCity({ city, county, trades = [], reviews = [
                 serviceType="HVAC, plumbing, and drain service"
                 description={description}
                 path={`/service-areas/${city.slug}`}
+                faqs={faqs}
             />
 
             <Breadcrumbs
@@ -92,6 +94,25 @@ export default function ServiceAreaCity({ city, county, trades = [], reviews = [
                                         ))}
                                     </div>
                                 </section>
+
+                                {faqs.length > 0 && (
+                                    <section className="mt-12">
+                                        <SectionHeading sizeClass="text-[26px] font-normal">
+                                            {city.name} HVAC &amp; Plumbing FAQs
+                                        </SectionHeading>
+                                        <div className="mt-6 space-y-3">
+                                            {city.faqs.map((f) => (
+                                                <details key={f.q} className="group rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+                                                    <summary className="flex cursor-pointer items-center justify-between gap-3 font-body text-sm font-bold text-[#07264A]">
+                                                        {f.q}
+                                                        <LuArrowRight className="h-4 w-4 flex-shrink-0 text-brand-orange transition-transform group-open:rotate-90" />
+                                                    </summary>
+                                                    <p className="mt-3 font-body text-sm leading-relaxed text-gray-600">{f.a}</p>
+                                                </details>
+                                            ))}
+                                        </div>
+                                    </section>
+                                )}
                             </div>
 
                             <aside className="lg:col-span-5">

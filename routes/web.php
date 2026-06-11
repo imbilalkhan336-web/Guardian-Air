@@ -165,6 +165,7 @@ Route::get('/service-areas/{location}', function (string $location) use ($getRev
             'title' => $county['title'],
             'description' => $county['description'],
             'intro' => $county['intro'] ?? [],
+            'faqs' => $county['faqs'] ?? [],
             'towns' => array_values($county['cities']),
         ];
         $cities = collect($county['cities'])->map(fn ($name, $slug) => [
@@ -186,6 +187,7 @@ Route::get('/service-areas/{location}', function (string $location) use ($getRev
             'slug' => $loc['slug'],
             'name' => $loc['name'],
             'intro' => SiteStructure::cityContent()[$location] ?? null,
+            'faqs' => SiteStructure::cityFaqs()[$location] ?? [],
         ],
         'county' => ['slug' => $loc['county_slug'], 'name' => $loc['county_name']],
         'trades' => $trades,

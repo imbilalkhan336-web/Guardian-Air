@@ -13,6 +13,7 @@ export default function ServiceArea({ area, cities = [], trades = [], reviews = 
     const intro = area.intro?.length
         ? area.intro
         : [`Guardian Air proudly serves homeowners and businesses throughout ${area.name} with licensed heating, cooling, plumbing, and drain service.`];
+    const faqs = (area.faqs || []).map((f) => ({ question: f.q, answer: f.a }));
 
     return (
         <SiteLayout showReviews={false}>
@@ -26,6 +27,7 @@ export default function ServiceArea({ area, cities = [], trades = [], reviews = 
                 serviceType="HVAC, plumbing, and drain service"
                 description={area.description}
                 path={`/service-areas/${area.slug}`}
+                faqs={faqs}
             />
 
             <Breadcrumbs
@@ -116,6 +118,25 @@ export default function ServiceArea({ area, cities = [], trades = [], reviews = 
                                         Don&apos;t see your town? We likely still serve it — give us a call to confirm.
                                     </p>
                                 </section>
+
+                                {faqs.length > 0 && (
+                                    <section className="mt-12">
+                                        <SectionHeading sizeClass="text-[26px] font-normal">
+                                            {area.name} Service FAQs
+                                        </SectionHeading>
+                                        <div className="mt-6 space-y-3">
+                                            {area.faqs.map((f) => (
+                                                <details key={f.q} className="group rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+                                                    <summary className="flex cursor-pointer items-center justify-between gap-3 font-body text-sm font-bold text-[#07264A]">
+                                                        {f.q}
+                                                        <LuArrowRight className="h-4 w-4 flex-shrink-0 text-brand-orange transition-transform group-open:rotate-90" />
+                                                    </summary>
+                                                    <p className="mt-3 font-body text-sm leading-relaxed text-gray-600">{f.a}</p>
+                                                </details>
+                                            ))}
+                                        </div>
+                                    </section>
+                                )}
                             </div>
 
                             {/* Sticky schedule form */}
