@@ -21,7 +21,7 @@ const benefits = [
     { title: '24/7 Emergency Service', body: "Heat and cooling failures don't wait — neither do we." },
     { title: 'Upfront, Transparent Pricing', body: 'No surprises. Full quotes before any work begins.' },
     { title: '100% Satisfaction Guarantee', body: 'We stand behind every install and every repair.' },
-    { title: 'Licensed, Bonded &amp; Insured', body: 'Full NJ HVAC, plumbing, and electrical licensing.' },
+    { title: 'Licensed, Bonded &amp; Insured', body: 'Full NJ HVAC and plumbing licensing, bonding, and insurance.' },
     { title: 'Same-Day Service Available', body: 'Most jobs scheduled and completed within 24 hours.' },
     { title: 'Financing Options Available', body: '0% APR financing on qualifying installs.' },
 ];

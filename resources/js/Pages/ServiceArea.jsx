@@ -125,13 +125,13 @@ export default function ServiceArea({ area, cities = [], trades = [], reviews = 
                                             {area.name} Service FAQs
                                         </SectionHeading>
                                         <div className="mt-6 space-y-3">
-                                            {area.faqs.map((f) => (
-                                                <details key={f.q} className="group rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+                                            {faqs.map((f) => (
+                                                <details key={f.question} className="group rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
                                                     <summary className="flex cursor-pointer items-center justify-between gap-3 font-body text-sm font-bold text-[#07264A]">
-                                                        {f.q}
+                                                        {f.question}
                                                         <LuArrowRight className="h-4 w-4 flex-shrink-0 text-brand-orange transition-transform group-open:rotate-90" />
                                                     </summary>
-                                                    <p className="mt-3 font-body text-sm leading-relaxed text-gray-600">{f.a}</p>
+                                                    <p className="mt-3 font-body text-sm leading-relaxed text-gray-600">{f.answer}</p>
                                                 </details>
                                             ))}
                                         </div>

@@ -21,7 +21,11 @@ $getReviews = fn () => Review::published()->latest()->get();
 $seo = fn (string $page) => PageSeo::resolve($page);
 
 Route::get('/', function () use ($getReviews, $seo) {
-    return Inertia::render('Home', ['reviews' => $getReviews(), 'seo' => $seo('home')]);
+    return Inertia::render('Home', [
+        'reviews' => $getReviews(),
+        'posts' => \App\Models\Post::latest()->take(3)->get(['title', 'slug', 'excerpt', 'image_path', 'created_at']),
+        'seo' => $seo('home'),
+    ]);
 });
 
 Route::get('/about', function () use ($getReviews, $seo) {
@@ -203,10 +207,11 @@ Route::get('/offers', function () use ($getReviews, $seo) {
     return Inertia::render('Offers', ['reviews' => $getReviews(), 'seo' => $seo('offers')]);
 })->name('offers');
 
-// Testimonials.
+// Testimonials (also reachable at /reviews).
 Route::get('/testimonials', function () use ($getReviews) {
     return Inertia::render('Testimonials', ['reviews' => $getReviews()]);
 })->name('testimonials');
+Route::permanentRedirect('/reviews', '/testimonials');
 
 // Careers / Join Our Team.
 Route::get('/careers', fn () => Inertia::render('Careers'))->name('careers');
@@ -342,8 +347,22 @@ Route::get('/{trade}/{slug}', function (string $trade, string $slug) use ($getRe
 
     $info = SiteStructure::tradeLocationInfo()[$trade] ?? ['issues' => []];
 
+    // Hand-written per-location copy beats the templated fallback.
+    $custom = SiteStructure::tradeLocationCopy($trade)[$slug] ?? null;
+
+    // Fill the :city / :county placeholders in the per-trade copy.
+    $fill = fn (string $s) => str_replace([':city', ':county'], [$loc['name'], $loc['county_name']], $s);
+
     return Inertia::render('TradeLocation', [
-        'trade' => ['slug' => $trade, 'label' => $t['label'], 'locationName' => $t['locationName'], 'issues' => $info['issues']],
+        'trade' => [
+            'slug' => $trade,
+            'label' => $t['label'],
+            'locationName' => $t['locationName'],
+            'issues' => $info['issues'],
+            'intro' => $custom['intro'] ?? array_map($fill, $info['intro'] ?? []),
+            'why' => $custom['why'] ?? array_map($fill, $info['why'] ?? []),
+            'hasCustomCopy' => $custom !== null,
+        ],
         'location' => $loc,
         'otherTrades' => $otherTrades,
         'nearby' => $nearby,

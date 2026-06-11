@@ -48,7 +48,7 @@ export default function AirQualityPage({ blocks = [], tags = [], reviews = [], s
         <SiteLayout showReviews={false}>
             <Seo
                 seo={seo}
-                fallbackTitle="Indoor Air Quality & Air Quality Testing in NJ | Guardian Air"
+                fallbackTitle="Air Quality Testing & IAQ Solutions in NJ | Guardian Air"
                 fallbackDescription="Worried about your home's air? Guardian Air provides licensed indoor air quality testing across Monmouth, Middlesex & Ocean counties, NJ. Call today!"
             />
             <ServiceSchema

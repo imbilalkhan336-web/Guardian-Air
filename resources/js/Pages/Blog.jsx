@@ -88,16 +88,16 @@ export default function Blog({ posts = [], seo = {} }) {
         <SiteLayout showReviews={false}>
             <Seo
                 seo={seo}
-                fallbackTitle="Blog & HVAC Tips | Guardian Air"
-                fallbackDescription="Heating, cooling, and indoor air quality tips, guides, and news from the Guardian Air team serving New Jersey homeowners."
+                fallbackTitle="HVAC, Plumbing & Home Comfort Blog | Guardian Air"
+                fallbackDescription="HVAC tips for NJ homeowners — heating, cooling, plumbing, and indoor air quality guides from the licensed Guardian Air team in central New Jersey."
             />
 
             <PageHeader
                 label="From Our Team"
-                title="Guardian Air Blog"
+                title="Guardian Air Blog — NJ Home Comfort Tips"
                 image="/img/heroes/company.webp"
                 imageCover
-                description="HVAC tips, seasonal guides, and home comfort advice from our licensed New Jersey technicians."
+                description="HVAC tips for NJ homeowners: seasonal guides, plumbing pointers, and home comfort advice from our licensed New Jersey technicians."
                 titleClassName="font-normal"
             />
 

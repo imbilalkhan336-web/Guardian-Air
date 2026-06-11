@@ -7,7 +7,7 @@ const points = [
     },
     {
         title: 'Wide Range of Services',
-        body: 'From air conditioning installation to furnace repair to plumbing to electrical, our comprehensive service has you covered.',
+        body: 'From air conditioning installation to furnace repair to plumbing and drains, our comprehensive service has you covered.',
     },
     {
         title: 'Customer-Focused Approach',

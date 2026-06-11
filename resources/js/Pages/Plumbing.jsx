@@ -53,7 +53,7 @@ export default function PlumbingPage({ blocks = [], tags = [], reviews = [], seo
         <SiteLayout showReviews={false}>
             <Seo
                 seo={seo}
-                fallbackTitle="Licensed Plumber NJ | Monmouth, Middlesex & Ocean County | Guardian Air"
+                fallbackTitle="Licensed Plumber NJ — 24/7 Plumbing Service | Guardian Air"
                 fallbackDescription="Need a licensed plumber in NJ? Guardian Air offers 24/7 insured plumbing repair across Monmouth, Middlesex & Ocean counties. Call now for fast service!"
             />
             <ServiceSchema

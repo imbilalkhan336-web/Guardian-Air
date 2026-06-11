@@ -20,7 +20,15 @@ export default function ServiceAreaCity({ city, county, trades = [], reviews = [
               `Guardian Air provides trusted HVAC in ${city.name}, NJ to homeowners and businesses throughout ${county.name}. Our licensed technicians deliver fast, same-day heating, cooling, plumbing, and drain service with honest, flat-rate pricing.`,
               `Whether it's a furnace that won't start in January or an air conditioner struggling through a July heatwave, our local team is nearby and ready to help in ${city.name} — clean workmanship, no surprises, on every visit.`,
           ];
-    const faqs = (city.faqs || []).map((f) => ({ question: f.q, answer: f.a }));
+    // Prefer hand-written per-city FAQs; fall back to a localized generic set.
+    const cityFaqs = (city.faqs || []).map((f) => ({ question: f.q, answer: f.a }));
+    const fallbackFaqs = [
+        { question: `Which services does Guardian Air offer in ${city.name}?`, answer: `Everything under one roof: heating, cooling, plumbing, drains, and indoor air quality — handled by licensed technicians who already work in ${city.name} every week.` },
+        { question: `How soon can a technician be in ${city.name}?`, answer: `Often the same day. Our ${county.name} routes pass through ${city.name} regularly, and emergencies jump the queue any hour of the day.` },
+        { question: `Do you charge extra to come to ${city.name}?`, answer: `No — ${city.name} is part of our core coverage, so there are no trip fees, and after-hours visits cost the same flat rate as daytime ones.` },
+        { question: `Can I get HVAC and plumbing work done in one visit in ${city.name}?`, answer: `Usually, yes. Because we're licensed across trades, one appointment can cover a furnace check and a leaky faucet — one truck, one invoice.` },
+    ];
+    const faqs = cityFaqs.length ? cityFaqs : fallbackFaqs;
 
     return (
         <SiteLayout showReviews={false}>
@@ -95,24 +103,22 @@ export default function ServiceAreaCity({ city, county, trades = [], reviews = [
                                     </div>
                                 </section>
 
-                                {faqs.length > 0 && (
-                                    <section className="mt-12">
-                                        <SectionHeading sizeClass="text-[26px] font-normal">
-                                            {city.name} HVAC &amp; Plumbing FAQs
-                                        </SectionHeading>
-                                        <div className="mt-6 space-y-3">
-                                            {city.faqs.map((f) => (
-                                                <details key={f.q} className="group rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-                                                    <summary className="flex cursor-pointer items-center justify-between gap-3 font-body text-sm font-bold text-[#07264A]">
-                                                        {f.q}
-                                                        <LuArrowRight className="h-4 w-4 flex-shrink-0 text-brand-orange transition-transform group-open:rotate-90" />
-                                                    </summary>
-                                                    <p className="mt-3 font-body text-sm leading-relaxed text-gray-600">{f.a}</p>
-                                                </details>
-                                            ))}
-                                        </div>
-                                    </section>
-                                )}
+                                <section className="mt-12">
+                                    <SectionHeading sizeClass="text-[26px] font-normal">
+                                        {city.name} HVAC &amp; Plumbing FAQs
+                                    </SectionHeading>
+                                    <div className="mt-6 space-y-3">
+                                        {faqs.map((f) => (
+                                            <details key={f.question} className="group rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+                                                <summary className="flex cursor-pointer items-center justify-between gap-3 font-body text-sm font-bold text-[#07264A]">
+                                                    {f.question}
+                                                    <LuArrowRight className="h-4 w-4 flex-shrink-0 text-brand-orange transition-transform group-open:rotate-90" />
+                                                </summary>
+                                                <p className="mt-3 font-body text-sm leading-relaxed text-gray-600">{f.answer}</p>
+                                            </details>
+                                        ))}
+                                    </div>
+                                </section>
                             </div>
 
                             <aside className="lg:col-span-5">

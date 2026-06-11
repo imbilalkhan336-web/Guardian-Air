@@ -16,7 +16,7 @@ export default function CostGuidesIndex({ guides = [], faqs: rawFaqs = [], seo =
             <Seo
                 seo={seo}
                 fallbackTitle="HVAC, Plumbing & Drain Cost Guides (NJ) | Guardian Air"
-                fallbackDescription="HVAC repair cost NJ and more — honest 2026 price guides for furnace, AC, plumbing, duct, and drain service across Monmouth, Middlesex & Ocean counties. Call!"
+                fallbackDescription="HVAC repair cost NJ — flat-rate 2026 price guides for furnace, AC, plumbing, duct & drain service across Monmouth, Middlesex & Ocean counties. Call today!"
             />
             <ServiceSchema
                 serviceName="HVAC & Plumbing Cost Guides"
@@ -32,7 +32,7 @@ export default function CostGuidesIndex({ guides = [], faqs: rawFaqs = [], seo =
                 <PageHeader
                     label="Pricing"
                     title="What HVAC & Plumbing Services Cost in New Jersey"
-                    description="No gimmicks, no hidden conditions — honest price ranges so you know what to expect before you call."
+                    description="Wondering about HVAC repair cost in NJ? No gimmicks, no hidden conditions — honest price ranges for heating, AC, plumbing, duct, and drain work so you know what to expect before you call."
                     image="/img/heroes/cost-guides.webp"
                     titleClassName="font-normal"
                 />

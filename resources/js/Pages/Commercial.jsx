@@ -51,7 +51,7 @@ export default function CommercialPage({ blocks = [], tags = [], reviews = [], s
             <Seo
                 seo={seo}
                 fallbackTitle="Commercial HVAC Services in NJ | Guardian Air"
-                fallbackDescription="Need commercial HVAC in NJ? Guardian Air keeps offices, restaurants & retail comfortable across Monmouth, Middlesex & Ocean counties. Licensed & insured."
+                fallbackDescription="Commercial HVAC in NJ — Guardian Air keeps offices, restaurants & retail comfortable across Monmouth, Middlesex & Ocean counties. Licensed & insured — call!"
             />
             <ServiceSchema
                 serviceName="Commercial HVAC Services"

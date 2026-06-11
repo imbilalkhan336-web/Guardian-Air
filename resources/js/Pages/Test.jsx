@@ -46,7 +46,7 @@ const process = [
         step: '03',
         icon: IoSettingsOutline,
         title: 'Quality Execution',
-        body: 'Licensed HVAC, plumbing, and electrical technicians complete the job to spec with the right parts on the truck — not whatever happens to be in stock.',
+        body: 'Licensed HVAC and plumbing technicians complete the job to spec with the right parts on the truck — not whatever happens to be in stock.',
     },
     {
         step: '04',
