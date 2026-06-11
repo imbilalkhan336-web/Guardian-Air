@@ -555,6 +555,18 @@ class SiteStructure
     }
 
     /**
+     * Hand-written per-location copy for /{trade}/{location} pages, keyed by
+     * location slug. Overrides the templated tradeLocationInfo() text so no
+     * two location pages of the same trade share paragraphs.
+     */
+    public static function tradeLocationCopy(string $trade): array
+    {
+        $file = __DIR__."/TradeLocationCopy/{$trade}.php";
+
+        return is_file($file) ? require $file : [];
+    }
+
+    /**
      * A standalone "Commercial Plumbing" service page at /commercial-plumbing.
      */
     public static function commercialPlumbing(): array

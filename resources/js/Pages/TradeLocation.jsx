@@ -68,7 +68,7 @@ export default function TradeLocation({ trade, location, otherTrades = [], nearb
 
                                 <section className="mt-6">
                                     <SectionHeading sizeClass="text-[30px] font-normal">{svc} in {loc}</SectionHeading>
-                                    <div className="mt-6 space-y-4 font-body text-[15px] leading-relaxed text-gray-600 md:text-base">
+                                    <div className="mt-6 space-y-4 font-body text-[15px] leading-relaxed text-gray-600 md:text-base [&_a]:font-semibold [&_a]:text-blue-600 [&_a]:underline">
                                         {(trade.intro?.length
                                             ? trade.intro
                                             : [
@@ -76,31 +76,33 @@ export default function TradeLocation({ trade, location, otherTrades = [], nearb
                                                   `Our technicians know the homes and systems common to ${loc}, so we diagnose the real problem quickly and fix it right the first time. No upsells, no surprises — just reliable comfort backed by a satisfaction guarantee.`,
                                               ]
                                         ).map((p, i) => (
-                                            <p key={i}>{p}</p>
+                                            <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
                                         ))}
-                                        <p>
-                                            Visit our main{' '}
-                                            <Link href={`/${trade.slug}`} className="font-semibold text-blue-600 underline">
-                                                {trade.label.toLowerCase()} page
-                                            </Link>{' '}
-                                            for all our services, see{' '}
-                                            <Link href={`/service-areas/${location.county_slug}`} className="font-semibold text-blue-600 underline">
-                                                {location.county_name}
-                                            </Link>
-                                            {nearby.length > 0 && (
-                                                <>
-                                                    , or find us in{' '}
-                                                    {nearby.map((n, i) => (
-                                                        <span key={n.href}>
-                                                            <Link href={n.href} className="font-semibold text-blue-600 underline">
-                                                                {n.name}
-                                                            </Link>
-                                                            {i < nearby.length - 1 ? ' and ' : ''}
-                                                        </span>
-                                                    ))}
-                                                </>
-                                            )}.
-                                        </p>
+                                        {!trade.hasCustomCopy && (
+                                            <p>
+                                                Visit our main{' '}
+                                                <Link href={`/${trade.slug}`} className="font-semibold text-blue-600 underline">
+                                                    {trade.label.toLowerCase()} page
+                                                </Link>{' '}
+                                                for all our services, see{' '}
+                                                <Link href={`/service-areas/${location.county_slug}`} className="font-semibold text-blue-600 underline">
+                                                    {location.county_name}
+                                                </Link>
+                                                {nearby.length > 0 && (
+                                                    <>
+                                                        , or find us in{' '}
+                                                        {nearby.map((n, i) => (
+                                                            <span key={n.href}>
+                                                                <Link href={n.href} className="font-semibold text-blue-600 underline">
+                                                                    {n.name}
+                                                                </Link>
+                                                                {i < nearby.length - 1 ? ' and ' : ''}
+                                                            </span>
+                                                        ))}
+                                                    </>
+                                                )}.
+                                            </p>
+                                        )}
                                     </div>
                                 </section>
 

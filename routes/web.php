@@ -346,6 +346,9 @@ Route::get('/{trade}/{slug}', function (string $trade, string $slug) use ($getRe
 
     $info = SiteStructure::tradeLocationInfo()[$trade] ?? ['issues' => []];
 
+    // Hand-written per-location copy beats the templated fallback.
+    $custom = SiteStructure::tradeLocationCopy($trade)[$slug] ?? null;
+
     // Fill the :city / :county placeholders in the per-trade copy.
     $fill = fn (string $s) => str_replace([':city', ':county'], [$loc['name'], $loc['county_name']], $s);
 
@@ -355,8 +358,9 @@ Route::get('/{trade}/{slug}', function (string $trade, string $slug) use ($getRe
             'label' => $t['label'],
             'locationName' => $t['locationName'],
             'issues' => $info['issues'],
-            'intro' => array_map($fill, $info['intro'] ?? []),
-            'why' => array_map($fill, $info['why'] ?? []),
+            'intro' => $custom['intro'] ?? array_map($fill, $info['intro'] ?? []),
+            'why' => $custom['why'] ?? array_map($fill, $info['why'] ?? []),
+            'hasCustomCopy' => $custom !== null,
         ],
         'location' => $loc,
         'otherTrades' => $otherTrades,
